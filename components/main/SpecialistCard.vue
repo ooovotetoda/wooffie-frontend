@@ -1,0 +1,110 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+  <div class="card">
+    <div class="card-avatar">
+      <img src="/images/specialist-avatar.png" alt="avatar">
+    </div>
+    <p class="card-experience">
+      стаж 10 лет
+    </p>
+    <div class="card-row">
+      <span>Врач</span>
+      Иванова Анастасия Андреевна
+    </div>
+    <div class="card-row">
+      <span>Специализация</span>
+      Хирургия, ортопедия
+    </div>
+    <button class="card-btn">Записаться</button>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 420px;
+  padding: 32px 72px;
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+
+  &-avatar {
+    width: 200px;
+    height: 200px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &-experience {
+    margin: 10px 0;
+    color: $dark-grey;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &-row {
+    margin-bottom: 14px;
+    margin-right: auto;
+    text-align: left;
+    color: #080606;
+    font-family: "Futura New Book";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+
+    span {
+      display: block;
+      margin-bottom: 4px;
+      color: $dark-grey;
+      font-family: "Futura New Book";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+    }
+    &:nth-last-of-type(1) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &-btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 10px;
+    background: $main-color;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    &:hover {
+      background-color: $main-color-dark;
+    }
+
+    &:active {
+      transform: scale(0.93);
+    }
+  }
+}
+</style>
