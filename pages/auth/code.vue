@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const route = useRoute()
-const code = ref<string | null>(null)
+const code:Ref = ref<string | null>(null)
 const isCodeSent = ref<boolean>(false);
 const isCodeFocused = ref<boolean>(false);
 const isCodeValid = ref<boolean>(true);

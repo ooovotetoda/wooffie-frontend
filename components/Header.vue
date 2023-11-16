@@ -74,11 +74,11 @@
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
-      transition: all 0.15s linear;
+      transition: all 0.065s linear;
     }
 
     svg {
-      transition: all 0.15s linear;
+      transition: all 0.065s linear;
     }
 
     &:hover {
