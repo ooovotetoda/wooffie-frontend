@@ -16,11 +16,14 @@
           </div>
         </div>
         <div class="header__right">
-<!--          <button class="header-login">Вход</button>-->
-          <p class="header-username">Дмитрий Иванов</p>
-          <div class="header-userbtn">
-            <IconsUser/>
-          </div>
+          <NuxtLink to="/auth/signin">
+            <button class="header-login">Вход</button>
+          </NuxtLink>
+
+<!--          <p class="header-username">Дмитрий Иванов</p>-->
+<!--          <div class="header-userbtn">-->
+<!--            <IconsUser/>-->
+<!--          </div>-->
         </div>
       </div>
     </div>

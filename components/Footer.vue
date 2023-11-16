@@ -9,19 +9,21 @@
         <div class="footer-logo">
           <img src="/images/wooffie-logo.png" alt="logo">
         </div>
+
         <div class="footer-nav">
-          <p class="footer-nav-item">Главная</p>
-          <p class="footer-nav-item">О нас</p>
-          <p class="footer-nav-item">Наши услуги</p>
-          <p class="footer-nav-item">FAQ</p>
+          <NuxtLink to="/"><p class="footer-nav-item">Главная</p></NuxtLink>
+          <NuxtLink to="/"><p class="footer-nav-item">О нас</p></NuxtLink>
+          <NuxtLink to="/"><p class="footer-nav-item">Наши услуги</p></NuxtLink>
+          <NuxtLink to="/"><p class="footer-nav-item">FAQ</p></NuxtLink>
         </div>
+
         <div class="footer-contacts">
           <p class="footer-contacts-item">+7 (555) 888-98-66</p>
           <p class="footer-contacts-item">name@gmail.com</p>
         </div>
         <div class="footer-social">
-          <IconsVK/>
-          <IconsInstagram/>
+          <a href="https://vk.com" target="_blank"><IconsVK/></a>
+          <a href="https://instagram.com" target="_blank"><IconsInstagram/></a>
         </div>
       </div>
     </div>
@@ -58,6 +60,9 @@
     justify-content: center;
     gap: 80px ;
     margin-bottom: 40px;
+    a p {
+      color: $light-grey;
+    }
   }
 
   &-contacts {
@@ -84,6 +89,5 @@
       }
     }
   }
-
 }
 </style>

@@ -4,8 +4,6 @@ import Header from "~/components/Header.vue";
 </script>
 
 <template>
-  <Header/>
-
   <section class="main-header">
     <div class="container">
       <div class="poster">
@@ -61,8 +59,6 @@ import Header from "~/components/Header.vue";
       </div>
     </div>
   </section>
-
-  <Footer/>
 </template>
 
 <style scoped lang="scss">
