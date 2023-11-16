@@ -32,6 +32,8 @@ const props = defineProps({
     list-style-type: none;
 
     &-item {
+      display: flex;
+      align-items: center;
       a {
         color: $dark-grey;
         font-feature-settings: 'clig' off, 'liga' off;
@@ -48,16 +50,11 @@ const props = defineProps({
       }
 
       &:nth-of-type(even):before {
-        content: '›';
+        content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik0xMi42IDEyTDggNy40TDkuNCA2bDYgNmwtNiA2TDggMTYuNmw0LjYtNC42WiIvPjwvc3ZnPg==");
+        max-width: 16px;
+        max-height: 16px;
+        transform: scale(1.25);
         margin: 0 12px;
-        color: $dark-grey;
-        text-align: center;
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Material Icons;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px; /* 133.333% */
       }
     }
   }

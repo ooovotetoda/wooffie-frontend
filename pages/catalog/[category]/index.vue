@@ -3,6 +3,10 @@ definePageMeta({
   breadcrumb: 'Каталог',
 })
 
+useSeoMeta({
+  title: 'Wooffie • Каталог'
+})
+
 </script>
 
 <template>

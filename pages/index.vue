@@ -1,6 +1,12 @@
 <script setup lang="ts">
-
-import Header from "~/components/Header.vue";
+useSeoMeta({
+  title: 'Wooffie',
+  ogTitle: 'Wooffie',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  ogImage: 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+})
 </script>
 
 <template>
@@ -76,7 +82,7 @@ import Header from "~/components/Header.vue";
   gap: 32px;
   margin-bottom: 32px;
   text-align: center;
-  background: url("public/images/main-header-bg.png") no-repeat center;
+  background: url("/images/main-header-bg.png") no-repeat center;
   background-size: cover;
 
   &-title {
