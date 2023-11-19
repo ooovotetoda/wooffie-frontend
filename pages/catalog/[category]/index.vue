@@ -10,9 +10,20 @@ useSeoMeta({
 </script>
 
 <template>
-
+  <div class="container">
+    <div class="wrapper">
+      <Filters />
+      <main class="main catalog">
+        <CatalogNav />
+        <CatalogInfiniteList />
+      </main>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
-
+.wrapper {
+  display: flex;
+  gap: 60px;
+}
 </style>
