@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const props = defineProps({
-  image: URL
+  title: String,
+  service: String,
+  image: URL,
 })
 </script>
 
@@ -11,7 +13,7 @@ const props = defineProps({
     </div>
     <div class="card-content">
       <div class="card-content-title">
-        <span>Клиники</span>
+        <span>{{ title }}</span>
         <span>10</span>
       </div>
 
@@ -36,7 +38,9 @@ const props = defineProps({
         <span>10</span>
       </div>
 
-      <div class="card-content-btn">Все клиники</div>
+      <NuxtLink :to="`/catalog/${service}`">
+        <div class="card-content-btn">Все {{ title.toLowerCase() }}</div>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -99,7 +103,7 @@ const props = defineProps({
       font-weight: 500;
       line-height: normal;
       border-bottom: 1px solid var(--Line, #D9DAD9);
-      cursor: pointer;
+      //cursor: pointer;
     }
 
     &-option {
@@ -119,6 +123,10 @@ const props = defineProps({
       &:nth-last-child(2) {
         margin-bottom: 32px;
       }
+    }
+
+    a {
+      width: 100%;
     }
 
     &-btn {
@@ -144,6 +152,5 @@ const props = defineProps({
       }
     }
   }
-
 }
 </style>

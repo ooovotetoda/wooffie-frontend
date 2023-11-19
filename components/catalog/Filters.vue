@@ -187,6 +187,7 @@ const schedule = reactive({
         label {
           position: relative;
           padding-left: 32px;
+          cursor: pointer;
         }
       }
     }

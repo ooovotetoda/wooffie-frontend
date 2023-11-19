@@ -12,10 +12,10 @@ useSeoMeta({
 <template>
   <div class="container">
     <div class="wrapper">
-      <Filters />
+      <CatalogFilters />
       <main class="main catalog">
         <CatalogNav />
-        <CatalogInfiniteList />
+        <CatalogList />
       </main>
     </div>
   </div>
