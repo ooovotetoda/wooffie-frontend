@@ -1,6 +1,7 @@
 <script setup lang="ts">
+
 definePageMeta({
-  breadcrumb: 'Каталог',
+  breadcrumb: "Каталог"
 })
 
 useSeoMeta({

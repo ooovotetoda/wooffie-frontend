@@ -61,7 +61,12 @@
     gap: 80px ;
     margin-bottom: 40px;
     a p {
-      color: $light-grey;
+      color: rgba(255, 255, 255, 0.87);
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        color: #FFFFFF;
+      }
     }
   }
 
