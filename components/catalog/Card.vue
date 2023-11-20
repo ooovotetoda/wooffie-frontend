@@ -31,9 +31,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
         <span class="card__criteria-city">Краснодар</span>
       </div>
       <div class="card__copy">
-        <!--    text.slice(0, 52)    -->
         {{ `${text.substring(0, 243)}...` }}
-
       </div>
     </div>
     <div class="card__info">

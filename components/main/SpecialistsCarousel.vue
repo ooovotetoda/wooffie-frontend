@@ -66,10 +66,6 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
     }
   }
 
-  &__track {
-    transform-style: preserve-3d;
-  }
-
   &__slide {
     opacity: 0.9;
     transform: scale(0.9);
