@@ -1,13 +1,14 @@
 <script setup lang="ts">
-const isActive = ref(false)
-
-const toggleIsActive = () => {
-  isActive.value = !isActive.value
-}
-
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
   "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
   "               when an unknown printer took a galley of type and scrambled it to"
+
+const route = useRoute()
+
+const isActive = ref(false)
+const toggleIsActive = () => {
+  isActive.value = !isActive.value
+}
 </script>
 
 <template>
@@ -49,7 +50,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
           <span>г. Краснодар, ул, Большая Садовая, д. 46</span>
         </div>
       </div>
-      <NuxtLink to="/" class="card__info-enroll">Записаться</NuxtLink>
+      <NuxtLink :to="`/catalog/${route.params.category}/1?section=services`" class="card__info-enroll">Записаться</NuxtLink>
     </div>
   </div>
 </template>

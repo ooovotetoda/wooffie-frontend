@@ -7,9 +7,11 @@
     <div class="container">
       <div class="wrapper">
         <div class="header__left">
-          <div class="header-logo">
-            <img src="/images/wooffie-logo.png" alt="logo">
-          </div>
+          <NuxtLink to="/">
+            <div class="header-logo">
+              <img src="/images/wooffie-logo__main-color.svg" alt="logo">
+            </div>
+          </NuxtLink>
           <div class="header-city">
             <IconsCity/>
             <span>Краснодар</span>
@@ -50,8 +52,8 @@
   }
 
   &-logo {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
 
     img {
@@ -112,7 +114,7 @@
     }
 
     &:active {
-      transform: scale(0.90);
+      transform: scale(0.96);
     }
   }
 
@@ -142,7 +144,7 @@
     }
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(0.96);
     }
   }
 }

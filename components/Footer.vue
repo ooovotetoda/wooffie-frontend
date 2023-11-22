@@ -7,7 +7,7 @@
     <div class="container">
       <div class="wrapper">
         <div class="footer-logo">
-          <img src="/images/wooffie-logo.png" alt="logo">
+          <img src="/images/wooffie-logo__white.svg" alt="logo">
         </div>
 
         <div class="footer-nav">
@@ -32,6 +32,7 @@
 
 <style scoped lang="scss">
 .footer {
+  position: relative;
   padding: 60px 0;
   text-align: center;
   background: #2C2E2A;
@@ -44,10 +45,13 @@
   line-height: normal;
 
   &-logo {
-    margin: auto;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 16px;
+    position: absolute;
+    top: 60px;
+    left: 200px;
+    width: 50px;
+    height: 50px;
+    //margin-bottom: 16px;
+
     img {
       width: 100%;
       height: 100%;
