@@ -1,26 +1,28 @@
 <script setup lang="ts">
 const route = useRoute()
+const router = useRouter()
+
 const active = ref(route.params.category)
+
+watch(() => route.params, (newParams) => {
+  active.value = newParams.category;
+});
+
+const handleSelectCategory = (category: string) => {
+  router.replace({
+    params: { ...route.params , category: category},
+    query: {...route.query}
+  })
+}
 </script>
 
 <template>
   <nav class="catalog-nav">
     <ul>
-      <NuxtLink to="/catalog/clinics">
-        <li :class="{active: active == 'clinics'}">Клиники</li>
-      </NuxtLink>
-
-      <NuxtLink to="/catalog/vets">
-        <li :class="{active: active == 'vets'}">Ветеринары</li>
-      </NuxtLink>
-
-      <NuxtLink to="/catalog/groomers">
-        <li :class="{active: active == 'groomers'}">Грумеры</li>
-      </NuxtLink>
-
-      <NuxtLink to="/catalog/zoosalons">
-        <li :class="{active: active == 'zoosalons'}">Зоосалоны</li>
-      </NuxtLink>
+      <li @click="handleSelectCategory('clinics')" :class="{active: active == 'clinics'}">Клиники</li>
+      <li @click="handleSelectCategory('vets')" :class="{active: active == 'vets'}">Ветеринары</li>
+      <li @click="handleSelectCategory('groomers')" :class="{active: active == 'groomers'}">Грумеры</li>
+      <li @click="handleSelectCategory('zoosalons')" :class="{active: active == 'zoosalons'}">Зоосалоны</li>
     </ul>
   </nav>
 </template>

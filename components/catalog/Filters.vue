@@ -1,11 +1,73 @@
 <script setup lang="ts">
-const category = ref(null)
-const sort = ref(null)
+const route = useRoute()
+const router = useRouter()
 
-const schedule = reactive({
-  round: false,
-  now: false,
+interface Schedule {
+  round: boolean;
+  now: boolean;
+}
+
+interface Filters {
+  category: string | null;
+  sort: string | null;
+  schedule: Schedule;
+}
+
+const filters: Filters = reactive({
+  category: null,
+  sort: null,
+  schedule: {
+    round: false,
+    now: false,
+  },
 })
+
+const sendFilters = () => {
+  const query: Record<string, string> = {};
+
+  if (filters.category) {
+    query.category = filters.category;
+  }
+  if (filters.sort) {
+    query.sort = filters.sort;
+  }
+  if (filters.schedule.round) {
+    query['schedule[round]'] = 'true';
+  }
+  if (filters.schedule.now) {
+    query['schedule[now]'] = 'true';
+  }
+
+  router.replace({ query });
+}
+
+
+const resetFilters = () => {
+  router.replace({query: {}})
+}
+
+watch(() => route, (newRoute) => {
+  const categoryValue = Array.isArray(newRoute.query.category)
+    ? newRoute.query.category[0]
+    : newRoute.query.category;
+  filters.category = categoryValue || null;
+
+  const sortValue = Array.isArray(newRoute.query.sort)
+    ? newRoute.query.sort[0]
+    : newRoute.query.sort;
+  filters.sort = sortValue || null;
+
+  const scheduleNowValue = Array.isArray(route.query['schedule[now]'])
+    ? route.query['schedule[now]'][0]
+    : route.query['schedule[now]'];
+  filters.schedule.now = scheduleNowValue === 'true';
+
+  const scheduleRoundValue = Array.isArray(route.query['schedule[round]'])
+    ? route.query['schedule[round]'][0]
+    : route.query['schedule[round]'];
+  filters.schedule.round = scheduleRoundValue === 'true';
+
+}, {immediate: true})
 </script>
 
 <template>
@@ -15,7 +77,7 @@ const schedule = reactive({
       <h3>Фильтры</h3>
     </div>
 
-    <form @submit.prevent="console.log('Filters')">
+    <form @submit.prevent="sendFilters" @reset="resetFilters">
       <div class="filters-wrapper">
         <div class="filters-category">
           <h4 class="filters-category-title">
@@ -25,7 +87,7 @@ const schedule = reactive({
           <ul>
             <li>
               <label class="filters-category-radio">Все
-                <input type="radio" id="category1" value="all" v-model="category">
+                <input type="radio" id="category1" value="all" v-model="filters.category">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -33,7 +95,7 @@ const schedule = reactive({
 
             <li>
               <label class="filters-category-radio">Компания
-                <input type="radio" id="category2" value="corporate" v-model="category">
+                <input type="radio" id="category2" value="corporate" v-model="filters.category">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -41,7 +103,7 @@ const schedule = reactive({
 
             <li>
               <label class="filters-category-radio">Частные
-                <input type="radio" id="category3" value="private" v-model="category">
+                <input type="radio" id="category3" value="private" v-model="filters.category">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -56,7 +118,7 @@ const schedule = reactive({
           <ul>
             <li>
               <label class="filters-category-checkbox">Круглосуточно
-                <input type="checkbox" id="check1" value="round" v-model="schedule.round">
+                <input type="checkbox" id="check1" value="round" v-model="filters.schedule.round">
                 <span></span>
                 <span class="filters-category-checkbox-background"></span>
               </label>
@@ -64,7 +126,7 @@ const schedule = reactive({
 
             <li>
               <label class="filters-category-checkbox">Открыто сейчас
-                <input type="checkbox" id="check2" value="now" v-model="schedule.now">
+                <input type="checkbox" id="check2" value="now" v-model="filters.schedule.now">
                 <span></span>
                 <span class="filters-category-checkbox-background"></span>
               </label>
@@ -80,7 +142,7 @@ const schedule = reactive({
           <ul>
             <li>
               <label class="filters-category-radio">По умолчанию
-                <input type="radio" id="sort1" value="default" v-model="sort">
+                <input type="radio" id="sort1" value="default" v-model="filters.sort">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -88,7 +150,7 @@ const schedule = reactive({
 
             <li>
               <label class="filters-category-radio">Дешевле
-                <input type="radio" id="sort2" value="cheaper" v-model="sort">
+                <input type="radio" id="sort2" value="cheaper" v-model="filters.sort">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -96,7 +158,7 @@ const schedule = reactive({
 
             <li>
               <label class="filters-category-radio">Дороже
-                <input type="radio" id="sort3" value="dearer" v-model="sort">
+                <input type="radio" id="sort3" value="dearer" v-model="filters.sort">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -104,7 +166,7 @@ const schedule = reactive({
 
             <li>
               <label class="filters-category-radio">По удаленности
-                <input type="radio" id="sort4" value="remoteness" v-model="sort">
+                <input type="radio" id="sort4" value="remoteness" v-model="filters.sort">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
