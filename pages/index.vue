@@ -61,7 +61,7 @@ useSeoMeta({
     <div class="container">
       <div class="wrapper">
         <h2 class="specialists-title">Специалисты</h2>
-        <MainSpecialistsCarousel/>
+        <MainSpecialistCarousel/>
       </div>
     </div>
   </section>

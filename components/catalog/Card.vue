@@ -1,7 +1,11 @@
 <script setup lang="ts">
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
   "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
-  "               when an unknown printer took a galley of type and scrambled it to"
+  "               when an unknown printer took a galley of type and scrambled it to scrambled it to"
+
+const props = defineProps({
+  maxDescriptionLength: Number
+})
 
 const route = useRoute()
 
@@ -32,7 +36,7 @@ const toggleIsActive = () => {
         <span class="card__criteria-city">Краснодар</span>
       </div>
       <div class="card__copy">
-        {{ `${text.substring(0, 243)}...` }}
+        {{ text.length > maxDescriptionLength ? `${text.substring(0, maxDescriptionLength)}...` : text }}
       </div>
     </div>
     <div class="card__info">
@@ -188,7 +192,7 @@ const toggleIsActive = () => {
   }
 
   &__copy {
-    width: 468px;
+    //width: 468px;
     overflow: hidden;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
@@ -204,6 +208,7 @@ const toggleIsActive = () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 381px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto;

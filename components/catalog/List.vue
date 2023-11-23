@@ -2,6 +2,8 @@
 import {onMounted} from "vue";
 
 const listRef = ref(null)
+
+//TODO: тут поменять names на запроос к API
 const names = ref(['john', 'bill', 'dave', 'matt', 'john', 'bill'])
 
 const getNames = () => {
@@ -32,7 +34,7 @@ onUnmounted(() => {
   <section class="list">
     <ul ref="listRef">
       <li v-for="(item, index) in names" :key="index">
-        <CatalogCard />
+        <CatalogCard :maxDescriptionLength="240"/>
       </li>
     </ul>
   </section>

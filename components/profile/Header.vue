@@ -1,0 +1,229 @@
+<script setup lang="ts">
+const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
+  "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.\n" +
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen boo"
+
+const isActive = ref(false)
+
+const toggleIsActive = () => {
+  isActive.value = !isActive.value
+}
+</script>
+
+<template>
+  <section class="profile-header">
+    <div class="profile-header__calendar">
+
+    </div>
+    <div class="profile-header__body">
+      <div class="profile-header__media">
+        <img src="/images/clinic.jpg" alt="avatar">
+        <button @click="toggleIsActive" class="profile-header__media-favorite" :class="{ 'profile-header__media-favorite__active': isActive }">
+          <IconsFavorite />
+        </button>
+      </div>
+
+      <div class="profile-header__info">
+        <h3 class="profile-header__title">Альфа центр здоровья</h3>
+        <div class="profile-header__criteria">
+          <span class="profile-header__criteria-type">Ветклиника</span>
+          <span class="profile-header__criteria-schedule">Круглосуточно</span>
+          <span class="profile-header__criteria-city">Краснодар</span>
+        </div>
+
+        <Rating :rating="4" class="profile-header__rating"/>
+
+        <div class="profile-header__copy">
+          <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 600 символов. -->
+          {{ `${text.substring(0, 620)}...` }}
+        </div>
+
+        <div class="profile-header__buttons">
+          <button class="feedback">Оставить отзыв</button>
+          <button class="contact">Связаться</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped lang="scss">
+.profile {
+  &-header {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    &__calendar {
+      width: 388px;
+      min-width: 388px;
+      height: 556px;
+      background: #888888;
+    }
+
+    &__body {
+      display: flex;
+      gap: 32px;
+    }
+
+    &__media {
+      position: relative;
+
+      img {
+        width: 632px;
+        height: 512px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      &-favorite {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        transition: all 0.1s ease-in-out;
+        padding: 7px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          fill: rgba(0, 0, 0, 0.2);
+          transition: all 0.1s ease-in-out;
+          z-index: 2;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.9);
+
+          svg {
+            fill: rgba(228, 0, 0, 0.56);
+          }
+        }
+
+        &__active {
+          background-color: #fff;
+
+          svg {
+            fill: rgba(228, 0, 0, 0.87) !important;
+          }
+        }
+      }
+
+      &:active {
+        svg {
+          transform: scale(0.85);
+        }
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title {
+      margin-bottom: 16px;
+      color: $text-dark;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Roboto;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      font-variant: all-small-caps;
+    }
+
+    &__criteria {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+
+      span {
+        padding: 4px 16px;
+        border-radius: 30px;
+        color: var(--t-367, rgba(0, 0, 0, 0.67));
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+        cursor: pointer;
+        transition: opacity 0.1s ease-in-out;
+      }
+
+      &-type {
+        background: rgba(221, 185, 164, 0.50);
+      }
+
+      &-schedule {
+        background: rgba(254, 230, 185, 0.50);
+      }
+
+      &-city {
+        border: 1px solid var(--Line, #D9DAD9);
+      }
+    }
+
+    &__rating {
+      margin-bottom: 32px;
+    }
+
+    &__copy {
+      overflow: hidden;
+      color: $dark-grey;
+      font-feature-settings: 'clig' off, 'liga' off;
+      text-overflow: ellipsis;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 30px; /* 166.667% */
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: auto;
+
+      button {
+        width: 200px;
+        padding: 12px;
+        border-radius: 10px;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+
+        &:active {
+          scale: 0.98;
+        }
+      }
+
+      .feedback {
+        border: 1px solid $main-color;
+        background-color: #fff;
+        color: $main-color;
+
+        &:hover {
+          background: #F9F9F9;
+        }
+      }
+
+      .contact {
+        color: #FFF;
+        border: none;
+        background: $main-color;
+
+        &:hover {
+          background: $main-color-dark;
+        }
+      }
+    }
+  }
+}
+</style>
