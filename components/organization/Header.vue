@@ -87,16 +87,17 @@ const toggleIsActive = () => {
         cursor: pointer;
 
         svg {
-          fill: rgba(0, 0, 0, 0.2);
+          color: rgba(0, 0, 0, 0.2);
           transition: all 0.1s ease-in-out;
           z-index: 2;
+          font-size: 20px;
         }
 
         &:hover {
           background-color: rgba(255, 255, 255, 0.9);
 
           svg {
-            fill: rgba(228, 0, 0, 0.56);
+            color: rgba(228, 0, 0, 0.56);
           }
         }
 
@@ -104,7 +105,7 @@ const toggleIsActive = () => {
           background-color: #fff;
 
           svg {
-            fill: rgba(228, 0, 0, 0.87) !important;
+            color: rgba(228, 0, 0, 0.87) !important;
           }
         }
       }
