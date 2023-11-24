@@ -6,7 +6,9 @@ definePageMeta({
 </script>
 
 <template>
-  <ProfileList />
+  <section class="favorite">
+    <ProfileList />
+  </section>
 </template>
 
 <style scoped lang="scss">
