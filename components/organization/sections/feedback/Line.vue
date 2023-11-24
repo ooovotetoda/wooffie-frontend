@@ -47,6 +47,7 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
       font-style: normal;
       font-weight: 400;
       line-height: normal;
+      cursor: pointer;
 
       input {
         position: absolute;

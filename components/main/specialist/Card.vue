@@ -18,7 +18,9 @@
       <span>Специализация</span>
       Хирургия, ортопедия
     </div>
-    <button class="card-btn">Записаться</button>
+    <NuxtLink to="/catalog/vets/1">
+      <button class="card-btn">Записаться</button>
+    </NuxtLink>
   </div>
 </template>
 
@@ -79,6 +81,10 @@
     &:nth-last-of-type(1) {
       margin-bottom: 24px;
     }
+  }
+
+  a {
+    width: 100%;
   }
 
   &-btn {

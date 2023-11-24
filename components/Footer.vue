@@ -11,9 +11,9 @@
         </div>
 
         <div class="footer-nav">
-          <NuxtLink to="/"><p class="footer-nav-item">Главная</p></NuxtLink>
-          <NuxtLink to="/"><p class="footer-nav-item">О нас</p></NuxtLink>
-          <NuxtLink to="/"><p class="footer-nav-item">Наши услуги</p></NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#main'}"><p class="footer-nav-item">Главная</p></NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#about'}"><p class="footer-nav-item">О нас</p></NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#services'}"><p class="footer-nav-item">Наши услуги</p></NuxtLink>
           <NuxtLink to="/"><p class="footer-nav-item">FAQ</p></NuxtLink>
         </div>
 

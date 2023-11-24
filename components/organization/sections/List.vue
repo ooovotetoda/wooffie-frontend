@@ -5,7 +5,7 @@
 <template>
   <ul ref="listRef">
     <li v-for="(item, index) in 10" :key="index">
-      <CatalogCard :maxDescriptionLength="240"/>
+      <CatalogCard :maxDescriptionLength="480"/>
     </li>
   </ul>
 </template>

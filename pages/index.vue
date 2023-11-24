@@ -10,7 +10,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <section class="main-header">
+  <section id="main" class="main-header">
     <div class="container">
       <div class="poster">
         <h1 class="poster-title">wooffie</h1>
@@ -20,7 +20,7 @@ useSeoMeta({
     </div>
   </section>
 
-  <section class="services">
+  <section id="services" class="services">
     <div class="container">
       <div class="wrapper">
         <h2 class="services-title">Наши услуги</h2>
@@ -36,7 +36,7 @@ useSeoMeta({
     </div>
   </section>
 
-  <section class="about">
+  <section id="about" class="about">
     <div class="container">
       <div class="wrapper">
         <div class="about-text">

@@ -29,14 +29,14 @@ const handleOld = () => {
       </p>
     </div>
 
-    <ProfileSectionsFeedbackFilter />
+    <OrganizationSectionsFeedbackFilter />
   </div>
 
   <ul class="feedback-comments">
     <li>
-      <ProfileSectionsFeedbackComment />
-      <ProfileSectionsFeedbackComment />
-      <ProfileSectionsFeedbackComment />
+      <OrganizationSectionsFeedbackComment />
+      <OrganizationSectionsFeedbackComment />
+      <OrganizationSectionsFeedbackComment />
     </li>
   </ul>
 </template>

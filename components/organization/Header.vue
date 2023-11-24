@@ -11,34 +11,34 @@ const toggleIsActive = () => {
 </script>
 
 <template>
-  <section class="profile-header">
-    <div class="profile-header__calendar">
+  <section class="organization-header">
+    <div class="organization-header__calendar">
 
     </div>
-    <div class="profile-header__body">
-      <div class="profile-header__media">
+    <div class="organization-header__body">
+      <div class="organization-header__media">
         <img src="/images/clinic.jpg" alt="avatar">
-        <button @click="toggleIsActive" class="profile-header__media-favorite" :class="{ 'profile-header__media-favorite__active': isActive }">
+        <button @click="toggleIsActive" class="organization-header__media-favorite" :class="{ 'organization-header__media-favorite__active': isActive }">
           <IconsFavorite />
         </button>
       </div>
 
-      <div class="profile-header__info">
-        <h3 class="profile-header__title">Альфа центр здоровья</h3>
-        <div class="profile-header__criteria">
-          <span class="profile-header__criteria-type">Ветклиника</span>
-          <span class="profile-header__criteria-schedule">Круглосуточно</span>
-          <span class="profile-header__criteria-city">Краснодар</span>
+      <div class="organization-header__info">
+        <h3 class="organization-header__title">Альфа центр здоровья</h3>
+        <div class="organization-header__criteria">
+          <span class="organization-header__criteria-type">Ветклиника</span>
+          <span class="organization-header__criteria-schedule">Круглосуточно</span>
+          <span class="organization-header__criteria-city">Краснодар</span>
         </div>
 
-        <Rating :rating="4" class="profile-header__rating"/>
+        <Rating :rating="4" class="organization-header__rating"/>
 
-        <div class="profile-header__copy">
+        <div class="organization-header__copy">
           <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 600 символов. -->
           {{ `${text.substring(0, 620)}...` }}
         </div>
 
-        <div class="profile-header__buttons">
+        <div class="organization-header__buttons">
           <button class="feedback">Оставить отзыв</button>
           <button class="contact">Связаться</button>
         </div>
@@ -48,7 +48,7 @@ const toggleIsActive = () => {
 </template>
 
 <style scoped lang="scss">
-.profile {
+.organization {
   &-header {
     display: flex;
     align-items: center;
