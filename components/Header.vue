@@ -1,5 +1,6 @@
 <script setup lang="ts">
-
+const userStore = useUserStore()
+const user = userStore.user
 </script>
 
 <template>
@@ -18,14 +19,13 @@
           </div>
         </div>
         <div class="header__right">
-          <NuxtLink to="/auth/signin">
-            <button class="header-login">Вход</button>
+          <NuxtLink v-if="user.loggedIn" to="/profile/feedback">
+            <div class="header-userbtn"><IconsUser/></div>
           </NuxtLink>
 
-<!--          <p class="header-username">Дмитрий Иванов</p>-->
-<!--          <div class="header-userbtn">-->
-<!--            <IconsUser/>-->
-<!--          </div>-->
+          <NuxtLink v-else to="/auth/signin">
+            <button class="header-login">Вход</button>
+          </NuxtLink>
         </div>
       </div>
     </div>

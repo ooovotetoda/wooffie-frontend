@@ -1,14 +1,18 @@
 export const useUserStore = defineStore('user', () => {
-  const loggedIn = ref<boolean>(false)
-  const userId = ref<number | null>(null)
-  const userPhoneNumber = ref<number | null>(null)
+  const user = {
+    loggedIn: ref<boolean>(true),
+    userId: ref<number | null>(null),
+    userPhoneNumber: ref<number | null>(null),
+  }
 
   function login() {
-    loggedIn.value = true
+    user.loggedIn.value = true
   }
 
   function signUp(phoneNumber: number) {
-    loggedIn.value = true
-    userPhoneNumber.value = phoneNumber
+    user.loggedIn.value = true
+    user.userPhoneNumber.value = phoneNumber
   }
+
+  return { login, signUp, user }
 })
