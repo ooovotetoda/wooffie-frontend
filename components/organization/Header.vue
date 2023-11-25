@@ -12,9 +12,8 @@ const toggleIsActive = () => {
 
 <template>
   <section class="organization-header">
-    <div class="organization-header__calendar">
+    <OrganizationSchedule/>
 
-    </div>
     <div class="organization-header__body">
       <div class="organization-header__media">
         <img src="/images/clinic.jpg" alt="avatar">
