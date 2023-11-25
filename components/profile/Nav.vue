@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { signOut } = useUserStore()
+
 const route = useRoute()
 
 const path = ref(route.path.split("/"))
@@ -40,8 +42,8 @@ watch(() => route.path, (newPath) => {
         </li>
       </NuxtLink>
 
-      <NuxtLink to="/profile/">
-        <li class="navigation__item">
+      <NuxtLink  to="/">
+        <li @click="signOut" class="navigation__item">
           <div class="navigation__icon">
             <IconsLogout />
           </div>
@@ -82,6 +84,7 @@ watch(() => route.path, (newPath) => {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
     transition: all 0.1s ease-in-out;
 
     &:hover {

@@ -5,8 +5,12 @@ export const useUserStore = defineStore('user', () => {
     userPhoneNumber: ref<number | null>(null),
   }
 
-  function login() {
+  function signIn() {
     user.loggedIn.value = true
+  }
+
+  function signOut() {
+    user.loggedIn.value = false
   }
 
   function signUp(phoneNumber: number) {
@@ -14,5 +18,5 @@ export const useUserStore = defineStore('user', () => {
     user.userPhoneNumber.value = phoneNumber
   }
 
-  return { login, signUp, user }
+  return { signIn, signUp, signOut, user }
 })

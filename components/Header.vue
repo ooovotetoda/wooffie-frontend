@@ -34,8 +34,14 @@ const user = userStore.user
 
 <style scoped lang="scss">
 .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 20px 0;
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+  background: #FFF;
+  z-index: 20;
 
   &__left {
     display: flex;

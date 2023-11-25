@@ -19,7 +19,8 @@ const search = ref(null)
 <style scoped lang="scss">
 .search {
   width: 100%;
-  padding: 28px 24px 28px 44px;
+  padding: 28px 24px 28px 48px;
+  margin-top: 32px;
   border: none;
   border-radius: 40px;
   outline: none;

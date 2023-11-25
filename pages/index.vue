@@ -80,7 +80,6 @@ useSeoMeta({
   align-items: center;
   flex-direction: column;
   gap: 32px;
-  margin-bottom: 32px;
   text-align: center;
   background: url("/images/main-header-bg.png") no-repeat center;
   background-size: cover;
@@ -92,6 +91,7 @@ useSeoMeta({
     font-size: 88px;
     font-weight: 500;
     font-variant: all-small-caps;
+    user-select: none;
   }
 
   &-description {
@@ -102,6 +102,7 @@ useSeoMeta({
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
+    user-select: none;
   }
 }
 
