@@ -19,9 +19,14 @@ const user = userStore.user
           </div>
         </div>
         <div class="header__right">
-          <NuxtLink v-if="user.loggedIn" to="/profile/feedback">
-            <div class="header-userbtn"><IconsUser/></div>
-          </NuxtLink>
+          <div v-if="user.loggedIn" class="header__user">
+            <span>+7 989 71 59 856</span>
+            <NuxtLink to="/profile/feedback">
+              <div class="header__profile">
+                <img src="/images/user-icon.svg" alt="profile">
+              </div>
+            </NuxtLink>
+          </div>
 
           <NuxtLink v-else to="/auth/signin">
             <button class="header-login">Вход</button>
@@ -124,29 +129,35 @@ const user = userStore.user
     }
   }
 
-  &-username {
-    color: var(--t-277, rgba(0, 0, 0, 0.77));
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    span {
+      color: $text-dark;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Roboto;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
   }
 
-  &-userbtn {
+  &__profile {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50px;
     height: 50px;
-    border-radius: 6px;
-    background: $main-color;
     cursor: pointer;
     transition: all 0.15s linear;
 
-    &:hover {
-      background: $main-color-dark;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
     }
 
     &:active {

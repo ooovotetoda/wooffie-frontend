@@ -24,10 +24,13 @@ const handleDislike = () => {
 <template>
 <div class="comment">
   <div class="comment__header">
-    <div class="comment__avatar">
-      <img src="/images/comment-avatar.png" alt="avatar">
+    <div class="comment__icon">
+      <img src="/images/user-icon.svg" alt="avatar">
     </div>
-    <span class="comment__name">Михаил Неприн</span>
+    <div class="comment__info">
+      <div class="comment__tel">+7 988 32 XX XXX</div>
+      <div class="comment__status">Клиент</div>
+    </div>
   </div>
   <div class="comment__subheader">
     <Rating :rating="4"/>
@@ -64,21 +67,35 @@ const handleDislike = () => {
     margin-bottom: 16px;
   }
 
-  &__avatar {
+  &__icon {
+    width: 50px;
+    height: 50px;
+
     img {
-      width: 50px;
-      height: 50px;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
     }
   }
 
-  &__name {
+  &__tel {
+    margin-bottom: 4px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
+    line-height: normal;
+  }
+
+  &__status {
+    color: $text-dark;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
     line-height: normal;
   }
 

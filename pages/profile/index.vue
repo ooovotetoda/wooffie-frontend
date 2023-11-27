@@ -3,6 +3,8 @@ definePageMeta({
   layout: "profile",
   breadcrumb: "Профиль"
 })
+
+//TODO: тут добавить основную инфу
 </script>
 
 <template>

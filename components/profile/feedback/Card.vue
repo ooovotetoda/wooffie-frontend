@@ -34,11 +34,11 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   <div class="card-comment">
     <div class="card-comment__header">
       <div class="card-comment__icon">
-        <img src="/images/user-icon.png" alt="user">
+        <img src="/images/user-icon.svg" alt="user">
       </div>
 
       <div class="card-comment__info">
-        <div class="card-comment__tel">+798832XXXXX</div>
+        <div class="card-comment__tel">+7 988 32 XX XXX</div>
         <div class="card-comment__status">Клиент</div>
       </div>
     </div>
@@ -221,19 +221,19 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
       font-family: Roboto;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 500;
       line-height: normal;
     }
 
     &__status {
-      color: $dark-grey;
+      color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
       font-family: Roboto;
       font-size: 14px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 400;
       line-height: normal;
     }
 
