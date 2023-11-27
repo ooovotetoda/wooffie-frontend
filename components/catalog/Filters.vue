@@ -282,7 +282,7 @@ watch(() => route, (newRoute) => {
       }
 
       &:hover .filters-category-radio-background {
-        background-color: #F9F9F9 !important; /* или измените другие стили для показа при наведении */
+        background-color: $hover-grey !important; /* или измените другие стили для показа при наведении */
       }
 
       span {
@@ -350,7 +350,7 @@ watch(() => route, (newRoute) => {
       }
 
       &:hover .filters-category-checkbox-background {
-        background-color: #F9F9F9 !important;
+        background-color: $hover-grey !important;
       }
 
       span {
@@ -420,7 +420,7 @@ watch(() => route, (newRoute) => {
       background-color: #fff;
 
       &:hover {
-        background-color: #F9F9F9;
+        background-color: $hover-grey;
       }
     }
 

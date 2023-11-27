@@ -173,7 +173,7 @@
     appearance: none;
 
     &:hover {
-      background-color: #F9F9F9;
+      background-color: $hover-grey;
     }
   }
 }

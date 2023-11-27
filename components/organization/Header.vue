@@ -210,7 +210,7 @@ const toggleIsActive = () => {
         color: $main-color;
 
         &:hover {
-          background: #F9F9F9;
+          background: $hover-grey;
         }
       }
 

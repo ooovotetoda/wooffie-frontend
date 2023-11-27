@@ -109,7 +109,7 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
       &:hover {
         .checkmark {
           &__bg {
-            background: #F9F9F9;
+            background: $hover-grey;
           }
         }
       }

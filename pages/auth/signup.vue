@@ -253,7 +253,7 @@ const handleSubmit = () => {
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      background: #F9F9F9;
+      background: $hover-grey;
     }
 
     &:active {

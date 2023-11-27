@@ -15,6 +15,15 @@ watch(() => route.path, (newPath) => {
 <template>
   <nav class="navigation">
     <ul class="navigation__list">
+      <NuxtLink to="/profile">
+        <li class="navigation__item" :class="{active: page === 'profile'}">
+          <div class="navigation__icon">
+            <IconsProfile />
+          </div>
+          <span>Профиль</span>
+        </li>
+      </NuxtLink>
+
       <NuxtLink to="/profile/feedback">
         <li class="navigation__item" :class="{active: page === 'feedback'}">
           <div class="navigation__icon">
@@ -33,14 +42,14 @@ watch(() => route.path, (newPath) => {
         </li>
       </NuxtLink>
 
-      <NuxtLink to="/profile/settings">
-        <li class="navigation__item" :class="{active: page === 'settings'}">
-          <div class="navigation__icon">
-            <IconsSettings />
-          </div>
-          <span>Настройки</span>
-        </li>
-      </NuxtLink>
+<!--      <NuxtLink to="/profile/settings">-->
+<!--        <li class="navigation__item" :class="{active: page === 'settings'}">-->
+<!--          <div class="navigation__icon">-->
+<!--            <IconsSettings />-->
+<!--          </div>-->
+<!--          <span>Настройки</span>-->
+<!--        </li>-->
+<!--      </NuxtLink>-->
 
       <NuxtLink  to="/">
         <li @click="signOut" class="navigation__item">
@@ -96,7 +105,7 @@ watch(() => route.path, (newPath) => {
     }
 
     &.active {
-      background: #F9F9F9;
+      background: $hover-grey;
 
       .navigation__icon {
         color: $main-color;

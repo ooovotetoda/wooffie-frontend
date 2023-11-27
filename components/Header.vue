@@ -21,7 +21,7 @@ const user = userStore.user
         <div class="header__right">
           <div v-if="user.loggedIn" class="header__user">
             <span>+7 989 71 59 856</span>
-            <NuxtLink to="/profile/feedback">
+            <NuxtLink to="/profile">
               <div class="header__profile">
                 <img src="/images/user-icon.svg" alt="profile">
               </div>
