@@ -5,7 +5,9 @@ const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
 
+const rating = ref(5)
 const comment = ref<string | null>(null)
+
 </script>
 
 <template>
@@ -15,13 +17,14 @@ const comment = ref<string | null>(null)
     @update:model-value="val => emit('update:modelValue', val)"
   >
     <div class="modal__window">
+      <IconsClose class="modal__close" @click="emit('update:modelValue', false)"/>
       <h2 class="modal__title">
         Отзыв
       </h2>
 
       <ClientOnly>
-        <Rating :rating="4" />
-        <form action="">
+        <Rating :rating="rating" @rated="(index) => rating = index"/>
+        <form @submit.prevent="console.log('Submitted')">
           <textarea name="feedback"
                     id="feedback"
                     class="modal__textarea"
@@ -100,6 +103,7 @@ const comment = ref<string | null>(null)
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
+    transition: all 0.1s ease-in-out;
 
     &.filled {
       padding-left: 24px;
@@ -148,6 +152,13 @@ const comment = ref<string | null>(null)
         background: $main-color-dark;
       }
     }
+  }
+
+  &__close {
+    position: absolute;
+    top: 44px;
+    right: 44px;
+    cursor: pointer;
   }
 }
 </style>

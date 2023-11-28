@@ -225,7 +225,7 @@ const handleSavePassword = () => {
 
 .input__error {
   position: absolute;
-  bottom: -24px;
+  bottom: -26px;
   left: 180px;
   text-align: left;
   color: rgba(228, 0, 0, 0.87);

@@ -1,12 +1,24 @@
 <script setup lang="ts">
 const props = defineProps({
-  rating: Number
+  rating: Number,
+  active: {
+    default: false,
+    type: Boolean
+  }
 })
+
+const emit = defineEmits(['rated'])
+const handeRated = (index: Number) => {
+
+}
 </script>
 
 <template>
   <div class="rating">
-    <IconsStar v-for="index in 5" :isYellow="index <= rating"/>
+    <IconsStar v-for="index in 5"
+               :isYellow="index <= rating"
+               @click="emit('rated', index)"
+    />
   </div>
 </template>
 
