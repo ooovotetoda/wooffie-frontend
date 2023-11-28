@@ -4,7 +4,7 @@ definePageMeta({
   breadcrumb: "Профиль"
 })
 
-const phone = ref("+7 (988) 32 33 109")
+const phone = ref("+79883233109")
 const password = ref<string | null>(null);
 const showPassword = ref<boolean>(false)
 const isPhoneFocused = ref<boolean>(false);
@@ -47,6 +47,14 @@ const toggleShowPassword = () => {
 const handlePasswordChange = () => {
   password.value = password.value ? password.value.replace(/\s+/g, '') : null;
 };
+
+const handleSavePassword = () => {
+  if (!password.value || password.value.length < 8) {
+    isPasswordValid.value = false
+  } else {
+    isPasswordValid.value = true
+  }
+}
 </script>
 
 <template>
@@ -65,9 +73,9 @@ const handlePasswordChange = () => {
           placeholder="Телефон"
           pattern = "\+?\d{1,3}?\d{1,12}"
           v-model="phone"
-        >
-        <p v-if="!isPhoneValid" class="input__error">Неверный формат</p>
+          >
         </div>
+        <p v-if="!isPhoneValid" class="input__error">Неверный формат</p>
         <button class="profile__btn">Изменить</button>
       </li>
 
@@ -86,7 +94,7 @@ const handlePasswordChange = () => {
           <IconsPasswordHide @click.prevent="toggleShowPassword"/>
         </div>
         <p v-if="!isPasswordValid" class="input__error">Заполните поле (минимум 8 символов)</p>
-        <button class="profile__btn">Изменить</button>
+        <button @click="handleSavePassword" class="profile__btn">Изменить</button>
       </li>
     </ul>
   </section>
@@ -112,10 +120,11 @@ const handlePasswordChange = () => {
   }
 
   &__item {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 
     input {
       width: 400px;
@@ -215,13 +224,15 @@ const handlePasswordChange = () => {
 }
 
 .input__error {
-    text-align: left;
-    margin: 12px 0 6px 16px;
-    color: rgba(228, 0, 0, 0.87);
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 171.429% */
-  }
+  position: absolute;
+  bottom: -24px;
+  left: 180px;
+  text-align: left;
+  color: rgba(228, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+}
 </style>

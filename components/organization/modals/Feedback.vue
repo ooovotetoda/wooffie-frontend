@@ -4,6 +4,8 @@ import { VueFinalModal } from 'vue-final-modal'
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
+
+const comment = ref<string | null>(null)
 </script>
 
 <template>
@@ -23,9 +25,11 @@ const emit = defineEmits<{
           <textarea name="feedback"
                     id="feedback"
                     class="modal__textarea"
+                    :class="{filled: comment}"
                     cols="30"
                     rows="10"
                     placeholder="Напишите отзыв"
+                    v-model="comment"
           ></textarea>
         </form>
 
@@ -97,7 +101,7 @@ const emit = defineEmits<{
     font-weight: 400;
     line-height: 24px; /* 150% */
 
-    &:focus {
+    &.filled {
       padding-left: 24px;
       &::-webkit-input-placeholder { color:transparent; }
       &:-moz-placeholder { color:transparent; } /* FF 4-18 */
