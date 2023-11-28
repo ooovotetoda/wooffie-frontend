@@ -174,6 +174,7 @@ const { open } = useModal({
 
     &__rating {
       margin-bottom: 32px;
+      font-size: 24px;
     }
 
     &__copy {

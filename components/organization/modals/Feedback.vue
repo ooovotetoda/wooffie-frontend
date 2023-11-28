@@ -30,10 +30,10 @@ const emit = defineEmits<{
         </form>
 
         <div class="modal__buttons">
-          <button class="" @click="emit('update:modelValue', false)">
+          <button class="cancel" @click="emit('update:modelValue', false)">
             Отмена
           </button>
-          <button class="" @click="emit('update:modelValue', false)">
+          <button class="send" @click="emit('update:modelValue', false)">
             Отправить
           </button>
         </div>
@@ -46,10 +46,6 @@ const emit = defineEmits<{
 
 <style scoped lang="scss">
 .modal {
-  &__wrapper {
-
-  }
-
   &__window {
     position: absolute;
     top: 50%;
@@ -57,11 +53,13 @@ const emit = defineEmits<{
     transform: translate(-50%, -50%);
     padding: 56px;
     border-radius: 10px;
-    background: var(--t-1100, #FFF);
-    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
+    background: #FFF;
+    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
 
     .rating {
       margin-bottom: 18px;
+      font-size: 32px;
+      justify-content: center;
     }
   }
 
@@ -77,14 +75,75 @@ const emit = defineEmits<{
     line-height: normal;
   }
 
-
-
   &__textarea {
+    width: 400px;
+    height: 200px;
     padding: 10px 24px;
+    padding-left: 48px;
     margin-bottom: 40px;
     border-radius: 10px;
     border: 1px solid #D9DAD9;
     background: #FFF;
+    background-image: url("https://api.iconify.design/material-symbols:chat.svg?color=%23898989");
+    background-position: 20px 14px; /* Позиционирование иконки */
+    background-repeat: no-repeat;
+    resize: none;
+    outline: none;
+    color: $dark-grey;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+
+    &:focus {
+      padding-left: 24px;
+      &::-webkit-input-placeholder { color:transparent; }
+      &:-moz-placeholder { color:transparent; } /* FF 4-18 */
+      &::-moz-placeholder { color:transparent; } /* FF 19+ */
+      &:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+      background-image: none;
+    }
+  }
+
+  &__buttons {
+    width: 100%;
+    display: flex;
+    gap: 28px;
+
+    button {
+      flex: 1;
+      padding: 12px 0;
+      border: none;
+      border-radius: 10px;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      transition: all 0.15s ease-in-out;
+      cursor: pointer;
+    }
+
+    .cancel {
+      color: $text-dark;
+      background: #fff;
+
+      &:hover {
+        background: $hover-grey;
+      }
+    }
+
+    .send {
+      color: #FFF;
+      background: $main-color;
+
+      &:hover {
+        background: $main-color-dark;
+      }
+    }
   }
 }
 </style>

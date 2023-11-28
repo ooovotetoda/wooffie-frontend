@@ -157,6 +157,14 @@ const toggleIsActive = () => {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
+    span {
+      margin-top: 4px;
+    }
+
+    .rating {
+      font-size: 24px;
+    }
   }
 
   &__criteria {

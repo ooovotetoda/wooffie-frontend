@@ -73,6 +73,7 @@ const handleOld = () => {
     display: flex;
     align-items: center;
     gap: 24px;
+    font-size: 24px;
 
     span {
       margin-top: 6px;

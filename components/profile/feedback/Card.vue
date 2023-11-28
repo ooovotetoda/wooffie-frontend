@@ -130,6 +130,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       align-items: center;
       gap: 24px;
       margin-top: -4px;
+      font-size: 24px;
 
       span {
         margin-top: 4px;
@@ -242,6 +243,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       align-items: center;
       gap: 8px;
       margin-bottom: 8px;
+      font-size: 24px;
     }
 
     &__date {
