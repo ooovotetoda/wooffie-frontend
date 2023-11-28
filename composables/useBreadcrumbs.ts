@@ -28,7 +28,7 @@ export const useBreadcrumbs = () => {
 
     const matchRoute = founds.length > 1 ? founds.find(r => r.path === currRoute) : founds[0];
 
-    const excludedPaths = ['/catalog'];
+    const excludedPaths = ['/catalog', '/profile/feedback', '/profile/favorite'];
 
     return [
       ...paths,

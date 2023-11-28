@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useModal } from 'vue-final-modal'
+import OrganizationModalsFeedback from '~/components/organizations/modals/Feedback.vue'
+
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
   "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.\n" +
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen boo"
@@ -8,6 +11,16 @@ const isActive = ref(false)
 const toggleIsActive = () => {
   isActive.value = !isActive.value
 }
+
+const { open } = useModal({
+  component: OrganizationModalsFeedback,
+  attrs: {
+    title: 'Hello World!',
+  },
+  slots: {
+    default: '<p>The content of the modal</p>',
+  },
+})
 </script>
 
 <template>
@@ -38,7 +51,7 @@ const toggleIsActive = () => {
         </div>
 
         <div class="organization-header__buttons">
-          <button class="feedback">Оставить отзыв</button>
+          <button @click="() => open()" class="feedback">Оставить отзыв</button>
           <button class="contact">Связаться</button>
         </div>
       </div>

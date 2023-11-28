@@ -2,7 +2,7 @@
 const props = defineProps({
   title: String,
   service: String,
-  image: URL,
+  image: String,
 })
 </script>
 
