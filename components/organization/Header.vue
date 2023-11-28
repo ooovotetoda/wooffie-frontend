@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useModal } from 'vue-final-modal'
-import OrganizationModalsFeedback from '~/components/organizations/modals/Feedback.vue'
+import {OrganizationModalsFeedback} from "#components";
 
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
   "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.\n" +
@@ -14,12 +14,6 @@ const toggleIsActive = () => {
 
 const { open } = useModal({
   component: OrganizationModalsFeedback,
-  attrs: {
-    title: 'Hello World!',
-  },
-  slots: {
-    default: '<p>The content of the modal</p>',
-  },
 })
 </script>
 

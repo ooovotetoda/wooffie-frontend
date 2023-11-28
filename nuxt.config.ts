@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/main.scss',],
+  css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
   router: {
     options: {
       scrollBehaviorType: 'smooth'

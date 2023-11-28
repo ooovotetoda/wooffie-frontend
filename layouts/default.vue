@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ModalsContainer } from 'vue-final-modal'
 import { useBreadcrumbs } from '~/composables/useBreadcrumbs';
 
 const { breadcrumbs } = useBreadcrumbs();
@@ -14,6 +15,7 @@ const route = useRoute()
   </div>
   <slot/>
 
+  <ModalsContainer />
   <Footer/>
 </template>
 
