@@ -7,9 +7,22 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen boo"
 
 const isActive = ref(false)
+const isContacted = ref(false)
 
 const toggleIsActive = () => {
   isActive.value = !isActive.value
+}
+
+const handleContact = async () => {
+  if (isContacted.value) {
+    try {
+      await navigator.clipboard.writeText("+79883232105");
+    } catch (err) {
+      console.error("Ошибка при копировании: ", err);
+    }
+  } else {
+    isContacted.value = true
+  }
 }
 
 const { open } = useModal({
@@ -46,7 +59,13 @@ const { open } = useModal({
 
         <div class="organization-header__buttons">
           <button @click="() => open()" class="feedback">Оставить отзыв</button>
-          <button class="contact">Связаться</button>
+          <button class="contact"
+                  :class="{contacted: isContacted}"
+                  @click="handleContact"
+          >
+            {{isContacted ? "+79883232105" : "Связаться"}}
+            <IconsCopy v-if="isContacted"/>
+          </button>
         </div>
       </div>
     </div>
@@ -205,7 +224,7 @@ const { open } = useModal({
         font-weight: 400;
         line-height: normal;
         cursor: pointer;
-        transition: all 0.1s ease-in-out;
+        transition: all 0.15s ease-in-out;
 
         &:active {
           scale: 0.98;
@@ -223,12 +242,26 @@ const { open } = useModal({
       }
 
       .contact {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
         color: #FFF;
         border: none;
         background: $main-color;
 
         &:hover {
           background: $main-color-dark;
+        }
+
+        &.contacted {
+          background: #FFF;
+          color: $text-dark;
+          border: 1px solid $text-dark;
+
+          &:hover {
+            background: $hover-grey;
+          }
         }
       }
     }
