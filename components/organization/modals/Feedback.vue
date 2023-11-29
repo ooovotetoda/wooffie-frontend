@@ -5,7 +5,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
 
-const rating = ref(5)
+const rating = ref(0)
 const comment = ref<string | null>(null)
 
 </script>

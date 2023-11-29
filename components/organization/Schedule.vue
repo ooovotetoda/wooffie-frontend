@@ -49,63 +49,6 @@ onMounted(() => {
     </div>
   </div>
 
-<!--  <div class="schedule__row">-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">пн</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">27</span>-->
-<!--        <span class="schedule__time">Нет записи</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">вт</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">28</span>-->
-<!--        <span class="schedule__time">09:00-11:00</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">ср</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">29</span>-->
-<!--        <span class="schedule__time">09:00-18:00</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="schedule__row">-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">чт</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">30</span>-->
-<!--        <span class="schedule__time">09:00-18:00</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">пт</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">1</span>-->
-<!--        <span class="schedule__time">09:00-18:00</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">сб</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">2</span>-->
-<!--        <span class="schedule__time">Нет записи</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="schedule__row">-->
-<!--    <div class="schedule__item">-->
-<!--      <div class="schedule__weekday">вс</div>-->
-<!--      <div class="schedule__subitem">-->
-<!--        <span class="schedule__date">3</span>-->
-<!--        <span class="schedule__time">Нет записи</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
   <div class="schedule__street">
     <select name="street" id="street" class="schedule__input">
       <option>ул, Большая Садовая, д. 46</option>
