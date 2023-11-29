@@ -1,66 +1,117 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 
+const weekDays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+
+// Разбиваем дни недели на группы для каждой строки
+const rows = [[0, 1, 2], [3, 4, 5], [6]];
+
+// Указываем, что dates будет массивом чисел
+const dates = ref<number[]>([]);
+
+const getDatesForWeek = () => {
+  const today = new Date();
+  let dayOfWeek = today.getDay(); // Воскресенье = 0, понедельник = 1, и т.д.
+  dayOfWeek = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Преобразуем в формат, где понедельник = 0
+  const currentMonthDay = today.getDate();
+
+  for (let i = 0; i < weekDays.length; i++) {
+    const dateOffset = i - dayOfWeek;
+    const date = new Date(today);
+    date.setDate(currentMonthDay + dateOffset);
+    dates.value[i] = date.getDate();
+  }
+};
+
+const currentMonthName = ref('');
+
+const capitalizeFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const setCurrentMonthName = () => {
+  const today = new Date();
+  const monthName = today.toLocaleString('ru-RU', { month: 'long' });
+  currentMonthName.value = capitalizeFirstLetter(monthName);
+};
+
+onMounted(() => {
+  getDatesForWeek();
+  setCurrentMonthName();
+});
 </script>
 
 <template>
 <div class="schedule">
-  <h3 class="schedule__title">График</h3>
-  <div class="schedule__row">
-    <div class="schedule__item">
-      <div class="schedule__weekday">пн</div>
+  <h3 class="schedule__title">{{ currentMonthName }}</h3>
+
+  <div class="schedule__row" v-for="(row, rowIndex) in rows" :key="rowIndex">
+    <div class="schedule__item" v-for="dayIndex in row" :key="dayIndex">
+      <div class="schedule__weekday">{{ weekDays[dayIndex] }}</div>
       <div class="schedule__subitem">
-        <span class="schedule__date">27</span>
-        <span class="schedule__time">Нет записи</span>
-      </div>
-    </div>
-    <div class="schedule__item">
-      <div class="schedule__weekday">вт</div>
-      <div class="schedule__subitem">
-        <span class="schedule__date">28</span>
+        <span class="schedule__date">{{ dates[dayIndex] }}</span>
         <span class="schedule__time">09:00-11:00</span>
-      </div>
-    </div>
-    <div class="schedule__item">
-      <div class="schedule__weekday">ср</div>
-      <div class="schedule__subitem">
-        <span class="schedule__date">29</span>
-        <span class="schedule__time">09:00-18:00</span>
       </div>
     </div>
   </div>
 
-  <div class="schedule__row">
-    <div class="schedule__item">
-      <div class="schedule__weekday">чт</div>
-      <div class="schedule__subitem">
-        <span class="schedule__date">30</span>
-        <span class="schedule__time">09:00-18:00</span>
-      </div>
-    </div>
-    <div class="schedule__item">
-      <div class="schedule__weekday">пт</div>
-      <div class="schedule__subitem">
-        <span class="schedule__date">1</span>
-        <span class="schedule__time">09:00-18:00</span>
-      </div>
-    </div>
-    <div class="schedule__item">
-      <div class="schedule__weekday">сб</div>
-      <div class="schedule__subitem">
-        <span class="schedule__date">2</span>
-        <span class="schedule__time">Нет записи</span>
-      </div>
-    </div>
-  </div>
-  <div class="schedule__row">
-    <div class="schedule__item">
-      <div class="schedule__weekday">вс</div>
-      <div class="schedule__subitem">
-        <span class="schedule__date">3</span>
-        <span class="schedule__time">Нет записи</span>
-      </div>
-    </div>
-  </div>
+<!--  <div class="schedule__row">-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">пн</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">27</span>-->
+<!--        <span class="schedule__time">Нет записи</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">вт</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">28</span>-->
+<!--        <span class="schedule__time">09:00-11:00</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">ср</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">29</span>-->
+<!--        <span class="schedule__time">09:00-18:00</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="schedule__row">-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">чт</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">30</span>-->
+<!--        <span class="schedule__time">09:00-18:00</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">пт</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">1</span>-->
+<!--        <span class="schedule__time">09:00-18:00</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">сб</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">2</span>-->
+<!--        <span class="schedule__time">Нет записи</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="schedule__row">-->
+<!--    <div class="schedule__item">-->
+<!--      <div class="schedule__weekday">вс</div>-->
+<!--      <div class="schedule__subitem">-->
+<!--        <span class="schedule__date">3</span>-->
+<!--        <span class="schedule__time">Нет записи</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
   <div class="schedule__street">
     <select name="street" id="street" class="schedule__input">
       <option>ул, Большая Садовая, д. 46</option>
