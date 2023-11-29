@@ -1,18 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-
 const weekDays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-
-// Разбиваем дни недели на группы для каждой строки
 const rows = [[0, 1, 2], [3, 4, 5], [6]];
-
-// Указываем, что dates будет массивом чисел
 const dates = ref<number[]>([]);
 
 const getDatesForWeek = () => {
   const today = new Date();
-  let dayOfWeek = today.getDay(); // Воскресенье = 0, понедельник = 1, и т.д.
-  dayOfWeek = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Преобразуем в формат, где понедельник = 0
+  let dayOfWeek = today.getDay();
+  dayOfWeek = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
   const currentMonthDay = today.getDate();
 
   for (let i = 0; i < weekDays.length; i++) {
