@@ -36,7 +36,7 @@ const handleInput = () => {
         @input="handleInput"
     >
   </fieldset>
-  <p v-if="!isCodeValid" class="error">Неверный формат</p>
+  <p v-if="!isCodeValid" class="error">Неверный код</p>
 </template>
 
 <style scoped lang="scss">
