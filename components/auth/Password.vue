@@ -33,7 +33,8 @@ const handlePasswordChange = () => {
         @blur="isPasswordFocused = false"
         @input="handlePasswordChange"
     >
-    <IconsPasswordHide @click.prevent="showPassword = !showPassword"/>
+    <IconsPasswordHide v-if="showPassword" @click.prevent="showPassword = !showPassword"/>
+    <IconsPasswordShow v-else @click.prevent="showPassword = !showPassword"/>
   </fieldset>
   <p v-if="!isPasswordValid" class="error">Заполните поле (минимум 8 символов)</p>
 </template>
@@ -96,16 +97,17 @@ const handlePasswordChange = () => {
     top: 50%;
     right: 24px;
     transform: translateY(-50%);
+    font-size: 20px;
     cursor: pointer;
-    fill: #BABABA;
-    transition: all 0.15s linear;
+    color: #BABABA;
+    transition: all 0.1s linear;
 
     &:hover {
-      fill: #888888;
+      color: #888888;
     }
 
     &:active {
-      fill: #343434;
+      color: #343434;
     }
   }
 }
