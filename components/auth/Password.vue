@@ -13,28 +13,24 @@ const isPasswordFocused = ref<boolean>(false);
 const handlePasswordChange = () => {
   password.value = password.value ? password.value.replace(/\s+/g, '') : null;
   emit("updatePassword", password.value)
-};
-
-const handleBlur = () => {
-  const newIsPasswordValid = password.value ? password.value.replace(/\s+/g, '').length > 8 : false;
-  emit("update:isPasswordValid", newIsPasswordValid)
-  isPasswordFocused.value = false;
+  emit("update:isPasswordValid", true)
 };
 
 </script>
 
 <template>
-  <fieldset>
+  <fieldset class="password">
     <Transition name="fade">
-      <legend v-if="isPasswordFocused">Пароль</legend>
+      <legend v-if="isPasswordFocused" class="password__legend">Пароль</legend>
     </Transition>
     <input
         ref="passwordRef"
         :type="showPassword ? 'text' : 'password'"
         placeholder="Пароль"
+        class="password__input"
         v-model="password"
         @focus="isPasswordFocused = true"
-        @blur="handleBlur"
+        @blur="isPasswordFocused = false"
         @input="handlePasswordChange"
     >
     <IconsPasswordHide @click.prevent="showPassword = !showPassword"/>
@@ -43,13 +39,13 @@ const handleBlur = () => {
 </template>
 
 <style scoped lang="scss">
-fieldset {
+.password {
   position: relative;
   border: none;
   text-align: left;
   margin-bottom: 16px;
 
-  legend {
+  &__legend {
     position: absolute;
     padding: 0 14px;
     top: -12px;
@@ -63,6 +59,36 @@ fieldset {
     font-weight: 400;
     line-height: 24px; /* 171.429% */
     transition: all 0.3s ease;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px 0 10px 46px;
+    border-radius: 10px;
+    border: 1px solid #D9DAD9;
+    outline: none;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik02IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc+") no-repeat 20px center;
+    color: $dark-grey;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    &:hover {
+      border: 1px solid #000000;
+    }
+
+    &:focus {
+      border: 1px solid $main-color;
+      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik02IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc+") no-repeat 20px center;
+      &::-webkit-input-placeholder { color:transparent; }
+      &:-moz-placeholder { color:transparent; } /* FF 4-18 */
+      &::-moz-placeholder { color:transparent; } /* FF 19+ */
+      &:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+    }
   }
 
   svg {
@@ -84,35 +110,7 @@ fieldset {
   }
 }
 
-input {
-  width: 100%;
-  padding: 10px 0 10px 46px;
-  border-radius: 10px;
-  border: 1px solid #D9DAD9;
-  outline: none;
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik02IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc+") no-repeat 20px center;
-  color: $dark-grey;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.15s linear;
 
-  &:hover {
-    border: 1px solid #000000;
-  }
-
-  &:focus {
-    border: 1px solid $main-color;
-    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik02IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc+") no-repeat 20px center;
-    &::-webkit-input-placeholder { color:transparent; }
-    &:-moz-placeholder { color:transparent; } /* FF 4-18 */
-    &::-moz-placeholder { color:transparent; } /* FF 19+ */
-    &:-ms-input-placeholder { color:transparent; } /* IE 10+ */
-  }
-}
 
 .error {
   text-align: left;
