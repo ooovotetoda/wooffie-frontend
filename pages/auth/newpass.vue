@@ -5,41 +5,10 @@ definePageMeta({
 
 
 const password = ref<string | null>(null);
-const showPassword = ref<boolean>(false)
-const isPasswordFocused = ref<boolean>(false);
 const isPasswordValid = ref<boolean>(true);
 
-const handleFocus = (event: FocusEvent, type: string) => {
-  isPasswordFocused.value = true;
-
-  const target = event.target as HTMLInputElement; // или HTMLTextAreaElement, если это текстовая область
-  if (target && target.placeholder !== undefined) {
-    target.placeholder = "";
-  }
-
-}
-
-const handleBlur = (event: FocusEvent, text: string, type: string) => {
-  const target = event.target as HTMLInputElement; // или HTMLTextAreaElement, если это текстовая область
-  if (target && target.placeholder !== undefined) {
-    target.placeholder = text;
-  }
-
-  // isPasswordValid.value = password.value?.replace(/\s+/g, '').length > 8
-  isPasswordFocused.value = false;
-}
-
-const toggleShowPassword = () => {
-  showPassword.value = !showPassword.value
-}
-
-const handlePasswordChange = () => {
-  password.value = password.value ? password.value?.replace(/\s+/g, '') : null
-}
-
 const handleSubmit = () => {
-  if (password.value === null || password.value.length < 8) {
-    isPasswordValid.value = false
+  if (password.value === null || password.value.length < 8 || isPasswordValid) {
     return
   }
 
@@ -58,22 +27,10 @@ const handleSubmit = () => {
     </div>
 
     <form @submit.prevent="handleSubmit" class="authorization-form">
-      <fieldset>
-        <Transition name="fade">
-          <legend v-if="isPasswordFocused">Пароль</legend>
-        </Transition>
-        <input
-          @focus="(event) => handleFocus(event, 'password')"
-          @blur="(event) => handleBlur(event, 'Пароль', 'password')"
-          @input="handlePasswordChange"
-          ref="passwordInputRef"
-          :type="showPassword ? 'text' : 'password'"
-          placeholder="Пароль"
-          v-model="password"
-        >
-        <IconsPasswordHide @click.prevent="toggleShowPassword"/>
-      </fieldset>
-      <p v-if="!isPasswordValid" class="authorization-error">Заполните поле (минимум 8 символов)</p>
+      <AuthPassword
+          @updatePassword="(p) => password = p"
+          v-model:isPasswordValid="isPasswordValid"
+      />
 
       <button class="authorization-login">Сохранить</button>
     </form>

@@ -23,7 +23,6 @@ const handleFocus = (event: FocusEvent, type: string) => {
   if (target && target.placeholder !== undefined) {
     target.placeholder = "";
   }
-
 }
 
 const handleBlur = (event: FocusEvent, placeholderText: string, type: 'phone' | 'password') => {

@@ -4,33 +4,11 @@ definePageMeta({
 })
 
 
-const phone = ref<string | null>(null)
-const isPhoneFocused = ref<boolean>(false);
+const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 
-const handleFocus = (event: FocusEvent, type: string) => {
-  isPhoneFocused.value = true;
-
-  const target = event.target as HTMLInputElement; // или HTMLTextAreaElement, если это текстовая область
-  if (target && target.placeholder !== undefined) {
-    target.placeholder = "";
-  }
-}
-
-const handleBlur = (event: FocusEvent, text: string, type: string) => {
-  const target = event.target as HTMLInputElement; // или HTMLTextAreaElement, если это текстовая область
-  if (target && target.placeholder !== undefined) {
-    target.placeholder = text;
-  }
-
-  const regExp = /^(?:\+7|8)?[789]\d{9}$/;
-  isPhoneValid.value = phone.value ? regExp.test(phone.value) : true;
-  isPhoneFocused.value = false;
-}
-
 const handleSubmit = () => {
-  if (phone.value === null) {
-    isPhoneValid.value = false
+  if (phone.value === null || !isPhoneValid) {
     return
   }
 
@@ -54,21 +32,10 @@ const handleSubmit = () => {
     </div>
 
     <form @submit.prevent="handleSubmit" class="authorization-form">
-      <fieldset>
-        <Transition name="fade">
-          <legend v-if="isPhoneFocused">Телефон</legend>
-        </Transition>
-        <input
-          @focus="(event) => handleFocus(event, 'phone')"
-          @blur="(event) => handleBlur(event, 'Телефон', 'phone')"
-          type="tel"
-          placeholder="Телефон"
-          pattern = "\+?\d{1,3}?\d{1,12}"
-          v-model="phone"
-        >
-      </fieldset>
-      <p v-if="!isPhoneValid" class="authorization-error">Неверный формат</p>
-
+      <AuthPhone
+          @updatePhone="(p) => phone = p"
+          v-model:isPhoneValid = isPhoneValid
+      />
 
       <button class="authorization-login">Отправить код</button>
     </form>
