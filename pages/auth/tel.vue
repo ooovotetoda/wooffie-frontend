@@ -8,7 +8,7 @@ const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 
 const handleSubmit = () => {
-  if (phone.value === null || !isPhoneValid) {
+  if (phone.value === null || !isPhoneValid.value) {
     return
   }
 

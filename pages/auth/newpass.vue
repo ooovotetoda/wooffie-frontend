@@ -8,7 +8,7 @@ const password = ref<string | null>(null);
 const isPasswordValid = ref<boolean>(true);
 
 const handleSubmit = () => {
-  if (password.value === null || password.value.length < 8 || isPasswordValid) {
+  if (password.value === null || password.value.length < 8 || !isPasswordValid.value) {
     return
   }
 

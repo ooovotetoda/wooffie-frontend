@@ -13,8 +13,8 @@ const handleSubmit = () => {
   if (phone.value === null
       || password.value === null
       || password.value.length < 8
-      || !isPhoneValid
-      || isPasswordValid) {
+      || !isPhoneValid.value
+      || !isPasswordValid.value) {
     return
   }
 
