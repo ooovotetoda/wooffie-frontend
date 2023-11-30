@@ -112,8 +112,6 @@ const handlePasswordChange = () => {
   }
 }
 
-
-
 .error {
   text-align: left;
   margin: -12px 0 6px 16px;
