@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const password = ref<string | null>(null);
+const password = ref<string | null>("password");
 const showPassword = ref<boolean>(false);
 const isPasswordFocused = ref<boolean>(false);
 const isPasswordValid = ref<boolean>(true);
