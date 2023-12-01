@@ -3,6 +3,7 @@ export const useUserStore = defineStore('user', () => {
     loggedIn: ref<boolean>(true),
     userId: ref<number | null>(null),
     userPhoneNumber: ref<number | null>(null),
+    city: ref<string>("krd"),
   }
 
   function signIn() {
@@ -18,5 +19,9 @@ export const useUserStore = defineStore('user', () => {
     user.userPhoneNumber.value = phoneNumber
   }
 
-  return { signIn, signUp, signOut, user }
+  function selectCity(val: string) {
+    user.city.value = val
+  }
+
+  return { signIn, signUp, signOut, selectCity, user }
 })

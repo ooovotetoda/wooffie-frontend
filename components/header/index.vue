@@ -13,10 +13,8 @@ const user = userStore.user
               <img src="/images/wooffie-logo__main-color.svg" alt="logo">
             </div>
           </NuxtLink>
-          <div class="header-city">
-            <IconsCity/>
-            <span>Краснодар</span>
-          </div>
+
+          <HeaderCity />
         </div>
         <div class="header__right">
           <div v-if="user.loggedIn" class="header__user">
