@@ -8,12 +8,22 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   "               when an unknown printer took a galley of type and scrambled it to scrambled it to"
 
 const props = defineProps({
-  maxDescriptionLength: Number
+  maxDescriptionLength: {
+    type: Number,
+    required: true
+  }
 })
 
 const route = useRoute()
 
 const isActive = ref(false)
+
+const croppedText = computed(() => {
+  return text.length > props.maxDescriptionLength ?
+      `${text.substring(0, props.maxDescriptionLength)}...`
+      : text
+})
+
 const toggleIsActive = () => {
   isActive.value = !isActive.value
 }
@@ -40,7 +50,7 @@ const toggleIsActive = () => {
         <span class="card__criteria-city">Краснодар</span>
       </div>
       <div class="card__copy">
-        {{ text.length > maxDescriptionLength ? `${text.substring(0, maxDescriptionLength)}...` : text }}
+        {{ croppedText }}
       </div>
     </div>
     <div class="card__info">

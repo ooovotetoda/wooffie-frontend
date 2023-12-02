@@ -47,7 +47,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       <Rating :rating="4"/>
       <span class="card-comment__date">13.10.2023</span>
     </div>
-
+    <!--  TODO: вот тут подумать, нужно ли мне обрезать текст у карточки  -->
     <p class="card-comment__copy">{{ text }}</p>
   </div>
 </div>

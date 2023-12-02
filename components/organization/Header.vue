@@ -9,6 +9,13 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
 const isActive = ref(false)
 const isContacted = ref(false)
 
+const croppedText = computed(() => {
+  return text.length > 620 ?
+      `${text.substring(0, 620)}...`
+      : text
+})
+
+
 const toggleIsActive = () => {
   isActive.value = !isActive.value
 }
@@ -54,7 +61,7 @@ const { open } = useModal({
 
         <div class="organization-header__copy">
           <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 600 символов. -->
-          {{ `${text.substring(0, 620)}...` }}
+          {{ croppedText }}
         </div>
 
         <div class="organization-header__buttons">
