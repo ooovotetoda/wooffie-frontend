@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  routeRules: {
+    '/': { prerender: true }
+  },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
   router: {
     options: {
@@ -10,7 +13,10 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/fonts.scss" as *; @use "@/assets/colors.scss"  as *;',
+          additionalData:
+              '@use "@/assets/fonts.scss" as *; ' +
+              '@use "@/assets/colors.scss"  as *; ' +
+              '@import "@/assets/mixins.scss"; ',
         }
       }
     }

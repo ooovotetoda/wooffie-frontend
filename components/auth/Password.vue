@@ -51,7 +51,7 @@ const handlePasswordChange = () => {
     padding: 0 14px;
     top: -12px;
     left: 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto;
@@ -85,10 +85,7 @@ const handlePasswordChange = () => {
     &:focus {
       border: 1px solid $main-color;
       background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik02IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc+") no-repeat 20px center;
-      &::-webkit-input-placeholder { color:transparent; }
-      &:-moz-placeholder { color:transparent; } /* FF 4-18 */
-      &::-moz-placeholder { color:transparent; } /* FF 19+ */
-      &:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+      @include placeholder;
     }
   }
 
@@ -131,11 +128,13 @@ const handlePasswordChange = () => {
   margin: 0;
   padding: 0 14px;
   opacity: 1;
+  background: rgba(255, 255, 255, 1);
 }
 
 .fade-enter-from, .fade-leave-to {
   margin: 0 14px;
   padding: 0;
   opacity: 0;
+  background: rgba(255, 255, 255, 0);
 }
 </style>

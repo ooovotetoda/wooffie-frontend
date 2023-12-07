@@ -108,10 +108,7 @@ const comment = ref<string | null>(null)
     &.filled {
       padding-left: 24px;
       background-image: none;
-      &::-webkit-input-placeholder { color:transparent; }
-      &:-moz-placeholder { color:transparent; } /* FF 4-18 */
-      &::-moz-placeholder { color:transparent; } /* FF 19+ */
-      &:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+      @include placeholder;
     }
   }
 

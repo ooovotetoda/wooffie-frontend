@@ -50,7 +50,7 @@ const handleBlur = () => {
     padding: 0 14px;
     top: -12px;
     left: 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto;
@@ -84,10 +84,7 @@ const handleBlur = () => {
     &:focus {
      border: 1px solid $main-color;
      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik0xOS45NSAyMXEtMy4xMjUgMC02LjE3NS0xLjM2M3QtNS41NS0zLjg2MnEtMi41LTIuNS0zLjg2Mi01LjU1VDMgNC4wNXEwLS40NS4zLS43NXQuNzUtLjNIOC4xcS4zNSAwIC42MjUuMjM4dC4zMjUuNTYybC42NSAzLjVxLjA1LjQtLjAyNS42NzVUOS40IDguNDVMNi45NzUgMTAuOXEuNS45MjUgMS4xODcgMS43ODd0MS41MTMgMS42NjNxLjc3NS43NzUgMS42MjUgMS40MzhUMTMuMSAxN2wyLjM1LTIuMzVxLjIyNS0uMjI1LjU4OC0uMzM4dC43MTItLjA2MmwzLjQ1LjdxLjM1LjEuNTc1LjM2M1QyMSAxNS45djQuMDVxMCAuNDUtLjMuNzV0LS43NS4zWiIvPjwvc3ZnPg==") no-repeat 20px center;
-     &::-webkit-input-placeholder { color:transparent; }
-     &:-moz-placeholder { color:transparent; } /* FF 4-18 */
-     &::-moz-placeholder { color:transparent; } /* FF 19+ */
-     &:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+      @include placeholder;
     }
    }
 
@@ -129,11 +126,13 @@ const handleBlur = () => {
   margin: 0;
   padding: 0 14px;
   opacity: 1;
+  background: rgba(255, 255, 255, 1);
 }
 
 .fade-enter-from, .fade-leave-to {
   margin: 0 14px;
   padding: 0;
   opacity: 0;
+  background: rgba(255, 255, 255, 0);
 }
 </style>
