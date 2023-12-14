@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer class="footer">
+  <footer v-once class="footer">
     <div class="container">
       <div class="wrapper">
         <div class="footer-logo">

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="card">
+    <div v-once class="card">
       <NuxtLink to="/faq/1">
         <div class="card__media">
           <img src="/images/faq-card.jpg" alt="faq">

@@ -4,7 +4,7 @@ const user = userStore.user
 </script>
 
 <template>
-  <header class="header">
+  <header v-once class="header">
     <div class="container">
       <div class="wrapper">
         <div class="header__left">
