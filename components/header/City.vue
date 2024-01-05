@@ -1,21 +1,14 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core';
-import {useUserStore} from "~/stores/userStore";
+import { useCityStore } from "~/stores/cityStore";
 
-const { selectCity, user } = useUserStore()
-
-const cities = {
-  krd: "Краснодар",
-  msk: "Москва",
-  spb: "Санкт-Петербург",
-  rnd: "Ростов-на-Дону",
-}
+const cityStore = useCityStore()
 
 const showDropdown = ref(false)
 const dropdownRef = ref(null);
 
 const handleCity = (val: string) => {
-  selectCity(val)
+  cityStore.selectCity(val)
   showDropdown.value = false
 }
 
@@ -28,7 +21,7 @@ onClickOutside(dropdownRef, (event) => {
   <div class="city">
     <div class="city__current" @click="showDropdown = !showDropdown">
       <IconsCity/>
-      <span>{{ cities[user.city] }}</span>
+      <span>{{ cityStore.currentCityName }}</span>
     </div>
 
     <div
@@ -37,8 +30,9 @@ onClickOutside(dropdownRef, (event) => {
         ref="dropdownRef">
       <ul class="city__list">
         <li
-            v-for="(name, val) in cities"
+            v-for="(name, val) in cityStore.cities"
             class="city__item"
+            :key="val"
             @click="handleCity(val)"
         >{{name}}</li>
       </ul>
