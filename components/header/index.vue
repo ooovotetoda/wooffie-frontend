@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import formatPhone from "~/utils/formatPhone";
+
 const { user } = useUserStore()
 </script>
 
@@ -17,7 +19,7 @@ const { user } = useUserStore()
         </div>
         <div class="header__right">
           <div v-if="user.loggedIn" class="header__user">
-            <span>{{ user.phoneNumber }}</span>
+            <span>{{ formatPhone(user.phoneNumber) }}</span>
             <NuxtLink to="/profile">
               <div class="header__profile">
                 <img src="/images/user-icon.svg" alt="profile">
