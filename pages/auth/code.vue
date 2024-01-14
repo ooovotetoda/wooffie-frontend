@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useUserStore} from "~/stores/userStore";
 import {$fetch} from "ofetch";
+import {formatPhone} from "../../.nuxt/imports";
 
 definePageMeta({
   layout: "authorization",
@@ -9,6 +10,8 @@ definePageMeta({
 const config = useRuntimeConfig()
 const { signUp } = useUserStore()
 
+const phone = sessionStorage.getItem("phone")
+
 const route = useRoute()
 const code:Ref = ref<string | null>(null)
 const isCodeSent = ref<boolean>(false);
@@ -16,18 +19,6 @@ const isCodeValid = ref<boolean>(true);
 const timer = ref<number>(59);
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 
-
-function formatTel(tel: string | string[] | undefined): string | null {
-  if (typeof tel !== 'string') return null;
-  const cleaned = tel.replace(/\D/g, '');
-  const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/);
-
-  if (match) {
-    return `+${match[1]} (${match[2]}) ${match[3]}-${match[4]}-${match[5]}`;
-  }
-
-  return null;
-}
 
 const handleSubmit = async () => {
   if (!code.value || code.value.length < 4) {
@@ -55,6 +46,21 @@ const handleSubmit = async () => {
   }
 }
 
+const resendCode = async () => {
+  if (isCodeSent.value) return;
+
+  const now = Date.now();
+  const timerDuration = 59000; // 59 секунд
+  localStorage.setItem("timerEnd", (now + timerDuration).toString());
+
+  startTimer(timerDuration);
+
+  if (phone) {
+    await sendOTP(phone)
+  } else {
+    console.error("invalid phone number")
+  }
+}
 
 const startTimer = (duration: number): void => {
   isCodeSent.value = true;
@@ -88,18 +94,6 @@ const initializeTimer = (): void => {
   }
 }
 
-const resendCode = async () => {
-  if (isCodeSent.value) return;
-
-  const now = Date.now();
-  const timerDuration = 59000; // 59 секунд
-  localStorage.setItem("timerEnd", (now + timerDuration).toString());
-
-  startTimer(timerDuration);
-
-  await sendOTP()
-}
-
 onMounted(() => {
   initializeTimer();
 });
@@ -117,7 +111,7 @@ onUnmounted(() => {
 
     <div class="authorization-hint">
       <IconsQuestion/>
-      <span>На номер {{formatTel(route.query.tel)}} отправлен одноразовый код </span>
+      <span>На номер {{formatPhone(phone)}} отправлен одноразовый код </span>
     </div>
 
     <form @submit.prevent="handleSubmit" class="authorization-form">
