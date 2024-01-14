@@ -16,8 +16,9 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
     if (accessTokenCookie.value && refreshTokenCookie.value) {
       try {
-        const data = await $fetch(`${config.public.baseUrl}/api/user/verify`, {
+        const data = await $fetch(`/api/user/verify`, {
           method: "GET",
+          baseURL: config.public.baseUrl,
           headers: {
             'Authorization': accessTokenCookie.value
           },
@@ -35,8 +36,9 @@ export const useUserStore = defineStore('user', () => {
         } else {
           if (statusCode === 401) {
             try {
-              const data = await $fetch(`${config.public.baseUrl}/api/user/refresh`, {
+              const data = await $fetch(`/api/user/refresh`, {
                 method: "POST",
+                baseURL: config.public.baseUrl,
                 headers: {
                   'Authorization': accessTokenCookie.value
                 },
@@ -69,8 +71,9 @@ export const useUserStore = defineStore('user', () => {
     const refreshTokenCookie = useCookie('refresh_token');
 
     try {
-      const data = await $fetch(`${config.public.baseUrl}/api/user/login`, {
+      const data = await $fetch(`/api/user/login`, {
         method: "POST",
+        baseURL: config.public.baseUrl,
         body: body
       })
       if (data.status === "OK") {
@@ -96,8 +99,9 @@ export const useUserStore = defineStore('user', () => {
     const refreshTokenCookie = useCookie('refresh_token');
 
     try {
-      const data = await $fetch(`${config.public.baseUrl}/api/user/register`, {
+      const data = await $fetch(`/api/user/register`, {
         method: "POST",
+        baseURL: config.public.baseUrl,
         body: {
           phone: phone,
           password: password,
