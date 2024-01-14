@@ -9,6 +9,11 @@ export default defineNuxtConfig({
       scrollBehaviorType: 'smooth'
     }
   },
+  runtimeConfig: {
+    public: {
+      baseUrl: 'http://localhost:8082'
+    }
+  },
   vite: {
     css: {
       preprocessorOptions: {

@@ -1,15 +1,19 @@
 <script setup lang="ts">
+import {useUserStore} from "~/stores/userStore";
+import sendOTP from "~/utils/sendOTP";
+
 definePageMeta({
   layout: "authorization",
 })
 
+const { user } = useUserStore()
 
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 const password = ref<string | null>(null);
 const isPasswordValid = ref<boolean>(true);
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (phone.value === null
       || password.value === null
       || password.value.length < 8
@@ -18,9 +22,28 @@ const handleSubmit = () => {
     return
   }
 
-  navigateTo("/auth/signin")
+  sessionStorage.setItem('phone', phone.value);
+  sessionStorage.setItem('password', password.value);
+
+  const status = await sendOTP()
+
+  if (status === "OK") {
+    await navigateTo({
+      path: "/auth/code",
+      query: {
+        type: "register"
+      }
+    })
+  } else {
+    console.log("failed to send OTP code")
+  }
 }
 
+onMounted(async () => {
+  if (user.loggedIn) {
+    await navigateTo("/")
+  }
+})
 </script>
 
 <template>

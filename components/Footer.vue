@@ -32,7 +32,6 @@
 
 <style scoped lang="scss">
 .footer {
-  position: relative;
   padding: 60px 0;
   text-align: center;
   background: #2C2E2A;
@@ -45,12 +44,9 @@
   line-height: normal;
 
   &-logo {
-    position: absolute;
-    top: 60px;
-    left: 200px;
     width: 50px;
     height: 50px;
-    //margin-bottom: 16px;
+    margin: 0 auto 40px auto;
 
     img {
       width: 100%;

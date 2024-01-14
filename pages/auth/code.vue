@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import {useUserStore} from "~/stores/userStore";
+import {$fetch} from "ofetch";
+
 definePageMeta({
   layout: "authorization",
 })
+
+const config = useRuntimeConfig()
+const { signUp } = useUserStore()
 
 const route = useRoute()
 const code:Ref = ref<string | null>(null)
@@ -23,15 +29,33 @@ function formatTel(tel: string | string[] | undefined): string | null {
   return null;
 }
 
-
-const handleSubmit = () => {
-  console.log(code.value)
-  if (!code.value || code.value.length < 6) {
+const handleSubmit = async () => {
+  if (!code.value || code.value.length < 4) {
     isCodeValid.value = false;
     return;
   }
 
-  navigateTo("/auth/newpass");
+  sessionStorage.setItem("code", code.value)
+
+  const phone = sessionStorage.getItem("phone")
+  const password = sessionStorage.getItem("password")
+
+  const isValid = await validateOTP()
+  if (isValid) {
+    if (route.query.type === "register") {
+      if (!phone || !password) {
+        return
+      }
+
+      await signUp(phone, password)
+      await navigateTo("/")
+
+    } else if (route.query.type === "reset") {
+      await navigateTo("/auth/newpass");
+    }
+  } else {
+    console.log("code not valid")
+  }
 }
 
 
@@ -67,7 +91,7 @@ const initializeTimer = (): void => {
   }
 }
 
-const resendCode = (): void => {
+const resendCode = async () => {
   if (isCodeSent.value) return;
 
   const now = Date.now();
@@ -75,6 +99,8 @@ const resendCode = (): void => {
   localStorage.setItem("timerEnd", (now + timerDuration).toString());
 
   startTimer(timerDuration);
+
+  await sendOTP()
 }
 
 onMounted(() => {

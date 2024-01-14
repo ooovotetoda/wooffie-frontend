@@ -1,18 +1,44 @@
 <script setup lang="ts">
+import {$fetch} from "ofetch";
+
 definePageMeta({
   layout: "authorization",
 })
 
+const config = useRuntimeConfig()
 
 const password = ref<string | null>(null);
 const isPasswordValid = ref<boolean>(true);
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (password.value === null || password.value.length < 8 || !isPasswordValid.value) {
     return
   }
 
-  navigateTo("/auth/signin")
+  let statusCode = 0;
+
+  try {
+    const response = await $fetch(`/api/user/password`, {
+      method: "POST",
+      baseURL: config.public.baseUrl,
+      credentials: "include",
+      body: {
+        password: password.value,
+      },
+      onResponse(context) {
+        statusCode = context.response.status
+      },
+    })
+
+    if (statusCode === 200) {
+      sessionStorage.clear()
+      await navigateTo("/auth/signin")
+    } else {
+      console.log("failed change password")
+    }
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 </script>

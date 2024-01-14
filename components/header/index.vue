@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const userStore = useUserStore()
-const user = userStore.user
+const { user } = useUserStore()
 </script>
 
 <template>
@@ -18,7 +17,7 @@ const user = userStore.user
         </div>
         <div class="header__right">
           <div v-if="user.loggedIn" class="header__user">
-            <span>+7 989 71 59 856</span>
+            <span>{{ user.phoneNumber }}</span>
             <NuxtLink to="/profile">
               <div class="header__profile">
                 <img src="/images/user-icon.svg" alt="profile">

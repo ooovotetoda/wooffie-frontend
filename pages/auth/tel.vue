@@ -1,23 +1,35 @@
 <script setup lang="ts">
+import {$fetch} from "ofetch";
+import sendOTP from "~/utils/sendOTP";
+
 definePageMeta({
   layout: "authorization",
 })
 
+const route = useRoute()
 
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (phone.value === null || !isPhoneValid.value) {
     return
   }
 
-  navigateTo({
-    path: "/auth/code",
-    query: {
-      tel: phone.value
-    }
-  })
+  sessionStorage.setItem("phone", phone.value)
+
+  const status = await sendOTP()
+
+  if (status === "OK") {
+    await navigateTo({
+      path: "/auth/code",
+      query: {
+        type: "reset"
+      }
+    })
+  } else {
+    console.log("failed to send OTP code")
+  }
 }
 
 </script>

@@ -1,15 +1,23 @@
 <script setup lang="ts">
+import {$fetch} from "ofetch";
+import {useUserStore} from "~/stores/userStore";
+
 definePageMeta({
   layout: "authorization",
 })
+
+const { signIn, user } = useUserStore()
 
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 const password = ref<string | null>(null);
 const isPasswordValid = ref<boolean>(true);
+const body = computed(() => ({
+  phone: phone.value,
+  password: password.value
+}))
 
-const handleSubmit = () => {
-  console.log(phone.value, password.value)
+const handleSubmit = async () => {
   if (phone.value === null || !isPhoneValid) {
     isPhoneValid.value = false;
     return
@@ -20,9 +28,14 @@ const handleSubmit = () => {
     return
   }
 
-  navigateTo("/")
+  await signIn(body.value)
 }
 
+onMounted(async () => {
+  if (user.loggedIn) {
+    await navigateTo("/")
+  }
+})
 </script>
 
 <template>
