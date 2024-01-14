@@ -35,19 +35,16 @@ const handleSubmit = async () => {
     return;
   }
 
-  sessionStorage.setItem("code", code.value)
-
-  const phone = sessionStorage.getItem("phone")
   const password = sessionStorage.getItem("password")
 
-  const isValid = await validateOTP()
+  const isValid = await validateOTP(code.value)
   if (isValid) {
     if (route.query.type === "register") {
-      if (!phone || !password) {
+      if (!password) {
         return
       }
 
-      await signUp(phone, password)
+      await signUp(password)
       await navigateTo("/")
 
     } else if (route.query.type === "reset") {

@@ -16,9 +16,7 @@ const handleSubmit = async () => {
     return
   }
 
-  sessionStorage.setItem("phone", phone.value)
-
-  const status = await sendOTP()
+  const status = await sendOTP(phone.value)
 
   if (status === "OK") {
     await navigateTo({

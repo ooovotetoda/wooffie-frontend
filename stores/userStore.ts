@@ -94,7 +94,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  async function signUp(phone: string | null, password: string | null,) {
+  async function signUp(password: string | null,) {
     const accessTokenCookie = useCookie('access_token');
     const refreshTokenCookie = useCookie('refresh_token');
 
@@ -102,8 +102,8 @@ export const useUserStore = defineStore('user', () => {
       const data = await $fetch(`/api/user/register`, {
         method: "POST",
         baseURL: config.public.baseUrl,
+        credentials: "include",
         body: {
-          phone: phone,
           password: password,
         }
       })

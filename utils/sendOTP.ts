@@ -1,10 +1,9 @@
 import {$fetch} from "ofetch";
 
-export default async function () {
+export default async function (phone: string) {
     const config = useRuntimeConfig()
 
     try {
-        const phone = sessionStorage.getItem("phone")
         let statusCode = 0;
 
         const response = await $fetch(`/api/otp/send`, {

@@ -18,7 +18,7 @@ const handleSubmit = async () => {
   let statusCode = 0;
 
   try {
-    const response = await $fetch(`/api/user/password`, {
+    await $fetch(`/api/user/password`, {
       method: "POST",
       baseURL: config.public.baseUrl,
       credentials: "include",
