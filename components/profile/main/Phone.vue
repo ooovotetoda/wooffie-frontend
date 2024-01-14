@@ -1,16 +1,12 @@
 <script setup lang="ts">
-const phone = ref("+79883233109")
-const isPhoneFocused = ref<boolean>(false);
-const isPhoneValid = ref<boolean>(true);
+import {formatPhone, useUserStore} from "#imports";
 
-const handleSavePhone = () => {
-  const regExp = /^(?:\+7|8)?[789]\d{9}$/;
-  isPhoneValid.value = phone.value ? regExp.test(phone.value) : false;
+const { user } = useUserStore()
 
-  if (isPhoneValid.value) {
-    //Отправка запроса на изменение
-    console.log("Changed")
-  }
+const phone = formatPhone(user.phoneNumber)
+
+const handleEdit = () => {
+
 }
 </script>
 
@@ -22,12 +18,10 @@ const handleSavePhone = () => {
         placeholder="Телефон"
         pattern = "\+?\d{1,3}?\d{1,12}"
         v-model="phone"
-        @focus="isPhoneFocused = true"
-        @blur="isPhoneFocused = false"
+        readonly
     >
   </div>
-  <p v-if="!isPhoneValid" class="error">Неверный формат</p>
-  <button @click.prevent="handleSavePhone" class="profile__btn">Изменить</button>
+  <button @click.prevent="handleEdit" class="profile__btn">Изменить</button>
 </template>
 
 <style scoped lang="scss">
@@ -63,16 +57,6 @@ const handleSavePhone = () => {
       font-weight: 400;
       cursor: pointer;
       transition: all 0.15s linear;
-
-      &:hover {
-        border: 1px solid #000000;
-      }
-
-      &:focus {
-        border: 1px solid $main-color;
-        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik0xOS45NSAyMXEtMy4xMjUgMC02LjE3NS0xLjM2M3QtNS41NS0zLjg2MnEtMi41LTIuNS0zLjg2Mi01LjU1VDMgNC4wNXEwLS40NS4zLS43NXQuNzUtLjNIOC4xcS4zNSAwIC42MjUuMjM4dC4zMjUuNTYybC42NSAzLjVxLjA1LjQtLjAyNS42NzVUOS40IDguNDVMNi45NzUgMTAuOXEuNS45MjUgMS4xODcgMS43ODd0MS41MTMgMS42NjNxLjc3NS43NzUgMS42MjUgMS40MzhUMTMuMSAxN2wyLjM1LTIuMzVxLjIyNS0uMjI1LjU4OC0uMzM4dC43MTItLjA2MmwzLjQ1LjdxLjM1LjEuNTc1LjM2M1QyMSAxNS45djQuMDVxMCAuNDUtLjMuNzV0LS43NS4zWiIvPjwvc3ZnPg==") no-repeat 20px center;
-        @include placeholder;
-      }
     }
   }
 

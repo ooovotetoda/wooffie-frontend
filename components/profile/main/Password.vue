@@ -1,19 +1,8 @@
 <script setup lang="ts">
-const password = ref<string | null>("password");
-const showPassword = ref<boolean>(false);
-const isPasswordFocused = ref<boolean>(false);
-const isPasswordValid = ref<boolean>(true);
-
-const handlePasswordChange = () => {
-  password.value = password.value ? password.value.replace(/\s+/g, '') : null;
-};
+const password = ref<string | null>("passwordword");
 
 const handleSavePassword = () => {
-  if (!password.value || password.value.length < 8) {
-    isPasswordValid.value = false
-  } else {
-    isPasswordValid.value = true
-  }
+
 }
 </script>
 
@@ -21,17 +10,12 @@ const handleSavePassword = () => {
   <label for="tel" class="profile__label">Пароль</label>
   <div class="profile__input">
     <input
-        :type="showPassword ? 'text' : 'password'"
+        type="password"
         placeholder="Пароль"
         v-model="password"
-        @focus="isPasswordFocused = true"
-        @blur="isPasswordFocused = false"
-        @input="handlePasswordChange"
+        readonly
     >
-    <IconsPasswordHide v-if="showPassword" @click.prevent="showPassword = !showPassword"/>
-    <IconsPasswordShow v-else @click.prevent="showPassword = !showPassword"/>
   </div>
-  <p v-if="!isPasswordValid" class="error">Заполните поле (минимум 8 символов)</p>
   <button @click="handleSavePassword" class="profile__btn">Изменить</button>
 </template>
 
@@ -68,16 +52,6 @@ const handleSavePassword = () => {
       font-weight: 400;
       cursor: pointer;
       transition: all 0.15s linear;
-
-      &:hover {
-        border: 1px solid #000000;
-      }
-
-      &:focus {
-        border: 1px solid $main-color;
-        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik02IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc+") no-repeat 20px center;
-        @include placeholder;
-      }
     }
 
     svg {
