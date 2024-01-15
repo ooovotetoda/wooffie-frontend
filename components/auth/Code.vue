@@ -26,7 +26,7 @@ const handleInput = () => {
     </Transition>
     <input
         type="text"
-        maxlength=6
+        maxlength=4
         placeholder="Одноразовый код"
         class="code__input"
         ref="codeRef"

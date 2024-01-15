@@ -120,7 +120,7 @@ onUnmounted(() => {
           v-model:isCodeValid="isCodeValid"
       />
 
-      <button class="authorization-login">Подвердить</button>
+      <button class="authorization-login">Подтвердить</button>
     </form>
 
     <button @click="resendCode" :disabled="isCodeSent" class="authorization-registration">
