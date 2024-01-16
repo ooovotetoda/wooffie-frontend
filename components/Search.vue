@@ -28,7 +28,7 @@ const search = ref(null)
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   color: $dark-grey;
   font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;

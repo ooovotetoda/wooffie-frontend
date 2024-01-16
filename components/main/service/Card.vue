@@ -97,7 +97,7 @@ const props = defineProps({
       margin-bottom: 18px;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 20px;
       font-style: normal;
       font-weight: 500;
@@ -113,7 +113,7 @@ const props = defineProps({
       margin-bottom: 8px;
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -135,7 +135,7 @@ const props = defineProps({
       border-radius: 10px;
       background: $main-color;
       color: #FFF;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

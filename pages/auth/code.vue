@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {useUserStore} from "~/stores/userStore";
-import {$fetch} from "ofetch";
 import {formatPhone} from "../../.nuxt/imports";
 
 definePageMeta({
@@ -138,7 +137,7 @@ onUnmounted(() => {
     margin-bottom: 32px;
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 28px;
     font-style: normal;
     font-weight: 500;
@@ -154,7 +153,7 @@ onUnmounted(() => {
     text-align: left;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -175,7 +174,7 @@ onUnmounted(() => {
     background: $main-color;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -200,7 +199,7 @@ onUnmounted(() => {
     background: #FFF;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

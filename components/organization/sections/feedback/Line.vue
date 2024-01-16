@@ -42,7 +42,7 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
       user-select: none;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -128,7 +128,7 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
       transform: translateX(calc(100% + 16px));
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

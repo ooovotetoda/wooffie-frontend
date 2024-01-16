@@ -30,7 +30,7 @@ definePageMeta({
     margin-bottom: 60px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 400;

@@ -22,7 +22,7 @@
     margin-bottom: 24px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;

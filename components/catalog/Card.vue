@@ -81,12 +81,12 @@ const toggleIsActive = () => {
   margin-bottom: 32px;
   border-radius: 20px;
   background: #FFF;
-  box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   transition: all 0.1s ease-in-out;
   cursor: pointer;
 
   &:hover {
-    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.20);
+    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
   }
 
   &__media {
@@ -148,7 +148,7 @@ const toggleIsActive = () => {
     margin-bottom: 8px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -162,7 +162,7 @@ const toggleIsActive = () => {
     margin-bottom: 8px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -187,7 +187,7 @@ const toggleIsActive = () => {
       border-radius: 30px;
       color: var(--t-367, rgba(0, 0, 0, 0.67));
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -220,7 +220,7 @@ const toggleIsActive = () => {
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
     text-overflow: ellipsis;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -234,7 +234,7 @@ const toggleIsActive = () => {
     min-width: 381px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -255,7 +255,7 @@ const toggleIsActive = () => {
       background: $main-color;
       color: #FFF;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

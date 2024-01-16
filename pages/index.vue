@@ -87,7 +87,7 @@ useSeoMeta({
   &-title {
     color: $grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 88px;
     font-weight: 500;
     font-variant: all-small-caps;
@@ -98,7 +98,7 @@ useSeoMeta({
     max-width: 800px;
     color: $grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
@@ -122,7 +122,7 @@ useSeoMeta({
   &-title {
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 56px;
     font-weight: 500;
     font-variant: all-small-caps;
@@ -151,7 +151,7 @@ useSeoMeta({
       margin-bottom: 32px;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 56px;
       font-style: normal;
       font-weight: 500;
@@ -162,7 +162,7 @@ useSeoMeta({
     &-description {
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -185,7 +185,7 @@ useSeoMeta({
     margin-bottom: 40px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 56px;
     font-style: normal;
     font-weight: 500;

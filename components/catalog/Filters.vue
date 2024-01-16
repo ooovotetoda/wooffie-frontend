@@ -203,7 +203,7 @@ watch(() => route, (newRoute) => {
     h3 {
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 24px;
       font-style: normal;
       font-weight: 500;
@@ -225,7 +225,7 @@ watch(() => route, (newRoute) => {
       border-bottom: 1px solid #D9DAD9;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 500;
@@ -240,7 +240,7 @@ watch(() => route, (newRoute) => {
         padding: 4px;
         color: $text-dark;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -403,7 +403,7 @@ watch(() => route, (newRoute) => {
       border-radius: 10px;
       border: none;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

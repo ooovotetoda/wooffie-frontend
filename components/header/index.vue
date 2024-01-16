@@ -112,7 +112,7 @@ const phone = formatPhone(user.phoneNumber)
     background: $main-color;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -138,7 +138,7 @@ const phone = formatPhone(user.phoneNumber)
     span {
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;

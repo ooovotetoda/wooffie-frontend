@@ -8,9 +8,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['rated'])
-const handeRated = (index: Number) => {
 
-}
 </script>
 
 <template>

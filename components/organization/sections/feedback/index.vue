@@ -58,7 +58,7 @@ const handleOld = () => {
     margin-bottom: 32px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -79,7 +79,7 @@ const handleOld = () => {
       margin-top: 6px;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -94,7 +94,7 @@ const handleOld = () => {
         margin-right: 16px;
         color: $text-dark;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 500;
@@ -107,7 +107,7 @@ const handleOld = () => {
         background-color: transparent;
         color: $text-dark;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;

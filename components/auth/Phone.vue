@@ -53,7 +53,7 @@ const handleBlur = () => {
     background-color: rgba(255, 255, 255, 1);
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -70,7 +70,7 @@ const handleBlur = () => {
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik0xOS45NSAyMXEtMy4xMjUgMC02LjE4Ny0xLjM1VDguMiAxNS44cS0yLjUtMi41LTMuODUtNS41NVQzIDQuMDVWM2g1LjlsLjkyNSA1LjAyNWwtMi44NSAyLjg3NXEuNTUuOTc1IDEuMjI1IDEuODV0MS40NSAxLjYyNXEuNzI1LjcyNSAxLjU4OCAxLjM4OFQxMy4xIDE3bDIuOS0yLjlsNSAxLjAyNVYyMWgtMS4wNVoiLz48L3N2Zz4=") no-repeat 20px center;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -111,7 +111,7 @@ const handleBlur = () => {
   text-align: left;
   margin: -12px 0 6px 16px;
   color: rgba(228, 0, 0, 0.87);
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

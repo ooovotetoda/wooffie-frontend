@@ -19,11 +19,11 @@
   height: 380px;
   border-radius: 20px;
   background: #FFF;
-  box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   transition: all 0.1s ease-in-out;
 
   &:hover {
-    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.20);
+    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
   }
 
   &__media {
@@ -49,7 +49,7 @@
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
     text-overflow: ellipsis;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

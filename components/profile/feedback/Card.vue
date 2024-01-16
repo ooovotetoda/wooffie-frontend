@@ -118,7 +118,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
     &__name {
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 24px;
       font-style: normal;
       font-weight: 500;
@@ -136,7 +136,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
         margin-top: 4px;
         color: $text-dark;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
@@ -153,7 +153,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
         border-radius: 30px;
         color: var(--t-367, rgba(0, 0, 0, 0.67));
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -182,7 +182,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       background: $main-color;
       color: #FFF;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -221,7 +221,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       margin-bottom: 4px;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 500;
@@ -231,7 +231,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
     &__status {
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -250,7 +250,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       margin-top: 4px;
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -262,7 +262,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
       text-overflow: ellipsis;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

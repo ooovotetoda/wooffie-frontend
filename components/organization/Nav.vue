@@ -82,7 +82,7 @@ watch(() => route.query.section, (newVal) => {
     border-bottom: 3px solid #FFFFFF;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

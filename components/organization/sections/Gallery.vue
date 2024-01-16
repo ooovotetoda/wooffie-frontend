@@ -34,7 +34,7 @@ import { Carousel, Slide, Pagination } from 'vue3-carousel'
     color: $text-dark;
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;

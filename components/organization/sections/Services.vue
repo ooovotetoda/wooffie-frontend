@@ -35,7 +35,7 @@
     margin-bottom: 32px;
     border-radius: 20px;
     background: #FFF;
-    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
     transition: all 0.1s ease-in-out;
 
     &:last-of-type {
@@ -43,7 +43,7 @@
     }
 
     &:hover {
-      box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.20);
+      box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
     }
   }
 
@@ -69,7 +69,7 @@
   &__name {
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -79,7 +79,7 @@
   &__price {
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -93,7 +93,7 @@
     border: none;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

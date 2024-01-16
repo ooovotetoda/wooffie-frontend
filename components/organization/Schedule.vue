@@ -66,14 +66,14 @@ onMounted(() => {
   padding: 32px;
   border-radius: 10px;
   background: #FFF;
-  box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   text-align: center;
 
   &__title {
     margin-bottom: 18px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -95,7 +95,7 @@ onMounted(() => {
     background: rgba(221, 185, 164, 0.50);
     color: #824C27;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +110,7 @@ onMounted(() => {
     padding: 8px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -151,7 +151,7 @@ onMounted(() => {
     outline: none;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

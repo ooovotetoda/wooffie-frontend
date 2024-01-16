@@ -82,7 +82,7 @@ const handleDislike = () => {
     margin-bottom: 4px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -92,7 +92,7 @@ const handleDislike = () => {
   &__status {
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +110,7 @@ const handleDislike = () => {
     margin-top: 4px;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -123,7 +123,7 @@ const handleDislike = () => {
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
     text-overflow: ellipsis;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -180,7 +180,7 @@ const handleDislike = () => {
       color: rgba(0, 0, 0, 0.48);
       font-feature-settings: 'clig' off, 'liga' off;
       text-overflow: ellipsis;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

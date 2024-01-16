@@ -54,7 +54,7 @@ const handleInput = () => {
     background-color: rgba(255, 255, 255, 1);
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -70,7 +70,7 @@ const handleInput = () => {
     outline: none;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -104,7 +104,7 @@ const handleInput = () => {
   text-align: left;
   margin: -12px 0 6px 16px;
   color: rgba(228, 0, 0, 0.87);
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

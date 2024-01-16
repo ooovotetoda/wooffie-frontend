@@ -158,7 +158,7 @@ const { open } = useModal({
       margin-bottom: 16px;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 48px;
       font-style: normal;
       font-weight: 500;
@@ -176,7 +176,7 @@ const { open } = useModal({
         border-radius: 30px;
         color: var(--t-367, rgba(0, 0, 0, 0.67));
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -208,7 +208,7 @@ const { open } = useModal({
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
       text-overflow: ellipsis;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -225,7 +225,7 @@ const { open } = useModal({
         padding: 12px;
         border-radius: 10px;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;

@@ -53,7 +53,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
     span {
       color: $grey;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 88px;
       font-style: normal;
       font-weight: 500;
@@ -67,7 +67,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
     color: $text-dark;
     text-align: justify;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

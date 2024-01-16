@@ -82,7 +82,7 @@ onClickOutside(dropdownRef, (event) => {
     left: 0;
     border-radius: 10px;
     background: #FFF;
-    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   }
 
   &__list {
@@ -93,7 +93,7 @@ onClickOutside(dropdownRef, (event) => {
     padding: 14px 36px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {$fetch} from "ofetch";
 import {useUserStore} from "~/stores/userStore";
 
 definePageMeta({
@@ -75,7 +74,7 @@ onMounted(async () => {
     margin-bottom: 32px;
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 28px;
     font-style: normal;
     font-weight: 500;
@@ -90,7 +89,7 @@ onMounted(async () => {
     margin-bottom: 24px;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -115,7 +114,7 @@ onMounted(async () => {
     background: $main-color;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -140,7 +139,7 @@ onMounted(async () => {
     background: #FFF;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -161,7 +160,7 @@ onMounted(async () => {
     text-align: left;
     margin: -12px 0 6px 16px;
     color: rgba(228, 0, 0, 0.87);
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

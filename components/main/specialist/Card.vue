@@ -52,7 +52,7 @@
     margin: 10px 0;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -64,7 +64,7 @@
     margin-right: auto;
     text-align: left;
     color: #080606;
-    font-family: "Futura New Book";
+    font-family: "Futura New Book",serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -73,7 +73,7 @@
       display: block;
       margin-bottom: 4px;
       color: $dark-grey;
-      font-family: "Futura New Book";
+      font-family: "Futura New Book",serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -96,7 +96,7 @@
     outline: none;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

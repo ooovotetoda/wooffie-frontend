@@ -37,7 +37,7 @@
   background: #2C2E2A;
   color: $light-grey;
   font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;

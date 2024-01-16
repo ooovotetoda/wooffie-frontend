@@ -75,7 +75,7 @@ const comment = ref<string | null>(null)
     margin-bottom: 16px;
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
@@ -98,7 +98,7 @@ const comment = ref<string | null>(null)
     outline: none;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -123,7 +123,7 @@ const comment = ref<string | null>(null)
       border: none;
       border-radius: 10px;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

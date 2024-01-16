@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {$fetch} from "ofetch";
 import sendOTP from "~/utils/sendOTP";
 
 definePageMeta({
@@ -66,7 +65,7 @@ const handleSubmit = async () => {
     margin-bottom: 32px;
     color: $main-color;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 28px;
     font-style: normal;
     font-weight: 500;
@@ -88,7 +87,7 @@ const handleSubmit = async () => {
         background-color: #fff;
         color: $main-color;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -123,7 +122,7 @@ const handleSubmit = async () => {
       outline: none;
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -151,7 +150,7 @@ const handleSubmit = async () => {
     text-align: left;
     color: $dark-grey;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -172,7 +171,7 @@ const handleSubmit = async () => {
     background: $main-color;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -197,7 +196,7 @@ const handleSubmit = async () => {
     background: #FFF;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -218,7 +217,7 @@ const handleSubmit = async () => {
     text-align: left;
     margin: -12px 0 6px 16px;
     color: rgba(228, 0, 0, 0.87);
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

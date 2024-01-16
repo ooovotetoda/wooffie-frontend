@@ -41,10 +41,9 @@ const handleSelectCategory = (category: string) => {
         padding: 12px 32px;
         cursor: pointer;
         border-radius: 50px;
-        transition: all 0.2s ease-in-out;
         color: $text-dark;
         font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
