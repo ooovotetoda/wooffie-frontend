@@ -31,37 +31,33 @@ export const useUserStore = defineStore('user', () => {
           user.id.value = data.user.id
           user.phoneNumber.value = data.user.phone
           user.loggedIn.value = true
-
-          await navigateTo("/")
-        } else {
-          if (statusCode === 401) {
-            try {
-              const data = await $fetch(`/api/user/refresh`, {
-                method: "POST",
-                baseURL: config.public.baseUrl,
-                headers: {
-                  'Authorization': accessTokenCookie.value
-                },
-                body: {
-                  "refresh_token": refreshTokenCookie.value
-                },
-                onResponse(context) {
-                  statusCode = context.response.status
-                },
-              })
-
-              if (data.status === "OK") {
-                user.id.value = data.user.id
-                user.phoneNumber.value = data.user.phone
-                user.loggedIn.value = true
-              }
-            } catch (e) {
-              console.error(e)
-            }
-          }
         }
       } catch (e) {
-        console.error(e)
+        if (statusCode === 401) {
+          try {
+            const data = await $fetch(`/api/user/refresh`, {
+              method: "POST",
+              baseURL: config.public.baseUrl,
+              headers: {
+                'Authorization': accessTokenCookie.value
+              },
+              body: {
+                "refresh_token": refreshTokenCookie.value
+              },
+              onResponse(context) {
+                statusCode = context.response.status
+              },
+            })
+
+            if (data.status === "OK") {
+              user.id.value = data.user.id
+              user.phoneNumber.value = data.user.phone
+              user.loggedIn.value = true
+            }
+          } catch (e) {
+            console.error(e)
+          }
+        }
       }
     }
   }

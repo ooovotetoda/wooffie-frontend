@@ -55,7 +55,6 @@ const handleEdit = () => {
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
-      cursor: pointer;
       transition: all 0.15s linear;
     }
   }
