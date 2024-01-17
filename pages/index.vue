@@ -25,12 +25,12 @@ useSeoMeta({
       <div class="wrapper">
         <h2 class="services-title">Наши услуги</h2>
         <div class="services-row">
-          <MainServiceCard title="Клиники" service="clinics" image="https://s3-alpha-sig.figma.com/img/1bce/f637/bb9fea3cfbb974c57a82252a91129dc8?Expires=1702252800&Signature=fkJrnkJoJ2LV7cd1G7~qw1jq5H-p3xjdGFIC5Pi5BcKuM4rmZjRn1Ftb2sCyMghtCm4L4Cz5X6dmF4i~Psdl1MF-h4eOl5v1rlFo5~cSrGgtbDpxrgxHEJYxm5tAgMGCCLndjv2H8ewyurDFN4YfodnhSgADBkf6T2d6pZOohE1rkVVjvgJVthXtXCcskRVioozt~ECj1aGzY7rqeZeZ76nq8F5wRY9sZlPdOl-33x-V-kK05aRC3W-uUjjvMFkOQA~rMaBpI8fKTt5K~Mb3Hg4fQJQGZJUYnMhR1M-nt~3F9Ikx5DtHDSagRN~MFgrfBeFHSjYbMIeFcUUYZkbQyw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"/>
-          <MainServiceCard title="Ветеринары" service="vets" image="https://s3-alpha-sig.figma.com/img/d298/b493/63442a841effa276b481f0322b98f508?Expires=1702252800&Signature=aT8OZUtyydJ08gmcuJoOcvWncfy0v-9iaHUSf1F2mHn0aJNBYvR-ZVnqkqtq5RaZ8lc-RgC3q2bXKsUwsg0x1NJ2uR8aDbUf7U9Pb0HW0GEdHy6BV2AaNNjy2jKJf~mrkD3uwlAYeYuCchb~YZnTmT8-Sk8-SGxPHxyAsL84PY3Z4m5h~oGxE9p3mGbP2I2Ngo4jwaE6Suc9aydzUkSSgHhwR7gng3tg~eeQo9xOyJX9l6Xn2jw537zzEnzCAZn8f2PUI8qsoGBF9Y15JKM6~E7VQCXgr7iJWqTG6-xI5UKQxIsU2GE8fs7YvNcyDYoRFHz~qEYZisrgm8NOrK9cOw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"/>
+          <MainServiceCard title="Клиники" service="clinics" image="images/card-clinics.png"/>
+          <MainServiceCard title="Ветеринары" service="vets" image="images/card-vets.png"/>
         </div>
         <div class="services-row">
-          <MainServiceCard title="Грумеры" service="groomers" image="https://s3-alpha-sig.figma.com/img/bf9d/1728/cf993f5b946f86c5dcbfaa4a0f9c1012?Expires=1702252800&Signature=Ob1fCcqxA9-dfQVEHsSjF0m~GXG1yED~k9wFSxGAs7iFNOL2q5wM0Voi1do1W8JWAK49qa15HcMPIgqQsn1ZkB8O-kpWIbiA8RksugZPmjypk5sRVBq7sI0ft80DbrPagU0GdJO0EJ2fB1ZjNUuhLmTn0hfCG-aCkpY42uNEdOpDU3YCuASB1~i5c0g9-QKwfQz0LA9x2Cz~enLNT8gXbSDx5Tjp9V9jM-bAU9RNtoBB0fFRf-v17oloO2Q5PL5QV6HPCisXtx75MwWCp0KqppzsGCTlsXpuD8lDOaoR5N7nKI9nFOqb-hdAlaDvzjqGtTdgtmPJIV74PguKqaODvw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"/>
-          <MainServiceCard title="Зоосалоны" service="zoosalons" image="https://s3-alpha-sig.figma.com/img/383d/b5d5/ebbaab24a303c6a858410c17adc60f11?Expires=1702252800&Signature=TjQVjTp9jI77zO9Qz0o7myaS94G0J5yOt7Nyd-BygGGlyO0c578cNZSk5FhXnW4JJG2ZAYnj85ppbXTIvs-63QCnHd3H6IuOYEspAdIOTJqbdJPJXYjOruf7ppff3Gdn77qD98CH6IMPoHyAMArBWB43zvWEZGmDQE-jCnDG~~G1Z99Yx~GhZV78FmM7pnTjiOW0z7-uXWo7byHPbKA1fJ~S85ZOHN4bHvIYCh9RYmOXIsl7pClTh8Api1MGkACBy53lGJwTXN~~ZChU8MFp4r4eY4diKwiHE7xQts-2raNAyP00mWlSSMQVq9p7qZlC9uqyCul4c6qcoWUXN2j7KA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"/>
+          <MainServiceCard title="Грумеры" service="groomers" image="images/card-groomers.png"/>
+          <MainServiceCard title="Зоосалоны" service="salons" image="images/card-salons.png"/>
         </div>
       </div>
     </div>

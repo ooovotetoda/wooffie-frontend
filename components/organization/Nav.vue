@@ -42,7 +42,7 @@ watch(() => route.query.section, (newVal) => {
       <li class="nav__item" @click="setActiveSection('feedback')">Отзывы</li>
     </ul>
 
-    <ul v-else-if="category === 'clinics' || category === 'zoosalons'" class="nav__list">
+    <ul v-else-if="category === 'clinics' || category === 'salons'" class="nav__list">
       <li class="nav__item" @click="setActiveSection('services')">Услуги</li>
       <li class="nav__item" @click="setActiveSection('specialists')">Специалисты</li>
       <li class="nav__item" @click="setActiveSection('gallery')">Фотогалерея</li>

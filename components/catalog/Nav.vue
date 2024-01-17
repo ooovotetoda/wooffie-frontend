@@ -22,7 +22,7 @@ const handleSelectCategory = (category: string) => {
       <li @click="handleSelectCategory('clinics')" :class="{active: active == 'clinics'}">Клиники</li>
       <li @click="handleSelectCategory('vets')" :class="{active: active == 'vets'}">Ветеринары</li>
       <li @click="handleSelectCategory('groomers')" :class="{active: active == 'groomers'}">Грумеры</li>
-      <li @click="handleSelectCategory('zoosalons')" :class="{active: active == 'zoosalons'}">Зоосалоны</li>
+      <li @click="handleSelectCategory('salons')" :class="{active: active == 'salons'}">Зоосалоны</li>
     </ul>
   </nav>
 </template>

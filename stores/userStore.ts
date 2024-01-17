@@ -73,8 +73,8 @@ export const useUserStore = defineStore('user', () => {
         body: body
       })
       if (data.status === "OK") {
-        accessTokenCookie.value = data.access_token;
-        refreshTokenCookie.value = data.refresh_token;
+        accessTokenCookie.value = data.tokens.access_token;
+        refreshTokenCookie.value = data.tokens.refresh_token;
 
         user.id.value = data.user.id
         user.phoneNumber.value = data.user.phone
@@ -104,8 +104,8 @@ export const useUserStore = defineStore('user', () => {
         }
       })
       if (data.status === "OK") {
-        accessTokenCookie.value = data.access_token;
-        refreshTokenCookie.value = data.refresh_token;
+        accessTokenCookie.value = data.tokens.access_token;
+        refreshTokenCookie.value = data.tokens.refresh_token;
 
         user.id.value = data.user.id
         user.phoneNumber.value = data.user.phone
