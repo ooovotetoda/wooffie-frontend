@@ -53,6 +53,9 @@ export const useUserStore = defineStore('user', () => {
               user.id.value = data.user.id
               user.phoneNumber.value = data.user.phone
               user.loggedIn.value = true
+
+              accessTokenCookie.value = data.tokens.access_token
+              refreshTokenCookie.value = data.tokens.refresh_token
             }
           } catch (e) {
             console.error(e)

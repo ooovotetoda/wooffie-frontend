@@ -6,7 +6,7 @@ definePageMeta({
 const route = useRoute()
 const router = useRouter()
 
-const sections: string[] = ['services', 'clinics', 'specialist', 'gallery', 'feedback']
+const sections: string[] = ['services', 'clinic', 'specialist', 'gallery', 'feedback']
 
 watch(() => route, () => {
   if (!sections.includes(route.query.section as string)) {

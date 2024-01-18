@@ -25,12 +25,12 @@ useSeoMeta({
       <div class="wrapper">
         <h2 class="services-title">Наши услуги</h2>
         <div class="services-row">
-          <MainServiceCard title="Клиники" service="clinics" image="images/card-clinics.png"/>
-          <MainServiceCard title="Ветеринары" service="vets" image="images/card-vets.png"/>
+          <MainServiceCard title="Клиники" service="clinic" image="images/card-clinic.png"/>
+          <MainServiceCard title="Ветеринары" service="vet" image="images/card-vet.png"/>
         </div>
         <div class="services-row">
-          <MainServiceCard title="Грумеры" service="groomers" image="images/card-groomers.png"/>
-          <MainServiceCard title="Зоосалоны" service="salons" image="images/card-salons.png"/>
+          <MainServiceCard title="Грумеры" service="groomer" image="images/card-groomer.png"/>
+          <MainServiceCard title="Зоосалоны" service="salon" image="images/card-salon.png"/>
         </div>
       </div>
     </div>

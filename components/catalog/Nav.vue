@@ -19,10 +19,10 @@ const handleSelectCategory = (category: string) => {
 <template>
   <nav class="catalog-nav">
     <ul>
-      <li @click="handleSelectCategory('clinics')" :class="{active: active == 'clinics'}">Клиники</li>
-      <li @click="handleSelectCategory('vets')" :class="{active: active == 'vets'}">Ветеринары</li>
-      <li @click="handleSelectCategory('groomers')" :class="{active: active == 'groomers'}">Грумеры</li>
-      <li @click="handleSelectCategory('salons')" :class="{active: active == 'salons'}">Зоосалоны</li>
+      <li @click="handleSelectCategory('clinic')" :class="{active: active == 'clinic'}">Клиники</li>
+      <li @click="handleSelectCategory('salon')" :class="{active: active == 'salon'}">Зоосалоны</li>
+      <li @click="handleSelectCategory('vet')" :class="{active: active == 'vet'}">Ветеринары</li>
+      <li @click="handleSelectCategory('groomer')" :class="{active: active == 'groomer'}">Грумеры</li>
     </ul>
   </nav>
 </template>

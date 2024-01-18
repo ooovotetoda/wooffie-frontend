@@ -25,7 +25,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
 
     </div>
 
-    <NuxtLink to="/catalog/vets/1">
+    <NuxtLink to="/catalog/vet/1">
       <button class="card-specialist__btn">Перейти</button>
     </NuxtLink>
 

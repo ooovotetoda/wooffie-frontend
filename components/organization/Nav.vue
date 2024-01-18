@@ -16,7 +16,7 @@ watch(() => route.query.section, (newVal) => {
     case 'services':
       left = 0;
       break;
-    case 'clinics':
+    case 'clinic':
     case 'specialists':
       left = 1;
       break;
@@ -35,14 +35,14 @@ watch(() => route.query.section, (newVal) => {
 
 <template>
   <nav class="nav">
-    <ul v-if="category === 'vets' || category === 'groomers'" class="nav__list">
+    <ul v-if="category === 'vet' || category === 'groomer'" class="nav__list">
       <li class="nav__item" @click="setActiveSection('services')">Услуги</li>
-      <li class="nav__item" @click="setActiveSection('clinics')">Клиники</li>
+      <li class="nav__item" @click="setActiveSection('clinic')">Клиники</li>
       <li class="nav__item" @click="setActiveSection('gallery')">Сертификаты</li>
       <li class="nav__item" @click="setActiveSection('feedback')">Отзывы</li>
     </ul>
 
-    <ul v-else-if="category === 'clinics' || category === 'salons'" class="nav__list">
+    <ul v-else-if="category === 'clinic' || category === 'salon'" class="nav__list">
       <li class="nav__item" @click="setActiveSection('services')">Услуги</li>
       <li class="nav__item" @click="setActiveSection('specialists')">Специалисты</li>
       <li class="nav__item" @click="setActiveSection('gallery')">Фотогалерея</li>

@@ -1,47 +1,65 @@
 <script setup lang="ts">
-import {onMounted} from "vue";
+const props = defineProps({
+  list: Array
+})
 
-const listRef = ref(null)
+const emit = defineEmits(["loadMore"])
 
-//TODO: тут поменять names на запроос к API
-const names = ref(['john', 'bill', 'dave', 'matt', 'john', 'bill'])
-
-const getNames = () => {
-  const newNames = ["rose", "bell", "shara", 'rose', "bell", "shara",]
-  names.value.push(...newNames)
-}
-
-//@ts-ignore
-const handleScroll = (e) => {
-  let list = listRef.value
-
-  //@ts-ignore
-  if (list.getBoundingClientRect().bottom < window.innerHeight) {
-    getNames()
-  }
-}
+const marker = ref<HTMLElement | null>(null);
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll)
-})
+  const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            emit("loadMore")
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+  );
 
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll)
-})
+  if (marker.value) {
+    observer.observe(marker.value);
+  }
+});
+
 </script>
 
 <template>
   <section class="list">
-    <ul ref="listRef">
-      <li v-for="(item, index) in names" :key="index">
-        <CatalogCard :maxDescriptionLength="240"/>
+    <ul ref="el">
+      <li v-for="(item, index) in list" :key="index">
+        <CatalogCard :item="item" :maxDescriptionLength="240"/>
       </li>
     </ul>
+    <div class="marker-wrapper">
+      <div ref="marker" class="marker"></div>
+    </div>
+
   </section>
 </template>
 
 <style scoped lang="scss">
 ul {
   list-style-type: none;
+}
+
+.marker {
+  position: absolute;
+  top: -1500px;
+  left: 0;
+  right: 0;
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
+
+  &-wrapper {
+    position: relative;
+  }
 }
 </style>

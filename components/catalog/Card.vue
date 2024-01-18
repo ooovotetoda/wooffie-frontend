@@ -8,6 +8,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   "               when an unknown printer took a galley of type and scrambled it to scrambled it to"
 
 const props = defineProps({
+  item: Object,
   maxDescriptionLength: {
     type: Number,
     required: true
@@ -19,9 +20,9 @@ const route = useRoute()
 const isActive = ref(false)
 
 const croppedText = computed(() => {
-  return text.length > props.maxDescriptionLength ?
+  return props.item?.about.length > props.maxDescriptionLength ?
       `${text.substring(0, props.maxDescriptionLength)}...`
-      : text
+      : props.item?.about
 })
 
 const toggleIsActive = () => {
@@ -32,21 +33,21 @@ const toggleIsActive = () => {
 <template>
   <div class="card">
     <div class="card__media">
-      <img src="/images/clinic.jpg" alt="clinic">
+      <img :src="item.photo" alt="clinic">
       <button @click="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
         <IconsFavorite />
       </button>
     </div>
 
     <div class="card__body">
-      <h3 class="card__title">Альфа центр здоровья</h3>
+      <h3 class="card__title">{{ item.name }}</h3>
       <div class="card__subtitle">
-        <span>Рейтинг 4.0</span>
+        <span>Рейтинг {{ item.rating }}</span>
         <Rating :rating="4"/>
       </div>
       <div class="card__criteria">
         <span class="card__criteria-type">Ветклиника</span>
-        <span class="card__criteria-schedule">Круглосуточно</span>
+        <span v-if="item.round_clock" class="card__criteria-schedule">Круглосуточно</span>
         <span class="card__criteria-city">Краснодар</span>
       </div>
       <div class="card__copy">
@@ -68,7 +69,7 @@ const toggleIsActive = () => {
           <span>г. Краснодар, ул, Большая Садовая, д. 46</span>
         </div>
       </div>
-      <NuxtLink :to="`/catalog/${route.params.category}/1?section=services`" class="card__info-enroll">Записаться</NuxtLink>
+      <NuxtLink :to="`/catalog/${route.params.category}/${item.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
     </div>
   </div>
 </template>
@@ -211,11 +212,9 @@ const toggleIsActive = () => {
 
   &__body {
     padding-right: 24px;
-    border-right: 1px solid var(--Line, #D9DAD9);
   }
 
   &__copy {
-    //width: 468px;
     overflow: hidden;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
@@ -231,7 +230,10 @@ const toggleIsActive = () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 381px;
+    width: 357px;
+    margin-left: auto;
+    padding-left: 24px;
+    border-left: 1px solid var(--Line, #D9DAD9);
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto, serif;

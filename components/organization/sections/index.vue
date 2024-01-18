@@ -10,7 +10,7 @@ watch(() => route.query.section, (newSection) => {
 
 <template>
   <OrganizationSectionsServices  v-if="section === 'services'"/>
-  <OrganizationSectionsList v-if="section === 'clinics' || section === 'specialists'"/>
+  <OrganizationSectionsList v-if="section === 'clinic' || section === 'specialists'"/>
   <OrganizationSectionsGallery  v-if="section === 'gallery'"/>
   <OrganizationSectionsFeedback  v-if="section === 'feedback'"/>
 </template>

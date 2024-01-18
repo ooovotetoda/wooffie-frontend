@@ -18,7 +18,7 @@
       <span>Специализация</span>
       Хирургия, ортопедия
     </div>
-    <NuxtLink to="/catalog/vets/1">
+    <NuxtLink to="/catalog/vet/1">
       <button class="card-btn">Записаться</button>
     </NuxtLink>
   </div>
