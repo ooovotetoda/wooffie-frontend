@@ -1,5 +1,9 @@
 export const useCityStore = defineStore('city', () => {
-    const currentCity = ref('krd');
+    const cookieCity = useCookie("city")
+    cookieCity.value = cookieCity.value ? cookieCity.value : "krd";
+
+    const currentCity = ref<string | null>(cookieCity.value);
+
     const cities = reactive({
         krd: 'Краснодар',
         msk: 'Москва',
@@ -11,6 +15,7 @@ export const useCityStore = defineStore('city', () => {
 
     function selectCity(cityCode: string) {
         currentCity.value = cityCode;
+        cookieCity.value = cityCode;
     }
 
     return { currentCity, cities, currentCityName, selectCity };

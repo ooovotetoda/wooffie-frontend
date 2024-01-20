@@ -8,6 +8,8 @@ useSeoMeta({
   title: 'Wooffie • Каталог'
 })
 
+const cityStore = useCityStore()
+
 const config = useRuntimeConfig()
 const route = useRoute()
 
@@ -15,7 +17,7 @@ const institutionsCategories = ["clinic", "salon"]
 const personnelCategories = ["vet", "groomer"]
 
 const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "personnel")
+const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
 const page = ref(0)
 const pending = ref(false);
@@ -24,6 +26,7 @@ const filteredOrganizations = computed(() => {
   if (organizations.value) {
     return organizations.value
         .filter((organization) => organization.type === category.value)
+        .filter((organization) => organization.city === cityStore.currentCity)
   }
 
   return []
@@ -59,6 +62,12 @@ const loadOrganizations = () => {
 const appendOrganizations = ( newOrganizations: Array<Object> ) => {
   organizations.value.push(...newOrganizations)
 }
+
+watch(() => cityStore.currentCity, () => {
+  page.value = 0
+  organizations.value = []
+  loadOrganizations()
+})
 
 </script>
 

@@ -32,11 +32,14 @@ onMounted(() => {
   <section class="list">
     <ul ref="el">
       <li v-for="(item, index) in list" :key="index">
-        <CatalogCard :item="item" :maxDescriptionLength="240"/>
+        <CatalogCard :organization="item" :maxDescriptionLength="240"/>
       </li>
     </ul>
     <div class="marker-wrapper">
       <div ref="marker" class="marker"></div>
+    </div>
+    <div v-if="list?.length === 0" class="empty">
+      <img src="/images/empty.svg" alt="empty">
     </div>
 
   </section>
@@ -47,9 +50,16 @@ ul {
   list-style-type: none;
 }
 
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 78px 0;
+}
+
 .marker {
   position: absolute;
-  top: -1500px;
+  top: -1000px;
   left: 0;
   right: 0;
   display: inline-block;

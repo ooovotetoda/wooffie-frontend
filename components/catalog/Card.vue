@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {formatPhone} from "../../.nuxt/imports";
+
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
   "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
   "               when an unknown printer took a galley of type and scrambled it to scrambled it to \n" +
@@ -8,7 +10,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   "               when an unknown printer took a galley of type and scrambled it to scrambled it to"
 
 const props = defineProps({
-  item: Object,
+  organization: Object,
   maxDescriptionLength: {
     type: Number,
     required: true
@@ -20,9 +22,9 @@ const route = useRoute()
 const isActive = ref(false)
 
 const croppedText = computed(() => {
-  return props.item?.about.length > props.maxDescriptionLength ?
+  return props.organization?.about.length > props.maxDescriptionLength ?
       `${text.substring(0, props.maxDescriptionLength)}...`
-      : props.item?.about
+      : props.organization?.about
 })
 
 const toggleIsActive = () => {
@@ -33,21 +35,21 @@ const toggleIsActive = () => {
 <template>
   <div class="card">
     <div class="card__media">
-      <img :src="item.photo" alt="clinic">
+      <img :src="organization.photo" alt="clinic">
       <button @click="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
         <IconsFavorite />
       </button>
     </div>
 
     <div class="card__body">
-      <h3 class="card__title">{{ item.name }}</h3>
+      <h3 class="card__title">{{ organization.name }}</h3>
       <div class="card__subtitle">
-        <span>Рейтинг {{ item.rating }}</span>
-        <Rating :rating="4"/>
+        <span>Рейтинг {{ organization.rating.toFixed(1) }}</span>
+        <Rating :rating="Math.round(organization.rating)"/>
       </div>
       <div class="card__criteria">
         <span class="card__criteria-type">Ветклиника</span>
-        <span v-if="item.round_clock" class="card__criteria-schedule">Круглосуточно</span>
+        <span v-if="organization.round_clock" class="card__criteria-schedule">Круглосуточно</span>
         <span class="card__criteria-city">Краснодар</span>
       </div>
       <div class="card__copy">
@@ -62,14 +64,14 @@ const toggleIsActive = () => {
         </div>
         <div class="card__info-item">
           <IconsCall />
-          <span>+7 (555) 888-98-66</span>
+          <span>{{ formatPhone(organization.phone) }}</span>
         </div>
         <div class="card__info-item">
           <IconsLocation />
           <span>г. Краснодар, ул, Большая Садовая, д. 46</span>
         </div>
       </div>
-      <NuxtLink :to="`/catalog/${route.params.category}/${item.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
+      <NuxtLink :to="`/catalog/${route.params.category}/${organization.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
     </div>
   </div>
 </template>
@@ -230,7 +232,8 @@ const toggleIsActive = () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 357px;
+    wiorganizationdth: 357px;
+    min-width: 357px;
     margin-left: auto;
     padding-left: 24px;
     border-left: 1px solid var(--Line, #D9DAD9);
