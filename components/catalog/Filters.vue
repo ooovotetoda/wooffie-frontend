@@ -1,73 +1,29 @@
 <script setup lang="ts">
+import {useCatalogFiltersStore} from "~/stores/catalogFiltersStore";
+
 const route = useRoute()
 const router = useRouter()
 
-interface Schedule {
-  round: boolean;
-  now: boolean;
-}
-
-interface Filters {
-  category: string | null;
-  sort: string | null;
-  schedule: Schedule;
-}
+const filtersStore = useCatalogFiltersStore()
 
 const filters: Filters = reactive({
-  category: null,
-  sort: null,
-  schedule: {
-    round: false,
-    now: false,
+  schedule: filtersStore.filters.schedule,
+  formats: {
+    local: filtersStore.filters.formats.local,
+    online: filtersStore.filters.formats.online,
+    home: filtersStore.filters.formats.home,
   },
 })
 
-const sendFilters = () => {
-  const query: Record<string, string> = {};
-
-  if (filters.category) {
-    query.category = filters.category;
-  }
-  if (filters.sort) {
-    query.sort = filters.sort;
-  }
-  if (filters.schedule.round) {
-    query['schedule[round]'] = 'true';
-  }
-  if (filters.schedule.now) {
-    query['schedule[now]'] = 'true';
-  }
-
-  router.replace({ query });
+const sendFilters = async () => {
+  filtersStore.updateFilters(filters)
 }
 
 
-const resetFilters = () => {
-  router.replace({query: {}})
+const resetFilters = async () => {
+  filtersStore.resetFilters()
 }
 
-watch(() => route, (newRoute) => {
-  const categoryValue = Array.isArray(newRoute.query.category)
-    ? newRoute.query.category[0]
-    : newRoute.query.category;
-  filters.category = categoryValue || null;
-
-  const sortValue = Array.isArray(newRoute.query.sort)
-    ? newRoute.query.sort[0]
-    : newRoute.query.sort;
-  filters.sort = sortValue || null;
-
-  const scheduleNowValue = Array.isArray(route.query['schedule[now]'])
-    ? route.query['schedule[now]'][0]
-    : route.query['schedule[now]'];
-  filters.schedule.now = scheduleNowValue === 'true';
-
-  const scheduleRoundValue = Array.isArray(route.query['schedule[round]'])
-    ? route.query['schedule[round]'][0]
-    : route.query['schedule[round]'];
-  filters.schedule.round = scheduleRoundValue === 'true';
-
-}, {immediate: true})
 </script>
 
 <template>
@@ -86,24 +42,16 @@ watch(() => route, (newRoute) => {
 
           <ul>
             <li>
-              <label class="filters-category-radio">Все
-                <input type="radio" id="category1" value="all" v-model="filters.category">
+              <label class="filters-category-radio">Круглосуточно
+                <input type="radio" id="round" value="round" v-model="filters.schedule">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
             </li>
 
             <li>
-              <label class="filters-category-radio">Компания
-                <input type="radio" id="category2" value="corporate" v-model="filters.category">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
-            </li>
-
-            <li>
-              <label class="filters-category-radio">Частные
-                <input type="radio" id="category3" value="private" v-model="filters.category">
+              <label class="filters-category-radio">Открыто сейчас
+                <input type="radio" id="now" value="now" v-model="filters.schedule">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -111,22 +59,31 @@ watch(() => route, (newRoute) => {
           </ul>
         </div>
 
+
         <div class="filters-category">
           <h4 class="filters-category-title">
-            График работы
+            Формат приёма
           </h4>
           <ul>
             <li>
-              <label class="filters-category-checkbox">Круглосуточно
-                <input type="checkbox" id="check1" value="round" v-model="filters.schedule.round">
+              <label class="filters-category-checkbox">В учреждении
+                <input type="checkbox" id="check1" value="round" v-model="filters.formats.local">
                 <span></span>
                 <span class="filters-category-checkbox-background"></span>
               </label>
             </li>
 
             <li>
-              <label class="filters-category-checkbox">Открыто сейчас
-                <input type="checkbox" id="check2" value="now" v-model="filters.schedule.now">
+              <label class="filters-category-checkbox">Онлайн
+                <input type="checkbox" id="check2" value="now" v-model="filters.formats.online">
+                <span></span>
+                <span class="filters-category-checkbox-background"></span>
+              </label>
+            </li>
+
+            <li>
+              <label class="filters-category-checkbox">На дому
+                <input type="checkbox" id="check2" value="now" v-model="filters.formats.home">
                 <span></span>
                 <span class="filters-category-checkbox-background"></span>
               </label>
@@ -134,45 +91,6 @@ watch(() => route, (newRoute) => {
           </ul>
         </div>
 
-        <div class="filters-category">
-          <h4 class="filters-category-title">
-            Сортировка
-          </h4>
-
-          <ul>
-            <li>
-              <label class="filters-category-radio">По умолчанию
-                <input type="radio" id="sort1" value="default" v-model="filters.sort">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
-            </li>
-
-            <li>
-              <label class="filters-category-radio">Дешевле
-                <input type="radio" id="sort2" value="cheaper" v-model="filters.sort">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
-            </li>
-
-            <li>
-              <label class="filters-category-radio">Дороже
-                <input type="radio" id="sort3" value="dearer" v-model="filters.sort">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
-            </li>
-
-            <li>
-              <label class="filters-category-radio">По удаленности
-                <input type="radio" id="sort4" value="remoteness" v-model="filters.sort">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
-            </li>
-          </ul>
-        </div>
       </div>
 
       <div class="filters-buttons">

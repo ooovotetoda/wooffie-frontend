@@ -22,18 +22,47 @@ const type = computed(() => institutionsCategories.includes(category.value) ? "i
 const page = ref(0)
 const pending = ref(false);
 const organizations = ref<Array<Object>>([])
+
+onMounted(() => {
+  loadOrganizations();
+})
+
+const catalogFilters = useCatalogFiltersStore()
+
 const filteredOrganizations = computed(() => {
   if (organizations.value) {
     return organizations.value
         .filter((organization) => organization.type === category.value)
         .filter((organization) => organization.city === cityStore.currentCity)
+        .filter((organization) => {
+          if (catalogFilters.filters.schedule === "now") {
+            return organization.schedule.some((item: Object) => {
+              let today = new Date();
+              let day = today.getDay();
+              let dayOfWeek = (day + 6) % 7;
+
+              return (item.day_of_week === dayOfWeek && isTimeBetween(item.start_time, item.end_time))
+            })
+          } else if (catalogFilters.filters.schedule === "round") {
+            return organization.round_clock
+          } else {
+            return true
+          }
+        })
+        .filter((organization) => {
+          if (catalogFilters.filters.formats.local || catalogFilters.filters.formats.online || catalogFilters.filters.formats.home) {
+            return (
+              (catalogFilters.filters.formats.local && organization.local) ||
+              (catalogFilters.filters.formats.online && organization.online) ||
+              (catalogFilters.filters.formats.home && organization.on_home)
+            )
+          } else {
+            return true
+          }
+        })
   }
 
   return []
-})
-
-onMounted(() => {
-  loadOrganizations();
 })
 
 const loadMore = () => {
@@ -68,7 +97,6 @@ watch(() => cityStore.currentCity, () => {
   organizations.value = []
   loadOrganizations()
 })
-
 </script>
 
 <template>
