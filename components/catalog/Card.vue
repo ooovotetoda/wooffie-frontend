@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {formatPhone, useUserStore} from "../../.nuxt/imports";
+import getDay from "~/utils/getDay";
 
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
   "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
@@ -26,6 +27,11 @@ const institutionsCategories = ["clinic", "salon"]
 
 const category = ref(props.organization?.type)
 const type = ref(institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+
+const schedule = props.organization?.schedule.find((item: Object) => item.day_of_week === getDay())
+const startTime = schedule?.start_time ? schedule.start_time.slice(0, -3) : null;
+const endTime =  schedule?.end_time ? schedule?.end_time.slice(0, -3) : null;
+const time = (startTime && endTime) ? `${startTime} - ${endTime}` : "не работает"
 
 const isActive = ref(props.organization?.isFavorite)
 
@@ -89,7 +95,7 @@ const toggleIsActive = async () => {
       <div class="card__info-list">
         <div class="card__info-item">
           <IconsCalendar />
-          <span>Сегодня 09:00 - 18:00</span>
+          <span>Сегодня {{ time }}</span>
         </div>
         <div class="card__info-item">
           <IconsCall />
@@ -97,7 +103,7 @@ const toggleIsActive = async () => {
         </div>
         <div class="card__info-item">
           <IconsLocation />
-          <span>г. Краснодар, ул, Большая Садовая, д. 46</span>
+          <span>{{ organization.addresses[0].address }}</span>
         </div>
       </div>
       <NuxtLink :to="`/catalog/${route.params.category}/${organization.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>

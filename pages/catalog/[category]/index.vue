@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import getDay from "~/utils/getDay";
+
 definePageMeta({
   layout: "main",
   breadcrumb: "Каталог"
@@ -42,11 +44,9 @@ const filteredOrganizations = computed(() => {
         .filter((organization) => {
           if (catalogFilters.filters.schedule === "now") {
             return organization.schedule.some((item: Object) => {
-              let today = new Date();
-              let day = today.getDay();
-              let dayOfWeek = (day + 6) % 7;
+              const today = getDay()
 
-              return (item.day_of_week === dayOfWeek && isTimeBetween(item.start_time, item.end_time))
+              return (item.day_of_week === today && isTimeBetween(item.start_time, item.end_time))
             })
           } else if (catalogFilters.filters.schedule === "round") {
             return organization.round_clock
