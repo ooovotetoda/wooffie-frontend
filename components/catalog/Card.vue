@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {formatPhone} from "../../.nuxt/imports";
+import {formatPhone, useUserStore} from "../../.nuxt/imports";
 
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
   "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
@@ -11,15 +11,23 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
 
 const props = defineProps({
   organization: Object,
+  active: Boolean,
   maxDescriptionLength: {
     type: Number,
     required: true
   }
 })
 
+const config = useRuntimeConfig()
 const route = useRoute()
+const { user } = useUserStore()
 
-const isActive = ref(false)
+const institutionsCategories = ["clinic", "salon"]
+
+const category = ref(props.organization?.type)
+const type = ref(institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+
+const isActive = ref(props.organization?.isFavorite)
 
 const croppedText = computed(() => {
   return props.organization?.about.length > props.maxDescriptionLength ?
@@ -27,8 +35,29 @@ const croppedText = computed(() => {
       : props.organization?.about
 })
 
-const toggleIsActive = () => {
-  isActive.value = !isActive.value
+const toggleIsActive = async () => {
+  const method = isActive.value ? "DELETE" : "POST"
+  let statusCode = 0;
+
+  try {
+    await $fetch(`/api/user/${user.id}/favorites`, {
+      method: method,
+      baseURL: config.public.baseUrl,
+      body: {
+        organization_id: props.organization?.id,
+        type: type.value,
+      },
+      onResponse(context) {
+        statusCode = context.response.status
+      },
+    })
+
+    if (statusCode === 200) {
+      isActive.value = !isActive.value
+    }
+  } catch (e) {
+    console.log(e)
+  }
 }
 </script>
 

@@ -8,11 +8,16 @@ useSeoMeta({
   title: 'Wooffie • Каталог'
 })
 
-const cityStore = useCityStore()
+interface Favorites {
+  favorites: Array<Object>
+}
 
 const config = useRuntimeConfig()
-const route = useRoute()
 
+const { user } = useUserStore()
+const cityStore = useCityStore()
+
+const route = useRoute()
 const institutionsCategories = ["clinic", "salon"]
 const personnelCategories = ["vet", "groomer"]
 
@@ -23,8 +28,8 @@ const page = ref(0)
 const pending = ref(false);
 const organizations = ref<Array<Object>>([])
 
-onMounted(() => {
-  loadOrganizations();
+onMounted( async () => {
+  await loadOrganizations();
 })
 
 const catalogFilters = useCatalogFiltersStore()
@@ -65,38 +70,50 @@ const filteredOrganizations = computed(() => {
   return []
 })
 
-const loadMore = () => {
+const loadMore = async () => {
   page.value = page.value + 1;
-  loadOrganizations();
+  await loadOrganizations();
 }
 
-const loadOrganizations = () => {
+const loadOrganizations = async () => {
   pending.value = true;
 
-  $fetch(`/api/${type.value}`, {
+  const response = await $fetch(`/api/${type.value}`, {
     method: 'GET',
     baseURL: config.public.baseUrl,
     query: {
       limit: 20,
-      offset: 20 * page.value
-    }
-  }).then( function( organizations ){
-    if (organizations?.list) {
-      appendOrganizations( organizations.list );
-    }
-    pending.value = false;
+      offset: 20 * page.value,
+    },
   });
-}
+
+  if (response?.list) {
+    const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
+      method: 'GET',
+      baseURL: config.public.baseUrl,
+    });
+
+    const updatedOrganizations = response.list.map((org: Object) => {
+      let isFavorite = false
+      if (favorites.favorites) {
+        isFavorite = favorites.favorites.some((fav: any) => fav[`${type.value.slice(0, -1)}_id`] === org.id)
+      }
+
+      return {
+      ...org,
+      isFavorite: isFavorite,
+     }
+    });
+
+    appendOrganizations(updatedOrganizations); // Обновляем список организаций
+  }
+
+  pending.value = false;
+};
 
 const appendOrganizations = ( newOrganizations: Array<Object> ) => {
   organizations.value.push(...newOrganizations)
 }
-
-watch(() => cityStore.currentCity, () => {
-  page.value = 0
-  organizations.value = []
-  loadOrganizations()
-})
 </script>
 
 <template>

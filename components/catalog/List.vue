@@ -26,13 +26,18 @@ onMounted(() => {
   }
 });
 
+
+
 </script>
 
 <template>
   <section class="list">
     <ul ref="el">
       <li v-for="(item, index) in list" :key="index">
-        <CatalogCard :organization="item" :maxDescriptionLength="240"/>
+        <CatalogCard
+            :organization="item"
+            :maxDescriptionLength="240"
+        />
       </li>
     </ul>
     <div class="marker-wrapper">
