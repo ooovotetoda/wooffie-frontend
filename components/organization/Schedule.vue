@@ -1,7 +1,28 @@
 <script setup lang="ts">
+const props = defineProps({
+  addresses: Array<Object>,
+  schedule: Array,
+})
+
 const weekDays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 const rows = [[0, 1, 2], [3, 4, 5], [6]];
 const dates = ref<number[]>([]);
+
+const addrId = props.addresses ? props.addresses[0].id : 0
+const address = ref(addrId)
+
+const scheduleFilterd = computed(() => {
+  const filtered = props.schedule?.filter((item) => {
+    return item ? item.address_id === address.value : false;
+  });
+
+  // Затем сортируем отфильтрованный массив по 'day_of_week'
+  const sorted = filtered?.sort((a, b) => {
+    return a && b ? a.day_of_week - b.day_of_week : 0;
+  });
+
+  return sorted;
+})
 
 const getDatesForWeek = () => {
   const today = new Date();
@@ -44,16 +65,14 @@ onMounted(() => {
       <div class="schedule__weekday">{{ weekDays[dayIndex] }}</div>
       <div class="schedule__subitem">
         <span class="schedule__date">{{ dates[dayIndex] }}</span>
-        <span class="schedule__time">09:00-11:00</span>
+        <span class="schedule__time">{{ scheduleFilterd[dayIndex].start_time.slice(0, -3) }}-{{ scheduleFilterd[dayIndex].end_time.slice(0, -3) }}</span>
       </div>
     </div>
   </div>
 
   <div class="schedule__street">
-    <select name="street" id="street" class="schedule__input">
-      <option>ул, Большая Садовая, д. 46</option>
-      <option>ул, Большая Садовая, д. 47</option>
-      <option>ул, Большая Садовая, д. 48</option>
+    <select name="street" id="street" class="schedule__input" v-model="address">
+      <option v-for="address in addresses" :value="address.id">{{ address.address }}</option>
     </select>
   </div>
 </div>

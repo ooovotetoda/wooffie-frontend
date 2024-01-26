@@ -2,19 +2,27 @@
 import { useModal } from 'vue-final-modal'
 import {OrganizationModalsFeedback} from "#components";
 
-const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
-  "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.\n" +
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen boo"
+const props = defineProps({
+  organization: Object
+})
+
+const { cities } = useCityStore()
 
 const isActive = ref(false)
 const isContacted = ref(false)
 
-const croppedText = computed(() => {
-  return text.length > 620 ?
-      `${text.substring(0, 620)}...`
-      : text
-})
+const types = {
+  "clinic": "Ветклиника",
+  "salon": "Зоосалон",
+  "vet": props.organization?.profession,
+  "groomer": props.organization?.profession,
+}
 
+const croppedText = computed(() => {
+  return props.organization?.about.length > 620 ?
+      `${props.organization?.about.substring(0, 620)}...`
+      : props.organization?.about
+})
 
 const toggleIsActive = () => {
   isActive.value = !isActive.value
@@ -39,25 +47,25 @@ const { open } = useModal({
 
 <template>
   <section class="organization-header">
-    <OrganizationSchedule/>
+    <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
 
     <div class="organization-header__body">
       <div class="organization-header__media">
-        <img src="/images/clinic.jpg" alt="avatar">
+        <img :src="organization.photo" alt="avatar">
         <button @click="toggleIsActive" class="organization-header__media-favorite" :class="{ 'organization-header__media-favorite__active': isActive }">
           <IconsFavorite />
         </button>
       </div>
 
       <div class="organization-header__info">
-        <h3 class="organization-header__title">Альфа центр здоровья</h3>
+        <h3 class="organization-header__title">{{ organization.name }}</h3>
         <div class="organization-header__criteria">
-          <span class="organization-header__criteria-type">Ветклиника</span>
-          <span class="organization-header__criteria-schedule">Круглосуточно</span>
-          <span class="organization-header__criteria-city">Краснодар</span>
+          <span class="organization-header__criteria-type">{{ types[organization.type] }}</span>
+          <span v-if="organization.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
+          <span class="organization-header__criteria-city">{{ cities[organization.city] }}</span>
         </div>
 
-        <Rating :rating="4" class="organization-header__rating"/>
+        <Rating :rating="Math.round(organization.rating)" class="organization-header__rating"/>
 
         <div class="organization-header__copy">
           <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 600 символов. -->
@@ -70,7 +78,7 @@ const { open } = useModal({
                   :class="{contacted: isContacted}"
                   @click="handleContact"
           >
-            {{isContacted ? "+79883232105" : "Связаться"}}
+            {{isContacted ? organization.phone : "Связаться"}}
             <IconsCopy v-if="isContacted"/>
           </button>
         </div>
