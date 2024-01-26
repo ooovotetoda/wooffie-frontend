@@ -96,7 +96,7 @@ const loadOrganizations = async () => {
     const updatedOrganizations = response.list.map((org: Object) => {
       let isFavorite = false
       if (favorites.favorites) {
-        isFavorite = favorites.favorites.some((fav: any) => fav[`${type.value.slice(0, -1)}_id`] === org.id)
+        isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
       }
 
       return {
