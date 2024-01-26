@@ -32,6 +32,7 @@ const schedule = props.organization?.schedule.find((item: Object) => item.day_of
 const startTime = schedule?.start_time ? schedule.start_time.slice(0, -3) : null;
 const endTime =  schedule?.end_time ? schedule?.end_time.slice(0, -3) : null;
 const time = (startTime && endTime) ? `${startTime} - ${endTime}` : "не работает"
+const addressList = props.organization?.addresses.length > 4 ? props.organization?.addresses.slice(1, 5) : props.organization?.addresses.slice(1)
 
 const isActive = ref(props.organization?.isFavorite)
 
@@ -101,9 +102,19 @@ const toggleIsActive = async () => {
           <IconsCall />
           <span>{{ formatPhone(organization.phone) }}</span>
         </div>
-        <div class="card__info-item">
-          <IconsLocation />
-          <span>{{ organization.addresses[0].address }}</span>
+        <div class="card__address">
+
+          <span class="card__address-main">
+            <IconsLocation/>
+            {{ organization.addresses[0].address }}
+          </span>
+          <ul class="card__address-list">
+            <li v-for="address in addressList" class="card__address-item">
+              <span class="card__address-point"></span>
+              <span class="card__address-sub">{{ address.address }}</span>
+            </li>
+
+          </ul>
         </div>
       </div>
       <NuxtLink :to="`/catalog/${route.params.category}/${organization.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
@@ -284,7 +295,7 @@ const toggleIsActive = async () => {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
 
     &-enroll {
@@ -310,6 +321,51 @@ const toggleIsActive = async () => {
       &:active {
         scale: 0.95;
       }
+    }
+  }
+
+  &__address {
+    margin-top: 34px;
+
+    &-main {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(0, 0, 0, 0.87);
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &-list {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      list-style-type: none;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      color: rgba(0, 0, 0, 0.87);
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Roboto;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &-point {
+      display: flex;
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      background-color: rgba(225, 175, 87, 0.60);
+      border-radius: 50%;
     }
   }
 }
