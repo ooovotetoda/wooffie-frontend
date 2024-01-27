@@ -1,20 +1,25 @@
 <script setup lang="ts">
+const props = defineProps({
+  services: Array<Object>
+})
+
+
 
 </script>
 
 <template>
   <ul class="services__list">
-    <li v-for="item in 8" class="services__item">
+    <li v-for="service in services" class="services__item">
       <div class="services__left">
         <div class="services__icon">
-          <img src="https://api.iconify.design/material-symbols:receipt-long.svg?color=%23ddb9a4" alt="icon">
+          <img :src="service.image_url" alt="icon">
         </div>
-        <span class="services__name">Первичный прием</span>
+        <span class="services__name">{{ service.service_name }}</span>
       </div>
 
       <div class="services__right">
-        <span class="services__price">350 ₽</span>
-        <button class="services__btn">Записаться</button>
+        <span class="services__price">{{ service.price }} ₽</span>
+<!--        <button class="services__btn">Записаться</button>-->
       </div>
     </li>
   </ul>

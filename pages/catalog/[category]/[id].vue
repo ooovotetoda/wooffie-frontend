@@ -10,13 +10,12 @@ const config = useRuntimeConfig()
 const sections: string[] = ['services', 'clinic', 'specialist', 'gallery', 'feedback']
 
 const institutionsCategories = ["clinic", "salon"]
-const personnelCategories = ["vet", "groomer"]
 
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
 const { data, pending, error, refresh } = await useAsyncData(
-    `user:${route.params.id}`,
+    `organization:${route.params.id}`,
     () => $fetch(`/api/${type.value}/${route.params.id}`, {
       method: "GET",
       baseURL: config.public.baseUrl
@@ -38,7 +37,7 @@ watch(() => route, () => {
     <div class="container">
       <OrganizationHeader :organization="data.organization"/>
       <OrganizationNav />
-      <OrganizationSections />
+      <OrganizationSections :services="data.organization.services"/>
     </div>
   </main>
 </template>

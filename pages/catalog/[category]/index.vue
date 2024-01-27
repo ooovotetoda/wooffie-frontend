@@ -21,7 +21,6 @@ const cityStore = useCityStore()
 
 const route = useRoute()
 const institutionsCategories = ["clinic", "salon"]
-const personnelCategories = ["vet", "groomer"]
 
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
