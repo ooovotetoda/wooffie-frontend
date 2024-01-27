@@ -16,7 +16,7 @@ const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
 const { data, pending, error, refresh } = await useAsyncData(
-    'mountains',
+    `user:${route.params.id}`,
     () => $fetch(`/api/${type.value}/${route.params.id}`, {
       method: "GET",
       baseURL: config.public.baseUrl
