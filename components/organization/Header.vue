@@ -6,9 +6,17 @@ const props = defineProps({
   organization: Object
 })
 
+const route = useRoute()
+const config = useRuntimeConfig()
+const { user } = useUserStore()
 const { cities } = useCityStore()
 
-const isActive = ref(false)
+const institutionsCategories = ["clinic", "salon"]
+
+const category = computed(() => route.params.category as string)
+const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+
+const isActive = ref(props.organization?.isFavorite)
 const isContacted = ref(false)
 
 const types = {
@@ -24,8 +32,29 @@ const croppedText = computed(() => {
       : props.organization?.about
 })
 
-const toggleIsActive = () => {
-  isActive.value = !isActive.value
+const toggleIsActive = async () => {
+  const method = isActive.value ? "DELETE" : "POST"
+  let statusCode = 0;
+
+  try {
+    await $fetch(`/api/user/${user.id}/favorites`, {
+      method: method,
+      baseURL: config.public.baseUrl,
+      body: {
+        organization_id: props.organization?.id,
+        type: type.value,
+      },
+      onResponse(context) {
+        statusCode = context.response.status
+      },
+    })
+
+    if (statusCode === 200) {
+      isActive.value = !isActive.value
+    }
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 const handleContact = async () => {
