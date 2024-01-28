@@ -2,14 +2,6 @@
 import {formatPhone, useUserStore} from "../../.nuxt/imports";
 import getDay from "~/utils/getDay";
 
-const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
-  "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
-  "               when an unknown printer took a galley of type and scrambled it to scrambled it to \n" +
-  "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
-  "               when an unknown printer took a galley of type and scrambled it to scrambled it to \n" +
-  "               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n" +
-  "               when an unknown printer took a galley of type and scrambled it to scrambled it to"
-
 const props = defineProps({
   organization: Object,
   active: Boolean,
@@ -22,6 +14,14 @@ const props = defineProps({
 const config = useRuntimeConfig()
 const route = useRoute()
 const { user } = useUserStore()
+const { cities } = useCityStore()
+
+const types = {
+  "clinic": "Ветклиника",
+  "salon": "Зоосалон",
+  "vet": props.organization?.profession,
+  "groomer": props.organization?.profession,
+}
 
 const institutionsCategories = ["clinic", "salon"]
 
@@ -38,7 +38,7 @@ const isActive = ref(props.organization?.isFavorite)
 
 const croppedText = computed(() => {
   return props.organization?.about.length > props.maxDescriptionLength ?
-      `${text.substring(0, props.maxDescriptionLength)}...`
+      `${props.organization?.about.substring(0, props.maxDescriptionLength)}...`
       : props.organization?.about
 })
 
@@ -84,9 +84,9 @@ const toggleIsActive = async () => {
         <Rating :rating="Math.round(organization.rating)"/>
       </div>
       <div class="card__criteria">
-        <span class="card__criteria-type">Ветклиника</span>
+        <span class="card__criteria-type">{{ types[organization.type] }}</span>
         <span v-if="organization.round_clock" class="card__criteria-schedule">Круглосуточно</span>
-        <span class="card__criteria-city">Краснодар</span>
+        <span class="card__criteria-city">{{ cities[organization.city] }}</span>
       </div>
       <div class="card__copy">
         {{ croppedText }}
