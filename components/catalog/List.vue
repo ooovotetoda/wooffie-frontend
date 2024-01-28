@@ -43,9 +43,8 @@ onMounted(() => {
     <div class="marker-wrapper">
       <div ref="marker" class="marker"></div>
     </div>
-    <div v-if="list?.length === 0" class="empty">
-      <img src="/images/empty.svg" alt="empty">
-    </div>
+
+    <Empty v-if="list?.length === 0" margin="78"/>
 
   </section>
 </template>
@@ -53,13 +52,6 @@ onMounted(() => {
 <style scoped lang="scss">
 ul {
   list-style-type: none;
-}
-
-.empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 78px 0;
 }
 
 .marker {

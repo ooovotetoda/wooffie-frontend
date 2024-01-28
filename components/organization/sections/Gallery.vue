@@ -19,9 +19,9 @@ const { data, pending, error, refresh } = await useAsyncData(
   <section class="gallery">
     <h2 class="gallery-title">Фотогалерея</h2>
 
-    <div class="gallery-carousel__wrapper">
+    <div v-if="data.gallery.length !== 0" class="gallery-carousel__wrapper">
       <Carousel :items-to-show="2.3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
-        <Slide v-for="slide in data.gallery" :key="slide">
+        <Slide  v-for="slide in data.gallery" :key="slide">
           <div class="gallery-carousel__item">
             <img :src="slide.photo_url" alt="photo">
           </div>
@@ -32,6 +32,8 @@ const { data, pending, error, refresh } = await useAsyncData(
         </template>
       </Carousel>
     </div>
+
+    <Empty v-else margin="78"/>
   </section>
 
 
