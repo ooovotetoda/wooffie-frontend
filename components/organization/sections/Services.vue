@@ -3,8 +3,6 @@ const props = defineProps({
   services: Array<Object>
 })
 
-
-
 </script>
 
 <template>

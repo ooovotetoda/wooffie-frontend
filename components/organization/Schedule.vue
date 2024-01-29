@@ -65,7 +65,7 @@ onMounted(() => {
       <div class="schedule__weekday">{{ weekDays[dayIndex] }}</div>
       <div class="schedule__subitem">
         <span class="schedule__date">{{ dates[dayIndex] }}</span>
-        <span class="schedule__time">{{ scheduleFilterd[dayIndex].start_time.slice(0, -3) }}-{{ scheduleFilterd[dayIndex].end_time.slice(0, -3) }}</span>
+        <span class="schedule__time">{{ scheduleFilterd[dayIndex] ? scheduleFilterd[dayIndex].start_time.slice(0, -3) : "" }}-{{ scheduleFilterd[dayIndex] ? scheduleFilterd[dayIndex].end_time.slice(0, -3) : "" }}</span>
       </div>
     </div>
   </div>
