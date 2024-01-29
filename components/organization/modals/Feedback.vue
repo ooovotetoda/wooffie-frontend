@@ -1,12 +1,68 @@
 <script setup lang="ts">
 import { VueFinalModal } from 'vue-final-modal'
+import {$fetch} from "ofetch";
 
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
 
+interface ReviewBody {
+  user_id: number | null;
+  institution_id?: number;
+  specialist_id?: number;
+  rating: number;
+  review_text: string | null;
+}
+
+
+const route = useRoute()
+const config = useRuntimeConfig()
+const { user } = useUserStore()
+
+const institutionsCategories = ["clinic", "salon"]
+
+const category = computed(() => route.params.category as string)
+const type = computed(() => institutionsCategories.includes(category.value) ? "institution_id" : "specialist_id")
+
+
 const rating = ref(0)
 const comment = ref<string | null>(null)
+const invalid = ref<boolean>(false)
+
+const body = computed((): ReviewBody => {
+  const result: Partial<ReviewBody> = {
+    user_id: user.id ?? null,
+    rating: rating.value,
+    review_text: comment.value
+  };
+
+  const id = parseInt(route.params.id as string);
+  if (!isNaN(id) && (type.value === "institution_id" || type.value === "specialist_id")) {
+    result[type.value] = id;
+  }
+
+  return result as ReviewBody;
+});
+
+const submitReview = async () => {
+  if (!rating.value || !comment.value) {
+    invalid.value = true
+    return
+  }
+  try {
+    const response = await $fetch("/api/reviews", {
+      method: "POST",
+      baseURL: config.public.baseUrl,
+      body: body.value
+    })
+
+    if (response.status === "OK") {
+      emit('update:modelValue', false)
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
 
 </script>
 
@@ -24,7 +80,7 @@ const comment = ref<string | null>(null)
 
       <ClientOnly>
         <Rating :rating="rating" @rated="(index) => rating = index"/>
-        <form @submit.prevent="console.log('Submitted')">
+        <form>
           <textarea name="feedback"
                     id="feedback"
                     class="modal__textarea"
@@ -34,13 +90,14 @@ const comment = ref<string | null>(null)
                     placeholder="Напишите отзыв"
                     v-model="comment"
           ></textarea>
+          <p v-if="invalid" class="modal__invalid">Выберите оценку и напишите отзыв</p>
         </form>
 
         <div class="modal__buttons">
           <button class="cancel" @click="emit('update:modelValue', false)">
             Отмена
           </button>
-          <button class="send" @click="emit('update:modelValue', false)">
+          <button class="send" @click="submitReview">
             Отправить
           </button>
         </div>
@@ -87,7 +144,7 @@ const comment = ref<string | null>(null)
     height: 200px;
     padding: 10px 24px;
     padding-left: 48px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     border-radius: 10px;
     border: 1px solid #D9DAD9;
     background: #FFF;
@@ -112,10 +169,22 @@ const comment = ref<string | null>(null)
     }
   }
 
+  &__invalid {
+    padding-left: 28px;
+    color: var(--Color-Text-Erorr, rgba(228, 0, 0, 0.87));
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
   &__buttons {
     width: 100%;
     display: flex;
     gap: 28px;
+    margin-top: 30px;
 
     button {
       flex: 1;
