@@ -72,6 +72,15 @@ const handleContact = async () => {
 const { open } = useModal({
   component: OrganizationModalsFeedback,
 })
+
+const handleReview = async () => {
+  if (user.loggedIn) {
+    await open()
+  } else {
+    await navigateTo("/auth/signin")
+  }
+
+}
 </script>
 
 <template>
@@ -102,7 +111,7 @@ const { open } = useModal({
         </div>
 
         <div class="organization-header__buttons">
-          <button @click="() => open()" class="feedback">Оставить отзыв</button>
+          <button @click="handleReview" class="feedback">Оставить отзыв</button>
           <button class="contact"
                   :class="{contacted: isContacted}"
                   @click="handleContact"

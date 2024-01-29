@@ -38,10 +38,6 @@ const { data, pending, error, refresh } = await useAsyncData(
         if (favorites.favorites) {
           isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === response.organization.id))
         }
-        console.log({
-          ...response?.organization,
-          isFavorite: isFavorite,
-        })
 
         return {
           ...response?.organization,
@@ -66,7 +62,7 @@ watch(() => route, () => {
     <div class="container">
       <OrganizationHeader :organization="data"/>
       <OrganizationNav />
-      <OrganizationSections :services="data.services"/>
+      <OrganizationSections :organization="data"/>
     </div>
   </main>
 </template>

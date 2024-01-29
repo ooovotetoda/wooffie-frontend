@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const props = defineProps({
-  services: Array<Object>
+  organization: Object
 })
+
 
 const route = useRoute()
 const category = route.params.category
@@ -13,7 +14,7 @@ watch(() => route.query.section, (newSection) => {
 </script>
 
 <template>
-  <OrganizationSectionsServices :services="services" v-if="section === 'services'"/>
+  <OrganizationSectionsServices :services="organization.services" v-if="section === 'services'"/>
   <OrganizationSectionsList v-if="section === 'clinic' || section === 'specialists'"/>
   <OrganizationSectionsGallery  v-if="section === 'gallery'"/>
   <OrganizationSectionsFeedback  v-if="section === 'feedback'"/>
