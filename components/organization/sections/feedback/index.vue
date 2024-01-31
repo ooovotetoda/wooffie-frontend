@@ -1,4 +1,29 @@
 <script setup lang="ts">
+const props = defineProps({
+  organization: Object
+})
+
+const route = useRoute()
+const config = useRuntimeConfig()
+const { user } = useUserStore()
+
+const institutionsCategories = ["clinic", "salon"]
+
+const category = computed(() => route.params.category as string)
+const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+
+const { data, pending, error, refresh } = await useAsyncData(
+    `reviews:${route.params.id}`,
+    () => $fetch(`/api/reviews/${type.value}`, {
+      method: "POST",
+      baseURL: config.public.baseUrl,
+      body: {
+        user_id: user.id,
+        organization_id: props.organization?.id
+      }
+    })
+)
+
 const sort = ref<"new" | "old">("new")
 
 const handleNew = () => {
@@ -11,15 +36,16 @@ const handleOld = () => {
 </script>
 
 <template>
+  <button @click="console.log(data)">click</button>
   <div class="feedback__header">
     <div class="feedback__info">
       <h3 class="feedback__title">
-        Отзывы о ветклинике «Альфа центр здоровья» <span>(4)</span>
+        Отзывы о ветклинике «{{ organization.name }}» <span>(4)</span>
       </h3>
 
       <div class="feedback__rating">
-        <span>Рейтинг 4.0</span>
-        <Rating :rating="4" />
+        <span>Рейтинг {{ organization.rating }}</span>
+        <Rating :rating="Math.round(organization.rating)" />
       </div>
 
       <p class="feedback__sort">
@@ -33,10 +59,8 @@ const handleOld = () => {
   </div>
 
   <ul class="feedback-comments">
-    <li>
-      <OrganizationSectionsFeedbackComment />
-      <OrganizationSectionsFeedbackComment />
-      <OrganizationSectionsFeedbackComment />
+    <li v-for="review in data.reviews">
+      <OrganizationSectionsFeedbackComment :review="review" @react="refresh"/>
     </li>
   </ul>
 </template>

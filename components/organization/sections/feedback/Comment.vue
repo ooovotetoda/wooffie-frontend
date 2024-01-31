@@ -1,22 +1,101 @@
 <script setup lang="ts">
-const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n" +
-  "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.\n" +
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing."
+import {formatReviewPhone} from "#imports";
+import convertDate from "../../../../utils/convertDate";
 
-const isLiked = ref<boolean>(false)
-const isDisliked = ref<boolean>(false)
+const props = defineProps({
+  review: Object
+})
 
-const handleLike = () => {
-  isLiked.value = !isLiked.value;
+const emit = defineEmits(["react"])
+
+const config = useRuntimeConfig()
+const { user } = useUserStore()
+
+
+// const isLiked = ref<boolean>(props.review?.user_reaction === true)
+const isLiked = computed(() => props.review?.user_reaction === true)
+// const isDisliked = ref<boolean>(props.review?.user_reaction === false)
+const isDisliked = computed(() => props.review?.user_reaction === false)
+
+const handleLike = async () => {
+  // isLiked.value = !isLiked.value;
   if (isLiked.value) {
-    isDisliked.value = false;
+    // isDisliked.value = false;
+    try {
+      const response = await $fetch(`/api/reviews/unreact`, {
+        method: "POST",
+        baseURL: config.public.baseUrl,
+        body: {
+          user_id: user.id,
+          review_id: props.review?.id
+        }
+      })
+
+      if (response?.status === "OK") {
+        emit("react")
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  } else {
+    try {
+      const response = await $fetch(`/api/reviews/react`, {
+        method: "POST",
+        baseURL: config.public.baseUrl,
+        body: {
+          user_id: user.id,
+          review_id: props.review?.id,
+          reaction: true
+        }
+      })
+
+      if (response?.status === "OK") {
+        emit("react")
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 
-const handleDislike = () => {
-  isDisliked.value = !isDisliked.value;
+const handleDislike = async () => {
+  // isDisliked.value = !isDisliked.value;
   if (isDisliked.value) {
-    isLiked.value = false;
+    // isDisliked.value = false;
+    try {
+      const response = await $fetch(`/api/reviews/unreact`, {
+        method: "POST",
+        baseURL: config.public.baseUrl,
+        body: {
+          user_id: user.id,
+          review_id: props.review?.id
+        }
+      })
+
+      if (response?.status === "OK") {
+        emit("react")
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  } else {
+    try {
+      const response = await $fetch(`/api/reviews/react`, {
+        method: "POST",
+        baseURL: config.public.baseUrl,
+        body: {
+          user_id: user.id,
+          review_id: props.review?.id,
+          reaction: false
+        }
+      })
+
+      if (response?.status === "OK") {
+        emit("react")
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 </script>
@@ -28,29 +107,29 @@ const handleDislike = () => {
       <img src="/images/user-icon.svg" alt="avatar">
     </div>
     <div class="comment__info">
-      <div class="comment__tel">+7 988 32 XX XXX</div>
+      <div class="comment__tel">{{ formatReviewPhone(review.phone) }}</div>
       <div class="comment__status">Клиент</div>
     </div>
   </div>
   <div class="comment__subheader">
-    <Rating :rating="4"/>
-    <span class="comment__date">13.10.2023</span>
+    <Rating :rating="review.rating"/>
+    <span class="comment__date">{{ convertDate(review.created_at) }}</span>
   </div>
-  <p class="comment__copy">{{ text }}</p>
+  <p class="comment__copy">{{ review.review_text }}</p>
 
   <div class="comment__estimations">
     <div class="comment__estimations__item">
       <button @click="handleLike" :class="{ liked: isLiked }">
         <IconsLike />
       </button>
-      <span class="comment__estimations__count">2</span>
+      <span class="comment__estimations__count">{{review.likes}}</span>
     </div>
 
     <div class="comment__estimations__item">
       <button @click="handleDislike" :class="{ disliked: isDisliked }">
         <IconsDislike />
       </button>
-      <span class="comment__estimations__count">1</span>
+      <span class="comment__estimations__count">{{review.dislikes}}</span>
     </div>
   </div>
 </div>
