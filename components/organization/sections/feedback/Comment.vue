@@ -11,16 +11,11 @@ const emit = defineEmits(["react"])
 const config = useRuntimeConfig()
 const { user } = useUserStore()
 
-
-// const isLiked = ref<boolean>(props.review?.user_reaction === true)
 const isLiked = computed(() => props.review?.user_reaction === true)
-// const isDisliked = ref<boolean>(props.review?.user_reaction === false)
 const isDisliked = computed(() => props.review?.user_reaction === false)
 
 const handleLike = async () => {
-  // isLiked.value = !isLiked.value;
   if (isLiked.value) {
-    // isDisliked.value = false;
     try {
       const response = await $fetch(`/api/reviews/unreact`, {
         method: "POST",
@@ -59,9 +54,7 @@ const handleLike = async () => {
 }
 
 const handleDislike = async () => {
-  // isDisliked.value = !isDisliked.value;
   if (isDisliked.value) {
-    // isDisliked.value = false;
     try {
       const response = await $fetch(`/api/reviews/unreact`, {
         method: "POST",
