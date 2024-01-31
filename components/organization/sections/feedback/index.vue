@@ -26,6 +26,22 @@ const { data, pending, error, refresh } = await useAsyncData(
 
 const sort = ref<"new" | "old">("new")
 
+const reviews = computed(() => {
+  if (data.value?.reviews) {
+    return data.value.reviews.sort((a: object, b: object): number => {
+      if (sort.value === "new") {
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      } else if (sort.value === "old") {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      } else {
+        return 0
+      }
+    })
+  } else {
+    return []
+  }
+})
+
 const handleNew = () => {
   sort.value = "new"
 }
@@ -36,6 +52,7 @@ const handleOld = () => {
 </script>
 
 <template>
+<!--  TODO-->
   <button @click="console.log(data)">click</button>
   <div class="feedback__header">
     <div class="feedback__info">
@@ -59,7 +76,7 @@ const handleOld = () => {
   </div>
 
   <ul class="feedback-comments">
-    <li v-for="review in data.reviews">
+    <li v-for="review in reviews">
       <OrganizationSectionsFeedbackComment :review="review" @react="refresh"/>
     </li>
   </ul>

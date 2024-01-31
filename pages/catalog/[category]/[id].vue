@@ -27,7 +27,6 @@ const { data, pending, error, refresh } = await useAsyncData(
         baseURL: config.public.baseUrl
       })
 
-
       if (response?.organization) {
         const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
           method: 'GET',
