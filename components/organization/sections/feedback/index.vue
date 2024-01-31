@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  organization: Object
+  organization: Object,
 })
 
 const route = useRoute()
@@ -26,7 +26,7 @@ const { data, pending, error, refresh } = await useAsyncData(
 
 const sort = ref<"new" | "old">("new")
 
-const reviews = computed(() => {
+const reviewsFiltered = computed(() => {
   if (data.value?.reviews) {
     return data.value.reviews.sort((a: object, b: object): number => {
       if (sort.value === "new") {
@@ -52,12 +52,10 @@ const handleOld = () => {
 </script>
 
 <template>
-<!--  TODO-->
-  <button @click="console.log(data)">click</button>
   <div class="feedback__header">
     <div class="feedback__info">
       <h3 class="feedback__title">
-        Отзывы о ветклинике «{{ organization.name }}» <span>(4)</span>
+        Отзывы о ветклинике «{{ organization.name }}» <span>({{ data.reviews ? data.reviews.length : 0 }})</span>
       </h3>
 
       <div class="feedback__rating">
@@ -72,11 +70,11 @@ const handleOld = () => {
       </p>
     </div>
 
-    <OrganizationSectionsFeedbackFilter />
+    <OrganizationSectionsFeedbackFilter :reviews="data.reviews" />
   </div>
 
   <ul class="feedback-comments">
-    <li v-for="review in reviews">
+    <li v-for="review in reviewsFiltered">
       <OrganizationSectionsFeedbackComment :review="review" @react="refresh"/>
     </li>
   </ul>
