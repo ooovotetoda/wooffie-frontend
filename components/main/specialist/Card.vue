@@ -1,24 +1,28 @@
 <script setup lang="ts">
+import getYearWord from "../../../utils/getYearWord";
 
+const props = defineProps({
+  specialist: Object
+})
 </script>
 
 <template>
   <div class="card">
     <div class="card-avatar">
-      <img src="/images/specialist-avatar.png" alt="avatar">
+      <img :src="specialist.photo" alt="avatar">
     </div>
     <p class="card-experience">
-      стаж 10 лет
+      стаж {{ specialist.experience }} {{ getYearWord(specialist.experience) }}
     </p>
     <div class="card-row">
-      <span>Врач</span>
-      Иванова Анастасия Андреевна
+      <span>Специалист</span>
+      {{ specialist.name }}
     </div>
     <div class="card-row">
-      <span>Специализация</span>
-      Хирургия, ортопедия
+      <span>Направление</span>
+      {{ specialist.profession }}
     </div>
-    <NuxtLink to="/catalog/vet/1">
+    <NuxtLink :to="`/catalog/${specialist.type}/${specialist.id}`">
       <button class="card-btn">Записаться</button>
     </NuxtLink>
   </div>

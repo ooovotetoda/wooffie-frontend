@@ -1,14 +1,27 @@
 <script setup lang="ts">
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
+const config = useRuntimeConfig()
+
+const { data } = await useAsyncData(
+    "main:specialists",
+    () => $fetch("api/specialists/top", {
+      method: "GET",
+      baseURL: config.public.baseUrl,
+      query: {
+        limit: 5
+      }
+    })
+)
 </script>
 
 <template>
   <div class="specialist-carousel__wrapper">
     <Carousel :items-to-show="3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
-      <Slide v-for="slide in 10" :key="slide">
+      <Slide v-for="specialist in data.specialists" :key="specialist.id">
         <div class="carousel__item">
-          <MainSpecialistCard/>
+          <MainSpecialistCard :specialist/>
         </div>
       </Slide>
 
