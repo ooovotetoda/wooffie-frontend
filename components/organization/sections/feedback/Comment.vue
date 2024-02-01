@@ -100,29 +100,29 @@ const handleDislike = async () => {
       <img src="/images/user-icon.svg" alt="avatar">
     </div>
     <div class="comment__info">
-      <div class="comment__tel">{{ formatReviewPhone(review.phone) }}</div>
+      <div class="comment__tel">{{ formatReviewPhone(review?.phone) }}</div>
       <div class="comment__status">Клиент</div>
     </div>
   </div>
   <div class="comment__subheader">
-    <Rating :rating="review.rating"/>
-    <span class="comment__date">{{ convertDate(review.created_at) }}</span>
+    <Rating :rating="review?.rating"/>
+    <span class="comment__date">{{ convertDate(review?.created_at) }}</span>
   </div>
-  <p class="comment__copy">{{ review.review_text }}</p>
+  <p class="comment__copy">{{ review?.review_text }}</p>
 
   <div class="comment__estimations">
     <div class="comment__estimations__item">
       <button @click="handleLike" :class="{ liked: isLiked }">
         <IconsLike />
       </button>
-      <span class="comment__estimations__count">{{review.likes}}</span>
+      <span class="comment__estimations__count">{{review?.likes}}</span>
     </div>
 
     <div class="comment__estimations__item">
       <button @click="handleDislike" :class="{ disliked: isDisliked }">
         <IconsDislike />
       </button>
-      <span class="comment__estimations__count">{{review.dislikes}}</span>
+      <span class="comment__estimations__count">{{review?.dislikes}}</span>
     </div>
   </div>
 </div>

@@ -3,6 +3,8 @@ const props = defineProps({
   reviews: Object,
 })
 
+const emit = defineEmits(['checks'])
+
 const counts = reactive({
   all: props.reviews ? props.reviews.length : 0,
   great: props.reviews ? props.reviews.filter((r: object) => r.rating === 5).length : 0,
@@ -12,6 +14,17 @@ const counts = reactive({
   terrible: props.reviews ? props.reviews.filter((r: object) => r.rating === 1).length : 0,
 })
 
+const checked = reactive({
+  great: true,
+  good: true,
+  normal: true,
+  bad: true,
+  terrible: true,
+})
+
+watch(checked, (newChecked) => {
+  emit("checks", newChecked)
+}, { immediate: true, deep: true })
 </script>
 
 <template>
@@ -19,11 +32,36 @@ const counts = reactive({
     <h4 class="filter__title">Фильтр по оценкам</h4>
 
     <ul class="filter__list">
-      <OrganizationSectionsFeedbackLine label="Отлично" :all="counts.all" :count="counts.great"/>
-      <OrganizationSectionsFeedbackLine label="Хорошо" :all="counts.all" :count="counts.good"/>
-      <OrganizationSectionsFeedbackLine label="Нормально" :all="counts.all" :count="counts.normal"/>
-      <OrganizationSectionsFeedbackLine label="Плохо" :all="counts.all" :count="counts.bad"/>
-      <OrganizationSectionsFeedbackLine label="Ужасно" :all="counts.all" :count="counts.terrible"/>
+      <OrganizationSectionsFeedbackLine
+          label="Отлично"
+          :all="counts.all"
+          :count="counts.great"
+          v-model="checked.great"
+      />
+      <OrganizationSectionsFeedbackLine
+          label="Хорошо"
+          :all="counts.all"
+          :count="counts.good"
+          v-model="checked.good"
+      />
+      <OrganizationSectionsFeedbackLine
+          label="Нормально"
+          :all="counts.all"
+          :count="counts.normal"
+          v-model="checked.normal"
+      />
+      <OrganizationSectionsFeedbackLine
+          label="Плохо"
+          :all="counts.all"
+          :count="counts.bad"
+          v-model="checked.bad"
+      />
+      <OrganizationSectionsFeedbackLine
+          label="Ужасно"
+          :all="counts.all"
+          :count="counts.terrible"
+          v-model="checked.terrible"
+      />
     </ul>
   </div>
 </template>

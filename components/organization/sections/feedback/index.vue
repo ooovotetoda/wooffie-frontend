@@ -1,7 +1,22 @@
 <script setup lang="ts">
+import type {Ref} from "vue";
+
 const props = defineProps({
   organization: Object,
 })
+
+interface ReviewData {
+  reviews: Item[];
+}
+
+interface Checks {
+  [key: string]: boolean;
+}
+
+interface Item {
+  rating: number;
+  created_at: string;
+}
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -12,7 +27,7 @@ const institutionsCategories = ["clinic", "salon"]
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
-const { data, pending, error, refresh } = await useAsyncData(
+const { data, pending, error, refresh } = await useAsyncData<ReviewData>(
     `reviews:${route.params.id}`,
     () => $fetch(`/api/reviews/${type.value}`, {
       method: "POST",
@@ -26,17 +41,34 @@ const { data, pending, error, refresh } = await useAsyncData(
 
 const sort = ref<"new" | "old">("new")
 
+const checks: Ref<Checks>  = ref({})
+
+const ratingToKeyMap: { [key: number]: keyof Checks } = {
+  5: 'great',
+  4: 'good',
+  3: 'normal',
+  2: 'bad',
+  1: 'terrible',
+};
+
 const reviewsFiltered = computed(() => {
   if (data.value?.reviews) {
-    return data.value.reviews.sort((a: object, b: object): number => {
+    const sorted: Item[] = data.value.reviews.sort((a, b): number => {
       if (sort.value === "new") {
-        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-      } else if (sort.value === "old") {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      } else if (sort.value === "old") {
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
       } else {
         return 0
       }
     })
+
+    const filtered = sorted.filter((item: Item) => {
+      const key = ratingToKeyMap[item.rating] as keyof Checks; // Утверждение типа
+      return checks.value[key];
+    })
+
+    return filtered
   } else {
     return []
   }
@@ -55,12 +87,12 @@ const handleOld = () => {
   <div class="feedback__header">
     <div class="feedback__info">
       <h3 class="feedback__title">
-        Отзывы о ветклинике «{{ organization.name }}» <span>({{ data.reviews ? data.reviews.length : 0 }})</span>
+        Отзывы о ветклинике «{{ organization?.name }}» <span>({{ data?.reviews ? data?.reviews.length : 0 }})</span>
       </h3>
 
       <div class="feedback__rating">
-        <span>Рейтинг {{ organization.rating }}</span>
-        <Rating :rating="Math.round(organization.rating)" />
+        <span>Рейтинг {{ organization?.rating }}</span>
+        <Rating :rating="Math.round(organization?.rating)" />
       </div>
 
       <p class="feedback__sort">
@@ -70,14 +102,19 @@ const handleOld = () => {
       </p>
     </div>
 
-    <OrganizationSectionsFeedbackFilter :reviews="data.reviews" />
+    <OrganizationSectionsFeedbackFilter
+        :reviews="data?.reviews"
+        @checks="(newChecks) => checks = newChecks"
+    />
   </div>
 
-  <ul class="feedback-comments">
+  <ul v-if="reviewsFiltered.length !== 0" class="feedback-comments">
     <li v-for="review in reviewsFiltered">
       <OrganizationSectionsFeedbackComment :review="review" @react="refresh"/>
     </li>
   </ul>
+
+  <Empty v-else margin="78"/>
 </template>
 
 <style scoped lang="scss">

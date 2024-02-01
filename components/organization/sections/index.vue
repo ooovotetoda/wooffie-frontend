@@ -14,7 +14,7 @@ watch(() => route.query.section, (newSection) => {
 </script>
 
 <template>
-  <OrganizationSectionsServices :services="organization.services" v-if="section === 'services'"/>
+  <OrganizationSectionsServices :services="organization?.services" v-if="section === 'services'"/>
   <OrganizationSectionsList v-if="section === 'clinic' || section === 'specialists'"/>
   <OrganizationSectionsGallery  v-if="section === 'gallery'"/>
   <OrganizationSectionsFeedback :organization="organization" v-if="section === 'feedback'"/>
