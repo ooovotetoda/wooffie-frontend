@@ -14,11 +14,10 @@
     "@nuxtjs/style-resources": "^2.0.0",
     "@vueuse/core": "^10.6.1",
     "@vueuse/nuxt": "^10.6.1",
-    "node-sass": "^9.0.0",
-    "nuxt": "^3.8.1",
+    "nuxt": "^3.10.0",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
-    "vue": "^3.3.8",
+    "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
