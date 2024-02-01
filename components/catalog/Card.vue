@@ -12,7 +12,6 @@ const props = defineProps({
 })
 
 const config = useRuntimeConfig()
-const route = useRoute()
 const { user } = useUserStore()
 const { cities } = useCityStore()
 
@@ -71,22 +70,22 @@ const toggleIsActive = async () => {
 <template>
   <div class="card">
     <div class="card__media">
-      <img :src="organization.photo" alt="clinic">
+      <img :src="organization?.photo" alt="clinic">
       <button @click="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
         <IconsFavorite />
       </button>
     </div>
 
     <div class="card__body">
-      <h3 class="card__title">{{ organization.name }}</h3>
+      <h3 class="card__title">{{ organization?.name }}</h3>
       <div class="card__subtitle">
-        <span>Рейтинг {{ organization.rating.toFixed(1) }}</span>
-        <Rating :rating="Math.round(organization.rating)"/>
+        <span>Рейтинг {{ organization?.rating.toFixed(1) }}</span>
+        <Rating :rating="Math.round(organization_id.rating)"/>
       </div>
       <div class="card__criteria">
-        <span class="card__criteria-type">{{ types[organization.type] }}</span>
-        <span v-if="organization.round_clock" class="card__criteria-schedule">Круглосуточно</span>
-        <span class="card__criteria-city">{{ cities[organization.city] }}</span>
+        <span class="card__criteria-type">{{ types[organization?.type] }}</span>
+        <span v-if="organization?.round_clock" class="card__criteria-schedule">Круглосуточно</span>
+        <span class="card__criteria-city">{{ cities[organization?.city] }}</span>
       </div>
       <div class="card__copy">
         {{ croppedText }}
@@ -100,13 +99,13 @@ const toggleIsActive = async () => {
         </div>
         <div class="card__info-item">
           <IconsCall />
-          <span>{{ formatPhone(organization.phone) }}</span>
+          <span>{{ formatPhone(organization?.phone) }}</span>
         </div>
         <div class="card__address">
 
           <span class="card__address-main">
             <IconsLocation/>
-            {{ organization.addresses[0].address }}
+            {{ organization?.addresses[0].address }}
           </span>
           <ul class="card__address-list">
             <li v-for="address in addressList" class="card__address-item">
@@ -117,7 +116,7 @@ const toggleIsActive = async () => {
           </ul>
         </div>
       </div>
-      <NuxtLink :to="`/catalog/${route.params.category}/${organization.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
+      <NuxtLink :to="`/catalog/${organization?.type}/${organization?.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
     </div>
   </div>
 </template>
