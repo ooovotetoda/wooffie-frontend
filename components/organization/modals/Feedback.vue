@@ -16,6 +16,7 @@ interface ReviewBody {
 
 
 const route = useRoute()
+const router = useRouter()
 const config = useRuntimeConfig()
 const { user } = useUserStore()
 
@@ -58,6 +59,8 @@ const submitReview = async () => {
 
     if (response.status === "OK") {
       emit('update:modelValue', false)
+      //TODO: подумать, нужна ли  перезагрузка страницы, после отправки комментария
+      router.go(0)
     }
   } catch (e) {
     console.error(e)
