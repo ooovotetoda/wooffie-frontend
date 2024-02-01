@@ -27,8 +27,8 @@ const types = {
 }
 
 const croppedText = computed(() => {
-  return props.organization?.about.length > 620 ?
-      `${props.organization?.about.substring(0, 620)}...`
+  return props.organization?.about.length > 580 ?
+      `${props.organization?.about.substring(0, 580)}...`
       : props.organization?.about
 })
 
@@ -85,28 +85,28 @@ const handleReview = async () => {
 
 <template>
   <section class="organization-header">
-    <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
+    <OrganizationSchedule :addresses="organization?.addresses" :schedule="organization?.schedule"/>
 
     <div class="organization-header__body">
       <div class="organization-header__media">
-        <img :src="organization.photo" alt="avatar">
+        <img :src="organization?.photo" alt="avatar">
         <button @click="toggleIsActive" class="organization-header__media-favorite" :class="{ 'organization-header__media-favorite__active': isActive }">
           <IconsFavorite />
         </button>
       </div>
 
       <div class="organization-header__info">
-        <h3 class="organization-header__title">{{ organization.name }}</h3>
+        <h3 class="organization-header__title">{{ organization?.name }}</h3>
         <div class="organization-header__criteria">
-          <span class="organization-header__criteria-type">{{ types[organization.type] }}</span>
-          <span v-if="organization.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
-          <span class="organization-header__criteria-city">{{ cities[organization.city] }}</span>
+          <span class="organization-header__criteria-type">{{ types[organization?.type] }}</span>
+          <span v-if="organization?.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
+          <span class="organization-header__criteria-city">{{ cities[organization?.city] }}</span>
         </div>
 
-        <Rating :rating="Math.round(organization.rating)" class="organization-header__rating"/>
+        <Rating :rating="Math.round(organization?.rating)" class="organization-header__rating"/>
 
         <div class="organization-header__copy">
-          <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 600 символов. -->
+          <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 580 символов. -->
           {{ croppedText }}
         </div>
 
@@ -116,7 +116,7 @@ const handleReview = async () => {
                   :class="{contacted: isContacted}"
                   @click="handleContact"
           >
-            {{isContacted ? organization.phone : "Связаться"}}
+            {{isContacted ? organization?.phone : "Связаться"}}
             <IconsCopy v-if="isContacted"/>
           </button>
         </div>
