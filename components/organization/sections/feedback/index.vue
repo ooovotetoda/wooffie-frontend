@@ -28,7 +28,7 @@ const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
 const { data, pending, error, refresh } = await useAsyncData<ReviewData>(
-    `reviews:${route.params.id}`,
+    `reviews:${type.value}:${route.params.id}`,
     () => $fetch(`/api/reviews/${type.value}`, {
       method: "POST",
       baseURL: config.public.baseUrl,
@@ -108,13 +108,13 @@ const handleOld = () => {
     />
   </div>
 
-  <ul v-if="reviewsFiltered.length !== 0" class="feedback-comments">
+  <ul class="feedback-comments">
     <li v-for="review in reviewsFiltered">
       <OrganizationSectionsFeedbackComment :review="review" @react="refresh"/>
     </li>
   </ul>
 
-  <Empty v-else :margin="78"/>
+  <Empty v-show="reviewsFiltered ? reviewsFiltered.length == 0 : false" :margin="78"/>
 </template>
 
 <style scoped lang="scss">
