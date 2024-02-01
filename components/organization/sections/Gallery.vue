@@ -33,7 +33,7 @@ const { data, pending, error, refresh } = await useAsyncData(
       </Carousel>
     </div>
 
-    <Empty v-else margin="78"/>
+    <Empty v-else :margin="78"/>
   </section>
 
 

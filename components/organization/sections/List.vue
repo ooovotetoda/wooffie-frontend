@@ -47,7 +47,7 @@ const { data, pending, error, refresh } = await useAsyncData(
 </script>
 
 <template>
-  <Empty v-if="!data" margin="100"/>
+  <Empty v-if="!data" :margin="100"/>
 
   <ul ref="listRef">
     <li v-for="(item, index) in data" :key="index">

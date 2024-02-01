@@ -4,9 +4,6 @@ import {useCatalogFiltersStore} from "~/stores/catalogFiltersStore";
 const nowId = useId("now")
 const roundId = useId("round")
 
-const route = useRoute()
-const router = useRouter()
-
 const filtersStore = useCatalogFiltersStore()
 
 const filters: Filters = reactive({

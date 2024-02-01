@@ -114,7 +114,7 @@ const handleOld = () => {
     </li>
   </ul>
 
-  <Empty v-else margin="78"/>
+  <Empty v-else :margin="78"/>
 </template>
 
 <style scoped lang="scss">
