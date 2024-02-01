@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import {useCatalogFiltersStore} from "~/stores/catalogFiltersStore";
 
+const nowId = useId("now")
+const roundId = useId("round")
+
 const route = useRoute()
 const router = useRouter()
 
@@ -19,9 +22,12 @@ const sendFilters = async () => {
   filtersStore.updateFilters(filters)
 }
 
-
 const resetFilters = async () => {
   filtersStore.resetFilters()
+  filters.schedule = null;
+  filters.formats.local = false;
+  filters.formats.online = false;
+  filters.formats.home = false;
 }
 
 </script>
@@ -43,7 +49,7 @@ const resetFilters = async () => {
           <ul>
             <li>
               <label class="filters-category-radio">Круглосуточно
-                <input type="radio" id="round" value="round" v-model="filters.schedule">
+                <input type="radio" :id="roundId" value="round" v-model="filters.schedule">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
@@ -51,7 +57,7 @@ const resetFilters = async () => {
 
             <li>
               <label class="filters-category-radio">Открыто сейчас
-                <input type="radio" id="now" value="now" v-model="filters.schedule">
+                <input type="radio" :id="nowId" value="now" v-model="filters.schedule">
                 <span></span>
                 <span class="filters-category-radio-background"></span>
               </label>
