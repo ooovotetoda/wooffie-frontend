@@ -15,6 +15,10 @@ const setActiveSection = (section: OrganizationSection | string) => {
 watch(() => route.query.section, (newVal) => {
   let sectionKey = typeof newVal === 'string' ? newVal : Array.isArray(newVal) ? newVal[0] : 'services';
 
+  if (!sectionKey) {
+    return
+  }
+
   let lefts = {
     services: 0,
     clinic: 1,
@@ -23,6 +27,7 @@ watch(() => route.query.section, (newVal) => {
     feedback: 3,
   };
 
+  // TODO
   underlinePosition.value = `${200 * lefts[sectionKey]}px`
 }, { immediate: true })
 </script>
