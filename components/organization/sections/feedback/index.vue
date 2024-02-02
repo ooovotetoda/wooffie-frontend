@@ -1,22 +1,11 @@
 <script setup lang="ts">
 import type {Ref} from "vue";
+import type {Organization} from "~/types/Organization";
+import type {Checks, Review, ReviewsData} from "~/types/Reviews";
 
-const props = defineProps({
-  organization: Object,
-})
-
-interface ReviewData {
-  reviews: Item[];
-}
-
-interface Checks {
-  [key: string]: boolean;
-}
-
-interface Item {
-  rating: number;
-  created_at: string;
-}
+const props = defineProps<{
+  organization: Organization;
+}>()
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -27,21 +16,30 @@ const institutionsCategories = ["clinic", "salon"]
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
-const { data, pending, error, refresh } = await useAsyncData<ReviewData>(
+const { data: reviews, refresh } = await useAsyncData<Review[]>(
     `reviews:${type.value}:${route.params.id}`,
-    () => $fetch(`/api/reviews/${type.value}`, {
-      method: "POST",
-      baseURL: config.public.baseUrl,
-      body: {
-        user_id: user.id,
-        organization_id: props.organization?.id
+    async () => {
+      try {
+        const response: ReviewsData = await $fetch(`/api/reviews/${type.value}`, {
+          method: "POST",
+          baseURL: config.public.baseUrl,
+          body: {
+            user_id: user.id,
+            organization_id: props.organization.id
+          }
+        })
+
+        return response.reviews
+      } catch (e) {
+        console.log(e)
+        return [];
       }
-    })
+    }
 )
 
 const sort = ref<"new" | "old">("new")
 
-const checks: Ref<Checks>  = ref({})
+const checks: Ref<Checks> = ref({})
 
 const ratingToKeyMap: { [key: number]: keyof Checks } = {
   5: 'great',
@@ -52,8 +50,8 @@ const ratingToKeyMap: { [key: number]: keyof Checks } = {
 };
 
 const reviewsFiltered = computed(() => {
-  if (data.value?.reviews) {
-    const sorted: Item[] = data.value.reviews.sort((a, b): number => {
+  if (reviews.value) {
+    const sorted: Review[] = reviews.value.sort((a, b): number => {
       if (sort.value === "new") {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       } else if (sort.value === "old") {
@@ -63,12 +61,10 @@ const reviewsFiltered = computed(() => {
       }
     })
 
-    const filtered = sorted.filter((item: Item) => {
-      const key = ratingToKeyMap[item.rating] as keyof Checks; // Утверждение типа
+    return sorted.filter((review: Review) => {
+      const key = ratingToKeyMap[review.rating] as keyof Checks;
       return checks.value[key];
     })
-
-    return filtered
   } else {
     return []
   }
@@ -87,34 +83,53 @@ const handleOld = () => {
   <div class="feedback__header">
     <div class="feedback__info">
       <h3 class="feedback__title">
-        Отзывы о ветклинике «{{ organization?.name }}» <span>({{ data?.reviews ? data?.reviews.length : 0 }})</span>
+        Отзывы о ветклинике «{{ organization.name }}» <span>({{ reviews && reviews.length > 0 ? reviews.length : 0 }})</span>
       </h3>
 
       <div class="feedback__rating">
-        <span>Рейтинг {{ organization?.rating }}</span>
-        <Rating :rating="Math.round(organization?.rating)" />
+        <span>Рейтинг {{ organization.rating }}</span>
+        <Rating :rating="Math.round(organization.rating)" />
       </div>
 
       <p class="feedback__sort">
         <span class="sort__text">Сортировать:</span>
-        <button @click="handleNew" class="sort__item" :class="{active: sort === 'new'}">новые</button>
-        <button @click="handleOld" class="sort__item" :class="{active: sort === 'old'}">старые</button>
+        <button 
+            @click="handleNew" 
+            class="sort__item" 
+            :class="{active: sort === 'new'}"
+        >
+          новые
+        </button>
+        
+        <button 
+            @click="handleOld" 
+            class="sort__item" 
+            :class="{active: sort === 'old'}"
+        >
+          старые
+        </button>
       </p>
     </div>
 
     <OrganizationSectionsFeedbackFilter
-        :reviews="data?.reviews"
+        :reviews
         @checks="(newChecks) => checks = newChecks"
     />
   </div>
 
   <ul class="feedback-comments">
     <li v-for="review in reviewsFiltered">
-      <OrganizationSectionsFeedbackComment :review="review" @react="refresh"/>
+      <OrganizationSectionsFeedbackComment
+          :review
+          @react="refresh"
+      />
     </li>
   </ul>
 
-  <Empty v-show="reviewsFiltered ? reviewsFiltered.length == 0 : false" :margin="78"/>
+  <Empty 
+      v-show="reviewsFiltered ? reviewsFiltered.length == 0 : false" 
+      :margin="78"
+  />
 </template>
 
 <style scoped lang="scss">

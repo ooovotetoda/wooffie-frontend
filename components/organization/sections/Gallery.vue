@@ -1,17 +1,27 @@
 <script setup lang="ts">
 // import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import type {GalleryData, Photo} from "~/types/Gallery";
 
 const config = useRuntimeConfig()
 
 const route = useRoute()
 
-const { data, pending, error, refresh } = await useAsyncData(
+const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,
-    () => $fetch(`/api/institutions/${route.params.id}/gallery`, {
-      method: "GET",
-      baseURL: config.public.baseUrl
-    })
+    async () => {
+      try {
+        const response: GalleryData = await $fetch(`/api/institutions/${route.params.id}/gallery`, {
+          method: "GET",
+          baseURL: config.public.baseUrl
+        })
+
+        return response.gallery
+      } catch (e) {
+        console.log(e)
+        return []
+      }
+    }
 )
 </script>
 
@@ -19,11 +29,11 @@ const { data, pending, error, refresh } = await useAsyncData(
   <section class="gallery">
     <h2 class="gallery-title">Фотогалерея</h2>
 
-    <div v-if="data.gallery.length !== 0" class="gallery-carousel__wrapper">
+    <div v-if="gallery && gallery.length !== 0" class="gallery-carousel__wrapper">
       <Carousel :items-to-show="2.3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
-        <Slide  v-for="slide in data.gallery" :key="slide">
+        <Slide  v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
-            <img :src="slide.photo_url" alt="photo">
+            <img :src="photo.photo_url" alt="photo">
           </div>
         </Slide>
 

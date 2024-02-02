@@ -1,17 +1,19 @@
 <script setup lang="ts">
-const props = defineProps({
-  reviews: Object,
-})
+import type {Review} from "~/types/Reviews";
+
+const props = defineProps<{
+  reviews: Review[]
+}>()
 
 const emit = defineEmits(['checks'])
 
 const counts = reactive({
   all: props.reviews ? props.reviews.length : 0,
-  great: props.reviews ? props.reviews.filter((r: object) => r.rating === 5).length : 0,
-  good: props.reviews ? props.reviews.filter((r: object) => r.rating === 4).length : 0,
-  normal: props.reviews ? props.reviews.filter((r: object) => r.rating === 3).length : 0,
-  bad: props.reviews ? props.reviews.filter((r: object) => r.rating === 2).length : 0,
-  terrible: props.reviews ? props.reviews.filter((r: object) => r.rating === 1).length : 0,
+  great: props.reviews ? props.reviews.filter((r: Review) => r.rating === 5).length : 0,
+  good: props.reviews ? props.reviews.filter((r: Review) => r.rating === 4).length : 0,
+  normal: props.reviews ? props.reviews.filter((r: Review) => r.rating === 3).length : 0,
+  bad: props.reviews ? props.reviews.filter((r: Review) => r.rating === 2).length : 0,
+  terrible: props.reviews ? props.reviews.filter((r: Review) => r.rating === 1).length : 0,
 })
 
 const checked = reactive({
@@ -76,7 +78,7 @@ watch(checked, (newChecked) => {
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 120% */
+    line-height: 24px;
   }
 
   &__list {

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type {OrganizationSection} from "~/types/Organization";
+
 const route = useRoute()
 const router = useRouter()
 
@@ -6,30 +8,22 @@ const category = route.params.category
 
 const underlinePosition = ref("0")
 
-const setActiveSection = (section: string) => {
+const setActiveSection = (section: OrganizationSection | string) => {
   router.replace({ query: { section: section } })
 }
 
 watch(() => route.query.section, (newVal) => {
-  let left;
-  switch (newVal) {
-    case 'services':
-      left = 0;
-      break;
-    case 'clinic':
-    case 'specialists':
-      left = 1;
-      break;
-    case 'gallery':
-      left = 2;
-      break;
-    case 'feedback':
-      left = 3;
-      break;
-    default:
-      left = 0;
-  }
-  underlinePosition.value = `${200 * left}px`
+  let sectionKey = typeof newVal === 'string' ? newVal : Array.isArray(newVal) ? newVal[0] : 'services';
+
+  let lefts = {
+    services: 0,
+    clinic: 1,
+    specialists: 1,
+    gallery: 2,
+    feedback: 3,
+  };
+
+  underlinePosition.value = `${200 * lefts[sectionKey]}px`
 }, { immediate: true })
 </script>
 

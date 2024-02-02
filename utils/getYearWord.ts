@@ -1,4 +1,4 @@
-export default function (num: number): string {
+export default function (num: number | undefined): string {
     if (!num) {
         return "лет"
     }

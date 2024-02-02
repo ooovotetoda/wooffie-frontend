@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import getDay from "~/utils/getDay";
+import type {Organization, OrganizationList, Schedule} from "~/types/Organization";
 
 definePageMeta({
   layout: "main",
@@ -15,25 +16,22 @@ interface Favorites {
 }
 
 const config = useRuntimeConfig()
-
-const { user } = useUserStore()
-const cityStore = useCityStore()
-
 const route = useRoute()
+const cityStore = useCityStore()
+const catalogFilters = useCatalogFiltersStore()
+const { user } = useUserStore()
+
 const institutionsCategories = ["clinic", "salon"]
-
 const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
+const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 const page = ref(0)
 const pending = ref(false);
-const organizations = ref<Array<Object>>([])
 
+const organizations = ref<Organization[]>([])
 onMounted( async () => {
   await loadOrganizations();
 })
-
-const catalogFilters = useCatalogFiltersStore()
 
 const filteredOrganizations = computed(() => {
   if (organizations.value) {
@@ -42,10 +40,10 @@ const filteredOrganizations = computed(() => {
         .filter((organization) => organization.city === cityStore.currentCity)
         .filter((organization) => {
           if (catalogFilters.filters.schedule === "now") {
-            return organization.schedule.some((item: Object) => {
+            return organization.schedule.some((schedule: Schedule) => {
               const today = getDay()
 
-              return (item.day_of_week === today && isTimeBetween(item.start_time, item.end_time))
+              return (schedule.day_of_week === today && isTimeBetween(schedule.start_time, schedule.end_time))
             })
           } else if (catalogFilters.filters.schedule === "round") {
             return organization.round_clock
@@ -77,40 +75,44 @@ const loadMore = async () => {
 const loadOrganizations = async () => {
   pending.value = true;
 
-  const response = await $fetch(`/api/${type.value}`, {
-    method: 'GET',
-    baseURL: config.public.baseUrl,
-    query: {
-      limit: 20,
-      offset: 20 * page.value,
-    },
-  });
-
-  if (response?.list) {
-    const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
+  try {
+    const response: OrganizationList = await $fetch(`/api/${type.value}`, {
       method: 'GET',
       baseURL: config.public.baseUrl,
+      query: {
+        limit: 20,
+        offset: 20 * page.value,
+      },
     });
 
-    const updatedOrganizations = response.list.map((org: Object) => {
-      let isFavorite = false
-      if (favorites.favorites) {
-        isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
-      }
+    if (response.list) {
+      const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
+        method: 'GET',
+        baseURL: config.public.baseUrl,
+      });
 
-      return {
-      ...org,
-      isFavorite: isFavorite,
-     }
-    });
+      const updatedOrganizations = response.list.map((org: Organization) => {
+        let isFavorite = false
+        if (favorites.favorites) {
+          isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
+        }
 
-    appendOrganizations(updatedOrganizations); // Обновляем список организаций
+        return {
+          ...org,
+          isFavorite: isFavorite,
+        }
+      });
+
+      appendOrganizations(updatedOrganizations);
+    }
+  } catch (e) {
+    console.error(e)
   }
 
   pending.value = false;
 };
 
-const appendOrganizations = ( newOrganizations: Array<Object> ) => {
+const appendOrganizations = ( newOrganizations: Organization[] ) => {
   organizations.value.push(...newOrganizations)
 }
 </script>

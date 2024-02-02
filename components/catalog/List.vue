@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const props = defineProps({
-  list: Array
-})
+import type {Organization} from "~/types/Organization";
+
+const props = defineProps<{
+  list: Organization[]
+}>()
 
 const emit = defineEmits(["loadMore"])
 
@@ -33,9 +35,9 @@ onMounted(() => {
 <template>
   <section class="list">
     <ul ref="el">
-      <li v-for="(item, index) in list" :key="index">
+      <li v-for="(organization, index) in list" :key="index">
         <CatalogCard
-            :organization="item"
+            :organization
             :maxDescriptionLength="240"
         />
       </li>
@@ -44,7 +46,7 @@ onMounted(() => {
       <div ref="marker" class="marker"></div>
     </div>
 
-    <Empty v-if="list?.length === 0" :margin="78"/>
+    <Empty v-if="list.length === 0" :margin="78"/>
 
   </section>
 </template>

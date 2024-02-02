@@ -1,25 +1,37 @@
 <script setup lang="ts">
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import type {Organization} from "~/types/Organization";
 
 const config = useRuntimeConfig()
 
-const { data } = await useAsyncData(
+const { data: specialists } = await useAsyncData<Organization[]>(
     "main:specialists",
-    () => $fetch("api/specialists/top", {
-      method: "GET",
-      baseURL: config.public.baseUrl,
-      query: {
-        limit: 5
+    async () => {
+      try {
+        const response: { specialists: Organization[] } = await $fetch("api/specialists/top", {
+          method: "GET",
+          baseURL: config.public.baseUrl,
+          query: {
+            limit: 5
+          }
+        })
+
+        return response.specialists
+      } catch (e) {
+        console.error(e)
+        return []
       }
-    })
+    }
+
+
 )
 </script>
 
 <template>
   <div class="specialist-carousel__wrapper">
     <Carousel :items-to-show="3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
-      <Slide v-for="specialist in data.specialists" :key="specialist.id">
+      <Slide v-for="specialist in specialists" :key="specialist.id">
         <div class="carousel__item">
           <MainSpecialistCard :specialist/>
         </div>

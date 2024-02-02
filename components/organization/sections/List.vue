@@ -1,13 +1,9 @@
 <script setup lang="ts">
-interface Favorites {
-  favorites: Array<Object>
-}
+import type {Organization, OrganizationList} from "~/types/Organization";
+import type {FavoritesList} from "~/types/Favorites";
 
 const config = useRuntimeConfig()
-
 const route = useRoute()
-const router = useRouter()
-
 const { user } = useUserStore()
 
 const institutionsCategories = ["clinic", "salon"]
@@ -15,31 +11,39 @@ const institutionsCategories = ["clinic", "salon"]
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
-const { data, pending, error, refresh } = await useAsyncData(
-    `user:${route.params.id}`,
+const { data: organizations } = await useAsyncData<Organization[]>(
+    `organizations:${type.value}:${route.params.id}`,
     async () => {
-      const response = await $fetch(`/api/${type.value}/${route.params.id}/connected`, {
-        method: "GET",
-        baseURL: config.public.baseUrl
-      })
-
-      if (response?.list) {
-        const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
-          method: 'GET',
-          baseURL: config.public.baseUrl,
-        });
-
-        return response.list.map((org: Object) => {
-          let isFavorite = false
-          if (favorites.favorites) {
-            isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
-          }
-
-          return {
-            ...org,
-            isFavorite: isFavorite,
-          }
+      try {
+        const response: OrganizationList = await $fetch(`/api/${type.value}/${route.params.id}/connected`, {
+          method: "GET",
+          baseURL: config.public.baseUrl
         })
+
+        if (response.list) {
+          const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+            method: 'GET',
+            baseURL: config.public.baseUrl,
+          });
+
+          return response.list.map((org: Organization) => {
+            let isFavorite = false
+
+            if (favorites.favorites) {
+              isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
+            }
+
+            return {
+              ...org,
+              isFavorite: isFavorite,
+            }
+          })
+        } else {
+          return []
+        }
+      } catch (e) {
+        console.log(e)
+        return []
       }
     }
 )
@@ -47,10 +51,10 @@ const { data, pending, error, refresh } = await useAsyncData(
 </script>
 
 <template>
-  <Empty v-if="!data" :margin="100"/>
+  <Empty v-if="!organizations" :margin="100"/>
 
   <ul ref="listRef">
-    <li v-for="(item, index) in data" :key="index">
+    <li v-for="(item, index) in organizations" :key="index">
       <CatalogCard :organization="item" :maxDescriptionLength="480"/>
     </li>
   </ul>
@@ -60,6 +64,4 @@ const { data, pending, error, refresh } = await useAsyncData(
 ul {
   list-style-type: none;
 }
-
-
 </style>

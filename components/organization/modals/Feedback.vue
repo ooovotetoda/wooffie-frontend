@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import { VueFinalModal } from 'vue-final-modal'
 import {$fetch} from "ofetch";
+import type {SendReviewBody} from "~/types/Reviews";
 
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
-
-interface ReviewBody {
-  user_id: number | null;
-  institution_id?: number;
-  specialist_id?: number;
-  rating: number;
-  review_text: string | null;
-}
 
 
 const route = useRoute()
@@ -30,8 +23,8 @@ const rating = ref(0)
 const comment = ref<string | null>(null)
 const invalid = ref<boolean>(false)
 
-const body = computed((): ReviewBody => {
-  const result: Partial<ReviewBody> = {
+const body = computed((): SendReviewBody => {
+  const result: Partial<SendReviewBody> = {
     user_id: user.id ?? null,
     rating: rating.value,
     review_text: comment.value
@@ -42,7 +35,7 @@ const body = computed((): ReviewBody => {
     result[type.value] = id;
   }
 
-  return result as ReviewBody;
+  return result as SendReviewBody;
 });
 
 const submitReview = async () => {

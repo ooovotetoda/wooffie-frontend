@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const props = defineProps({
-  title: String,
+  title: {
+    required: true,
+    type: String
+  },
   service: String,
   image: String,
 })
@@ -9,7 +12,7 @@ const props = defineProps({
 <template>
   <div class="card">
     <div class="card-image">
-      <img :src="image" alt="image" srcset="">
+      <img :src="image" alt="services" srcset="">
     </div>
     <div class="card-content">
       <div class="card-content-title">

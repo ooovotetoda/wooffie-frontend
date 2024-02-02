@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import getYearWord from "../../../utils/getYearWord";
+import type {Organization} from "~/types/Organization";
 
-const props = defineProps({
-  specialist: Object
-})
+const props = defineProps<{
+  specialist: Organization;
+}>()
+
 </script>
 
 <template>

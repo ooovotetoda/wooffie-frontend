@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const props = defineProps({
-  addresses: Array<Object>,
-  schedule: Array,
-})
+import type {Address, Schedule} from "~/types/Organization";
+
+const props = defineProps<{
+  addresses: Address[],
+  schedule: Schedule[],
+}>()
 
 const weekDays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 const rows = [[0, 1, 2], [3, 4, 5], [6]];
@@ -11,28 +13,28 @@ const dates = ref<number[]>([]);
 const addrId = props.addresses ? props.addresses[0].id : 0
 const address = ref(addrId)
 
-const scheduleFilterd = computed(() => {
+const scheduleFiltered = computed(() => {
   const filtered = props.schedule?.filter((item) => {
     return item ? item.address_id === address.value : false;
   });
 
-  // Затем сортируем отфильтрованный массив по 'day_of_week'
-  const sorted = filtered?.sort((a, b) => {
+  return filtered?.sort((a, b) => {
     return a && b ? a.day_of_week - b.day_of_week : 0;
   });
-
-  return sorted;
 })
 
 const getDatesForWeek = () => {
   const today = new Date();
   let dayOfWeek = today.getDay();
+
   dayOfWeek = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+
   const currentMonthDay = today.getDate();
 
   for (let i = 0; i < weekDays.length; i++) {
     const dateOffset = i - dayOfWeek;
     const date = new Date(today);
+
     date.setDate(currentMonthDay + dateOffset);
     dates.value[i] = date.getDate();
   }
@@ -65,7 +67,9 @@ onMounted(() => {
       <div class="schedule__weekday">{{ weekDays[dayIndex] }}</div>
       <div class="schedule__subitem">
         <span class="schedule__date">{{ dates[dayIndex] }}</span>
-        <span class="schedule__time">{{ scheduleFilterd[dayIndex] ? scheduleFilterd[dayIndex].start_time.slice(0, -3) : "" }}-{{ scheduleFilterd[dayIndex] ? scheduleFilterd[dayIndex].end_time.slice(0, -3) : "" }}</span>
+        <span class="schedule__time">{{
+            scheduleFiltered[dayIndex] ? scheduleFiltered[dayIndex].start_time.slice(0, -3) : ""
+          }}-{{ scheduleFiltered[dayIndex] ? scheduleFiltered[dayIndex].end_time.slice(0, -3) : "" }}</span>
       </div>
     </div>
   </div>

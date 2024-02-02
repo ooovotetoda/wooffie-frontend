@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core';
 import { useCityStore } from "~/stores/cityStore";
+import type {City} from "~/types/Organization";
 
 const cityStore = useCityStore()
 
 const showDropdown = ref(false)
 const dropdownRef = ref(null);
 
-const handleCity = (val: string) => {
+const handleCity = (val: City) => {
   cityStore.selectCity(val)
   showDropdown.value = false
 }

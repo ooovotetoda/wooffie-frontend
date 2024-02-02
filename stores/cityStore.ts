@@ -1,3 +1,5 @@
+import type {City} from "~/types/Organization";
+
 export const useCityStore = defineStore('city', () => {
     const cookieCity = useCookie("city")
     cookieCity.value = cookieCity.value ? cookieCity.value : "krd";
@@ -13,7 +15,7 @@ export const useCityStore = defineStore('city', () => {
 
     const currentCityName = computed(() => cities[currentCity.value as keyof typeof cities])
 
-    function selectCity(cityCode: string) {
+    function selectCity(cityCode: City) {
         currentCity.value = cityCode;
         cookieCity.value = cityCode;
     }

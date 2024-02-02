@@ -1,22 +1,21 @@
 <script setup lang="ts">
-const props = defineProps({
-  breadcrumbs: {
-    type: Array,
-    required: true,
-  },
-});
+import type {Breadcrumb} from "~/types/Breadcrumbs";
+
+const props = defineProps<{
+  breadcrumbs: Breadcrumb[],
+}>();
 </script>
 
 <template>
   <nav class="breadcrumbs">
     <ol class="breadcrumbs-list">
       <li
-        v-for="(item, index) in breadcrumbs"
-        :key="item.name"
+        v-for="(breadcrumb, index) in breadcrumbs"
+        :key="breadcrumb.name"
         class="breadcrumbs-list-item"
       >
-        <NuxtLink v-if="index === 0" :to="item.path">Главная</NuxtLink>
-        <NuxtLink v-else :to="item.path">{{ item.name }}</NuxtLink>
+        <NuxtLink v-if="index === 0" :to="breadcrumb.path">Главная</NuxtLink>
+        <NuxtLink v-else :to="breadcrumb.path">{{ breadcrumb.name }}</NuxtLink>
       </li>
     </ol>
   </nav>

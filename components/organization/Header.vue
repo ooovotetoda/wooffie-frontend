@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useModal } from 'vue-final-modal'
 import {OrganizationModalsFeedback} from "#components";
+import type {Organization} from "~/types/Organization";
 
-const props = defineProps({
-  organization: Object
-})
+const props = defineProps<{
+  organization: Organization;
+}>()
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -16,20 +17,20 @@ const institutionsCategories = ["clinic", "salon"]
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
-const isActive = ref(props.organization?.isFavorite)
+const isActive = ref(props.organization.isFavorite)
 const isContacted = ref(false)
 
 const types = {
   "clinic": "Ветклиника",
   "salon": "Зоосалон",
-  "vet": props.organization?.profession,
-  "groomer": props.organization?.profession,
+  "vet": props.organization.profession,
+  "groomer": props.organization.profession,
 }
 
 const croppedText = computed(() => {
-  return props.organization?.about.length > 580 ?
-      `${props.organization?.about.substring(0, 580)}...`
-      : props.organization?.about
+  return props.organization.about.length > 580 ?
+      `${props.organization.about.substring(0, 580)}...`
+      : props.organization.about
 })
 
 const toggleIsActive = async () => {
@@ -41,7 +42,7 @@ const toggleIsActive = async () => {
       method: method,
       baseURL: config.public.baseUrl,
       body: {
-        organization_id: props.organization?.id,
+        organization_id: props.organization.id,
         type: type.value,
       },
       onResponse(context) {
@@ -85,25 +86,25 @@ const handleReview = async () => {
 
 <template>
   <section class="organization-header">
-    <OrganizationSchedule :addresses="organization?.addresses" :schedule="organization?.schedule"/>
+    <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
 
     <div class="organization-header__body">
       <div class="organization-header__media">
-        <img :src="organization?.photo" alt="avatar">
+        <img :src="organization.photo" alt="avatar">
         <button @click="toggleIsActive" class="organization-header__media-favorite" :class="{ 'organization-header__media-favorite__active': isActive }">
           <IconsFavorite />
         </button>
       </div>
 
       <div class="organization-header__info">
-        <h3 class="organization-header__title">{{ organization?.name }}</h3>
+        <h3 class="organization-header__title">{{ organization.name }}</h3>
         <div class="organization-header__criteria">
-          <span class="organization-header__criteria-type">{{ types[organization?.type] }}</span>
-          <span v-if="organization?.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
-          <span class="organization-header__criteria-city">{{ cities[organization?.city] }}</span>
+          <span class="organization-header__criteria-type">{{ types[organization.type] }}</span>
+          <span v-if="organization.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
+          <span class="organization-header__criteria-city">{{ cities[organization.city] }}</span>
         </div>
 
-        <Rating :rating="Math.round(organization?.rating)" class="organization-header__rating"/>
+        <Rating :rating="Math.round(organization.rating)" class="organization-header__rating"/>
 
         <div class="organization-header__copy">
           <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 580 символов. -->
@@ -116,7 +117,7 @@ const handleReview = async () => {
                   :class="{contacted: isContacted}"
                   @click="handleContact"
           >
-            {{isContacted ? organization?.phone : "Связаться"}}
+            {{isContacted ? organization.phone : "Связаться"}}
             <IconsCopy v-if="isContacted"/>
           </button>
         </div>

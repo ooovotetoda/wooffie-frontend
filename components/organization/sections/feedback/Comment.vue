@@ -1,32 +1,32 @@
 <script setup lang="ts">
-import {formatReviewPhone} from "#imports";
+import {formatReviewPhone, type Review} from "#imports";
 import convertDate from "../../../../utils/convertDate";
 
-const props = defineProps({
-  review: Object
-})
+const props = defineProps<{
+  review: Review
+}>()
 
 const emit = defineEmits(["react"])
 
 const config = useRuntimeConfig()
 const { user } = useUserStore()
 
-const isLiked = computed(() => props.review?.user_reaction === true)
-const isDisliked = computed(() => props.review?.user_reaction === false)
+const isLiked = computed(() => props.review.user_reaction === true)
+const isDisliked = computed(() => props.review.user_reaction === false)
 
 const handleLike = async () => {
   if (isLiked.value) {
     try {
-      const response = await $fetch(`/api/reviews/unreact`, {
+      const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
         method: "POST",
         baseURL: config.public.baseUrl,
         body: {
           user_id: user.id,
-          review_id: props.review?.id
+          review_id: props.review.id
         }
       })
 
-      if (response?.status === "OK") {
+      if (response.status === "OK") {
         emit("react")
       }
     } catch (e) {
@@ -34,17 +34,17 @@ const handleLike = async () => {
     }
   } else {
     try {
-      const response = await $fetch(`/api/reviews/react`, {
+      const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/react`, {
         method: "POST",
         baseURL: config.public.baseUrl,
         body: {
           user_id: user.id,
-          review_id: props.review?.id,
+          review_id: props.review.id,
           reaction: true
         }
       })
 
-      if (response?.status === "OK") {
+      if (response.status === "OK") {
         emit("react")
       }
     } catch (e) {
@@ -56,16 +56,16 @@ const handleLike = async () => {
 const handleDislike = async () => {
   if (isDisliked.value) {
     try {
-      const response = await $fetch(`/api/reviews/unreact`, {
+      const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
         method: "POST",
         baseURL: config.public.baseUrl,
         body: {
           user_id: user.id,
-          review_id: props.review?.id
+          review_id: props.review.id
         }
       })
 
-      if (response?.status === "OK") {
+      if (response.status === "OK") {
         emit("react")
       }
     } catch (e) {
@@ -73,17 +73,17 @@ const handleDislike = async () => {
     }
   } else {
     try {
-      const response = await $fetch(`/api/reviews/react`, {
+      const response: {status: "OK" | "error"}  = await $fetch(`/api/reviews/react`, {
         method: "POST",
         baseURL: config.public.baseUrl,
         body: {
           user_id: user.id,
-          review_id: props.review?.id,
+          review_id: props.review.id,
           reaction: false
         }
       })
 
-      if (response?.status === "OK") {
+      if (response.status === "OK") {
         emit("react")
       }
     } catch (e) {
@@ -100,29 +100,29 @@ const handleDislike = async () => {
       <img src="/images/user-icon.svg" alt="avatar">
     </div>
     <div class="comment__info">
-      <div class="comment__tel">{{ formatReviewPhone(review?.phone) }}</div>
+      <div class="comment__tel">{{ formatReviewPhone(review.phone) }}</div>
       <div class="comment__status">Клиент</div>
     </div>
   </div>
   <div class="comment__subheader">
-    <Rating :rating="review?.rating"/>
-    <span class="comment__date">{{ convertDate(review?.created_at) }}</span>
+    <Rating :rating="review.rating"/>
+    <span class="comment__date">{{ convertDate(review.created_at) }}</span>
   </div>
-  <p class="comment__copy">{{ review?.review_text }}</p>
+  <p class="comment__copy">{{ review.review_text }}</p>
 
   <div class="comment__estimations">
     <div class="comment__estimations__item">
       <button @click="handleLike" :class="{ liked: isLiked }">
         <IconsLike />
       </button>
-      <span class="comment__estimations__count">{{review?.likes}}</span>
+      <span class="comment__estimations__count">{{review.likes}}</span>
     </div>
 
     <div class="comment__estimations__item">
       <button @click="handleDislike" :class="{ disliked: isDisliked }">
         <IconsDislike />
       </button>
-      <span class="comment__estimations__count">{{review?.dislikes}}</span>
+      <span class="comment__estimations__count">{{review.dislikes}}</span>
     </div>
   </div>
 </div>

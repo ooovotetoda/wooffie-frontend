@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     '/': { prerender: true }
   },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
+  imports: {
+    dirs: ['types/*.ts', 'stores/*.ts'],
+  },
   router: {
     options: {
       scrollBehaviorType: 'smooth'

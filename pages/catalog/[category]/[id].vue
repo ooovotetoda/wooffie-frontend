@@ -1,11 +1,10 @@
 <script setup lang="ts">
+import type {Organization} from "~/types/Organization";
+import type {FavoritesList} from "~/types/Favorites";
+
 definePageMeta({
   breadcrumb: "Организация"
 })
-
-interface Favorites {
-  favorites: Array<Object>
-}
 
 const route = useRoute()
 const router = useRouter()
@@ -19,29 +18,34 @@ const institutionsCategories = ["clinic", "salon"]
 const category = computed(() => route.params.category as string)
 const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
-const { data, pending, error, refresh } = await useAsyncData(
+const { data: organization } = await useAsyncData(
     `organization:${route.params.id}`,
     async () => {
-      const response = await $fetch(`/api/${type.value}/${route.params.id}`, {
-        method: "GET",
-        baseURL: config.public.baseUrl
-      })
+      try {
+        const response: { organization: Organization } = await $fetch(`/api/${type.value}/${route.params.id}`, {
+          method: "GET",
+          baseURL: config.public.baseUrl
+        })
 
-      if (response?.organization) {
-        const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
-          method: 'GET',
-          baseURL: config.public.baseUrl,
-        });
+        if (response.organization) {
+          const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+            method: 'GET',
+            baseURL: config.public.baseUrl,
+          });
 
-        let isFavorite = false
-        if (favorites.favorites) {
-          isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === response.organization.id))
+          let isFavorite = false
+          if (favorites.favorites) {
+            isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === response.organization.id))
+          }
+
+          return {
+            ...response.organization,
+            isFavorite: isFavorite,
+          }
         }
-
-        return {
-          ...response?.organization,
-          isFavorite: isFavorite,
-        }
+      } catch (e) {
+        console.error(e)
+        return {}
       }
     }
 )
@@ -59,9 +63,9 @@ watch(() => route, () => {
 <template>
   <main class="main">
     <div class="container">
-      <OrganizationHeader :organization="data"/>
+      <OrganizationHeader :organization/>
       <OrganizationNav />
-      <OrganizationSections :organization="data"/>
+      <OrganizationSections :organization/>
     </div>
   </main>
 </template>

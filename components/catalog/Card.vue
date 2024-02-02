@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import {formatPhone, useUserStore} from "../../.nuxt/imports";
 import getDay from "~/utils/getDay";
+import type {Organization, Schedule} from '@/types/Organization';
 
-const props = defineProps({
-  organization: Object,
-  active: Boolean,
-  maxDescriptionLength: {
-    type: Number,
-    required: true
-  }
-})
+const props = defineProps<{
+  organization: Organization,
+  maxDescriptionLength: number
+}>()
 
 const config = useRuntimeConfig()
 const { user } = useUserStore()
@@ -18,28 +15,29 @@ const { cities } = useCityStore()
 const types = {
   "clinic": "Ветклиника",
   "salon": "Зоосалон",
-  "vet": props.organization?.profession,
-  "groomer": props.organization?.profession,
+  "vet": props.organization.profession,
+  "groomer": props.organization.profession,
 }
 
 const institutionsCategories = ["clinic", "salon"]
 
-const category = ref(props.organization?.type)
+const category = ref(props.organization.type)
 const type = ref(institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 
-const schedule = props.organization?.schedule.find((item: Object) => item.day_of_week === getDay())
-const startTime = schedule?.start_time ? schedule.start_time.slice(0, -3) : null;
+const schedule: Schedule | undefined = props.organization.schedule.find((schedule: Schedule) => schedule.day_of_week === getDay())
+const startTime = schedule?.start_time ? schedule?.start_time.slice(0, -3) : null;
 const endTime =  schedule?.end_time ? schedule?.end_time.slice(0, -3) : null;
 const time = (startTime && endTime) ? `${startTime} - ${endTime}` : "не работает"
-const addressList = props.organization?.addresses.length > 4 ? props.organization?.addresses.slice(1, 5) : props.organization?.addresses.slice(1)
 
-const isActive = ref(props.organization?.isFavorite)
+const addressList = props.organization.addresses.length > 4 ? props.organization.addresses.slice(1, 5) : props.organization.addresses.slice(1)
 
 const croppedText = computed(() => {
-  return props.organization?.about.length > props.maxDescriptionLength ?
-      `${props.organization?.about.substring(0, props.maxDescriptionLength)}...`
-      : props.organization?.about
+  return props.organization.about.length > props.maxDescriptionLength ?
+      `${props.organization.about.substring(0, props.maxDescriptionLength)}...`
+      : props.organization.about
 })
+
+const isActive = ref(props.organization.isFavorite)
 
 const toggleIsActive = async () => {
   const method = isActive.value ? "DELETE" : "POST"
@@ -50,7 +48,7 @@ const toggleIsActive = async () => {
       method: method,
       baseURL: config.public.baseUrl,
       body: {
-        organization_id: props.organization?.id,
+        organization_id: props.organization.id,
         type: type.value,
       },
       onResponse(context) {
@@ -277,7 +275,7 @@ const toggleIsActive = async () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    wiorganizationdth: 357px;
+    width: 357px;
     min-width: 357px;
     margin-left: auto;
     padding-left: 24px;
@@ -332,7 +330,7 @@ const toggleIsActive = async () => {
       gap: 8px;
       color: rgba(0, 0, 0, 0.87);
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, sans-serif;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
@@ -351,7 +349,7 @@ const toggleIsActive = async () => {
       align-items: center;
       color: rgba(0, 0, 0, 0.87);
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto;
+      font-family: Roboto, sans-serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;

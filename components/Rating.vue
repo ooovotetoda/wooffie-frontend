@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const props = defineProps({
-  rating: Number,
+  rating: {
+    default: false,
+    type: Number
+  },
   active: {
     default: false,
     type: Boolean

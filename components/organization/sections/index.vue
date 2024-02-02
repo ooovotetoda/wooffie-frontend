@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const props = defineProps({
-  organization: Object
-})
+import type { Organization } from '@/types/Organization';
 
+const props = defineProps<{
+  organization: Organization;
+}>()
 
 const route = useRoute()
-const category = route.params.category
 const section = ref(route.query.section)
 
 watch(() => route.query.section, (newSection) => {
@@ -14,7 +14,7 @@ watch(() => route.query.section, (newSection) => {
 </script>
 
 <template>
-  <OrganizationSectionsServices :services="organization?.services" v-if="section === 'services'"/>
+  <OrganizationSectionsServices :services="organization.services" v-if="section === 'services'"/>
   <OrganizationSectionsList v-if="section === 'clinic' || section === 'specialists'"/>
   <OrganizationSectionsGallery  v-if="section === 'gallery'"/>
   <OrganizationSectionsFeedback :organization="organization" v-if="section === 'feedback'"/>

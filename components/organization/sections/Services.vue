@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const props = defineProps({
-  services: Array<Object>
-})
+import type {Service} from "~/types/Organization";
+
+const props = defineProps<{
+  services: Service[]
+}>()
 
 </script>
 
