@@ -86,7 +86,7 @@ export const useUserStore = defineStore('user', () => {
         await navigateTo("/")
       } else {
         //TODO: wrong password alert
-        console.log("wrong password")
+        console.error("wrong password")
       }
     } catch (e) {
       console.error(e)
@@ -116,7 +116,7 @@ export const useUserStore = defineStore('user', () => {
 
         sessionStorage.clear()
       } else {
-        console.log(data.error)
+        console.error(data.error)
       }
     } catch (e) {
       console.error(e)

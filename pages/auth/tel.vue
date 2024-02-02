@@ -5,8 +5,6 @@ definePageMeta({
   layout: "authorization",
 })
 
-const route = useRoute()
-
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 

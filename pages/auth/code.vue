@@ -6,7 +6,6 @@ definePageMeta({
   layout: "authorization",
 })
 
-const config = useRuntimeConfig()
 const { signUp } = useUserStore()
 
 const phone = sessionStorage.getItem("phone")
