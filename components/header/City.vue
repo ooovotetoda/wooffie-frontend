@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core';
 import { useCityStore } from "~/stores/cityStore";
-import type {City} from "~/types/Organization";
+import type {City} from "~/types/organization";
 
 const cityStore = useCityStore()
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Service} from "~/types/Organization";
+import type {Service} from "~/types/organization";
 
 const props = defineProps<{
   services: Service[]

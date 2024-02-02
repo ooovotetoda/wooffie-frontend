@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {Organization} from "~/types/Organization";
-import type {FavoritesList} from "~/types/Favorites";
+import type {Organization} from "~/types/organization";
+import type {FavoritesList} from "~/types/favorites";
 
 definePageMeta({
   breadcrumb: "Организация"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {Ref} from "vue";
-import type {Organization} from "~/types/Organization";
-import type {Checks, Review, ReviewsData} from "~/types/Reviews";
+import type {Organization} from "~/types/organization";
+import type {Checks, Review, ReviewsData} from "~/types/reviews";
 
 const props = defineProps<{
   organization: Organization;

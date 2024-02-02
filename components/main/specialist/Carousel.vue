@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-import type {Organization} from "~/types/Organization";
+import type {Organization} from "~/types/organization";
 
 const config = useRuntimeConfig()
 

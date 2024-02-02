@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import getDay from "~/utils/getDay";
-import type {Organization, OrganizationList, Schedule} from "~/types/Organization";
+import type {Organization, OrganizationList, Schedule} from "~/types/organization";
 
 definePageMeta({
   layout: "main",

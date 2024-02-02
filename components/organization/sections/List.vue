@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {Organization, OrganizationList} from "~/types/Organization";
-import type {FavoritesList} from "~/types/Favorites";
+import type {Organization, OrganizationList} from "~/types/organization";
+import type {FavoritesList} from "~/types/favorites";
 
 const config = useRuntimeConfig()
 const route = useRoute()

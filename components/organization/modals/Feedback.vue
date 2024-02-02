@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { VueFinalModal } from 'vue-final-modal'
 import {$fetch} from "ofetch";
-import type {SendReviewBody} from "~/types/Reviews";
+import type {SendReviewBody} from "~/types/reviews";
 
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void

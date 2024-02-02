@@ -1,4 +1,4 @@
-import type {City} from "~/types/Organization";
+import type {City} from "~/types/organization";
 
 export const useCityStore = defineStore('city', () => {
     const cookieCity = useCookie("city")

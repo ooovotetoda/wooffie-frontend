@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {OrganizationSection} from "~/types/Organization";
+import type {OrganizationSection} from "~/types/organization";
 
 const route = useRoute()
 const router = useRouter()

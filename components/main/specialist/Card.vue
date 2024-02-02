@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import getYearWord from "../../../utils/getYearWord";
-import type {Organization} from "~/types/Organization";
+import type {Organization} from "~/types/organization";
 
 const props = defineProps<{
   specialist: Organization;

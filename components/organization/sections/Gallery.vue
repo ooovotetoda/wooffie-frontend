@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-import type {GalleryData, Photo} from "~/types/Gallery";
+import type {GalleryData, Photo} from "~/types/gallery";
 
 const config = useRuntimeConfig()
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Address, Schedule} from "~/types/Organization";
+import type {Address, Schedule} from "~/types/organization";
 
 const props = defineProps<{
   addresses: Address[],

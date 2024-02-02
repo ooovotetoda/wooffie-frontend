@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Breadcrumb} from "~/types/Breadcrumbs";
+import type {Breadcrumb} from "~/types/breadcrumbs";
 
 const props = defineProps<{
   breadcrumbs: Breadcrumb[],
