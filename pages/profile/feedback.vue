@@ -10,8 +10,8 @@ definePageMeta({
 const config = useRuntimeConfig()
 const { user } = useUserStore()
 
-const { data: reviews } = await useAsyncData<ProfileReview[]>(
-    `profile:favorites`,
+const { data: reviews, pending } = await useAsyncData<ProfileReview[]>(
+    `profile:feedback`,
     async () => {
       const response: ProfileReviews = await $fetch(`/api/reviews/${user.id}`, {
         method: "GET",
@@ -53,12 +53,38 @@ const { data: reviews } = await useAsyncData<ProfileReview[]>(
 
 <template>
   <section class="feedback">
-    <ProfileFeedbackCard  v-for="review in reviews" :review/>
+    <div v-if="pending" class="loader">
+      <Loader />
+    </div>
+    <div v-else-if="reviews?.length === 0" class="empty">
+      <Empty />
+    </div>
+    <ul v-else>
+      <li v-for="review in reviews" >
+        <ProfileFeedbackCard :review/>
+      </li>
+    </ul>
   </section>
 </template>
 
 <style scoped lang="scss">
 .feedback {
   width: 100%;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 128px 0 540px 0;
+  min-width: 100%;
+}
+
+.empty {
+  margin-bottom: 100px;
+}
+
+ul {
+  list-style-type: none;
 }
 </style>
