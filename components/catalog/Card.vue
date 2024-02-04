@@ -100,7 +100,6 @@ const toggleIsActive = async () => {
           <span>{{ formatPhone(organization.phone) }}</span>
         </div>
         <div class="card__address">
-
           <span class="card__address-main">
             <IconsLocation/>
             {{ organization.addresses[0].address }}
@@ -110,7 +109,6 @@ const toggleIsActive = async () => {
               <span class="card__address-point"></span>
               <span class="card__address-sub">{{ address.address }}</span>
             </li>
-
           </ul>
         </div>
       </div>
