@@ -1,16 +1,72 @@
 <script setup lang="ts">
+import {$fetch} from "ofetch";
+import type {Favorite, FavoritesList} from "~/types/favorites";
+
 definePageMeta({
   layout: "profile",
   breadcrumb: "Избранное",
 })
+
+const config = useRuntimeConfig()
+const { user } = useUserStore()
+
+const { data: favorites, pending } = await useAsyncData<Favorite[]>(
+    "profile:favorites",
+    async () => {
+      try {
+        const response: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+          method: "GET",
+          baseURL: config.public.baseUrl
+        })
+
+        return response.favorites ? response.favorites.map((fav: Favorite) => {
+          return {
+            ...fav,
+            isFavorite: true,
+          }
+        }) : []
+      } catch (e) {
+        console.log(e)
+        return []
+      }
+    }
+)
 </script>
 
 <template>
   <section class="favorite">
-    <ProfileList />
+    <div v-if="pending" class="loader">
+      <Loader />
+    </div>
+    <div v-else-if="favorites?.length === 0" class="empty">
+      <Empty />
+    </div>
+    <ul v-else>
+      <li v-for="(favorite, index) in favorites" :key="index">
+        <ProfileFavoriteCard :organization="favorite" :maxDescriptionLength="120"/>
+      </li>
+    </ul>
   </section>
 </template>
 
 <style scoped lang="scss">
+.favorite {
+  width: 100%;
+}
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 128px 0 540px 0;
+  min-width: 100%;
+}
+
+.empty {
+  margin-bottom: 100px;
+}
+
+ul {
+  list-style-type: none;
+}
 </style>
