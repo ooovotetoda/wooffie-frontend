@@ -1,5 +1,20 @@
 <script setup lang="ts">
-const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+import type {ProfileReview} from "~/types/reviews";
+import {convertDate, formatReviewPhone} from "../../../.nuxt/imports";
+
+const props = defineProps<{
+  review: ProfileReview
+}>()
+
+const { cities } = useCityStore()
+
+const types = {
+  "clinic": "Ветклиника",
+  "salon": "Зоосалон",
+  "vet": props.review.organization.profession,
+  "groomer": props.review.organization.profession,
+}
+
 </script>
 
 <template>
@@ -7,25 +22,26 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   <div class="card-specialist">
     <div class="card-specialist__block">
       <div class="card-specialist__media">
-        <img src="/images/veterinar-avatar.png" alt="specialist">
+        <img :src="review.organization.photo" alt="specialist">
       </div>
 
       <div class="card-specialist__info">
-        <h3 class="card-specialist__name">Иванов Иван Николаевич</h3>
+        <h3 class="card-specialist__name">{{ review.organization.name }}</h3>
         <div class="card-specialist__rating">
-          <span>Рейтинг 4.0</span>
-          <Rating :rating="4"/>
+          <span>Рейтинг {{ review.organization_rating.toFixed(1) }}</span>
+          <Rating :rating="Math.round(review.organization_rating)"/>
         </div>
         <div class="card-specialist__criteria">
-          <span class="card-specialist__type">Ветклиника</span>
-          <span class="card-specialist__schedule">Стаж 3 года</span>
-          <span class="card-specialist__city">Краснодар</span>
+          <span class="card-specialist__type">{{ types[review.organization.type] }}</span>
+          <span v-if="review.organization.round_clock" class="card-specialist__schedule">Круглосуточно</span>
+          <span v-else-if="review.organization.experience" class="card-specialist__schedule">{{ review.organization.experience }}</span>
+          <span class="card-specialist__city">{{ cities[review.organization.city] }}</span>
         </div>
       </div>
 
     </div>
 
-    <NuxtLink to="/catalog/vet/1">
+    <NuxtLink :to="`/catalog/${review.organization.type}/${review.organization.id}`">
       <button class="card-specialist__btn">Перейти</button>
     </NuxtLink>
 
@@ -38,17 +54,16 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
       </div>
 
       <div class="card-comment__info">
-        <div class="card-comment__tel">+7 988 32 XX XXX</div>
+        <div class="card-comment__tel">{{ formatReviewPhone(review.phone) }}</div>
         <div class="card-comment__status">Клиент</div>
       </div>
     </div>
 
     <div class="card-comment__rating">
-      <Rating :rating="4"/>
-      <span class="card-comment__date">13.10.2023</span>
+      <Rating :rating="review.rating"/>
+      <span class="card-comment__date">{{ convertDate(review.created_at) }}</span>
     </div>
-    <!--  TODO: вот тут подумать, нужно ли мне обрезать текст у карточки  -->
-    <p class="card-comment__copy">{{ text }}</p>
+    <p class="card-comment__copy">{{ review.review_text }}</p>
   </div>
 </div>
 </template>
@@ -58,7 +73,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
+  min-width: 100%;
   height: auto;
   padding: 32px;
   margin-bottom: 32px;
