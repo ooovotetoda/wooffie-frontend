@@ -65,15 +65,20 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  async function signIn(body: Object) {
+  async function signIn(body: Object): Promise<number> {
     const accessTokenCookie = useCookie('access_token');
     const refreshTokenCookie = useCookie('refresh_token');
+
+    let statusCode = 0;
 
     try {
       const data = await $fetch(`/api/user/login`, {
         method: "POST",
         baseURL: config.public.baseUrl,
-        body: body
+        body: body,
+        onResponse(context) {
+          statusCode = context.response.status
+        },
       })
       if (data.status === "OK") {
         accessTokenCookie.value = data.tokens.access_token;
@@ -91,6 +96,8 @@ export const useUserStore = defineStore('user', () => {
     } catch (e) {
       console.error(e)
     }
+
+    return statusCode
   }
 
   async function signUp(password: string | null,) {

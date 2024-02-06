@@ -11,6 +11,7 @@ const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 const password = ref<string | null>(null);
 const isPasswordValid = ref<boolean>(true);
+const isPasswordWrong = ref<boolean>(false);
 const body = computed(() => ({
   phone: phone.value,
   password: password.value
@@ -27,7 +28,11 @@ const handleSubmit = async () => {
     return
   }
 
-  await signIn(body.value)
+  const statusCode = await signIn(body.value)
+
+  if (statusCode === 401) {
+    isPasswordWrong.value = true
+  }
 }
 
 onMounted(async () => {
@@ -49,6 +54,8 @@ onMounted(async () => {
           @updatePassword="(p) => password = p"
           v-model:isPasswordValid="isPasswordValid"
       />
+
+      <p v-if="isPasswordWrong" class="error">Неверный логин или пароль</p>
 
       <NuxtLink to="/auth/tel">
         <div class="authorization-recovery-pass">
@@ -166,6 +173,17 @@ onMounted(async () => {
     font-weight: 400;
     line-height: 24px; /* 171.429% */
   }
+}
+
+.error {
+  text-align: left;
+  margin: -12px 0 10px 16px;
+  color: rgba(228, 0, 0, 0.87);
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
 }
 
 .fade-enter-active, .fade-leave-active {

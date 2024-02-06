@@ -109,7 +109,7 @@ const handleBlur = () => {
 
 .error {
   text-align: left;
-  margin: -12px 0 6px 16px;
+  margin: -12px 0 10px 16px;
   color: rgba(228, 0, 0, 0.87);
   font-family: Roboto, serif;
   font-size: 14px;
