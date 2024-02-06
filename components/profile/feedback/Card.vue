@@ -34,7 +34,7 @@ const types = {
         <div class="card-specialist__criteria">
           <span class="card-specialist__type">{{ types[review.organization.type] }}</span>
           <span v-if="review.organization.round_clock" class="card-specialist__schedule">Круглосуточно</span>
-          <span v-else-if="review.organization.experience" class="card-specialist__schedule">{{ review.organization.experience }}</span>
+          <span v-else-if="review.organization.experience" class="card-specialist__schedule">Стаж {{ review.organization.experience }} {{getYearWord(review.organization.experience)}}</span>
           <span class="card-specialist__city">{{ cities[review.organization.city] }}</span>
         </div>
       </div>
