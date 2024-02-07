@@ -1,12 +1,54 @@
 <script setup lang="ts">
-const props = defineProps({
-  title: {
-    required: true,
-    type: String
+import type {OrganizationType} from "~/types/organization";
+
+const props = defineProps<{
+  title: string,
+  service: OrganizationType,
+  image: string,
+}>()
+
+const info = {
+  clinic: {
+    services: [
+      { name: "Осмотр", count: 12},
+      { name: "Кардиограмма", count: 8},
+      { name: "Вакцинация", count: 10},
+      { name: "Рентген", count: 4},
+      { name: "УЗИ", count: 9},
+    ],
+    count: 8
   },
-  service: String,
-  image: String,
-})
+  salon: {
+    services: [
+      { name: "Вычёсывание", count: 14},
+      { name: "Стрижка", count: 5},
+      { name: "Купание", count: 9},
+      { name: "Вакцинация", count: 11},
+      { name: "SPA", count: 8},
+    ],
+    count: 6
+  },
+  vet: {
+    services: [
+      { name: "Терапия", count: 15},
+      { name: "Хирургия", count: 8},
+      { name: "Вакцинация", count: 10},
+      { name: "Анализы", count: 4},
+      { name: "Стоматология", count: 7},
+    ],
+    count: 12
+  },
+  groomer: {
+    services: [
+      { name: "Стрижка", count: 12},
+      { name: "Вычёсывание", count: 8},
+      { name: "Чистка", count: 10},
+      { name: "Стрижка когтей", count: 4},
+      { name: "Линька", count: 9},
+    ],
+    count: 5
+  },
+}
 </script>
 
 <template>
@@ -17,28 +59,12 @@ const props = defineProps({
     <div class="card-content">
       <div class="card-content-title">
         <span>{{ title }}</span>
-        <span>10</span>
+        <span>{{ info[service].count }}</span>
       </div>
 
-      <div class="card-content-option">
-        <span>Клиника</span>
-        <span>10</span>
-      </div>
-      <div class="card-content-option">
-        <span>Клиника</span>
-        <span>10</span>
-      </div>
-      <div class="card-content-option">
-        <span>Клиника</span>
-        <span>10</span>
-      </div>
-      <div class="card-content-option">
-        <span>Клиника</span>
-        <span>10</span>
-      </div>
-      <div class="card-content-option">
-        <span>Клиника</span>
-        <span>10</span>
+      <div v-for="item in info[service].services" class="card-content-option">
+        <span>{{ item.name }}</span>
+        <span>{{ item.count }}</span>
       </div>
 
       <NuxtLink :to="`/catalog/${service}`">
