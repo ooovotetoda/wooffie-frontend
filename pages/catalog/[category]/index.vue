@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import getDay from "~/utils/getDay";
 import type {Organization, OrganizationList, Schedule} from "~/types/organization";
+import type {Favorite, FavoritesList} from "~/types/favorites";
 
 definePageMeta({
   layout: "main",
@@ -10,10 +11,6 @@ definePageMeta({
 useSeoMeta({
   title: 'Wooffie • Каталог'
 })
-
-interface Favorites {
-  favorites: Array<Object>
-}
 
 const config = useRuntimeConfig()
 const route = useRoute()
@@ -86,24 +83,40 @@ const loadOrganizations = async () => {
     });
 
     if (response.list) {
-      const favorites: Favorites = await $fetch(`/api/user/${user.id}/favorites`, {
-        method: 'GET',
-        baseURL: config.public.baseUrl,
-      });
+      if (user.loggedIn) {
+        try {
+          const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+            method: 'GET',
+            baseURL: config.public.baseUrl,
+          });
 
-      const updatedOrganizations = response.list.map((org: Organization) => {
-        let isFavorite = false
-        if (favorites.favorites) {
-          isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
+          const updatedOrganizations = response.list.map((org: Organization) => {
+            let isFavorite = false
+            if (favorites.favorites) {
+              isFavorite = favorites.favorites.some((fav: Favorite) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
+            }
+
+            return {
+              ...org,
+              isFavorite: isFavorite,
+            }
+          });
+
+          appendOrganizations(updatedOrganizations);
+
+        } catch (e) {
+          console.error(e)
         }
-
+    } else {
+      const updatedOrganizations = response.list.map((org: Organization) => {
         return {
           ...org,
-          isFavorite: isFavorite,
+          isFavorite: false,
         }
       });
 
       appendOrganizations(updatedOrganizations);
+      }
     }
   } catch (e) {
     console.error(e)

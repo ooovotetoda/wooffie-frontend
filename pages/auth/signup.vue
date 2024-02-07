@@ -37,12 +37,6 @@ const handleSubmit = async () => {
     console.log("failed to send OTP code")
   }
 }
-
-onMounted(async () => {
-  if (user.loggedIn) {
-    await navigateTo("/")
-  }
-})
 </script>
 
 <template>

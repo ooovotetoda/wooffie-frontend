@@ -24,7 +24,7 @@ const { data: reviews, refresh } = await useAsyncData<Review[]>(
           method: "POST",
           baseURL: config.public.baseUrl,
           body: {
-            user_id: user.id,
+            user_id: user.id ? user.id : -1,
             organization_id: props.organization.id
           }
         })

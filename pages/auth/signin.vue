@@ -34,12 +34,6 @@ const handleSubmit = async () => {
     isPasswordWrong.value = true
   }
 }
-
-onMounted(async () => {
-  if (user.loggedIn) {
-    await navigateTo("/")
-  }
-})
 </script>
 
 <template>

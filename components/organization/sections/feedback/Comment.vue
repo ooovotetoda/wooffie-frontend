@@ -15,80 +15,88 @@ const isLiked = computed(() => props.review.user_reaction === true)
 const isDisliked = computed(() => props.review.user_reaction === false)
 
 const handleLike = async () => {
-  if (isLiked.value) {
-    try {
-      const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
-        method: "POST",
-        baseURL: config.public.baseUrl,
-        body: {
-          user_id: user.id,
-          review_id: props.review.id
-        }
-      })
+  if (user.loggedIn) {
+    if (isLiked.value) {
+      try {
+        const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
+          method: "POST",
+          baseURL: config.public.baseUrl,
+          body: {
+            user_id: user.id,
+            review_id: props.review.id
+          }
+        })
 
-      if (response.status === "OK") {
-        emit("react")
+        if (response.status === "OK") {
+          emit("react")
+        }
+      } catch (e) {
+        console.error(e)
       }
-    } catch (e) {
-      console.error(e)
+    } else {
+      try {
+        const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/react`, {
+          method: "POST",
+          baseURL: config.public.baseUrl,
+          body: {
+            user_id: user.id,
+            review_id: props.review.id,
+            reaction: true
+          }
+        })
+
+        if (response.status === "OK") {
+          emit("react")
+        }
+      } catch (e) {
+        console.error(e)
+      }
     }
   } else {
-    try {
-      const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/react`, {
-        method: "POST",
-        baseURL: config.public.baseUrl,
-        body: {
-          user_id: user.id,
-          review_id: props.review.id,
-          reaction: true
-        }
-      })
-
-      if (response.status === "OK") {
-        emit("react")
-      }
-    } catch (e) {
-      console.error(e)
-    }
+    await navigateTo("/auth/signin")
   }
 }
 
 const handleDislike = async () => {
-  if (isDisliked.value) {
-    try {
-      const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
-        method: "POST",
-        baseURL: config.public.baseUrl,
-        body: {
-          user_id: user.id,
-          review_id: props.review.id
-        }
-      })
+  if (user.loggedIn) {
+    if (isDisliked.value) {
+      try {
+        const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
+          method: "POST",
+          baseURL: config.public.baseUrl,
+          body: {
+            user_id: user.id,
+            review_id: props.review.id
+          }
+        })
 
-      if (response.status === "OK") {
-        emit("react")
+        if (response.status === "OK") {
+          emit("react")
+        }
+      } catch (e) {
+        console.error(e)
       }
-    } catch (e) {
-      console.error(e)
+    } else {
+      try {
+        const response: {status: "OK" | "error"}  = await $fetch(`/api/reviews/react`, {
+          method: "POST",
+          baseURL: config.public.baseUrl,
+          body: {
+            user_id: user.id,
+            review_id: props.review.id,
+            reaction: false
+          }
+        })
+
+        if (response.status === "OK") {
+          emit("react")
+        }
+      } catch (e) {
+        console.error(e)
+      }
     }
   } else {
-    try {
-      const response: {status: "OK" | "error"}  = await $fetch(`/api/reviews/react`, {
-        method: "POST",
-        baseURL: config.public.baseUrl,
-        body: {
-          user_id: user.id,
-          review_id: props.review.id,
-          reaction: false
-        }
-      })
-
-      if (response.status === "OK") {
-        emit("react")
-      }
-    } catch (e) {
-      console.error(e)
-    }
+    await navigateTo("/auth/signin")
   }
 }
 </script>

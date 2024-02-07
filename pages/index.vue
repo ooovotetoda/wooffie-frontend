@@ -14,7 +14,7 @@ useSeoMeta({
     <div class="container">
       <div class="poster">
         <h1 class="poster-title">wooffie</h1>
-        <p class="poster-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        <p class="poster-description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять!</p>
       </div>
       <Search/>
     </div>

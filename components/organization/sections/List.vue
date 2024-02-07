@@ -21,28 +21,37 @@ const { data: organizations } = await useAsyncData<Organization[]>(
         })
 
         if (response.list) {
-          const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
-            method: 'GET',
-            baseURL: config.public.baseUrl,
-          });
+          if (user.loggedIn) {
+            const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+              method: 'GET',
+              baseURL: config.public.baseUrl,
+            });
 
-          return response.list.map((org: Organization) => {
-            let isFavorite = false
+            return response.list.map((org: Organization) => {
+              let isFavorite = false
 
-            if (favorites.favorites) {
-              isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
-            }
+              if (favorites.favorites) {
+                isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === org.id))
+              }
 
-            return {
-              ...org,
-              isFavorite: isFavorite,
-            }
-          })
+              return {
+                ...org,
+                isFavorite: isFavorite,
+              }
+            })
+          } else {
+            return response.list.map((org: Organization) => {
+              return {
+                ...org,
+                isFavorite: false,
+              }
+            })
+          }
         } else {
           return []
         }
       } catch (e) {
-        console.log(e)
+        console.error(e)
         return []
       }
     }

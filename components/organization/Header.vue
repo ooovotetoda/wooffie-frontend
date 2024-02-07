@@ -37,25 +37,30 @@ const toggleIsActive = async () => {
   const method = isActive.value ? "DELETE" : "POST"
   let statusCode = 0;
 
-  try {
-    await $fetch(`/api/user/${user.id}/favorites`, {
-      method: method,
-      baseURL: config.public.baseUrl,
-      body: {
-        organization_id: props.organization.id,
-        type: type.value,
-      },
-      onResponse(context) {
-        statusCode = context.response.status
-      },
-    })
+  if (user.loggedIn) {
+    try {
+      await $fetch(`/api/user/${user.id}/favorites`, {
+        method: method,
+        baseURL: config.public.baseUrl,
+        body: {
+          organization_id: props.organization.id,
+          type: type.value,
+        },
+        onResponse(context) {
+          statusCode = context.response.status
+        },
+      })
 
-    if (statusCode === 200) {
-      isActive.value = !isActive.value
+      if (statusCode === 200) {
+        isActive.value = !isActive.value
+      }
+    } catch (e) {
+      console.error(e)
     }
-  } catch (e) {
-    console.log(e)
+  } else {
+    await navigateTo("/auth/signin")
   }
+
 }
 
 const handleContact = async () => {

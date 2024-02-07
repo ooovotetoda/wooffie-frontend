@@ -28,20 +28,28 @@ const { data: organization } = await useAsyncData(
         })
 
         if (response.organization) {
-          const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
-            method: 'GET',
-            baseURL: config.public.baseUrl,
-          });
+          if (user.loggedIn) {
+            const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+              method: 'GET',
+              baseURL: config.public.baseUrl,
+            });
 
-          let isFavorite = false
-          if (favorites.favorites) {
-            isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === response.organization.id))
+            let isFavorite = false
+            if (favorites.favorites) {
+              isFavorite = favorites.favorites.some((fav: any) => (fav.favorite_type === type.value.slice(0, -1) && fav.id === response.organization.id))
+            }
+
+            return {
+              ...response.organization,
+              isFavorite: isFavorite,
+            }
+          } else {
+            return {
+              ...response.organization,
+              isFavorite: false,
+            }
           }
 
-          return {
-            ...response.organization,
-            isFavorite: isFavorite,
-          }
         }
       } catch (e) {
         console.error(e)
