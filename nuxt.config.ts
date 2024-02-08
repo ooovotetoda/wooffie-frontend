@@ -3,19 +3,19 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true }
   },
-  css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
-  imports: {
-    dirs: ['types/*.ts', 'stores/*.ts'],
-  },
   router: {
     options: {
       scrollBehaviorType: 'smooth'
     }
   },
   runtimeConfig: {
-    apiUser: 'myuser',
-    apiPassword: 'mypassword',
-    baseURL: 'http://localhost:8080'
+    public: {
+      baseURL: 'http://localhost:8080',
+    },
+  },
+  css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
+  imports: {
+    dirs: ['types/*.ts', 'stores/*.ts'],
   },
   vite: {
     css: {
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
-    'vue3-carousel-nuxt',
+    'vue3-carousel-nuxt'
   ],
   devtools: { enabled: true },
 })
