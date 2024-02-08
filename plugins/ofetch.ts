@@ -16,9 +16,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
     })
 
-    // You can also just do this instead of returning
-    // nuxtApp.provide('ofetch', instance)
-
     return {
         provide: {
             ofetch: instance
