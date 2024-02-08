@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {$fetch} from "ofetch";
 import type {ProfileReview, ProfileReviewData, ProfileReviews} from "~/types/reviews";
 
 definePageMeta({
@@ -7,15 +6,14 @@ definePageMeta({
   breadcrumb: "Мои отзывы"
 })
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
 const { user } = useUserStore()
 
 const { data: reviews, pending } = await useAsyncData<ProfileReview[]>(
     `profile:feedback`,
     async () => {
-      const response: ProfileReviews = await $fetch(`/api/reviews/${user.id}`, {
+      const response: ProfileReviews = await $ofetch(`/api/reviews/${user.id}`, {
         method: "GET",
-        baseURL: config.public.baseUrl
       })
 
       const specialists = response.reviews_specialists ? response.reviews_specialists.map((review: ProfileReviewData): ProfileReview => {

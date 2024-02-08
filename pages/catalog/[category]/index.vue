@@ -12,7 +12,8 @@ useSeoMeta({
   title: 'Wooffie • Каталог'
 })
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
+
 const route = useRoute()
 const cityStore = useCityStore()
 const catalogFilters = useCatalogFiltersStore()
@@ -73,9 +74,8 @@ const loadOrganizations = async () => {
   pending.value = true;
 
   try {
-    const response: OrganizationList = await $fetch(`/api/${type.value}`, {
+    const response: OrganizationList = await $ofetch(`/api/${type.value}`, {
       method: 'GET',
-      baseURL: config.public.baseUrl,
       query: {
         limit: 20,
         offset: 20 * page.value,
@@ -85,9 +85,8 @@ const loadOrganizations = async () => {
     if (response.list) {
       if (user.loggedIn) {
         try {
-          const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+          const favorites: FavoritesList = await $ofetch(`/api/user/${user.id}/favorites`, {
             method: 'GET',
-            baseURL: config.public.baseUrl,
           });
 
           const updatedOrganizations = response.list.map((org: Organization) => {

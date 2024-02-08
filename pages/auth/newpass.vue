@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import {$fetch} from "ofetch";
-
 definePageMeta({
   layout: "authorization",
 })
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
 
 const password = ref<string | null>(null);
 const isPasswordValid = ref<boolean>(true);
@@ -18,14 +16,13 @@ const handleSubmit = async () => {
   let statusCode = 0;
 
   try {
-    await $fetch(`/api/user/password`, {
+    await $ofetch(`/api/user/password`, {
       method: "POST",
-      baseURL: config.public.baseUrl,
       credentials: "include",
       body: {
         password: password.value,
       },
-      onResponse(context) {
+      onResponse(context: FetchContext) {
         statusCode = context.response.status
       },
     })

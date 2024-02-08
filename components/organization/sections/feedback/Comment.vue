@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const emit = defineEmits(["react"])
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
 const { user } = useUserStore()
 
 const isLiked = computed(() => props.review.user_reaction === true)
@@ -18,9 +18,8 @@ const handleLike = async () => {
   if (user.loggedIn) {
     if (isLiked.value) {
       try {
-        const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
+        const response: {status: "OK" | "error"} = await $ofetch(`/api/reviews/unreact`, {
           method: "POST",
-          baseURL: config.public.baseUrl,
           body: {
             user_id: user.id,
             review_id: props.review.id
@@ -35,9 +34,8 @@ const handleLike = async () => {
       }
     } else {
       try {
-        const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/react`, {
+        const response: {status: "OK" | "error"} = await $ofetch(`/api/reviews/react`, {
           method: "POST",
-          baseURL: config.public.baseUrl,
           body: {
             user_id: user.id,
             review_id: props.review.id,
@@ -61,9 +59,8 @@ const handleDislike = async () => {
   if (user.loggedIn) {
     if (isDisliked.value) {
       try {
-        const response: {status: "OK" | "error"} = await $fetch(`/api/reviews/unreact`, {
+        const response: {status: "OK" | "error"} = await $ofetch(`/api/reviews/unreact`, {
           method: "POST",
-          baseURL: config.public.baseUrl,
           body: {
             user_id: user.id,
             review_id: props.review.id
@@ -78,9 +75,8 @@ const handleDislike = async () => {
       }
     } else {
       try {
-        const response: {status: "OK" | "error"}  = await $fetch(`/api/reviews/react`, {
+        const response: {status: "OK" | "error"}  = await $ofetch(`/api/reviews/react`, {
           method: "POST",
-          baseURL: config.public.baseUrl,
           body: {
             user_id: user.id,
             review_id: props.review.id,

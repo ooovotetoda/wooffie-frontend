@@ -1,19 +1,16 @@
-import {$fetch} from "ofetch";
-
 export default async function (code: string) {
-    const config = useRuntimeConfig()
+    const { $ofetch } = useNuxtApp()
 
     try {
         let statusCode = 0;
 
-        const response = await $fetch(`/api/otp/validate`, {
+        const response = await $ofetch(`/api/otp/validate`, {
             method: "POST",
-            baseURL: config.public.baseUrl,
             credentials: "include",
             body: {
                 code: code
             },
-            onResponse(context) {
+            onResponse(context: FetchContext) {
                 statusCode = context.response.status
             },
         })

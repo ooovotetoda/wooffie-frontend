@@ -1,7 +1,5 @@
-import {$fetch} from "ofetch";
-
 export const useUserStore = defineStore('user', () => {
-  const config = useRuntimeConfig()
+  const { $ofetch } = useNuxtApp()
 
   const user = {
     loggedIn: ref<boolean>(false),
@@ -16,13 +14,12 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
     if (accessTokenCookie.value && refreshTokenCookie.value) {
       try {
-        const data = await $fetch(`/api/user/verify`, {
+        const data = await $ofetch(`/api/user/verify`, {
           method: "GET",
-          baseURL: config.public.baseUrl,
           headers: {
             'Authorization': accessTokenCookie.value
           },
-          onResponse(context) {
+          onResponse(context: FetchContext) {
             statusCode = context.response.status
           },
         })
@@ -35,16 +32,15 @@ export const useUserStore = defineStore('user', () => {
       } catch (e) {
         if (statusCode === 401) {
           try {
-            const data = await $fetch(`/api/user/refresh`, {
+            const data = await $ofetch(`/api/user/refresh`, {
               method: "POST",
-              baseURL: config.public.baseUrl,
               headers: {
                 'Authorization': accessTokenCookie.value
               },
               body: {
                 "refresh_token": refreshTokenCookie.value
               },
-              onResponse(context) {
+              onResponse(context: FetchContext) {
                 statusCode = context.response.status
               },
             })
@@ -72,11 +68,10 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
 
     try {
-      const data = await $fetch(`/api/user/login`, {
+      const data = await $ofetch(`/api/user/login`, {
         method: "POST",
-        baseURL: config.public.baseUrl,
         body: body,
-        onResponse(context) {
+        onResponse(context: FetchContext) {
           statusCode = context.response.status
         },
       })
@@ -105,9 +100,8 @@ export const useUserStore = defineStore('user', () => {
     const refreshTokenCookie = useCookie('refresh_token');
 
     try {
-      const data = await $fetch(`/api/user/register`, {
+      const data = await $ofetch(`/api/user/register`, {
         method: "POST",
-        baseURL: config.public.baseUrl,
         credentials: "include",
         body: {
           password: password,

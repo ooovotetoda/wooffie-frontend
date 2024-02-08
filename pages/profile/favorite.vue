@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {$fetch} from "ofetch";
 import type {Favorite, FavoritesList} from "~/types/favorites";
 
 definePageMeta({
@@ -7,16 +6,16 @@ definePageMeta({
   breadcrumb: "Избранное",
 })
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
+
 const { user } = useUserStore()
 
 const { data: favorites, pending } = await useAsyncData<Favorite[]>(
     "profile:favorites",
     async () => {
       try {
-        const response: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+        const response: FavoritesList = await $ofetch(`/api/user/${user.id}/favorites`, {
           method: "GET",
-          baseURL: config.public.baseUrl
         })
 
         return response.favorites ? response.favorites.map((fav: Favorite) => {

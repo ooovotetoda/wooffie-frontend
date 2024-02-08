@@ -2,7 +2,7 @@
 import type {Organization, OrganizationList} from "~/types/organization";
 import type {FavoritesList} from "~/types/favorites";
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
@@ -15,16 +15,14 @@ const { data: organizations } = await useAsyncData<Organization[]>(
     `organizations:${type.value}:${route.params.id}`,
     async () => {
       try {
-        const response: OrganizationList = await $fetch(`/api/${type.value}/${route.params.id}/connected`, {
+        const response: OrganizationList = await $ofetch(`/api/${type.value}/${route.params.id}/connected`, {
           method: "GET",
-          baseURL: config.public.baseUrl
         })
 
         if (response.list) {
           if (user.loggedIn) {
-            const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+            const favorites: FavoritesList = await $ofetch(`/api/user/${user.id}/favorites`, {
               method: 'GET',
-              baseURL: config.public.baseUrl,
             });
 
             return response.list.map((org: Organization) => {

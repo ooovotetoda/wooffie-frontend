@@ -3,15 +3,14 @@ import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import type {Organization} from "~/types/organization";
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
 
 const { data: specialists } = await useAsyncData<Organization[]>(
     "main:specialists",
     async () => {
       try {
-        const response: { specialists: Organization[] } = await $fetch("api/specialists/top", {
+        const response: { specialists: Organization[] } = await $ofetch("api/specialists/top", {
           method: "GET",
-          baseURL: config.public.baseUrl,
           query: {
             limit: 5
           }
@@ -23,8 +22,6 @@ const { data: specialists } = await useAsyncData<Organization[]>(
         return []
       }
     }
-
-
 )
 </script>
 

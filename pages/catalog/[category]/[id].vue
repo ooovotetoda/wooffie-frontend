@@ -6,9 +6,10 @@ definePageMeta({
   breadcrumb: "Организация"
 })
 
+const { $ofetch } = useNuxtApp()
+
 const route = useRoute()
 const router = useRouter()
-const config = useRuntimeConfig()
 const { user } = useUserStore()
 
 const sections: string[] = ['services', 'clinic', 'specialist', 'gallery', 'feedback']
@@ -22,16 +23,14 @@ const { data: organization } = await useAsyncData(
     `organization:${route.params.id}`,
     async () => {
       try {
-        const response: { organization: Organization } = await $fetch(`/api/${type.value}/${route.params.id}`, {
+        const response: { organization: Organization } = await $ofetch(`/api/${type.value}/${route.params.id}`, {
           method: "GET",
-          baseURL: config.public.baseUrl
         })
 
         if (response.organization) {
           if (user.loggedIn) {
-            const favorites: FavoritesList = await $fetch(`/api/user/${user.id}/favorites`, {
+            const favorites: FavoritesList = await $ofetch(`/api/user/${user.id}/favorites`, {
               method: 'GET',
-              baseURL: config.public.baseUrl,
             });
 
             let isFavorite = false

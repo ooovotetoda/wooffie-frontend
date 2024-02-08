@@ -8,7 +8,8 @@ const props = defineProps<{
   maxDescriptionLength: number
 }>()
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
+
 const { user } = useUserStore()
 const { cities } = useCityStore()
 
@@ -45,14 +46,13 @@ const toggleIsActive = async () => {
 
   if (user.loggedIn) {
     try {
-      await $fetch(`/api/user/${user.id}/favorites`, {
+      await $ofetch(`/api/user/${user.id}/favorites`, {
         method: method,
-        baseURL: config.public.baseUrl,
         body: {
           organization_id: props.organization.id,
           type: type.value,
         },
-        onResponse(context) {
+        onResponse(context: FetchContext) {
           statusCode = context.response.status
         },
       })

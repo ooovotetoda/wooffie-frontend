@@ -1,19 +1,16 @@
-import {$fetch} from "ofetch";
-
 export default async function (phone: string) {
-    const config = useRuntimeConfig()
+    const { $ofetch } = useNuxtApp()
 
     try {
         let statusCode = 0;
 
-        const response = await $fetch(`/api/otp/send`, {
+        const response = await $ofetch(`/api/otp/send`, {
             method: "POST",
-            baseURL: config.public.baseUrl,
             credentials: "include",
             body: {
                 phone: phone
             },
-            onResponse(context) {
+            onResponse(context: FetchContext) {
                 statusCode = context.response.status
             },
         })

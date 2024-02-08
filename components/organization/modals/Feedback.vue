@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { VueFinalModal } from 'vue-final-modal'
-import {$fetch} from "ofetch";
 import type {SendReviewBody} from "~/types/reviews";
 
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
 
+const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 const router = useRouter()
-const config = useRuntimeConfig()
 const { user } = useUserStore()
 
 const institutionsCategories = ["clinic", "salon"]
@@ -44,9 +43,8 @@ const submitReview = async () => {
     return
   }
   try {
-    const response = await $fetch("/api/reviews", {
+    const response = await $ofetch("/api/reviews", {
       method: "POST",
-      baseURL: config.public.baseUrl,
       body: body.value
     })
 

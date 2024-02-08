@@ -7,8 +7,9 @@ const props = defineProps<{
   organization: Organization;
 }>()
 
+const { $ofetch } = useNuxtApp()
+
 const route = useRoute()
-const config = useRuntimeConfig()
 const { user } = useUserStore()
 
 const institutionsCategories = ["clinic", "salon"]
@@ -20,9 +21,8 @@ const { data: reviews, refresh } = await useAsyncData<Review[]>(
     `reviews:${type.value}:${route.params.id}`,
     async () => {
       try {
-        const response: ReviewsData = await $fetch(`/api/reviews/${type.value}`, {
+        const response: ReviewsData = await $ofetch(`/api/reviews/${type.value}`, {
           method: "POST",
-          baseURL: config.public.baseUrl,
           body: {
             user_id: user.id ? user.id : -1,
             organization_id: props.organization.id

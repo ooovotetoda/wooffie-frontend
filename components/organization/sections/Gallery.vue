@@ -3,7 +3,7 @@
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import type {GalleryData, Photo} from "~/types/gallery";
 
-const config = useRuntimeConfig()
+const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 
@@ -11,9 +11,8 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,
     async () => {
       try {
-        const response: GalleryData = await $fetch(`/api/institutions/${route.params.id}/gallery`, {
+        const response: GalleryData = await $ofetch(`/api/institutions/${route.params.id}/gallery`, {
           method: "GET",
-          baseURL: config.public.baseUrl
         })
 
         return response.gallery
