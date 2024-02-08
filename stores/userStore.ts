@@ -1,5 +1,5 @@
 export const useUserStore = defineStore('user', () => {
-  const { $ofetch } = useNuxtApp()
+  const nuxtApp = useNuxtApp();
 
   const user = {
     loggedIn: ref<boolean>(false),
@@ -14,7 +14,7 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
     if (accessTokenCookie.value && refreshTokenCookie.value) {
       try {
-        const data = await $ofetch(`/api/user/verify`, {
+        const data = await nuxtApp.$ofetch(`/api/user/verify`, {
           method: "GET",
           headers: {
             'Authorization': accessTokenCookie.value
@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', () => {
       } catch (e) {
         if (statusCode === 401) {
           try {
-            const data = await $ofetch(`/api/user/refresh`, {
+            const data = await nuxtApp.$ofetch(`/api/user/refresh`, {
               method: "POST",
               headers: {
                 'Authorization': accessTokenCookie.value
@@ -68,7 +68,7 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
 
     try {
-      const data = await $ofetch(`/api/user/login`, {
+      const data = await nuxtApp.$ofetch(`/api/user/login`, {
         method: "POST",
         body: body,
         onResponse(context: FetchContext) {
@@ -100,7 +100,7 @@ export const useUserStore = defineStore('user', () => {
     const refreshTokenCookie = useCookie('refresh_token');
 
     try {
-      const data = await $ofetch(`/api/user/register`, {
+      const data = await nuxtApp.$ofetch(`/api/user/register`, {
         method: "POST",
         credentials: "include",
         body: {
