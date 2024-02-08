@@ -13,9 +13,9 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    public: {
-      baseUrl: 'http://localhost:8080'
-    }
+    apiUser: 'myuser',
+    apiPassword: 'mypassword',
+    baseURL: 'http://localhost:8080'
   },
   vite: {
     css: {

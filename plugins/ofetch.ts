@@ -3,13 +3,10 @@ import {ofetch} from "ofetch";
 export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig()
 
-    const username = 'myuser';
-    const password = 'mypass';
-
-    const encodedCredentials = btoa(`${username}:${password}`);
+    const encodedCredentials = btoa(`${config.apiUser}:${config.apiPassword}`);
 
     const instance = ofetch.create({
-        baseURL: config.public.baseUrl ?? "http://localhost:8080",
+        baseURL: config.baseURL ?? "http://localhost:8080",
         headers: {
             Accept: 'application/json',
             Authorization: `Basic ${encodedCredentials}`,
