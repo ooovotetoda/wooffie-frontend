@@ -1,0 +1,15 @@
+version: "3"
+
+volumes:
+  node_modules:
+services:
+  wooffie-frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: ooovotetoda/wooffie-frontend:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/src
+      - node_modules:/src/node_modules
