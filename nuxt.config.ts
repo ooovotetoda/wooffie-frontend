@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: 'http://localhost:8080',
+      baseURL: 'https://2546693-yo82697.twc1.net',
     },
   },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
