@@ -8,30 +8,32 @@ const phone = formatPhone(user.phoneNumber)
 
 <template>
   <header class="header">
-    <div class="container">
-      <div class="wrapper">
-        <div class="header__left">
-          <NuxtLink to="/">
-            <div class="header-logo">
-              <img src="/images/wooffie-logo__main-color.svg" alt="logo">
-            </div>
-          </NuxtLink>
-
-          <HeaderCity />
-        </div>
-        <div class="header__right">
-          <div v-if="user.loggedIn" class="header__user">
-            <span>{{ phone }}</span>
-            <NuxtLink to="/profile">
-              <div class="header__profile">
-                <img src="/images/user-icon.svg" alt="profile">
+    <div class="header-wrapper">
+      <div class="container">
+        <div class="wrapper">
+          <div class="header__left">
+            <NuxtLink to="/">
+              <div class="header-logo">
+                <img src="/images/wooffie-logo__main-color.svg" alt="logo">
               </div>
             </NuxtLink>
-          </div>
 
-          <NuxtLink v-else to="/auth/signin">
-            <button class="header-login">Вход</button>
-          </NuxtLink>
+            <HeaderCity />
+          </div>
+          <div class="header__right">
+            <div v-if="user.loggedIn" class="header__user">
+              <span>{{ phone }}</span>
+              <NuxtLink to="/profile">
+                <div class="header__profile">
+                  <img src="/images/user-icon.svg" alt="profile">
+                </div>
+              </NuxtLink>
+            </div>
+
+            <NuxtLink v-else to="/auth/signin">
+              <button class="header-login">Вход</button>
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -40,14 +42,20 @@ const phone = formatPhone(user.phoneNumber)
 
 <style scoped lang="scss">
 .header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 20px 0;
-  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
-  background: #FFF;
-  z-index: 20;
+  position: relative;
+  height: 92px;
+
+  &-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 0;
+    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+    background: #FFF;
+    z-index: 20;
+  }
+
 
   &__left {
     display: flex;

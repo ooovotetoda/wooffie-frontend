@@ -7,11 +7,16 @@ const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 
+const category = computed(() => route.params.category as string)
+
+const institutionsCategories = ["clinic", "salon"]
+const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+
 const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,
     async () => {
       try {
-        const response: GalleryData = await $ofetch(`/api/institutions/${route.params.id}/gallery`, {
+        const response: GalleryData = await $ofetch(`/api/${type}/${route.params.id}/gallery`, {
           method: "GET",
         })
 
