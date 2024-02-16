@@ -7,7 +7,7 @@
     <div class="container">
       <div class="wrapper">
         <div class="footer-logo">
-          <img src="/images/wooffie-logo__white.svg" alt="logo">
+          <NuxtImg src="/images/wooffie-logo__white.svg" alt="logo"/>
         </div>
 
         <div class="footer-nav">

@@ -14,7 +14,7 @@ const phone = formatPhone(user.phoneNumber)
           <div class="header__left">
             <NuxtLink to="/">
               <div class="header-logo">
-                <img src="/images/wooffie-logo__main-color.svg" alt="logo">
+                <NuxtImg src="/images/wooffie-logo__main-color.svg" alt="logo"/>
               </div>
             </NuxtLink>
 
@@ -25,7 +25,7 @@ const phone = formatPhone(user.phoneNumber)
               <span>{{ phone }}</span>
               <NuxtLink to="/profile">
                 <div class="header__profile">
-                  <img src="/images/user-icon.svg" alt="profile">
+                  <NuxtImg src="/images/user-icon.svg" alt="profile"/>
                 </div>
               </NuxtLink>
             </div>
