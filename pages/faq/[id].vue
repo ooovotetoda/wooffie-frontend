@@ -36,7 +36,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
     align-items: center;
     justify-content: center;
     margin-bottom: 60px;
-    background: url("/images/faq-bg.png") no-repeat center;
+    background: url("/images/faq-bg.webp") no-repeat center;
     background-size: cover;
 
     &:before {

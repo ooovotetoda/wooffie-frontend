@@ -21,7 +21,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: url("public/images/authorization-bg.png") no-repeat center;
+  background: url("public/images/authorization-bg.webp") no-repeat center;
   background-size: cover;
 
   &:before {

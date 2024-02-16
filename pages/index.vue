@@ -25,12 +25,12 @@ useSeoMeta({
       <div class="wrapper">
         <h2 class="services-title">Наши услуги</h2>
         <div class="services-row">
-          <MainServiceCard title="Клиники" service="clinic" image="images/card-clinic.png"/>
-          <MainServiceCard title="Ветеринары" service="vet" image="images/card-vet.png"/>
+          <MainServiceCard title="Клиники" service="clinic" image="images/card-clinic.webp"/>
+          <MainServiceCard title="Ветеринары" service="vet" image="images/card-vet.webp"/>
         </div>
         <div class="services-row">
-          <MainServiceCard title="Грумеры" service="groomer" image="images/card-groomer.png"/>
-          <MainServiceCard title="Зоосалоны" service="salon" image="images/card-salon.png"/>
+          <MainServiceCard title="Грумеры" service="groomer" image="images/card-groomer.webp"/>
+          <MainServiceCard title="Зоосалоны" service="salon" image="images/card-salon.webp"/>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@ useSeoMeta({
           </p>
         </div>
         <div class="about-image">
-          <img src="/images/about-animals.png" alt="animals">
+          <img src="/images/about-animals.webp" alt="animals">
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@ useSeoMeta({
   flex-direction: column;
   gap: 32px;
   text-align: center;
-  background: url("/images/main-header-bg.png") no-repeat center;
+  background: url("/images/main-header-bg.webp") no-repeat center;
   background-size: cover;
 
   &-title {
