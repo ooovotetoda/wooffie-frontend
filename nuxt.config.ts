@@ -10,7 +10,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: 'https://2546693-yo82697.twc1.net',
+      baseURL: 'https://2554131-yo82697.twc1.net',
+      // baseURL: 'http://localhost:8080',
     },
   },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
@@ -32,7 +33,13 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
+    '@nuxt/image',
     'vue3-carousel-nuxt'
+  ],
+  plugins: [
+    '~/plugins/ofetch.ts',
+    '~/plugins/vfm.ts',
+    '~/plugins/access.ts',
   ],
   devtools: { enabled: true },
 })

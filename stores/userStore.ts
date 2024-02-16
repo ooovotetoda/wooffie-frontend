@@ -1,5 +1,5 @@
 export const useUserStore = defineStore('user', () => {
-  const nuxtApp = useNuxtApp();
+  const { $ofetch } = useNuxtApp();
 
   const user = {
     loggedIn: ref<boolean>(false),
@@ -14,10 +14,10 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
     if (accessTokenCookie.value && refreshTokenCookie.value) {
       try {
-        const data = await nuxtApp.$ofetch(`/api/user/verify`, {
-          method: "GET",
-          headers: {
-            'Authorization': accessTokenCookie.value
+        const data = await $ofetch(`/api/session/verify`, {
+          method: "POST",
+          body: {
+            "access_token": accessTokenCookie.value
           },
           onResponse(context: FetchContext) {
             statusCode = context.response.status
@@ -32,11 +32,8 @@ export const useUserStore = defineStore('user', () => {
       } catch (e) {
         if (statusCode === 401) {
           try {
-            const data = await nuxtApp.$ofetch(`/api/user/refresh`, {
+            const data = await $ofetch(`/api/session/refresh`, {
               method: "POST",
-              headers: {
-                'Authorization': accessTokenCookie.value
-              },
               body: {
                 "refresh_token": refreshTokenCookie.value
               },
@@ -56,6 +53,8 @@ export const useUserStore = defineStore('user', () => {
           } catch (e) {
             console.error(e)
           }
+        } else {
+          console.error(e)
         }
       }
     }
@@ -68,7 +67,7 @@ export const useUserStore = defineStore('user', () => {
     let statusCode = 0;
 
     try {
-      const data = await nuxtApp.$ofetch(`/api/user/login`, {
+      const data = await $ofetch(`/api/user/login`, {
         method: "POST",
         body: body,
         onResponse(context: FetchContext) {
@@ -100,7 +99,7 @@ export const useUserStore = defineStore('user', () => {
     const refreshTokenCookie = useCookie('refresh_token');
 
     try {
-      const data = await nuxtApp.$ofetch(`/api/user/register`, {
+      const data = await $ofetch(`/api/user/register`, {
         method: "POST",
         credentials: "include",
         body: {
