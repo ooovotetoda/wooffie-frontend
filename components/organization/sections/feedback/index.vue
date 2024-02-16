@@ -83,7 +83,7 @@ const handleOld = () => {
   <div class="feedback__header">
     <div class="feedback__info">
       <h3 class="feedback__title">
-        Отзывы о ветклинике «{{ organization.name }}» <span>({{ reviews && (reviews.length > 0 ?? 0)}})</span>
+        Отзывы о ветклинике «{{ organization.name }}» <span>({{ reviews ? reviews.length : 0}})</span>
       </h3>
 
       <div class="feedback__rating">

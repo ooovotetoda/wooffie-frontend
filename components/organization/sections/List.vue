@@ -58,7 +58,7 @@ const { data: organizations } = await useAsyncData<Organization[]>(
 </script>
 
 <template>
-  <Empty v-if="!organizations" :margin="100"/>
+  <Empty v-if="organizations?.length === 0" :margin="100"/>
 
   <ul ref="listRef">
     <li v-for="(item, index) in organizations" :key="index">

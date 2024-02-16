@@ -37,7 +37,7 @@ watch(() => route.query.section, (newVal) => {
     <ul v-if="category === 'vet' || category === 'groomer'" class="nav__list">
       <li class="nav__item" @click="setActiveSection('services')">Услуги</li>
       <li class="nav__item" @click="setActiveSection('clinic')">Клиники</li>
-      <li class="nav__item" @click="setActiveSection('gallery')">Сертификаты</li>
+      <li class="nav__item" @click="setActiveSection('gallery')">Фотогалерея</li>
       <li class="nav__item" @click="setActiveSection('feedback')">Отзывы</li>
     </ul>
 

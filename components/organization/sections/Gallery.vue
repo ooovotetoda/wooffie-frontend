@@ -33,6 +33,8 @@ const { data: gallery } = await useAsyncData<Photo[]>(
   <section class="gallery">
     <h2 class="gallery-title">Фотогалерея</h2>
 
+    <Empty v-if="gallery?.length === 0" :margin="78"/>
+
     <div v-if="gallery && gallery.length !== 0" class="gallery-carousel__wrapper">
       <Carousel :items-to-show="2.3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
         <Slide  v-for="photo in gallery" :key="photo">
@@ -47,7 +49,7 @@ const { data: gallery } = await useAsyncData<Photo[]>(
       </Carousel>
     </div>
 
-    <Empty v-else :margin="78"/>
+
   </section>
 
 
