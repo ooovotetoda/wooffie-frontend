@@ -8,6 +8,7 @@
       <div class="wrapper">
         <div class="footer-logo">
           <NuxtImg src="/images/wooffie-logo__white.svg" alt="logo"/>
+          <span class="footer-logo__text">wooffie</span>
         </div>
 
         <div class="footer-nav">
@@ -44,13 +45,23 @@
   line-height: normal;
 
   &-logo {
-    width: 50px;
-    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     margin: 0 auto 40px auto;
 
     img {
-      width: 100%;
-      height: 100%;
+      width: 50px;
+      height: 50px;
+    }
+
+    &__text {
+      font-family: Roboto, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #FFFFFF;
     }
   }
 

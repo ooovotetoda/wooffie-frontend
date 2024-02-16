@@ -16,6 +16,7 @@ const phone = formatPhone(user.phoneNumber)
               <div class="header-logo">
                 <NuxtImg src="/images/wooffie-logo__main-color.svg" alt="logo"/>
               </div>
+              <span class="header-logo__text">wooffie</span>
             </NuxtLink>
 
             <HeaderCity />
@@ -62,6 +63,12 @@ const phone = formatPhone(user.phoneNumber)
     justify-content: space-between;
     align-items: center;
     gap: 80px;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
   }
 
   &__right {
@@ -79,6 +86,14 @@ const phone = formatPhone(user.phoneNumber)
     img {
       width: 100%;
       height: 100%;
+    }
+
+    &__text {
+      font-family: Roboto, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: $main-color;
     }
   }
 
