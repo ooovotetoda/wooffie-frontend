@@ -11,7 +11,7 @@ const props = defineProps<{
 <template>
   <div class="card">
     <div class="card-avatar">
-      <NuxtImg provider="myProvider" :src="specialist.photo" alt="avatar"/>
+      <NuxtImg :src="specialist.photo" alt="avatar"/>
     </div>
     <p class="card-experience">
       стаж {{ specialist.experience }} {{ getYearWord(specialist.experience) }}

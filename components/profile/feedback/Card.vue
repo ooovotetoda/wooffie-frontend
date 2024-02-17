@@ -22,7 +22,7 @@ const types = {
   <div class="card-specialist">
     <div class="card-specialist__block">
       <div class="card-specialist__media">
-        <NuxtImg provider="myProvider" :src="review.organization.photo" alt="specialist"/>
+        <NuxtImg :src="review.organization.photo" alt="specialist"/>
       </div>
 
       <div class="card-specialist__info">
