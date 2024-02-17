@@ -22,7 +22,7 @@ const types = {
   <div class="card-specialist">
     <div class="card-specialist__block">
       <div class="card-specialist__media">
-        <img :src="review.organization.photo" alt="specialist"/>
+        NuxtImg :src="review.organization.photo" alt="specialist"/>
       </div>
 
       <div class="card-specialist__info">
@@ -50,7 +50,7 @@ const types = {
   <div class="card-comment">
     <div class="card-comment__header">
       <div class="card-comment__icon">
-        <img src="/images/user-icon.svg" alt="user"/>
+        NuxtImg src="/images/user-icon.svg" alt="user"/>
       </div>
 
       <div class="card-comment__info">
