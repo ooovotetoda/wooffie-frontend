@@ -16,7 +16,7 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,
     async () => {
       try {
-        const response: GalleryData = await $ofetch(`/api/${type}/${route.params.id}/gallery`, {
+        const response: GalleryData = await $ofetch(`/api/${type.value}/${route.params.id}/gallery`, {
           method: "GET",
         })
 
@@ -39,7 +39,7 @@ const { data: gallery } = await useAsyncData<Photo[]>(
       <Carousel :items-to-show="2.3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
         <Slide  v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
-            <NuxtImg provider="myProvider" :src="photo.photo_url" alt="photo"/>
+            <NuxtImg :src="photo.photo_url" alt="photo"/>
           </div>
         </Slide>
 
