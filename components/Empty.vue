@@ -18,13 +18,10 @@ const props = defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 556px;
-  height: 500px;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 556px;
+    height: 500px;
   }
-
 }
 </style>

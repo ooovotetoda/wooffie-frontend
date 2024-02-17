@@ -38,7 +38,7 @@ onMounted(() => {
       <li v-for="(organization, index) in list" :key="index">
         <CatalogCard
             :organization
-            :maxDescriptionLength="240"
+            :maxDescriptionLength="180"
         />
       </li>
     </ul>
