@@ -50,7 +50,7 @@ const types = {
   <div class="card-comment">
     <div class="card-comment__header">
       <div class="card-comment__icon">
-        <NuxtImg src="/images/user-icon.svg" alt="user"/>
+        <NuxtImg src="/user-icon.svg" alt="user"/>
       </div>
 
       <div class="card-comment__info">
