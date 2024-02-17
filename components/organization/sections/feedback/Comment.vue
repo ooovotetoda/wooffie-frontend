@@ -101,7 +101,7 @@ const handleDislike = async () => {
 <div class="comment">
   <div class="comment__header">
     <div class="comment__icon">
-      <NuxtImg provider="myProvider" src="/images/user-icon.svg" alt="avatar"/>
+      <NuxtImg provider="myProvider" src="/user-icon.svg" alt="avatar"/>
     </div>
     <div class="comment__info">
       <div class="comment__tel">{{ formatReviewPhone(review.phone) }}</div>

@@ -7,7 +7,7 @@
     <div class="container">
       <div class="wrapper">
         <div class="footer-logo">
-          <NuxtImg provider="myProvider" src="/images/wooffie-logo__white.svg" alt="logo"/>
+          <NuxtImg provider="myProvider" src="/wooffie-logo__white.svg" alt="logo"/>
           <span class="footer-logo__text">wooffie</span>
         </div>
 
