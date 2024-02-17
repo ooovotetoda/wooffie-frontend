@@ -39,7 +39,7 @@ const { data: gallery } = await useAsyncData<Photo[]>(
       <Carousel :items-to-show="2.3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
         <Slide  v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
-            <img :src="photo.photo_url" alt="photo"/>
+            <NuxtImg provider="myProvider" :src="photo.photo_url" alt="photo"/>
           </div>
         </Slide>
 

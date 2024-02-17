@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <div :style="`margin: ${margin}px 0;`" class="empty">
-    <img src="/empty.svg" alt="empty"/>
+    <NuxtImg provider="myProvider" src="/images/empty.svg" alt="empty"/>
   </div>
 </template>
 

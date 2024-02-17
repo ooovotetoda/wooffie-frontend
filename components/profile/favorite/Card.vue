@@ -60,7 +60,7 @@ const toggleIsActive = async () => {
 <template>
   <div class="card">
     <div class="card__media">
-      <img :src="organization.photo" alt="clinic"/>
+      <NuxtImg provider="myProvider" :src="organization.photo" alt="clinic"/>
       <button @click="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
         <IconsFavorite />
       </button>

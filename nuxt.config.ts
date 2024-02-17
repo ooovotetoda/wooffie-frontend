@@ -1,15 +1,28 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://wooffie.ru',
+      baseURL: 'https://2554131-yo82697.twc1.net',
+      // baseURL: 'http://localhost:8080',
+    },
+  },
+  image: {
+    providers: {
+      myProvider: {
+        name: 'myProvider',
+        provider: '~/providers/my-provider.ts',
+        options: {
+          // ... provider options
+          baseURL: "https://wooffie.ru"
+        }
+      }
+    }
+  },
   router: {
     options: {
       scrollBehaviorType: 'smooth'
     }
-  },
-  runtimeConfig: {
-    public: {
-      baseURL: 'https://2554131-yo82697.twc1.net',
-      // baseURL: 'http://localhost:8080',
-    },
   },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
   imports: {

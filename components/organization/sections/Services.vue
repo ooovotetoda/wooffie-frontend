@@ -12,7 +12,7 @@ const props = defineProps<{
     <li v-for="service in services" class="services__item">
       <div class="services__left">
         <div class="services__icon">
-          <img :src="service.image_url" alt="icon"/>
+          <NuxtImg provider="myProvider" :src="service.image_url" alt="icon"/>
         </div>
         <span class="services__name">{{ service.service_name }}</span>
       </div>

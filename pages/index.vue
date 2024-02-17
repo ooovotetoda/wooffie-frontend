@@ -51,7 +51,7 @@ useSeoMeta({
           </p>
         </div>
         <div class="about-image">
-          <img src="/about-animals.webp" alt="animals"/>
+          <NuxtImg provider="myProvider" src="/images/about-animals.webp" alt="animals"/>
         </div>
       </div>
     </div>
