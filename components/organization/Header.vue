@@ -95,7 +95,7 @@ const handleReview = async () => {
 
     <div class="organization-header__body">
       <div class="organization-header__media">
-        NuxtImg :src="organization.photo" alt="avatar"/>
+        <NuxtImg :src="organization.photo" alt="avatar"/>
         <button @click="toggleIsActive" class="organization-header__media-favorite" :class="{ 'organization-header__media-favorite__active': isActive }">
           <IconsFavorite />
         </button>

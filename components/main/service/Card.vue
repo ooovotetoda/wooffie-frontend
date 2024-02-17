@@ -54,7 +54,7 @@ const info = {
 <template>
   <div class="card">
     <div class="card-image">
-      NuxtImg :src="image" alt="services" srcset=""/>
+      <NuxtImg :src="image" alt="services" srcset=""/>
     </div>
     <div class="card-content">
       <div class="card-content-title">
