@@ -58,39 +58,39 @@ const toggleIsActive = async () => {
 </script>
 
 <template>
-  <div class="card">
-    <div class="card__media">
-      <NuxtImg :src="organization.photo" alt="clinic"/>
-      <button @click="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
-        <IconsFavorite />
-      </button>
-    </div>
-
-    <div class="card__body">
-      <h3 class="card__title">{{ organization.name }}</h3>
-      <div class="card__subtitle">
-        <span>Рейтинг {{ organization.rating.toFixed(1) }}</span>
-        <Rating :rating="Math.round(organization.rating)"/>
-      </div>
-      <div class="card__criteria">
-        <span class="card__criteria-type">{{ types[organization.type] }}</span>
-        <span v-if="organization.round_clock" class="card__criteria-schedule">Круглосуточно</span>
-        <span class="card__criteria-city">{{ cities[organization.city] }}</span>
+  <NuxtLink :to="`/catalog/${organization.type}/${organization.id}?section=services`">
+    <div class="card">
+      <div class="card__media">
+        <NuxtImg :src="organization.photo" alt="clinic"/>
+        <button @click.stop="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
+          <IconsFavorite />
+        </button>
       </div>
 
-      <div class="card__info">
-        <div class="card__copy">
-          {{ croppedText }}
+      <div class="card__body">
+        <h3 class="card__title">{{ organization.name }}</h3>
+        <div class="card__subtitle">
+          <span>Рейтинг {{ organization.rating.toFixed(1) }}</span>
+          <Rating :rating="Math.round(organization.rating)"/>
         </div>
-        
-        <div class="card__info-btn">
-          <NuxtLink :to="`/catalog/${organization.type}/${organization.id}?section=services`">
+        <div class="card__criteria">
+          <span class="card__criteria-type">{{ types[organization.type] }}</span>
+          <span v-if="organization.round_clock" class="card__criteria-schedule">Круглосуточно</span>
+          <span class="card__criteria-city">{{ cities[organization.city] }}</span>
+        </div>
+
+        <div class="card__info">
+          <div class="card__copy">
+            {{ croppedText }}
+          </div>
+
+          <div class="card__info-btn">
             <button class="card__info-enroll">Записаться</button>
-          </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <style scoped lang="scss">
@@ -132,6 +132,7 @@ const toggleIsActive = async () => {
       border-radius: 50%;
       border: none;
       cursor: pointer;
+      z-index: 1000;
 
       svg {
         color: rgba(0, 0, 0, 0.2);
