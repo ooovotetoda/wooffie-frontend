@@ -9,7 +9,7 @@ WORKDIR /src
 
 FROM base as build
 COPY --link package.json package-lock.json ./
-RUN npm install --production=false
+RUN npm install --omit=dev
 COPY --link . .
 RUN npm run build
 RUN npm prune --production
