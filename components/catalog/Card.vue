@@ -70,10 +70,11 @@ const toggleIsActive = async () => {
 </script>
 
 <template>
-  <div class="card">
+  <NuxtLink :to="`/catalog/${organization.type}/${organization.id}?section=services`">
+    <div class="card">
     <div class="card__media">
       <NuxtImg :src="organization.photo" alt="clinic"/>
-      <button @click="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
+      <button @click.stop="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
         <IconsFavorite />
       </button>
     </div>
@@ -116,9 +117,10 @@ const toggleIsActive = async () => {
           </ul>
         </div>
       </div>
-      <NuxtLink :to="`/catalog/${organization.type}/${organization.id}?section=services`" class="card__info-enroll">Записаться</NuxtLink>
+      <button class="card__info-enroll">Записаться</button>
     </div>
   </div>
+  </NuxtLink>
 </template>
 
 <style scoped lang="scss">
