@@ -23,6 +23,7 @@
   "dependencies": {
     "@nuxt/image": "^1.3.0",
     "@pinia/nuxt": "^0.5.1",
+    "ipx": "^3.0.1",
     "pinia": "^2.1.7",
     "vue-final-modal": "^4.4.6",
     "vue3-carousel-nuxt": "^1.1.0"

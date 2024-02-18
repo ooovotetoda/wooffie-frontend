@@ -3104,7 +3104,7 @@ ip-address@^9.0.5:
     jsbn "1.1.0"
     sprintf-js "^1.1.3"
 
-ipx@^3.0.0:
+ipx@^3.0.0, ipx@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/ipx/-/ipx-3.0.1.tgz"
   integrity sha512-OqbP9wLqpGXtI/le0sU4exCH5cb7kZS9jaV5xDDM8wZ62VJZBBhEjR0gXwK0agA/GfS4g/GGwY9fFSIFrTb4Gg==
