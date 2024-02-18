@@ -43,12 +43,15 @@ useSeoMeta({
           <h2 class="about-text-title">
             О нас
           </h2>
-          <p class="about-text-description">
-            Hola. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.
-          </p>
+          <div class="about-text-description">
+            <p>
+              Добро пожаловать на Вуффи — вашего надежного помощника в мире услуг для животных. Наша миссия — сделать заботу о ваших питомцах простой, удобной и доступной. В мире, где каждый питомец заслуживает только лучшего, мы предлагаем мостик доверия между владельцами животных и специалистами.
+            </p>
+            <br>
+            <p>
+              Созданный с любовью к животным, наш сервис предлагает уникальную платформу для оценки и отзывов о ветеринарах, ветклиниках, зоосалонах, грумерах и других учреждениях, заботящихся о благополучии ваших четвероногих друзей. Мы верим, что каждый отзыв помогает сделать мир лучше для наших маленьких братьев, обеспечивая их здоровье и счастье.
+            </p>
+          </div>
         </div>
         <div class="about-image">
           <img src="/about-animals.webp" alt="animals"/>

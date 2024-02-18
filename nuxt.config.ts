@@ -13,7 +13,6 @@ export default defineNuxtConfig({
         name: 'myProvider',
         provider: '~/providers/my-provider.ts',
         options: {
-          // ... provider options
           baseURL: "https://wooffie.ru"
         }
       }
