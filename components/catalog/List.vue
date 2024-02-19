@@ -45,9 +45,6 @@ onMounted(() => {
     <div class="marker-wrapper">
       <div ref="marker" class="marker"></div>
     </div>
-
-    <Empty v-if="list.length === 0" :margin="78"/>
-
   </section>
 </template>
 

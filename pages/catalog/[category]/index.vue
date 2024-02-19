@@ -139,9 +139,12 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
             :list="filteredOrganizations"
             @loadMore="loadMore"
         />
+
         <div v-if="pending" class="catalog__loader">
           <Loader/>
         </div>
+
+        <Empty v-else-if="filteredOrganizations.length === 0" :margin="78"/>
       </main>
     </div>
   </div>
