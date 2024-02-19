@@ -70,8 +70,7 @@ const toggleIsActive = async () => {
 </script>
 
 <template>
-  <NuxtLink :to="`/catalog/${organization.type}/${organization.id}?section=services`">
-    <div class="card">
+  <div @click="navigateTo(`/catalog/${organization.type}/${organization.id}?section=services`)" class="card">
     <div class="card__media">
       <NuxtImg :src="organization.photo" alt="clinic"/>
       <button @click.stop="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
@@ -120,7 +119,6 @@ const toggleIsActive = async () => {
       <button class="card__info-enroll">Записаться</button>
     </div>
   </div>
-  </NuxtLink>
 </template>
 
 <style scoped lang="scss">
@@ -162,7 +160,6 @@ const toggleIsActive = async () => {
       border-radius: 50%;
       border: none;
       cursor: pointer;
-      z-index: 1000;
 
       svg {
         color: rgba(0, 0, 0, 0.2);
