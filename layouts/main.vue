@@ -5,17 +5,23 @@ const { breadcrumbs } = useBreadcrumbs();
 </script>
 
 <template>
-  <Header/>
+  <div class="page-content">
+    <Header/>
 
-  <div class="container">
-    <Search />
-    <Breadcrumbs :breadcrumbs="breadcrumbs"/>
+    <main class="main">
+      <div class="container">
+        <Search />
+        <Breadcrumbs :breadcrumbs="breadcrumbs"/>
+      </div>
+      <slot/>
+    </main>
+
+    <Footer/>
   </div>
-  <slot/>
-
-  <Footer/>
 </template>
 
 <style scoped lang="scss">
-
+.main {
+  flex: 1;
+}
 </style>

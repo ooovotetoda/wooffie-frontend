@@ -8,20 +8,28 @@ const route = useRoute()
 </script>
 
 <template>
-  <Header/>
+  <div class="page-content">
+    <Header/>
 
-  <div class="container">
-    <Breadcrumbs v-if="route.path !== '/'" :breadcrumbs="breadcrumbs"/>
+    <main class="main">
+      <div class="container">
+        <Breadcrumbs v-if="route.path !== '/'" :breadcrumbs="breadcrumbs"/>
+      </div>
+      <slot/>
+      <Transition name="modal">
+        <ModalsContainer />
+      </Transition>
+    </main>
+
+    <Footer/>
   </div>
-  <slot/>
-  <Transition name="modal">
-    <ModalsContainer />
-  </Transition>
-
-  <Footer/>
 </template>
 
 <style scoped lang="scss">
+.main {
+  flex: 1;
+}
+
 .modal-enter-active,
 .modal-leave-active {
   transition: all 0.2s ease-in-out;
