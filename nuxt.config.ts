@@ -7,6 +7,11 @@ export default defineNuxtConfig({
       // baseURL: 'http://localhost:8080',
     },
   },
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
   image: {
     providers: {
       myProvider: {
@@ -18,15 +23,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  router: {
-    options: {
-      scrollBehaviorType: 'smooth'
-    }
-  },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
-  imports: {
-    dirs: ['types/*.ts', 'stores/*.ts'],
-  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -38,6 +35,9 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  imports: {
+    dirs: ['types/*.ts', 'stores/*.ts'],
   },
   modules: [
     '@pinia/nuxt',

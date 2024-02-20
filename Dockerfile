@@ -14,11 +14,6 @@ COPY --link . .
 RUN npm run build
 RUN npm prune --production
 
-FROM nginx:alpine as nginx
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./certs/fullchain.pem /etc/ssl/certs/fullchain.pem
-COPY ./certs/privkey.pem /etc/ssl/private/privkey.pem
-
 FROM base
 ENV PORT=$PORT
 COPY --from=build /src/.output /src/.output
