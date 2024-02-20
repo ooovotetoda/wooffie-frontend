@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     }
   },
   imports: {
-    dirs: ['types/*.ts', 'stores/*.ts'],
+    dirs: ['types/*.ts'],
   },
   modules: [
     '@pinia/nuxt',
@@ -45,6 +45,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'vue3-carousel-nuxt'
   ],
+  pinia: {
+    storesDirs: ['./stores/**', './custom-folder/stores/**'],
+  },
   plugins: [
     '~/plugins/ofetch.ts',
     '~/plugins/vfm.ts',
