@@ -326,7 +326,7 @@ const resetFilters = async () => {
       border: none;
       font-feature-settings: 'clig' off, 'liga' off;
       font-family: Roboto, serif;
-      font-size: 18px;
+      font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
