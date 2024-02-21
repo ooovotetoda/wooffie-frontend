@@ -5,7 +5,6 @@ import type {Organization, Schedule} from '~/types/organization';
 
 const props = defineProps<{
   organization: Organization,
-  maxDescriptionLength: number
 }>()
 
 const { $ofetch } = useNuxtApp()
@@ -31,12 +30,6 @@ const endTime =  schedule?.end_time ? schedule?.end_time.slice(0, -3) : null;
 const time = (startTime && endTime) ? `${startTime} - ${endTime}` : "не работает"
 
 const addressList = props.organization.addresses.length > 4 ? props.organization.addresses.slice(1, 5) : props.organization.addresses.slice(1)
-
-const croppedText = computed(() => {
-  return props.organization.about.length > props.maxDescriptionLength ?
-      `${props.organization.about.substring(0, props.maxDescriptionLength)}...`
-      : props.organization.about
-})
 
 const isActive = ref(props.organization.isFavorite)
 
@@ -90,7 +83,7 @@ const toggleIsActive = async () => {
         <span class="card__criteria-city">{{ cities[organization.city] }}</span>
       </div>
       <div class="card__copy">
-        {{ croppedText }}
+        {{ organization.about }}
       </div>
     </div>
     <div class="card__info">
@@ -263,10 +256,13 @@ const toggleIsActive = async () => {
   }
 
   &__copy {
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
-    text-overflow: ellipsis;
     font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
@@ -370,7 +366,7 @@ const toggleIsActive = async () => {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1440px) {
   .card {
     padding: 24px;
     gap: 16px;
@@ -385,9 +381,20 @@ const toggleIsActive = async () => {
       }
     }
 
+    &__copy {
+      -webkit-line-clamp: 3;
+    }
+
     &__info {
       width: auto;
       min-width: auto;
+      font-size: 16px;
+    }
+
+    &__address {
+      &-main {
+        font-size: 16px;
+      }
     }
   }
 }

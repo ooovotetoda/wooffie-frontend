@@ -62,7 +62,7 @@ const { data: organizations } = await useAsyncData<Organization[]>(
 
   <ul ref="listRef">
     <li v-for="(item, index) in organizations" :key="index">
-      <CatalogCard :organization="item" :maxDescriptionLength="480"/>
+      <CatalogCard :organization="item" />
     </li>
   </ul>
 </template>

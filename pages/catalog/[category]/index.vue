@@ -168,7 +168,7 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1440px) {
   .wrapper {
     gap: 24px;
   }

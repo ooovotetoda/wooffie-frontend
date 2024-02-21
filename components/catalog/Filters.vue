@@ -107,6 +107,7 @@ const resetFilters = async () => {
 <style scoped lang="scss">
 .filters {
   width: 378px;
+  min-width: 378px;
   height: fit-content;
   padding: 32px;
   margin-bottom: 39px;
@@ -357,7 +358,7 @@ const resetFilters = async () => {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1440px) {
   .filters {
     width: 277px;
     min-width: 277px;

@@ -42,7 +42,7 @@ const { data: favorites, pending } = await useAsyncData<Favorite[]>(
     </div>
     <ul v-else>
       <li v-for="(favorite, index) in favorites" :key="index">
-        <ProfileFavoriteCard :organization="favorite" :maxDescriptionLength="120"/>
+        <ProfileFavoriteCard :organization="favorite"/>
       </li>
     </ul>
   </section>

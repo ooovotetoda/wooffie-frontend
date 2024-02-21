@@ -36,10 +36,7 @@ onMounted(() => {
   <section class="list">
     <ul ref="el">
       <li v-for="(organization, index) in list" :key="index">
-        <CatalogCard
-            :organization
-            :maxDescriptionLength="180"
-        />
+        <CatalogCard :organization />
       </li>
     </ul>
     <div class="marker-wrapper">

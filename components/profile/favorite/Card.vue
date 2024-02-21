@@ -4,7 +4,6 @@ import type {Organization} from '~/types/organization';
 
 const props = defineProps<{
   organization: Organization,
-  maxDescriptionLength: number
 }>()
 
 const { $ofetch } = useNuxtApp()
@@ -23,12 +22,6 @@ const institutionsCategories = ["clinic", "salon"]
 
 const category = ref(props.organization.type)
 const type = ref(institutionsCategories.includes(category.value) ? "institutions" : "specialists")
-
-const croppedText = computed(() => {
-  return props.organization.about.length > props.maxDescriptionLength ?
-      `${props.organization.about.substring(0, props.maxDescriptionLength)}...`
-      : props.organization.about
-})
 
 const isActive = ref(props.organization.isFavorite)
 
@@ -80,7 +73,7 @@ const toggleIsActive = async () => {
 
         <div class="card__info">
           <div class="card__copy">
-            {{ croppedText }}
+            {{ organization.about }}
           </div>
 
           <div class="card__info-btn">
@@ -233,10 +226,13 @@ const toggleIsActive = async () => {
   }
 
   &__copy {
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
-    text-overflow: ellipsis;
     font-family: Roboto, serif;
     font-size: 18px;
     font-style: normal;
@@ -276,6 +272,14 @@ const toggleIsActive = async () => {
       &:active {
         scale: 0.95;
       }
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .card {
+    &__copy {
+      -webkit-line-clamp: 2;
     }
   }
 }
