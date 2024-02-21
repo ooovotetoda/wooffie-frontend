@@ -28,12 +28,6 @@ const types = {
   "groomer": props.organization.profession,
 }
 
-const croppedText = computed(() => {
-  return props.organization.about.length > 580 ?
-      `${props.organization.about.substring(0, 580)}...`
-      : props.organization.about
-})
-
 const toggleIsActive = async () => {
   const method = isActive.value ? "DELETE" : "POST"
   let statusCode = 0;
@@ -113,7 +107,7 @@ const handleReview = async () => {
 
         <div class="organization-header__copy">
           <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 580 символов. -->
-          {{ croppedText }}
+          {{ organization.about }}
         </div>
 
         <div class="organization-header__buttons">
@@ -322,6 +316,32 @@ const handleReview = async () => {
             background: $hover-grey;
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .organization {
+    &-header {
+      &__media {
+        img {
+          width: 378px;
+          height: 468px;
+        }
+      }
+
+      &__title {
+        margin-bottom: 8px;
+      }
+
+      &__rating {
+        margin-bottom: 16px;
+      }
+
+      &__copy {
+        font-size: 16px;
+        line-height: 24px;
       }
     }
   }

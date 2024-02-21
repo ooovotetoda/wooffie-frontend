@@ -27,6 +27,12 @@ const { data: gallery } = await useAsyncData<Photo[]>(
       }
     }
 )
+
+const itemsToShow = ref(2.3)
+
+onMounted(() => {
+  itemsToShow.value = window.innerWidth > 1440 ? 2.3 : window.innerWidth > 390 ? 1.8 : 1;
+})
 </script>
 
 <template>
@@ -36,7 +42,7 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     <Empty v-if="gallery?.length === 0" :margin="78"/>
 
     <div v-if="gallery && gallery.length !== 0" class="gallery-carousel__wrapper">
-      <Carousel :items-to-show="2.3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
+      <Carousel :items-to-show="itemsToShow" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
         <Slide  v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
             <NuxtImg :src="photo.photo_url" alt="photo"/>
