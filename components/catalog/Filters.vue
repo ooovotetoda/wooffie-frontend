@@ -320,7 +320,8 @@ const resetFilters = async () => {
 
     button {
       flex: 1;
-      padding: 12px 32px;
+      width: 100%;
+      height: 43px;
       border-radius: 10px;
       border: none;
       font-feature-settings: 'clig' off, 'liga' off;
@@ -361,12 +362,6 @@ const resetFilters = async () => {
     width: 277px;
     min-width: 277px;
     padding: 24px;
-
-    &-buttons {
-      button {
-        padding: 12px 16px;
-      }
-    }
   }
 }
 </style>
