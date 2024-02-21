@@ -258,7 +258,7 @@ const toggleIsActive = async () => {
   &__copy {
     display: -webkit-box;
     max-width: 100%;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
