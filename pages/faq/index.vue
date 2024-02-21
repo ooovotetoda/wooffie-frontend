@@ -40,12 +40,7 @@ definePageMeta({
 
 .wrapper {
   display: grid;
-  max-width: 100%;
-  grid-auto-rows: 380px;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  grid-auto-flow: row;
-  justify-content: space-between;
-  justify-items: center;
   gap: 46px;
 }
 </style>
