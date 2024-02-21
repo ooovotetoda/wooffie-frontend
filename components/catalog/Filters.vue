@@ -355,4 +355,16 @@ const resetFilters = async () => {
     }
   }
 }
+
+@media (max-width: 1280px) {
+  .filters {
+    width: 277px;
+    min-width: 277px;
+    padding: 24px;
+
+    &-buttons {
+      padding: 12px 16px;
+    }
+  }
+}
 </style>

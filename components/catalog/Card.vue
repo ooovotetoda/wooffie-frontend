@@ -368,4 +368,21 @@ const toggleIsActive = async () => {
     }
   }
 }
+
+@media (max-width: 1280px) {
+  .card {
+    padding: 24px;
+    gap: 16px;
+
+    &__media {
+      width: 180px;
+      height: 200px;
+
+      img {
+        min-width: 180px;
+        min-height: 200px;
+      }
+    }
+  }
+}
 </style>
