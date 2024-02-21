@@ -363,7 +363,9 @@ const resetFilters = async () => {
     padding: 24px;
 
     &-buttons {
-      padding: 12px 16px;
+      button {
+        padding: 12px 16px;
+      }
     }
   }
 }

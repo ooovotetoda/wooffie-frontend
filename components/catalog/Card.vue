@@ -128,6 +128,7 @@ const toggleIsActive = async () => {
   padding: 32px;
   margin-bottom: 32px;
   border-radius: 20px;
+  min-width: 100%;
   background: #FFF;
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   transition: all 0.1s ease-in-out;
@@ -382,6 +383,11 @@ const toggleIsActive = async () => {
         min-width: 180px;
         min-height: 200px;
       }
+    }
+
+    &__info {
+      width: auto;
+      min-width: auto;
     }
   }
 }
