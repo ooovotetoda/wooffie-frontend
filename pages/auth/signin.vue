@@ -30,7 +30,7 @@ const handleSubmit = async () => {
 
   const statusCode = await signIn(body.value)
 
-  if (statusCode === 401) {
+  if (statusCode === 404) {
     isPasswordWrong.value = true
   }
 }
