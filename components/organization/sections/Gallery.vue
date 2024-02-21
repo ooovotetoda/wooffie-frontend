@@ -28,11 +28,13 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     }
 )
 
-const itemsToShow = ref(2.3)
+const { width, height } = useWindowSize()
 
-onMounted(() => {
-  itemsToShow.value = window.innerWidth > 1440 ? 2.3 : window.innerWidth > 390 ? 1.8 : 1;
-})
+const itemsToShow = ref(1)
+
+watch(width, () => {
+  itemsToShow.value = width.value > 1440 ? 2.3 : width.value > 390 ? 1.8 : 1
+}, { immediate: true })
 </script>
 
 <template>
