@@ -228,7 +228,7 @@ const toggleIsActive = async () => {
   &__copy {
     display: -webkit-box;
     max-width: 100%;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
@@ -272,14 +272,6 @@ const toggleIsActive = async () => {
       &:active {
         scale: 0.95;
       }
-    }
-  }
-}
-
-@media (max-width: 1440px) {
-  .card {
-    &__copy {
-      -webkit-line-clamp: 2;
     }
   }
 }
