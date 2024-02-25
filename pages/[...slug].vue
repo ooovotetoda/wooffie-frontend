@@ -11,7 +11,7 @@ definePageMeta({
       <div class="wrapper">
         <h1 class="title">Cтраница не существует</h1>
         <div class="media">
-          <NuxtImg provider="myProvider" src="/slug.webp" alt="Empty"/>
+          <NuxtImg format="webp" provider="myProvider" src="/slug.webp" alt="Empty"/>
         </div>
         <NuxtLink to="/" class="home__btn">На главную</NuxtLink>
       </div>

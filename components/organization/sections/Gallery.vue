@@ -47,7 +47,7 @@ watch(width, () => {
       <Carousel :items-to-show="itemsToShow" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
         <Slide  v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
-            <NuxtImg :src="photo.photo_url" alt="photo"/>
+            <NuxtImg format="webp" :src="photo.photo_url" alt="photo"/>
           </div>
         </Slide>
 
