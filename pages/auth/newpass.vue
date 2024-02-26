@@ -29,6 +29,7 @@ const handleSubmit = async () => {
 
     if (statusCode === 200) {
       sessionStorage.clear()
+      localStorage.removeItem("phone")
       await navigateTo("/auth/signin")
     } else {
       console.log("failed change password")

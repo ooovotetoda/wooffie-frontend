@@ -8,7 +8,7 @@ definePageMeta({
 
 const { signUp } = useUserStore()
 
-const phone = sessionStorage.getItem("phone")
+const phone = localStorage.getItem("phone")
 
 const route = useRoute()
 const code:Ref = ref<string | null>(null)
