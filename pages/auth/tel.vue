@@ -8,12 +8,14 @@ definePageMeta({
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
 
+const phoneStorage = useSessionStorage("phone", "+79999999999")
+
 const handleSubmit = async () => {
   if (phone.value === null || !isPhoneValid.value) {
     return
   }
 
-  sessionStorage.setItem("phone", phone.value)
+  phoneStorage.value = phone.value
 
   const status = await sendOTP(phone.value)
 

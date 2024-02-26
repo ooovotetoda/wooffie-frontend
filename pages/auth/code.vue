@@ -7,11 +7,12 @@ definePageMeta({
 })
 
 const { signUp } = useUserStore()
+const phoneStorage = useSessionStorage("phone", "+79999999999")
 
-const phone = sessionStorage.getItem("phone")
+const phone = phoneStorage.value
 
 const route = useRoute()
-const code:Ref = ref<string | null>(null)
+const code = ref<string | null>(null)
 const isCodeSent = ref<boolean>(false);
 const isCodeValid = ref<boolean>(true);
 const timer = ref<number>(59);
