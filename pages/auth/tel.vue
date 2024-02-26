@@ -13,7 +13,7 @@ const handleSubmit = async () => {
     return
   }
 
-  localStorage.setItem("phone", phone.value)
+  sessionStorage.setItem("phone", phone.value)
 
   const status = await sendOTP(phone.value)
 
