@@ -1,9 +1,13 @@
 <script setup lang="ts">
 const search = ref(null)
+
+const handleSearch = async () => {
+  await navigateTo("/catalog/vet")
+}
 </script>
 
 <template>
-  <form @submit.prevent="console.log(search)">
+  <form @submit.prevent="handleSearch">
     <input
       type="search"
       name="search"
