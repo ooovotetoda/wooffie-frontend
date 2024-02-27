@@ -2,9 +2,9 @@
 useSeoMeta({
   title: 'Wooffie',
   ogTitle: 'Wooffie',
-  description: 'This is my amazing site, let me tell you all about it.',
-  ogDescription: 'This is my amazing site, let me tell you all about it.',
-  ogImage: 'https://example.com/image.png',
+  description: 'Вуффи – ваш надёжный онлайн-сервис для записи к ветеринарам, грумерам и специалистам по уходу за животными. Найдите идеального специалиста для вашего питомца, сравните цены и читайте отзывы в одном месте.',
+  ogDescription: 'Забота о питомце стала проще с Wooffie! Откройте для себя лучших специалистов, читайте отзывы и записывайтесь на прием онлайн. Ваш питомец заслуживает лучшего – выберите качество с Вуффи.',
+  ogImage: 'https://s3.timeweb.cloud/00708af1-woofie-s3/images/ogImage.webp',
   twitterCard: 'summary_large_image',
 })
 </script>
