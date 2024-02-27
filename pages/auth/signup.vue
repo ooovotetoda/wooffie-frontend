@@ -5,7 +5,7 @@ definePageMeta({
   layout: "authorization",
 })
 
-const passwordStorage = useSessionStorage("password", "password")
+const authStorage = useSessionStorage("auth-store", { phone: "+79999999999", password: "", timer: "00" })
 
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
@@ -21,7 +21,7 @@ const handleSubmit = async () => {
     return
   }
 
-  passwordStorage.value = password.value
+  authStorage.value.password = password.value
 
   const status = await sendOTP(phone.value)
 
