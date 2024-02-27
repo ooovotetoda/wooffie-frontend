@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import {useUserStore} from "~/stores/userStore";
 import sendOTP from "~/utils/sendOTP";
 
 definePageMeta({
   layout: "authorization",
 })
 
-const { user } = useUserStore()
+const passwordStorage = useSessionStorage("password", "password")
 
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
@@ -22,7 +21,7 @@ const handleSubmit = async () => {
     return
   }
 
-  sessionStorage.setItem('password', password.value);
+  passwordStorage.value = password.value
 
   const status = await sendOTP(phone.value)
 

@@ -8,6 +8,8 @@ definePageMeta({
 
 const { signUp } = useUserStore()
 const phoneStorage = useSessionStorage("phone", "+79999999999")
+const passwordStorage = useSessionStorage("password", "password")
+const timerStorage = useSessionStorage("timerEnd", "00")
 
 const phone = phoneStorage.value
 
@@ -25,7 +27,7 @@ const handleSubmit = async () => {
     return;
   }
 
-  const password = sessionStorage.getItem("password")
+  const password = passwordStorage.value
 
   const isValid = await validateOTP(code.value)
   if (isValid) {
@@ -50,7 +52,8 @@ const resendCode = async () => {
 
   const now = Date.now();
   const timerDuration = 59000; // 59 секунд
-  localStorage.setItem("timerEnd", (now + timerDuration).toString());
+  timerStorage.value = (now + timerDuration).toString()
+
 
   startTimer(timerDuration);
 
@@ -71,7 +74,7 @@ const startTimer = (duration: number): void => {
     } else {
       clearInterval(timerInterval as NodeJS.Timeout);
       isCodeSent.value = false;
-      localStorage.removeItem("timerEnd");
+      timerStorage.value = null
       timerInterval = null;
     }
   }, 1000);
@@ -79,17 +82,17 @@ const startTimer = (duration: number): void => {
 
 const initializeTimer = (): void => {
   const now = Date.now();
-  let timerEnd = parseInt(localStorage.getItem("timerEnd") || '0');
+  let timerEnd = parseInt(timerStorage.value || '0');
 
   if (!timerEnd) {
     const timerDuration = 59000; // 59 секунд
     timerEnd = now + timerDuration;
-    localStorage.setItem("timerEnd", timerEnd.toString());
+    timerStorage.value = timerEnd.toString()
     startTimer(timerDuration);
   } else if (timerEnd > now) {
     startTimer(timerEnd - now);
   } else {
-    localStorage.removeItem("timerEnd");
+    timerStorage.value = null
   }
 }
 

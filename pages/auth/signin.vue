@@ -5,7 +5,7 @@ definePageMeta({
   layout: "authorization",
 })
 
-const { signIn, user } = useUserStore()
+const { signIn } = useUserStore()
 
 const phone = ref<string | null>(null);
 const isPhoneValid = ref<boolean>(true);
