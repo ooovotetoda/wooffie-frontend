@@ -105,7 +105,7 @@ onMounted(() => {
 
   &__row {
     display: flex;
-    align-items: center;
+    align-items: start;
     margin-bottom: 16px;
   }
 
