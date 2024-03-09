@@ -107,8 +107,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="authorization">
-    <h3 class="authorization-title">Одноразовый код</h3>
+  <AuthBlock>
+    <template v-slot:title>Одноразовый код</template>
 
     <div class="authorization-hint">
       <IconsQuestion/>
@@ -128,23 +128,12 @@ onUnmounted(() => {
       <span v-if="!isCodeSent">Отправить код</span>
       <span v-else>Повторно отправить {{`0:${timer}`}}</span>
     </button>
-  </div>
+  </AuthBlock>
 </template>
 
 <style scoped lang="scss">
 .authorization {
   text-align: center;
-
-  &-title {
-    margin-bottom: 32px;
-    color: $main-color;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
 
   &-hint {
     display: flex;

@@ -1,9 +1,14 @@
 <script setup lang="ts">
-
+const router = useRouter()
 </script>
 
 <template>
   <main class="main">
+    <div class="auth__header">
+      <button @click="router.back" class="auth-back__button">
+        <span class="auth-back__text">Назад</span>
+      </button>
+    </div>
     <div class="wrapper">
       <div class="block">
         <NuxtLink to="/">
@@ -44,6 +49,12 @@
   padding: 0 200px;
 }
 
+.auth {
+  &__header {
+    display: none;
+  }
+}
+
 .block {
   position: relative;
   width: 430px;
@@ -59,6 +70,87 @@
     right: 26px;
     cursor: pointer;
   }
+}
 
+
+@media (max-width: 390px) {
+  .main {
+    background: none;
+
+    &:before {
+      content: none;
+    }
+  }
+
+  .wrapper {
+    height: auto;
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .block {
+    padding: 28px 32px;
+    border-radius: 0;
+    box-shadow: none;
+
+    svg {
+      display: none;
+    }
+  }
+
+  .auth {
+    &__header {
+      position: relative;
+      height: 382px;
+      min-height: 382px;
+      padding: 24px;
+      display: block;
+      background: url("public/authorization-bg.webp") no-repeat -70px 0;
+      background-size: cover;
+      border-radius: 0 0 80px 80px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.26);
+        border-radius: 0 0 80px 80px;
+      }
+    }
+
+    &-back {
+      &__button {
+        position: relative;
+        padding: 12px 16px 12px 8px;
+        border: 1px white solid;
+        border-radius: 10px;
+        background: transparent;
+        color: white;
+        font-family: Roboto, sans-serif;
+        z-index: 10;
+
+
+      }
+
+      &__text {
+        position: relative;
+        padding-left: 24px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -8px;
+          width: 14px;
+          height: 14px;
+          transform: translate(100%, -50%);
+          background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Im03LjgyNSAxM2w1LjYgNS42TDEyIDIwbC04LThsOC04bDEuNDI1IDEuNGwtNS42IDUuNkgyMHYyeiIvPjwvc3ZnPg==") center no-repeat;
+        }
+      }
+    }
+  }
 }
 </style>

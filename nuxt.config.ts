@@ -3,8 +3,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: 'https://wooffie.ru',
-      baseURL: 'https://2554131-yo82697.twc1.net',
-      // baseURL: 'http://localhost:8080',
+      // baseURL: 'https://2554131-yo82697.twc1.net',
+      baseURL: 'http://localhost:8080',
     },
   },
   router: {
