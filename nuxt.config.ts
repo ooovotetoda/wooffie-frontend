@@ -1,10 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'Wooffie - Где любовь к животным встречает качество услуг',
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ],
+      meta: [
+        { property: 'og:image', content: 'https://s3.timeweb.cloud/00708af1-woofie-s3/images/ogImage.webp' },
+        { property: 'og:url', content: 'https://wooffie.ru' },
+      ],
+    },
+  },
   runtimeConfig: {
     public: {
       siteUrl: 'https://wooffie.ru',
-      // baseURL: 'https://2554131-yo82697.twc1.net',
-      baseURL: 'http://localhost:8080',
+      baseURL: 'https://2554131-yo82697.twc1.net',
+      // baseURL: 'http://localhost:8080',
     },
   },
   router: {
