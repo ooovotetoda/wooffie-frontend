@@ -184,7 +184,7 @@ const phone = formatPhone(user.phoneNumber)
   align-items: center;
 }
 
-@media (max-width: 390px) {
+@media (max-width: 414px) {
   .header {
     height: 72px;
 

@@ -73,7 +73,7 @@ const router = useRouter()
 }
 
 
-@media (max-width: 390px) {
+@media (max-width: 414px) {
   .main {
     background: none;
 

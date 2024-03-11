@@ -202,7 +202,7 @@
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 414px) {
   .main {
     &-header {
       padding: 36px 0;
