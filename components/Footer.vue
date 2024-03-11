@@ -106,4 +106,26 @@
     }
   }
 }
+
+@media (max-width: 414px) {
+  .footer {
+    &-logo {
+      margin-bottom: 24px;
+    }
+
+    &-nav {
+      margin-bottom: 24px;
+      gap: 38px;
+      font-size: 14px;
+    }
+
+    &-contacts {
+      font-size: 14px;
+    }
+
+    &-social {
+      font-size: 24px;
+    }
+  }
+}
 </style>
