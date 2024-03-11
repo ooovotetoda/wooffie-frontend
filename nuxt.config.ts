@@ -61,6 +61,7 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
+  //@ts-ignore
   yandexMetrika: {
     id: '96702656',
     clickmap:true,
