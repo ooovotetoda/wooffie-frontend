@@ -52,4 +52,10 @@ const handleSearch = async () => {
     @include placeholder;
   }
 }
+
+@media (max-width: 390px) {
+  .search {
+    display: none;
+  }
+}
 </style>

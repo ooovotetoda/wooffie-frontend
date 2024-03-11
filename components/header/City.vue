@@ -118,4 +118,9 @@ onClickOutside(dropdownRef, (event) => {
   }
 }
 
+@media (max-width: 390px) {
+  .city {
+    display: none;
+  }
+}
 </style>

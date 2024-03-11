@@ -4,7 +4,6 @@ import type {Organization, OrganizationList, Schedule} from "~/types/organizatio
 import type {Favorite, FavoritesList} from "~/types/favorites";
 
 definePageMeta({
-  layout: "main",
   breadcrumb: "Каталог"
 })
 
@@ -140,6 +139,8 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
             @loadMore="loadMore"
         />
 
+
+
         <div v-if="pending" class="catalog__loader">
           <Loader/>
         </div>
@@ -149,6 +150,7 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
     </div>
   </div>
 </template>
+
 
 <style scoped lang="scss">
 .wrapper {

@@ -21,7 +21,12 @@ const phone = formatPhone(user.phoneNumber)
 
             <HeaderCity />
           </div>
+          
           <div class="header__right">
+            <NuxtLink to="/menu" class="header-menu__button">
+              <IconsWidgets />
+            </NuxtLink>
+            
             <div v-if="user.loggedIn" class="header__user">
               <span>{{ phone }}</span>
               <NuxtLink to="/profile">
@@ -32,7 +37,7 @@ const phone = formatPhone(user.phoneNumber)
             </div>
 
             <NuxtLink v-else to="/auth/signin">
-              <button class="header-login">Вход</button>
+              <button class="header__login">Вход</button>
             </NuxtLink>
           </div>
         </div>
@@ -45,6 +50,7 @@ const phone = formatPhone(user.phoneNumber)
 .header {
   position: relative;
   height: 92px;
+  max-width: 100vw;
 
   &-wrapper {
     position: fixed;
@@ -97,38 +103,20 @@ const phone = formatPhone(user.phoneNumber)
     }
   }
 
-  &-city {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: all 0.15s linear;
-
-    span {
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, sans-serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      transition: all 0.1s linear;
-    }
-
-    svg {
-      transition: all 0.1s linear;
-    }
-
-    &:hover {
-      span {
-        color: $main-color;
-      }
-      svg {
-        color: $main-color;
-      }
+  &-menu {
+    &__button {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: $main-color;
+      font-size: 16px;
+      color: white;
+      border: none;
     }
   }
 
-  &-login {
+  &__login {
     padding: 12px 32px;
     border: 2px solid $main-color;
     border-radius: 10px;
@@ -194,5 +182,40 @@ const phone = formatPhone(user.phoneNumber)
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 390px) {
+  .header {
+    height: 72px;
+
+    &-wrapper {
+      position: static;
+      padding: 16px 0;
+    }
+
+    &-logo {
+      width: 40px;
+      height: 40px;
+    }
+    &__right {
+      display: block;
+    }
+    
+    &__user {
+      display: none;
+    }
+
+    &__login {
+      display: none;
+    }
+    
+    &-menu {
+      &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 }
 </style>

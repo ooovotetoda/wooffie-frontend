@@ -1,19 +1,12 @@
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Wooffie',
-  ogTitle: 'Wooffie',
-  description: 'Вуффи – ваш надёжный онлайн-сервис для записи к ветеринарам, грумерам и специалистам по уходу за животными. Найдите идеального специалиста для вашего питомца, сравните цены и читайте отзывы в одном месте.',
-  ogDescription: 'Забота о питомце стала проще с Wooffie! Откройте для себя лучших специалистов, читайте отзывы и записывайтесь на прием онлайн. Ваш питомец заслуживает лучшего – выберите качество с Вуффи.',
-  ogImage: 'https://s3.timeweb.cloud/00708af1-woofie-s3/images/ogImage.webp',
-  twitterCard: 'summary_large_image',
-})
+
 </script>
 
 <template>
   <section v-once id="main" class="main-header">
     <div class="container">
       <div class="poster">
-        <h1 class="poster-title">wooffie</h1>
+        <h1 class="poster-title">Wooffie</h1>
         <p class="poster-description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять!</p>
       </div>
       <Search/>
@@ -23,7 +16,7 @@ useSeoMeta({
   <section v-once id="services" class="services">
     <div class="container">
       <div class="wrapper">
-        <h2 class="services-title">Наши услуги</h2>
+        <h2 class="services-title">Услуги</h2>
         <div class="services-row">
           <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
           <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
@@ -205,6 +198,14 @@ useSeoMeta({
 
     &-text {
       max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .main {
+    &-header {
+      padding: 36px 0;
     }
   }
 }

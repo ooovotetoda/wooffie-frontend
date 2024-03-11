@@ -5,14 +5,19 @@ import { useBreadcrumbs } from '~/composables/useBreadcrumbs';
 const { breadcrumbs } = useBreadcrumbs();
 
 const route = useRoute()
+
+const withSearch = computed(() => {
+  return route.path.startsWith("/catalog");
+});
 </script>
 
 <template>
   <div class="page-content">
-    <Header/>
+    <Header />
 
     <main class="main">
       <div class="container">
+        <Search v-if="withSearch"/>
         <Breadcrumbs v-if="route.path !== '/'" :breadcrumbs="breadcrumbs"/>
       </div>
       <slot/>
@@ -28,20 +33,5 @@ const route = useRoute()
 <style scoped lang="scss">
 .main {
   flex: 1;
-}
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: all 0.2s ease-in-out;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-to,
-.modal-leave-from {
-  opacity: 1;
 }
 </style>

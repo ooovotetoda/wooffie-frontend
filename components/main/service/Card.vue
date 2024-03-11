@@ -58,12 +58,12 @@ const info = {
     </div>
     <div class="card-content">
       <div class="card-content-title">
-        <span>{{ title }}</span>
+        <span>{{ title }} </span>
         <span>{{ info[service].count }}</span>
       </div>
 
       <div v-for="item in info[service].services" class="card-content-option">
-        <span>{{ item.name }}</span>
+        <span>{{ item.name }} </span>
         <span>{{ item.count }}</span>
       </div>
 
