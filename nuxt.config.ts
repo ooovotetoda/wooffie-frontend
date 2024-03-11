@@ -7,8 +7,11 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ],
       meta: [
+        { name: 'description', content: 'Вуффи – ваш надёжный онлайн-сервис для записи к ветеринарам, грумерам и специалистам по уходу за животными. Найдите идеального специалиста для вашего питомца, сравните цены и читайте отзывы в одном месте.' },
         { property: 'og:image', content: 'https://s3.timeweb.cloud/00708af1-woofie-s3/images/ogImage.webp' },
         { property: 'og:url', content: 'https://wooffie.ru' },
+        { property: 'og:description', content: 'Забота о питомце стала проще с Wooffie! Откройте для себя лучших специалистов, читайте отзывы и записывайтесь на прием онлайн. Ваш питомец заслуживает лучшего – выберите качество с Вуффи.' },
+        { name: 'twitter:card', content: 'summary_large_image' }
       ],
     },
   },
@@ -22,17 +25,6 @@ export default defineNuxtConfig({
   router: {
     options: {
       scrollBehaviorType: 'smooth'
-    }
-  },
-  image: {
-    providers: {
-      myProvider: {
-        name: 'myProvider',
-        provider: '~/providers/my-provider.ts',
-        options: {
-          baseURL: "https://wooffie.ru"
-        }
-      }
     }
   },
   css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
@@ -60,6 +52,17 @@ export default defineNuxtConfig({
   ],
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
+  },
+  image: {
+    providers: {
+      myProvider: {
+        name: 'myProvider',
+        provider: '~/providers/my-provider.ts',
+        options: {
+          baseURL: "https://wooffie.ru"
+        }
+      }
+    }
   },
   //@ts-ignore
   yandexMetrika: {
