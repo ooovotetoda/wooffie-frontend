@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Wooffie - Где любовь к животным встречает качество услуг',
+      title: 'Wooffie: Все Услуги для Животных на Одном Сайте',
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ],
@@ -55,10 +55,18 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
+    'yandex-metrika-module-nuxt3',
     'vue3-carousel-nuxt'
   ],
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
+  },
+  yandexMetrika: {
+    id: '96702656',
+    clickmap:true,
+    trackLinks:true,
+    accurateTrackBounce:true,
+    webvisor:true
   },
   plugins: [
     '~/plugins/ofetch.ts',
