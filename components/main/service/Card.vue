@@ -57,18 +57,18 @@ const info = {
       <NuxtImg format="webp" provider="myProvider" :src="image" alt="services" srcset=""/>
     </div>
     <div class="card-content">
-      <div class="card-content-title">
+      <div class="card-content__title">
         <span>{{ title }} </span>
         <span>{{ info[service].count }}</span>
       </div>
 
-      <div v-for="item in info[service].services" class="card-content-option">
+      <div v-for="item in info[service].services" class="card-content__option">
         <span>{{ item.name }} </span>
         <span>{{ item.count }}</span>
       </div>
 
       <NuxtLink :to="`/catalog/${service}`">
-        <div class="card-content-btn">Все {{ title.toLowerCase() }}</div>
+        <div class="card-content__btn">Все {{ title.toLowerCase() }}</div>
       </NuxtLink>
     </div>
   </div>
@@ -118,7 +118,7 @@ const info = {
     max-width: 240px;
     padding: 32px;
 
-    &-title {
+    &__title {
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -132,10 +132,9 @@ const info = {
       font-weight: 500;
       line-height: normal;
       border-bottom: 1px solid var(--Line, #D9DAD9);
-      //cursor: pointer;
     }
 
-    &-option {
+    &__option {
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -158,7 +157,7 @@ const info = {
       width: 100%;
     }
 
-    &-btn {
+    &__btn {
       width: 100%;
       padding: 12px;
       border-radius: 10px;
@@ -178,6 +177,48 @@ const info = {
 
       &:active {
         transform: scale(0.93);
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .card {
+    flex-direction: column;
+    width: 280px;
+    height: auto;
+
+    &-image {
+      width: 100%;
+      height: 192px;
+
+      img {
+        border-radius: 20px 20px 0 0;
+      }
+
+      &:before {
+        border-radius: 20px 20px 0 0;
+      }
+    }
+
+    &-content {
+      min-width: 100%;
+
+      &__title {
+        font-size: 16px;
+      }
+
+      &__option {
+        font-size: 14px;
+
+        &:nth-last-child(-n+4) {
+          display: none;
+        }
+      }
+
+      &__btn {
+        margin-top: 20px;
+        font-size: 14px;
       }
     }
   }

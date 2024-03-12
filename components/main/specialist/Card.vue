@@ -16,13 +16,15 @@ const props = defineProps<{
     <p class="card-experience">
       стаж {{ specialist.experience }} {{ getYearWord(specialist.experience) }}
     </p>
-    <div class="card-row">
-      <span>Специалист</span>
-      {{ specialist.name }}
-    </div>
-    <div class="card-row">
-      <span>Направление</span>
-      {{ specialist.profession }}
+    <div class="card-text">
+      <div class="card-row">
+        <span>Специалист</span>
+        {{ specialist.name }}
+      </div>
+      <div class="card-row">
+        <span>Направление</span>
+        {{ specialist.profession }}
+      </div>
     </div>
     <NuxtLink :to="`/catalog/${specialist.type}/${specialist.id}`">
       <button class="card-btn">Записаться</button>
@@ -65,6 +67,10 @@ const props = defineProps<{
     line-height: normal;
   }
 
+  &-text {
+    margin-bottom: 24px;
+  }
+
   &-row {
     margin-bottom: 14px;
     margin-right: auto;
@@ -85,7 +91,7 @@ const props = defineProps<{
       font-weight: 400;
     }
     &:nth-last-of-type(1) {
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
   }
 
@@ -116,6 +122,41 @@ const props = defineProps<{
 
     &:active {
       transform: scale(0.93);
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .card {
+    padding: 32px 40px;
+
+    &-avatar {
+      width: 150px;
+      height: 150px;
+    }
+
+    &-experience {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    &-text {
+      align-items: center;
+    }
+
+    &-row {
+      margin-bottom: 8px;
+      font-size: 16px;
+
+      span {
+        margin-bottom: 0;
+        font-size: 14px;
+      }
+    }
+
+    &-btn {
+      width: 200px;
+      font-size: 14px;
     }
   }
 }

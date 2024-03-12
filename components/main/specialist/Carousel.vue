@@ -2,6 +2,7 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import type {Organization} from "~/types/organization";
+import Slider from "~/components/Slider.vue";
 
 const { $ofetch } = useNuxtApp()
 
@@ -23,11 +24,14 @@ const { data: specialists } = await useAsyncData<Organization[]>(
       }
     }
 )
+
+const { width, height } = useWindowSize()
+
 </script>
 
 <template>
   <div class="specialist-carousel__wrapper">
-    <Carousel :items-to-show="3" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
+    <Carousel :items-to-show="(width - 240 - 63)/400" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
       <Slide v-for="specialist in specialists" :key="specialist.id">
         <div class="carousel__item">
           <MainSpecialistCard :specialist/>
@@ -41,6 +45,13 @@ const { data: specialists } = await useAsyncData<Organization[]>(
     </Carousel>
   </div>
 
+  <Slider :width="width">
+    <Slide v-for="specialist in specialists" :key="specialist.id">
+      <div class="carousel__item">
+        <MainSpecialistCard :specialist/>
+      </div>
+    </Slide>
+  </Slider>
 </template>
 
 <style lang="scss">
@@ -118,4 +129,11 @@ const { data: specialists } = await useAsyncData<Organization[]>(
     }
   }
 }
+
+@media (max-width: 414px) {
+  .specialist-carousel__wrapper {
+    display: none;
+  }
+}
+
 </style>

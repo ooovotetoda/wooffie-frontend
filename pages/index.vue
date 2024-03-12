@@ -1,5 +1,9 @@
 <script setup lang="ts">
 
+import {Slide} from "vue3-carousel";
+import Slider from "~/components/Slider.vue";
+
+const {width, height} = useWindowSize()
 </script>
 
 <template>
@@ -17,14 +21,43 @@
     <div class="container">
       <div class="wrapper">
         <h2 class="services-title">Услуги</h2>
-        <div class="services-row">
-          <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
-          <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
+
+        <div class="services-table">
+          <div class="services-row">
+            <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
+            <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
+          </div>
+          <div class="services-row">
+            <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp"/>
+            <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp"/>
+          </div>
         </div>
-        <div class="services-row">
-          <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp"/>
-          <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp"/>
-        </div>
+
+        <Slider :width="width">
+          <Slide key="clinic">
+            <div class="carousel__item">
+              <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
+            </div>
+          </Slide>
+
+          <Slide key="vet">
+            <div class="carousel__item">
+              <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
+            </div>
+          </Slide>
+
+          <Slide key="groomer">
+            <div class="carousel__item">
+              <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp"/>
+            </div>
+          </Slide>
+
+          <Slide key="salon">
+            <div class="carousel__item">
+              <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp"/>
+            </div>
+          </Slide>
+        </Slider>
       </div>
     </div>
   </section>
@@ -124,6 +157,12 @@
     font-variant: all-small-caps;
   }
 
+  &-table {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
   &-row {
     display: flex;
     gap: 60px;
@@ -206,6 +245,68 @@
   .main {
     &-header {
       padding: 36px 0;
+    }
+  }
+
+  .services {
+    padding: 32px 0;
+
+    .container {
+      margin: 0;
+    }
+
+    .wrapper {
+      display: block;
+    }
+
+    &-title {
+      font-size: 24px;
+    }
+
+    &-table {
+      display: none;
+    }
+  }
+
+  .about {
+    padding: 32px 0;
+
+    .wrapper {
+      gap: 24px;
+    }
+
+    &-text {
+      &-title {
+        margin-bottom: 16px;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+        text-align: center;
+
+      }
+
+      &-description {
+        font-size: 14px;
+      }
+    }
+
+    &-image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+  
+  .specialists {
+    padding: 32px 0 16px 0;
+
+    .container {
+      margin: 0;
+    }
+
+    &-title {
+      font-size: 24px;
+      margin-bottom: 0;
     }
   }
 }
