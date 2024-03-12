@@ -25,7 +25,7 @@ const { data: specialists } = await useAsyncData<Organization[]>(
     }
 )
 
-const { width, height } = useWindowSize()
+const { width } = useWindowSize()
 
 </script>
 

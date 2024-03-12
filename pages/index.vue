@@ -3,7 +3,7 @@
 import {Slide} from "vue3-carousel";
 import Slider from "~/components/Slider.vue";
 
-const {width, height} = useWindowSize()
+const { width } = useWindowSize()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const {width, height} = useWindowSize()
     <div class="container">
       <div class="poster">
         <h1 class="poster-title">Wooffie</h1>
-        <p class="poster-description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять!</p>
+        <p class="poster-description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять</p>
       </div>
       <Search/>
     </div>
@@ -242,6 +242,36 @@ const {width, height} = useWindowSize()
 }
 
 @media (max-width: 414px) {
+  .poster {
+    position: relative;
+    gap: 0;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0, 0.4);
+      z-index: 0;
+    }
+
+    &-title {
+      font-size: 48px;
+      line-height: 56px;
+      z-index: 1;
+    }
+
+    &-description {
+      max-width: 281px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      z-index: 1;
+    }
+  }
+
   .main {
     &-header {
       padding: 36px 0;
