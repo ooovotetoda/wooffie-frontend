@@ -31,7 +31,7 @@ const { width, height } = useWindowSize()
 
 <template>
   <div class="specialist-carousel__wrapper">
-    <Carousel :items-to-show="(width - 240 - 63)/400" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
+    <Carousel :items-to-show="((Math.min(1120, width - 30) - 64 - 400)/320) + 1" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
       <Slide v-for="specialist in specialists" :key="specialist.id">
         <div class="carousel__item">
           <MainSpecialistCard :specialist/>
@@ -45,7 +45,7 @@ const { width, height } = useWindowSize()
     </Carousel>
   </div>
 
-  <Slider :width="width">
+  <Slider class="mobile-visible" :width="width">
     <Slide v-for="specialist in specialists" :key="specialist.id">
       <div class="carousel__item">
         <MainSpecialistCard :specialist/>
@@ -130,7 +130,15 @@ const { width, height } = useWindowSize()
   }
 }
 
+.mobile-visible {
+  display: none;
+}
+
 @media (max-width: 414px) {
+  .mobile-visible {
+    display: block;
+  }
+
   .specialist-carousel__wrapper {
     display: none;
   }
