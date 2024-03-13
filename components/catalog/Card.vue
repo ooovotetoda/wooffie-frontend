@@ -422,6 +422,7 @@ const toggleIsActive = async () => {
     "info info";
     position: relative;
     margin-bottom: 16px;
+    gap: 0;
 
     &__media {
       position: static;
@@ -447,6 +448,11 @@ const toggleIsActive = async () => {
           background-color: rgba(0,0,0, 0.05);
         }
       }
+    }
+
+    &__header {
+      padding-right: 48px;
+      margin-bottom: 16px;
     }
 
     &__title {
@@ -483,6 +489,7 @@ const toggleIsActive = async () => {
     }
 
     &__copy {
+      margin-bottom: 16px;
       font-size: 12px;
       line-height: 17px;
       text-align: justify;
