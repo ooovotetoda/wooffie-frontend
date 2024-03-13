@@ -12,7 +12,7 @@ const router = useRouter()
     <div class="wrapper">
       <div class="block">
         <NuxtLink to="/">
-          <IconsClose/>
+          <IconsClose class="block__close"/>
         </NuxtLink>
 
         <slot/>
@@ -68,8 +68,11 @@ const router = useRouter()
     position: absolute;
     top: 26px;
     right: 26px;
+    font-size: 24px;
     cursor: pointer;
   }
+
+
 }
 
 

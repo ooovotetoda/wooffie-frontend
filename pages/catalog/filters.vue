@@ -1,30 +1,30 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: false,
+})
+
 const router = useRouter()
 </script>
 
 <template>
-  <div class="menu">
+  <div>
     <MenuHeader>
       <div class="header-left">
-        <button class="header__back" @click="router.back()">
-          <IconsBack />
+        <button class="header__back">
+          <IconsFilters />
         </button>
 
-        <span class="header__text">Меню</span>
+        <span class="header__text">Фильтры</span>
       </div>
 
       <div class="header-right">
-        <button class="header__search">
-          <IconsSearch />
-        </button>
+        <IconsClose @click="router.back()"/>
       </div>
     </MenuHeader>
 
     <main class="main">
       <div class="container">
-        <MenuUser/>
-
-        <slot/>
+        <CatalogFilters/>
       </div>
     </main>
   </div>
@@ -37,6 +37,11 @@ const router = useRouter()
     display: flex;
     align-items: center;
     gap: 16px;
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
   }
 
   &__back {
@@ -67,19 +72,12 @@ const router = useRouter()
   }
 }
 
-.main {
-  margin: 32px 0;
+.filters {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 24px 0 127px 0;
+  box-shadow: none;
 }
 
-.menu {
-  background: white;
-  z-index: 100;
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
 </style>

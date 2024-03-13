@@ -139,8 +139,6 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
             @loadMore="loadMore"
         />
 
-
-
         <div v-if="pending" class="catalog__loader">
           <Loader/>
         </div>
@@ -174,6 +172,5 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
   .wrapper {
     gap: 24px;
   }
-
 }
 </style>

@@ -70,11 +70,10 @@ const toggleIsActive = async () => {
         <IconsFavorite />
       </button>
     </div>
-
-    <div class="card__body">
+    <div class="card__header">
       <h3 class="card__title">{{ organization.name }}</h3>
       <div class="card__subtitle">
-        <span>Рейтинг {{ organization.rating.toFixed(1) }}</span>
+        <span>Рейтинг <span>{{ organization.rating.toFixed(1) }}</span></span>
         <Rating :rating="Math.round(organization.rating)"/>
       </div>
       <div class="card__criteria">
@@ -82,9 +81,9 @@ const toggleIsActive = async () => {
         <span v-if="organization.round_clock" class="card__criteria-schedule">Круглосуточно</span>
         <span class="card__criteria-city">{{ cities[organization.city] }}</span>
       </div>
-      <div class="card__copy">
-        {{ organization.about }}
-      </div>
+    </div>
+    <div class="card__copy">
+      {{ organization.about }}
     </div>
     <div class="card__info">
       <div class="card__info-list">
@@ -116,7 +115,10 @@ const toggleIsActive = async () => {
 
 <style scoped lang="scss">
 .card {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "media header info"
+    "media copy info";
   gap: 24px;
   padding: 32px;
   margin-bottom: 32px;
@@ -135,6 +137,7 @@ const toggleIsActive = async () => {
     position: relative;
     width: 250px;
     height: 250px;
+    grid-area: media;
 
     img {
       width: 100%;
@@ -251,16 +254,19 @@ const toggleIsActive = async () => {
     }
   }
 
-  &__body {
+  &__header {
     padding-right: 24px;
+    grid-area: header;
   }
 
   &__copy {
+    grid-area: copy;
     display: -webkit-box;
     max-width: 100%;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-top: -24px;
     color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto, serif;
@@ -274,6 +280,7 @@ const toggleIsActive = async () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    grid-area: info;
     width: 357px;
     min-width: 357px;
     margin-left: auto;
@@ -292,6 +299,10 @@ const toggleIsActive = async () => {
       align-items: center;
       gap: 8px;
       margin-bottom: 14px;
+
+      svg {
+        font-size: 24px;
+      }
     }
 
     &-enroll {
@@ -322,6 +333,10 @@ const toggleIsActive = async () => {
 
   &__address {
     margin-top: 34px;
+
+    svg {
+      font-size: 24px;
+    }
 
     &-main {
       display: flex;
@@ -398,4 +413,122 @@ const toggleIsActive = async () => {
     }
   }
 }
+
+@media (max-width: 414px) {
+  .card {
+    grid-template-areas:
+    "media header"
+    "copy copy"
+    "info info";
+    position: relative;
+    margin-bottom: 16px;
+
+    &__media {
+      position: static;
+      width: 80px;
+      height: 80px;
+
+      img {
+        min-width: 80px;
+        min-height: 80px;
+        border-radius: 50%;
+      }
+
+      &-favorite {
+        top: 24px;
+        right: 24px;
+        padding: 6px;
+
+        svg {
+          font-size: 14px;
+        }
+
+        &__active {
+          background-color: rgba(0,0,0, 0.05);
+        }
+      }
+    }
+
+    &__title {
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    &__subtitle {
+      gap: 8px;
+      font-size: 12px;
+
+      .rating {
+        font-size: 14px;
+      }
+
+      span {
+        margin-top: 1px;
+
+        span {
+          display: none;
+        }
+      }
+    }
+    
+    &__criteria {
+      margin-top: 16px;
+      gap: 4px;
+
+      span {
+        padding: 6px 8px;
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+
+    &__copy {
+      font-size: 12px;
+      line-height: 17px;
+      text-align: justify;
+      -webkit-line-clamp: 5;
+    }
+
+    &__info {
+      padding: 0;
+      margin-left: 0;
+      border: none;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+
+      &-item {
+        margin-bottom: 8px;
+
+        svg {
+          font-size: 16px;
+        }
+      }
+
+      &-enroll {
+        margin: 16px auto 0 auto;
+        font-size: 14px;
+      }
+    }
+
+    &__address {
+      margin-top: 0;
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+      }
+
+      svg {
+        font-size: 16px;
+      }
+
+      &-list {
+        display: none;
+      }
+    }
+  }
+}
+
 </style>

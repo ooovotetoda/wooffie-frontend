@@ -20,9 +20,9 @@ const handleSelectCategory = (category: string) => {
   <nav class="catalog-nav">
     <ul>
       <li @click="handleSelectCategory('clinic')" :class="{active: active == 'clinic'}">Клиники</li>
-      <li @click="handleSelectCategory('salon')" :class="{active: active == 'salon'}">Зоосалоны</li>
       <li @click="handleSelectCategory('vet')" :class="{active: active == 'vet'}">Ветеринары</li>
       <li @click="handleSelectCategory('groomer')" :class="{active: active == 'groomer'}">Грумеры</li>
+      <li @click="handleSelectCategory('salon')" :class="{active: active == 'salon'}">Зоосалоны</li>
     </ul>
   </nav>
 </template>
@@ -62,4 +62,30 @@ const handleSelectCategory = (category: string) => {
     background-color: $main-color-dark;
   }
 }
+
+@media (max-width: 414px) {
+  .catalog {
+    &-nav {
+      margin: 0 -20px 24px -20px;
+      overflow-x: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      ul {
+        padding: 0 20px;
+        gap: 0;
+
+        li {
+          padding: 8px 16px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
 </style>

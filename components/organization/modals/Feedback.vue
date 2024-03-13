@@ -219,6 +219,7 @@ const submitReview = async () => {
     top: 44px;
     right: 44px;
     cursor: pointer;
+    font-size: 24px;
   }
 }
 </style>

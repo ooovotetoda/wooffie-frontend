@@ -4,6 +4,10 @@ import type {Breadcrumb} from "~/types/breadcrumbs";
 const props = defineProps<{
   breadcrumbs: Breadcrumb[],
 }>();
+
+const route = useRoute()
+
+const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catalog/groomer"]
 </script>
 
 <template>
@@ -12,17 +16,25 @@ const props = defineProps<{
       <li
         v-for="(breadcrumb, index) in breadcrumbs"
         :key="breadcrumb.name"
-        class="breadcrumbs-list-item"
+        class="breadcrumbs-list__item"
       >
         <NuxtLink v-if="index === 0" :to="breadcrumb.path">Главная</NuxtLink>
         <NuxtLink v-else :to="breadcrumb.path">{{ breadcrumb.name }}</NuxtLink>
       </li>
     </ol>
+
+    <NuxtLink v-if="withFilter.includes(route.path)" to="/catalog/filters" class="breadcrumbs-filters__btn">
+      <IconsFilters/>
+    </NuxtLink>
+
   </nav>
 </template>
 
 <style scoped lang="scss">
 .breadcrumbs {
+  display: flex;
+  justify-content: left;
+  align-items: center;
   margin: 39px 0;
 
   &-list {
@@ -30,7 +42,7 @@ const props = defineProps<{
     align-items: center;
     list-style-type: none;
 
-    &-item {
+    &__item {
       display: flex;
       align-items: center;
       a {
@@ -54,6 +66,44 @@ const props = defineProps<{
         max-height: 16px;
         transform: scale(1.25);
         margin: 0 12px;
+      }
+    }
+  }
+
+  &-filters {
+    &__btn {
+      display: block;
+      padding: 9px;
+      border-radius: 8px;
+      background: #F9F9F9;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .breadcrumbs {
+    justify-content: space-between;
+    margin: 32px 0 16px 20px;
+
+    &-list {
+      &__item {
+        a {
+          font-size: 12px;
+        }
+
+        &:not(:first-of-type):before {
+          max-width: 16px;
+          max-height: 16px;
+          transform: scale(1);
+          margin: 0 12px;
+        }
+      }
+    }
+
+    &-filters {
+      &__btn {
+        display: block;
       }
     }
   }

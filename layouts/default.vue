@@ -20,7 +20,9 @@ const withSearch = computed(() => {
         <Search v-if="withSearch"/>
         <Breadcrumbs v-if="route.path !== '/'" :breadcrumbs="breadcrumbs"/>
       </div>
+
       <slot/>
+
       <Transition name="modal">
         <ModalsContainer />
       </Transition>

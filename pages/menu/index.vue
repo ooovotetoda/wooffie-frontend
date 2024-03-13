@@ -1,9 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
   layout: "menu",
-  layoutTransition: {
-    name: 'slide-in'
-  }
 })
 </script>
 

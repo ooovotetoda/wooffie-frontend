@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import {useCatalogFiltersStore} from "~/stores/catalogFiltersStore";
 
+const router = useRouter()
+const {width} = useWindowSize()
+
 const nowId = useId("now")
 const roundId = useId("round")
 
@@ -17,6 +20,10 @@ const filters: Filters = reactive({
 
 const sendFilters = async () => {
   filtersStore.updateFilters(filters)
+
+  if (width.value <= 414) {
+    router.back()
+  }
 }
 
 const resetFilters = async () => {
@@ -25,6 +32,10 @@ const resetFilters = async () => {
   filters.formats.local = false;
   filters.formats.online = false;
   filters.formats.home = false;
+
+  if (width.value <= 414) {
+    router.back()
+  }
 }
 
 </script>
@@ -130,6 +141,10 @@ const resetFilters = async () => {
       font-style: normal;
       font-weight: 500;
       line-height: normal;
+    }
+
+    svg {
+      font-size: 24px;
     }
   }
 
@@ -363,6 +378,38 @@ const resetFilters = async () => {
     width: 277px;
     min-width: 277px;
     padding: 24px;
+  }
+}
+
+@media (max-width: 414px) {
+  .filters {
+    display: none;
+
+    &-title {
+      display: none;
+    }
+
+    &-buttons {
+      position: fixed;
+      left: 20px;
+      right: 20px;
+      bottom: 32px;
+      width: auto;
+      padding: 16px;
+      border-radius: 16px;
+      background-color: #fff;
+      box-shadow: 2px 2px 20px 0 #0000001A;
+      z-index: 10;
+
+      button {
+        height: 39px;
+        font-size: 14px;
+      }
+      
+      &__reset {
+        background-color: #F9F9F9;
+      }
+    }
   }
 }
 </style>

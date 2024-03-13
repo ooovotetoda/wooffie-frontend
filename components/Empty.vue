@@ -24,4 +24,13 @@ const props = defineProps({
     height: 500px;
   }
 }
+
+@media (max-width: 414px) {
+  .empty {
+    img {
+      width: 320px;
+      height: 288px;
+    }
+  }
+}
 </style>
