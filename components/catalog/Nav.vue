@@ -83,6 +83,13 @@ const handleSelectCategory = (category: string) => {
           padding: 8px 16px;
           font-size: 14px;
         }
+
+        &::after {
+          content: '';
+          position: relative;
+          flex: none;
+          width: 20px;
+        }
       }
     }
   }
