@@ -264,4 +264,53 @@ const handleDislike = async () => {
     }
   }
 }
+
+@media (max-width: 414px) {
+  .comment {
+    margin-bottom: 32px;
+
+    &__header {
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    &__tel {
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    &__status {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    &__subheader {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    &__date {
+      font-size: 12px;
+      line-height: 30px;
+    }
+
+    &__copy {
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &__estimations {
+      gap: 24px;
+
+      &__item {
+        gap: 0;
+      }
+
+      &__count {
+        font-size: 14px;
+      }
+    }
+  }
+}
 </style>
