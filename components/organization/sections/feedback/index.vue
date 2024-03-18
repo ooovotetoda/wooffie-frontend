@@ -235,6 +235,7 @@ const handleOld = () => {
       font-size: 14px;
 
       span {
+        margin-top: 2px;
         font-size: 12px;
       }
     }
