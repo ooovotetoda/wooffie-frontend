@@ -231,8 +231,8 @@ const handleOld = () => {
     }
 
     &__rating {
-      gap: 24px;
-      font-size: 8px;
+      gap: 8px;
+      font-size: 14px;
 
       span {
         font-size: 12px;
