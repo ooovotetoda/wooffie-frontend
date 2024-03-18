@@ -41,18 +41,36 @@ onMounted(() => {
 
 <template>
   <nav class="nav">
-    <ul v-if="category === 'vet' || category === 'groomer'" class="nav__list">
-      <li class="nav__item" data-section="services" @click="setActiveSection('services')">Услуги</li>
-      <li class="nav__item" data-section="clinic" @click="setActiveSection('clinic')">Клиники</li>
-      <li class="nav__item" data-section="gallery" @click="setActiveSection('gallery')">Фотогалерея</li>
-      <li class="nav__item" data-section="feedback" @click="setActiveSection('feedback')">Отзывы</li>
-    </ul>
-
-    <ul v-else-if="category === 'clinic' || category === 'salon'" class="nav__list">
-      <li class="nav__item" data-section="services" @click="setActiveSection('services')">Услуги</li>
-      <li class="nav__item" data-section="specialists" @click="setActiveSection('specialists')">Специалисты</li>
-      <li class="nav__item" data-section="gallery" @click="setActiveSection('gallery')">Фотогалерея</li>
-      <li class="nav__item" data-section="feedback" @click="setActiveSection('feedback')">Отзывы</li>
+    <ul  class="nav__list">
+      <li
+          class="nav__item"
+          data-section="services"
+          @click="setActiveSection('services')"
+      >Услуги</li>
+      <li
+          v-if="category === 'vet' || category === 'groomer'"
+          class="nav__item"
+          data-section="clinic"
+          @click="setActiveSection('clinic')"
+      >Клиники
+      </li>
+      <li
+          v-else-if="category === 'clinic' || category === 'salon'"
+          class="nav__item"
+          data-section="specialists"
+          @click="setActiveSection('specialists')"
+      >Специалисты
+      </li>
+      <li
+          class="nav__item"
+          data-section="gallery"
+          @click="setActiveSection('gallery')"
+      >Фотогалерея</li>
+      <li
+          class="nav__item"
+          data-section="feedback"
+          @click="setActiveSection('feedback')"
+      >Отзывы</li>
     </ul>
   </nav>
 </template>
@@ -69,8 +87,7 @@ onMounted(() => {
     align-items: center;
     list-style-type: none;
 
-
-    &:after {
+    &:before {
       content: "";
       position: absolute;
       left: v-bind(underlinePosition);
@@ -99,13 +116,25 @@ onMounted(() => {
 
 @media (max-width: 414px) {
   .nav {
-    margin: 24px 0;
+    width: 100vw;
+    margin: 24px 0 24px -20px;
     overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    &__list {
+      padding: 0 20px;
+
+      &:after {
+        content: "a";
+        width: 20px;
+        min-width: 20px;
+        opacity: 0;
+      }
     }
 
     &__item {
