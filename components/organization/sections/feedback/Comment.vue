@@ -295,17 +295,13 @@ const handleDislike = async () => {
     }
 
     &__copy {
-      margin-bottom: 0;
+      margin-bottom: 4px;
       font-size: 14px;
       line-height: 20px;
     }
 
     &__estimations {
       gap: 24px;
-
-      &__item {
-        gap: 0;
-      }
 
       &__count {
         font-size: 14px;
