@@ -286,6 +286,7 @@ const handleDislike = async () => {
 
     &__subheader {
       margin-bottom: 0;
+      gap: 4px;
       font-size: 14px;
     }
 
