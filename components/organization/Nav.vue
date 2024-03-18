@@ -1,51 +1,58 @@
 <script setup lang="ts">
-import type {OrganizationSection} from "~/types/organization";
+import { ref, watch, onMounted, nextTick } from 'vue';
+import type { Ref } from 'vue';
+import type { OrganizationSection } from "~/types/organization";
 
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
-const category = route.params.category
+const category = route.params.category;
+const underlinePosition = ref("0");
+const underlineWidth = ref("0px"); // Изначально устанавливаем в 0px
 
-const underlinePosition = ref("0")
+const navItems: Ref<HTMLElement[]> = ref([]);
 
 const setActiveSection = (section: OrganizationSection | string) => {
-  router.replace({ query: { section: section } })
-}
+  router.replace({ query: { section: section } });
+};
+
+const updateUnderlinePosition = (section: string) => {
+  nextTick(() => {
+    const activeItem = navItems.value.find(item => item.dataset.section === section);
+    if (activeItem) {
+      underlinePosition.value = `${activeItem.offsetLeft}px`;
+      underlineWidth.value = `${activeItem.offsetWidth}px`;
+    }
+  });
+};
 
 watch(() => route.query.section, (newVal) => {
-  let sectionKey = typeof newVal === 'string' ? newVal : Array.isArray(newVal) ? newVal[0] : 'services';
+  const sectionKey = typeof newVal === 'string' ? newVal : Array.isArray(newVal) ? newVal[0] : 'services';
+  updateUnderlinePosition(sectionKey);
+}, { immediate: true });
 
-  if (!sectionKey) {
-    return
-  }
-
-  let lefts = {
-    services: 0,
-    clinic: 1,
-    specialists: 1,
-    gallery: 2,
-    feedback: 3,
-  };
-
-  // TODO
-  underlinePosition.value = `${200 * lefts[sectionKey]}px`
-}, { immediate: true })
+onMounted(() => {
+  navItems.value = Array.from(document.querySelectorAll('.nav__item'));
+  // Определите начальный активный раздел здесь
+  const initialSection = route.query.section || 'services';
+  updateUnderlinePosition(initialSection);
+});
 </script>
 
 <template>
   <nav class="nav">
     <ul v-if="category === 'vet' || category === 'groomer'" class="nav__list">
-      <li class="nav__item" @click="setActiveSection('services')">Услуги</li>
-      <li class="nav__item" @click="setActiveSection('clinic')">Клиники</li>
-      <li class="nav__item" @click="setActiveSection('gallery')">Фотогалерея</li>
-      <li class="nav__item" @click="setActiveSection('feedback')">Отзывы</li>
+      <li class="nav__item" data-section="services" @click="setActiveSection('services')">Услуги</li>
+      <li class="nav__item" data-section="clinic" @click="setActiveSection('clinic')">Клиники</li>
+      <li class="nav__item" data-section="gallery" @click="setActiveSection('gallery')">Фотогалерея</li>
+      <li class="nav__item" data-section="feedback" @click="setActiveSection('feedback')">Отзывы</li>
     </ul>
 
     <ul v-else-if="category === 'clinic' || category === 'salon'" class="nav__list">
-      <li class="nav__item" @click="setActiveSection('services')">Услуги</li>
-      <li class="nav__item" @click="setActiveSection('specialists')">Специалисты</li>
-      <li class="nav__item" @click="setActiveSection('gallery')">Фотогалерея</li>
-      <li class="nav__item" @click="setActiveSection('feedback')">Отзывы</li>
+      <li class="nav__item" data-section="services" @click="setActiveSection('services')">Услуги</li>
+      <li class="nav__item" data-section="specialists" @click="setActiveSection('specialists')">Специалисты</li>
+      <li class="nav__item" data-section="gallery" @click="setActiveSection('gallery')">Фотогалерея</li>
+      <li class="nav__item" data-section="feedback" @click="setActiveSection('feedback')">Отзывы</li>
     </ul>
   </nav>
 </template>
@@ -68,7 +75,7 @@ watch(() => route.query.section, (newVal) => {
       position: absolute;
       left: v-bind(underlinePosition);
       bottom: 0;
-      width: 200px;
+      width: v-bind(underlineWidth);
       height: 3px;
       background-color: rgba(221, 185, 164, 0.50);
       transition: all 0.15s ease-in-out;
@@ -87,6 +94,25 @@ watch(() => route.query.section, (newVal) => {
     font-weight: 400;
     line-height: normal;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 414px) {
+  .nav {
+    margin: 24px 0;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__item {
+      padding: 16px 24px;
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
 }
 </style>

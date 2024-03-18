@@ -115,4 +115,36 @@ const props = defineProps<{
     }
   }
 }
+
+@media (max-width: 414px) {
+  .services {
+    &__list {
+      margin-bottom: 32px;
+    }
+
+    &__item {
+      padding: 20px 24px;
+      margin-bottom: 8px;
+    }
+
+    &__left {
+      gap: 8px;
+    }
+
+    &__icon {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__name {
+      font-size: 14px;
+    }
+
+    &__price {
+      font-size: 16px;
+    }
+  }
+}
 </style>

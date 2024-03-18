@@ -221,4 +221,26 @@ const handleOld = () => {
     list-style-type: none;
   }
 }
+
+@media (max-width: 414px) {
+  .feedback {
+    &__title {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    &__rating {
+      font-size: 14px;
+
+      span {
+        font-size: 12px;
+      }
+    }
+
+    &__sort {
+      display: none;
+    }
+  }
+}
 </style>

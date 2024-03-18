@@ -84,9 +84,11 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .schedule {
+  grid-area: schedule;
   width: 334px;
   min-width: 334px;
   padding: 32px;
+  margin-right: 32px;
   border-radius: 10px;
   background: #FFF;
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
@@ -186,6 +188,12 @@ onMounted(() => {
     &:hover {
       background-color: $hover-grey;
     }
+  }
+}
+
+@media (max-width: 414px) {
+  .schedule {
+    display: none;
   }
 }
 </style>

@@ -72,7 +72,7 @@ const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catal
 
   &-filters {
     &__btn {
-      display: block;
+      display: none;
       padding: 9px;
       border-radius: 8px;
       background: #F9F9F9;
@@ -84,7 +84,7 @@ const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catal
 @media (max-width: 414px) {
   .breadcrumbs {
     justify-content: space-between;
-    margin: 32px 0 16px 20px;
+    margin: 32px 0 16px 0;
 
     &-list {
       &__item {

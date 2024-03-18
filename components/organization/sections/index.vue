@@ -14,12 +14,21 @@ watch(() => route.query.section, (newSection) => {
 </script>
 
 <template>
-  <OrganizationSectionsServices :services="organization.services" v-if="section === 'services'"/>
-  <OrganizationSectionsList v-if="section === 'clinic' || section === 'specialists'"/>
-  <OrganizationSectionsGallery  v-if="section === 'gallery'"/>
-  <OrganizationSectionsFeedback :organization="organization" v-if="section === 'feedback'"/>
+  <Transition name="fade">
+    <OrganizationSectionsServices v-if="section === 'services'" :services="organization.services"/>
+    <OrganizationSectionsList v-else-if="section === 'clinic' || section === 'specialists'"/>
+    <OrganizationSectionsGallery  v-else-if="section === 'gallery'"/>
+    <OrganizationSectionsFeedback v-else-if="section === 'feedback'" :organization="organization"/>
+  </Transition>
+
 </template>
 
 <style scoped lang="scss">
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
 
 </style>

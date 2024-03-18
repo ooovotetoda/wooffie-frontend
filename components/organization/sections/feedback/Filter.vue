@@ -92,6 +92,11 @@ watch(checked, (newChecked) => {
       }
     }
   }
+}
 
+@media (max-width: 414px) {
+  .filter {
+    display: none;
+  }
 }
 </style>

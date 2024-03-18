@@ -60,7 +60,7 @@ const toggleIsActive = async () => {
 const handleContact = async () => {
   if (isContacted.value) {
     try {
-      await navigator.clipboard.writeText("+79883232105");
+      await navigator.clipboard.writeText(props.organization.phone);
     } catch (err) {
       console.error("Ошибка при копировании: ", err);
     }
@@ -87,40 +87,38 @@ const handleReview = async () => {
   <section class="organization-header">
     <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
 
-    <div class="organization-header__body">
-      <div class="organization-header__media">
-        <NuxtImg format="webp" :src="organization.photo" alt="avatar"/>
-        <button @click="toggleIsActive" class="organization-header__media-favorite" :class="{ 'organization-header__media-favorite__active': isActive }">
-          <IconsFavorite />
-        </button>
+    <div class="organization-header__media">
+      <NuxtImg format="webp" :src="organization.photo" alt="avatar"/>
+      <button @click="toggleIsActive" class="organization-header__favorite" :class="{ 'organization-header__favorite__active': isActive }">
+        <IconsFavorite />
+      </button>
+    </div>
+
+    <div class="organization-header__info">
+      <h3 class="organization-header__title">{{ organization.name }}</h3>
+
+      <Rating :rating="Math.round(organization.rating)" class="organization-header__rating"/>
+
+      <div class="organization-header__criteria">
+        <span class="organization-header__criteria-type">{{ types[organization.type] }}</span>
+        <span v-if="organization.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
+        <span class="organization-header__criteria-city">{{ cities[organization.city] }}</span>
       </div>
 
-      <div class="organization-header__info">
-        <h3 class="organization-header__title">{{ organization.name }}</h3>
-        <div class="organization-header__criteria">
-          <span class="organization-header__criteria-type">{{ types[organization.type] }}</span>
-          <span v-if="organization.round_clock" class="organization-header__criteria-schedule">Круглосуточно</span>
-          <span class="organization-header__criteria-city">{{ cities[organization.city] }}</span>
-        </div>
+    </div>
+    <div class="organization-header__copy">
+      {{ organization.about }}
+    </div>
 
-        <Rating :rating="Math.round(organization.rating)" class="organization-header__rating"/>
-
-        <div class="organization-header__copy">
-          <!-- TODO: Когда буду заполнять текст в БД, нужно добавлять не больше чем на 580 символов. -->
-          {{ organization.about }}
-        </div>
-
-        <div class="organization-header__buttons">
-          <button @click="handleReview" class="feedback">Оставить отзыв</button>
-          <button class="contact"
-                  :class="{contacted: isContacted}"
-                  @click="handleContact"
-          >
-            {{isContacted ? organization.phone : "Связаться"}}
-            <IconsCopy v-if="isContacted"/>
-          </button>
-        </div>
-      </div>
+    <div class="organization-header__buttons">
+      <button @click="handleReview" class="feedback">Оставить отзыв</button>
+      <button class="contact"
+              :class="{contacted: isContacted}"
+              @click="handleContact"
+      >
+        {{isContacted ? organization.phone : "Связаться"}}
+        <IconsCopy v-if="isContacted"/>
+      </button>
     </div>
   </section>
 </template>
@@ -128,9 +126,11 @@ const handleReview = async () => {
 <style scoped lang="scss">
 .organization {
   &-header {
-    display: flex;
-    align-items: center;
-    gap: 32px;
+    display: grid;
+    grid-template-areas: "schedule image info"
+                         "schedule image about"
+                         "schedule image buttons";
+    grid-template-rows: auto 1fr auto;
 
     &__calendar {
       width: 388px;
@@ -139,53 +139,16 @@ const handleReview = async () => {
       background: #888888;
     }
 
-    &__body {
-      display: flex;
-      gap: 32px;
-    }
-
     &__media {
       position: relative;
+      grid-area: image;
+      margin-right: 32px;
 
       img {
         width: 632px;
         height: 512px;
         border-radius: 10px;
         object-fit: cover;
-      }
-
-      &-favorite {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        transition: all 0.1s ease-in-out;
-        padding: 7px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-
-        svg {
-          color: rgba(0, 0, 0, 0.2);
-          transition: all 0.1s ease-in-out;
-          z-index: 2;
-          font-size: 20px;
-        }
-
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.9);
-
-          svg {
-            color: rgba(228, 0, 0, 0.56);
-          }
-        }
-
-        &__active {
-          background-color: #fff;
-
-          svg {
-            color: rgba(228, 0, 0, 0.87) !important;
-          }
-        }
       }
 
       &:active {
@@ -195,9 +158,44 @@ const handleReview = async () => {
       }
     }
 
+    &__favorite {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      transition: all 0.1s ease-in-out;
+      padding: 7px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+
+      svg {
+        color: rgba(0, 0, 0, 0.2);
+        transition: all 0.1s ease-in-out;
+        z-index: 2;
+        font-size: 20px;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+
+        svg {
+          color: rgba(228, 0, 0, 0.56);
+        }
+      }
+
+      &__active {
+        background-color: #fff;
+
+        svg {
+          color: rgba(228, 0, 0, 0.87) !important;
+        }
+      }
+    }
+
     &__info {
       display: flex;
       flex-direction: column;
+      grid-area: info;
     }
 
     &__title {
@@ -250,6 +248,7 @@ const handleReview = async () => {
     }
 
     &__copy {
+      grid-area: about;
       overflow: hidden;
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
@@ -265,6 +264,7 @@ const handleReview = async () => {
       display: flex;
       gap: 16px;
       margin-top: auto;
+      grid-area: buttons;
 
       button {
         width: 200px;
@@ -339,9 +339,86 @@ const handleReview = async () => {
         margin-bottom: 16px;
       }
 
+      &__criteria {
+        span {
+          padding: 6px 8px;
+          font-size: 12px;
+          line-height: 14px;
+        }
+      }
+
       &__copy {
         font-size: 16px;
         line-height: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .organization {
+    &-header {
+      position: relative;
+      grid-template-areas: "image info"
+                           "about about"
+                           "buttons buttons";
+      grid-auto-columns: auto 1fr;
+
+      &__media {
+        position: static;
+        max-width: 76px;
+        max-height: 76px;
+        margin-right: 8px;
+
+        img {
+          width: 76px;
+          height: 76px;
+          border-radius: 50%;
+        }
+      }
+
+      &__favorite {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+
+        svg {
+          font-size: 14px;
+        }
+      }
+
+      &__title {
+        font-size: 16px;
+        line-height: 19px;
+      }
+
+      &__rating {
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      &__copy {
+        font-size: 14px;
+        line-height: 20px;
+        text-align: justify;
+        margin-bottom: 24px;
+      }
+
+      &__buttons {
+        button {
+          width: auto;
+          flex: 1;
+          padding: 12px 0;
+          font-size: 14px;
+          line-height: 16px;
+        }
+
+        .feedback {
+          border: 1px solid #F9F9F9;
+          background-color: #F9F9F9;
+          color: rgba(0,0,0, 0.87);
+        }
       }
     }
   }
