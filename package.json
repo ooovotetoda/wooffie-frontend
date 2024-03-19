@@ -25,6 +25,7 @@
     "@nuxt/image": "^1.3.0",
     "@nuxt/ui": "^2.14.2",
     "@pinia/nuxt": "^0.5.1",
+    "nuxt": "^3.10.0",
     "ipx": "^3.0.1",
     "pinia": "^2.1.7",
     "vue-final-modal": "^4.4.6",
