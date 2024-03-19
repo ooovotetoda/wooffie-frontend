@@ -24,7 +24,7 @@ COPY --link . .
 RUN pnpm run build
 
 # Удалите разработческие зависимости, оставив только зависимости для продакшена
-RUN pnpm prune --production
+RUN pnpm prune --prod
 
 FROM base
 ENV PORT=$PORT

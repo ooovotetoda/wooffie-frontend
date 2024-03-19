@@ -43,12 +43,12 @@ export default defineNuxtConfig({
     dirs: ['types/*.ts'],
   },
   modules: [
-    '@nuxt/ui',
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
     'yandex-metrika-module-nuxt3',
-    'vue3-carousel-nuxt'
+    'vue3-carousel-nuxt',
+    '@nuxt/ui',
   ],
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
