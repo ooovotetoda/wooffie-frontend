@@ -43,6 +43,7 @@ export default defineNuxtConfig({
     dirs: ['types/*.ts'],
   },
   modules: [
+    '@nuxt/ui',
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
