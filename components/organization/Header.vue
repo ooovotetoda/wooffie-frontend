@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useModal } from 'vue-final-modal'
 import {OrganizationModalsFeedback} from "#components";
 import type {Organization} from "~/types/organization";
 
@@ -69,13 +68,11 @@ const handleContact = async () => {
   }
 }
 
-const { open } = useModal({
-  component: OrganizationModalsFeedback,
-})
+const isOpen = ref(false)
 
 const handleReview = async () => {
   if (user.loggedIn) {
-    await open()
+    isOpen.value = true
   } else {
     await navigateTo("/auth/signin")
   }
@@ -111,7 +108,14 @@ const handleReview = async () => {
     </div>
 
     <div class="organization-header__buttons">
-      <button @click="handleReview" class="feedback">Оставить отзыв</button>
+      <div>
+        <button @click="handleReview" class="feedback">Оставить отзыв</button>
+
+        <UModal v-model="isOpen">
+          <OrganizationModalsFeedback @close="() => isOpen = false"/>
+        </UModal>
+      </div>
+      
       <button class="contact"
               :class="{contacted: isContacted}"
               @click="handleContact"

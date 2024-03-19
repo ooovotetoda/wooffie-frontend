@@ -17,8 +17,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: 'https://wooffie.ru',
-      baseURL: 'https://2554131-yo82697.twc1.net',
-      // baseURL: 'http://localhost:8080',
+      // baseURL: 'https://2554131-yo82697.twc1.net',
+      baseURL: 'http://localhost:8080',
     },
   },
   router: {
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
       scrollBehaviorType: 'smooth'
     }
   },
-  css: ['~/assets/main.scss', 'vue-final-modal/style.css'],
+  css: ['~/assets/main.scss'],
   vite: {
     css: {
       preprocessorOptions: {
@@ -74,7 +74,6 @@ export default defineNuxtConfig({
   },
   plugins: [
     '~/plugins/ofetch.ts',
-    '~/plugins/vfm.ts',
     '~/plugins/access.ts',
   ],
   devtools: { enabled: true },

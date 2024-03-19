@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { VueFinalModal } from 'vue-final-modal'
 import type {SendReviewBody} from "~/types/reviews";
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', modelValue: boolean): void
+  (e: 'close'): void
 }>()
 
 const { $ofetch } = useNuxtApp()
@@ -49,7 +48,7 @@ const submitReview = async () => {
     })
 
     if (response.status === "OK") {
-      emit('update:modelValue', false)
+      emit('close')
       //TODO: подумать, нужна ли  перезагрузка страницы, после отправки комментария
       router.go(0)
     }
@@ -61,13 +60,8 @@ const submitReview = async () => {
 </script>
 
 <template>
-  <VueFinalModal
-    class=""
-    content-class="modal__wrapper"
-    @update:model-value="val => emit('update:modelValue', val)"
-  >
-    <div class="modal__window">
-      <IconsClose class="modal__close" @click="emit('update:modelValue', false)"/>
+  <div class="modal__window">
+      <IconsClose class="modal__close" @click="emit('close')"/>
       <h2 class="modal__title">
         Отзыв
       </h2>
@@ -88,7 +82,7 @@ const submitReview = async () => {
         </form>
 
         <div class="modal__buttons">
-          <button class="cancel" @click="emit('update:modelValue', false)">
+          <button class="cancel" @click="emit('close')">
             Отмена
           </button>
           <button class="send" @click="submitReview">
@@ -98,17 +92,12 @@ const submitReview = async () => {
 
       </ClientOnly>
     </div>
-  </VueFinalModal>
 </template>
 
 
 <style scoped lang="scss">
 .modal {
   &__window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     padding: 56px;
     border-radius: 10px;
     background: #FFF;

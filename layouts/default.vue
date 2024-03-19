@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ModalsContainer } from 'vue-final-modal'
 import { useBreadcrumbs } from '~/composables/useBreadcrumbs';
 
 const { breadcrumbs } = useBreadcrumbs();
@@ -22,10 +21,6 @@ const withSearch = computed(() => {
       </UContainer>
 
       <slot/>
-
-      <Transition name="modal">
-        <ModalsContainer />
-      </Transition>
     </main>
 
     <Footer/>
