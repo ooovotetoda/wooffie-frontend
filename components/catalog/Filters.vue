@@ -231,6 +231,11 @@ const resetFilters = async () => {
 
 @media (max-width: 414px) {
   .filters {
+    width: 100%;
+    padding: 0;
+    margin: 24px 0 127px 0;
+    box-shadow: none;
+
     &-title {
       display: none;
     }

@@ -145,13 +145,6 @@ const isOpen = ref(false)
   }
 }
 
-.filters {
-  width: 100%;
-  padding: 0;
-  margin: 24px 0 127px 0;
-  box-shadow: none;
-}
-
 @media (max-width: 414px) {
   .breadcrumbs {
     justify-content: space-between;
