@@ -6,7 +6,7 @@ definePageMeta({
 </script>
 
 <template>
-  <section class="profile">
+  <section class="profile w-full">
     <div class="profile__media">
       <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="user"/>
     </div>
