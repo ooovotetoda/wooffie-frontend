@@ -35,9 +35,7 @@ const isOpen = ref(false)
     <USlideover v-model="isOpen">
       <MenuHeader>
         <div class="header-left">
-          <button class="header__back">
-            <IconsFilters />
-          </button>
+          <IconsFilters />
 
           <span class="header__text">Фильтры</span>
         </div>
@@ -106,33 +104,6 @@ const isOpen = ref(false)
   }
 }
 
-@media (max-width: 414px) {
-  .breadcrumbs {
-    justify-content: space-between;
-    margin: 32px 0 16px 0;
-
-    &-list {
-      &__item {
-        a {
-          font-size: 12px;
-        }
-
-        &:not(:first-of-type):before {
-          max-width: 16px;
-          max-height: 16px;
-          transform: scale(1);
-          margin: 0 12px;
-        }
-      }
-    }
-
-    &-filters {
-      &__btn {
-        display: block;
-      }
-    }
-  }
-}
 
 .header {
   &-left {
@@ -180,5 +151,33 @@ const isOpen = ref(false)
   padding: 0;
   margin: 24px 0 127px 0;
   box-shadow: none;
+}
+
+@media (max-width: 414px) {
+  .breadcrumbs {
+    justify-content: space-between;
+    margin: 32px 0 16px 0;
+
+    &-list {
+      &__item {
+        a {
+          font-size: 12px;
+        }
+
+        &:not(:first-of-type):before {
+          max-width: 16px;
+          max-height: 20px;
+          transform: scale(1);
+          margin: 0 12px;
+        }
+      }
+    }
+
+    &-filters {
+      &__btn {
+        display: block;
+      }
+    }
+  }
 }
 </style>
