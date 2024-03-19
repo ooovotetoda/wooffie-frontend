@@ -23,9 +23,9 @@ const router = useRouter()
     </MenuHeader>
 
     <main class="main">
-      <div class="container">
+      <UContainer>
         <CatalogFilters/>
-      </div>
+      </UContainer>
     </main>
   </div>
 

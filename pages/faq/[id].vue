@@ -14,13 +14,13 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
 
 <template>
 <section class="question">
-  <div class="container">
+  <UContainer>
     <div class="question__header">
       <span>Как ухаживать за питомцем дома?</span>
     </div>
 
     <p class="question__copy">{{ text }}</p>
-  </div>
+  </UContainer>
 </section>
 </template>
 

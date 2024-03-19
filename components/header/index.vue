@@ -9,7 +9,7 @@ const phone = formatPhone(user.phoneNumber)
 <template>
   <header class="header">
     <div class="header-wrapper">
-      <div class="container">
+      <UContainer>
         <div class="wrapper">
           <div class="header__left">
             <NuxtLink to="/">
@@ -41,7 +41,7 @@ const phone = formatPhone(user.phoneNumber)
             </NuxtLink>
           </div>
         </div>
-      </div>
+      </UContainer>
     </div>
   </header>
 </template>

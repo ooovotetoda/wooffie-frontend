@@ -6,7 +6,7 @@ definePageMeta({
 
 <template>
   <section class="faq">
-    <div class="container">
+    <UContainer>
       <h2 class="faq__title">Часто задаваемые вопросы</h2>
       <div class="wrapper">
         <FaqCard/>
@@ -18,7 +18,7 @@ definePageMeta({
         <FaqCard/>
         <FaqCard/>
       </div>
-    </div>
+    </UContainer>
   </section>
 </template>
 

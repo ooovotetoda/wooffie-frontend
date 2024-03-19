@@ -14,13 +14,13 @@ const { breadcrumbs } = useBreadcrumbs();
     <Header/>
 
     <main class="main">
-      <div class="container">
+      <UContainer>
         <Breadcrumbs :breadcrumbs="breadcrumbs"/>
         <div class="wrapper">
           <ProfileNav />
           <slot />
         </div>
-      </div>
+      </UContainer>
     </main>
 
     <Footer/>

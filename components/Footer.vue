@@ -4,7 +4,7 @@
 
 <template>
   <footer v-once class="footer">
-    <div class="container">
+    <UContainer>
       <div class="wrapper">
         <div class="footer-logo">
           <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__white.svg" alt="logo"/>
@@ -27,7 +27,7 @@
           <a href="https://instagram.com" target="_blank"><IconsInstagram/></a>
         </div>
       </div>
-    </div>
+    </UContainer>
   </footer>
 </template>
 

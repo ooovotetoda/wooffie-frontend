@@ -8,17 +8,17 @@ const { width } = useWindowSize()
 
 <template>
   <section v-once id="main" class="main-header">
-    <div class="container">
+    <UContainer>
       <div class="poster">
         <h1 class="poster-title">Wooffie</h1>
         <p class="poster-description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять</p>
       </div>
       <Search/>
-    </div>
+    </UContainer>
   </section>
 
   <section v-once id="services" class="services">
-    <div class="container">
+    <UContainer class="px-0">
       <div class="wrapper">
         <h2 class="services-title">Услуги</h2>
 
@@ -59,11 +59,11 @@ const { width } = useWindowSize()
           </Slide>
         </Slider>
       </div>
-    </div>
+    </UContainer>
   </section>
 
   <section v-once id="about" class="about">
-    <div class="container">
+    <UContainer>
       <div class="wrapper">
         <div class="about-text">
           <h2 class="about-text-title">
@@ -80,19 +80,25 @@ const { width } = useWindowSize()
           </div>
         </div>
         <div class="about-image">
-          <img src="/about-animals.webp" alt="animals"/>
+          <NuxtImg
+              class="m-auto w-auto lg:w-[956px]"
+              format="webp"
+              provider="myProvider"
+              src="/about-animals.webp"
+              alt="animals"
+          />
         </div>
       </div>
-    </div>
+    </UContainer>
   </section>
 
   <section class="specialists">
-    <div class="container">
+    <UContainer class="px-0">
       <div class="wrapper">
         <h2 class="specialists-title">Специалисты</h2>
         <MainSpecialistCarousel/>
       </div>
-    </div>
+    </UContainer>
   </section>
 </template>
 

@@ -402,7 +402,7 @@ const toggleIsActive = async () => {
 
     &__info {
       width: auto;
-      min-width: auto;
+      min-width: 280px;
       font-size: 16px;
     }
 

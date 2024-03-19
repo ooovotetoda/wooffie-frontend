@@ -7,7 +7,7 @@ definePageMeta({
 
 <template>
   <main>
-    <div class="container">
+    <UContainer>
       <div class="wrapper">
         <h1 class="title">Cтраница не существует</h1>
         <div class="media">
@@ -15,7 +15,7 @@ definePageMeta({
         </div>
         <NuxtLink to="/" class="home__btn">На главную</NuxtLink>
       </div>
-    </div>
+      </UContainer>
   </main>
 </template>
 

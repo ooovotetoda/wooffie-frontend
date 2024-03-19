@@ -21,11 +21,11 @@ const router = useRouter()
     </MenuHeader>
 
     <main class="main">
-      <div class="container">
+      <UContainer>
         <MenuUser/>
 
         <slot/>
-      </div>
+      </UContainer>
     </main>
   </div>
 

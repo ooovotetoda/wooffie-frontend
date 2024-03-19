@@ -69,11 +69,11 @@ watch(() => route, () => {
 
 <template>
   <main class="main">
-    <div class="container">
+    <UContainer>
       <OrganizationHeader :organization/>
       <OrganizationNav />
       <OrganizationSections :organization/>
-    </div>
+    </UContainer>
   </main>
 </template>
 

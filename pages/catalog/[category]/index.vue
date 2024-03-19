@@ -129,7 +129,7 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
 </script>
 
 <template>
-  <div class="container">
+  <UContainer>
     <div class="wrapper">
       <CatalogFilters />
       <main class="main catalog">
@@ -146,7 +146,7 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
         <Empty v-else-if="filteredOrganizations.length === 0" :margin="78"/>
       </main>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 
