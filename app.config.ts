@@ -4,7 +4,7 @@ export default defineAppConfig({
     gray: 'cool',
 
     container: {
-      constrained: 'max-w-auto',
+      constrained: 'max-w-none',
     }
   }
 })
