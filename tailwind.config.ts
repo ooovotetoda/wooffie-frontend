@@ -15,5 +15,8 @@ export default <Partial<Config>>{
         }
       }
     },
+    fontFamily: {
+      'roboto': ['Robot', 'sans-serif'],
+    },
   },
 }

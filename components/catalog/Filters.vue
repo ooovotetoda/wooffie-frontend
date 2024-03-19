@@ -4,9 +4,6 @@ import {useCatalogFiltersStore} from "~/stores/catalogFiltersStore";
 const router = useRouter()
 const {width} = useWindowSize()
 
-const nowId = useId("now")
-const roundId = useId("round")
-
 const filtersStore = useCatalogFiltersStore()
 
 const filters: Filters = reactive({
@@ -56,21 +53,23 @@ const resetFilters = async () => {
 
           <ul>
             <li>
-              <label class="filters-category-radio">Круглосуточно
-                <input type="radio" :id="roundId" value="round" v-model="filters.schedule">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
+              <URadio class="items-center" v-model="filters.schedule" value="round">
+                <template #label>
+                  <span class="text-base font-normal font-roboto">Круглосуточно</span>
+                </template>
+              </URadio>
             </li>
 
             <li>
-              <label class="filters-category-radio">Открыто сейчас
-                <input type="radio" :id="nowId" value="now" v-model="filters.schedule">
-                <span></span>
-                <span class="filters-category-radio-background"></span>
-              </label>
+              <URadio class="items-center" v-model="filters.schedule" value="now">
+                <template #label>
+                  <span class="text-base font-normal font-roboto">Открыто сейчас</span>
+                </template>
+              </URadio>
             </li>
           </ul>
+
+
         </div>
 
 
@@ -80,27 +79,27 @@ const resetFilters = async () => {
           </h4>
           <ul>
             <li>
-              <label class="filters-category-checkbox">В учреждении
-                <input type="checkbox" id="check1" value="round" v-model="filters.formats.local">
-                <span></span>
-                <span class="filters-category-checkbox-background"></span>
-              </label>
+              <UCheckbox class="items-center" v-model="filters.formats.local" name="round">
+                <template #label>
+                  <span class="text-base font-normal font-roboto">В учреждении</span>
+                </template>
+              </UCheckbox>
             </li>
 
             <li>
-              <label class="filters-category-checkbox">Онлайн
-                <input type="checkbox" id="check2" value="now" v-model="filters.formats.online">
-                <span></span>
-                <span class="filters-category-checkbox-background"></span>
-              </label>
+              <UCheckbox class="items-center" v-model="filters.formats.online" name="online">
+                <template #label>
+                  <span class="text-base font-normal font-roboto">Онлайн</span>
+                </template>
+              </UCheckbox>
             </li>
 
             <li>
-              <label class="filters-category-checkbox">На дому
-                <input type="checkbox" id="check2" value="now" v-model="filters.formats.home">
-                <span></span>
-                <span class="filters-category-checkbox-background"></span>
-              </label>
+              <UCheckbox class="items-center" v-model="filters.formats.home" name="home">
+                <template #label>
+                  <span class="text-base font-normal font-roboto">На дому</span>
+                </template>
+              </UCheckbox>
             </li>
           </ul>
         </div>
@@ -182,149 +181,6 @@ const resetFilters = async () => {
         font-style: normal;
         font-weight: 400;
         line-height: 24px; /* 150% */
-
-        label {
-          position: relative;
-          padding-left: 32px;
-          cursor: pointer;
-        }
-      }
-    }
-
-    &-radio {
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-
-        &:checked ~ span {
-          background-color: $main-color;
-          border: 2px solid $main-color;
-
-          &:after {
-            display: block;
-          }
-        }
-
-        &:checked ~ .filters-category-radio-background {
-          background-color: #FFFFFF;
-          border: 2px solid $main-color;
-
-          &:after {
-            display: block;
-          }
-        }
-      }
-
-      &:hover .filters-category-radio-background {
-        background-color: $hover-grey !important; /* или измените другие стили для показа при наведении */
-      }
-
-      span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 18px;
-        width: 18px;
-        border-radius: 50%;
-        border: 2px solid rgba(0, 0, 0, 0.48);
-        transition: all 0.1s ease-in-out;
-        z-index: 2;
-
-        &:after {
-          content: "";
-          position: absolute;
-          display: none;
-          top: 50%;
-          left: 50%;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          border: 2px solid white;
-          background: $main-color;
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      &-background {
-        position: absolute;
-        background: #FFFFFF !important;
-        border-radius: 50%;
-        border: none !important;
-        scale: 1.5;
-        z-index: 1 !important; /* Убедитесь, что этот фон ниже span */
-        transition: all 1s ease-in-out;
-      }
-    }
-
-    &-checkbox {
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-
-        &:checked ~ span {
-          background-color: $main-color;
-          border: 2px solid $main-color;
-
-          &:after {
-            display: block;
-          }
-        }
-
-        &:checked ~ .filters-category-checkbox-background {
-          background-color: #FFFFFF;
-          border: 2px solid $main-color;
-
-          &:after {
-            display: block;
-          }
-        }
-      }
-
-      &:hover .filters-category-checkbox-background {
-        background-color: $hover-grey !important;
-      }
-
-      span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 18px;
-        width: 18px;
-        border-radius: 3px;
-        border: 2px solid rgba(0, 0, 0, 0.48);
-        transition: all 0.1s ease-in-out;
-        z-index: 2;
-
-        &:after {
-          content: "";
-          position: absolute;
-          display: none;
-          top: 0;
-          left: 50%;
-          width: 5px;
-          height: 9px;
-          border: solid white;
-          border-width: 0 2px 2px 0;
-          -webkit-transform: translateX(-50%) rotate(45deg);
-          -ms-transform: translateX(-50%) rotate(45deg);
-          transform: translateX(-50%) rotate(45deg);
-        }
-      }
-
-      &-background {
-        position: absolute;
-        background: #FFFFFF;
-        border-radius: 4px;
-        border: none !important;
-        scale: 1.5;
-        z-index: 1 !important;
-        transition: all 1s ease-in-out;
       }
     }
   }
@@ -405,7 +261,7 @@ const resetFilters = async () => {
         height: 39px;
         font-size: 14px;
       }
-      
+
       &__reset {
         background-color: #F9F9F9;
       }
