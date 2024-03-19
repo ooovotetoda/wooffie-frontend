@@ -2,6 +2,7 @@
 // import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import type {GalleryData, Photo} from "~/types/gallery";
+import Slider from "~/components/Slider.vue";
 
 const { $ofetch } = useNuxtApp()
 
@@ -45,7 +46,7 @@ watch(width, () => {
 
     <div v-if="gallery && gallery.length !== 0" class="gallery-carousel__wrapper">
       <Carousel :items-to-show="itemsToShow" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
-        <Slide  v-for="photo in gallery" :key="photo">
+        <Slide v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
             <NuxtImg format="webp" :src="photo.photo_url" alt="photo"/>
           </div>
@@ -56,6 +57,14 @@ watch(width, () => {
         </template>
       </Carousel>
     </div>
+
+    <Slider :width="width">
+      <Slide v-for="photo in gallery" :key="photo">
+        <div class="carousel__item">
+          <NuxtImg format="webp" :src="photo.photo_url" alt="photo"/>
+        </div>
+      </Slide>
+    </Slider>
 
 
   </section>
@@ -98,6 +107,16 @@ watch(width, () => {
             transition: 0.5s;
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .gallery {
+    &-carousel {
+      &__wrapper {
+        display: none;
       }
     }
   }
