@@ -131,6 +131,7 @@ const handleReview = async () => {
                          "schedule image about"
                          "schedule image buttons";
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 450px auto;
 
     &__calendar {
       width: 388px;
@@ -166,6 +167,7 @@ const handleReview = async () => {
       padding: 7px;
       border-radius: 50%;
       border: none;
+      background-color: rgba(255,255,255, 0.76);
       cursor: pointer;
 
       svg {
@@ -324,6 +326,8 @@ const handleReview = async () => {
 @media (max-width: 1440px) {
   .organization {
     &-header {
+      grid-template-columns: auto 416px auto;
+
       &__media {
         img {
           width: 378px;

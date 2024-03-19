@@ -138,6 +138,7 @@ const toggleIsActive = async () => {
     width: 250px;
     height: 250px;
     grid-area: media;
+  
 
     img {
       width: 100%;
@@ -156,6 +157,7 @@ const toggleIsActive = async () => {
       padding: 7px;
       border-radius: 50%;
       border: none;
+      background-color: rgba(255,255,255, 0.76);
       cursor: pointer;
 
       svg {

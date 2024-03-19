@@ -122,6 +122,7 @@ const toggleIsActive = async () => {
       padding: 7px;
       border-radius: 50%;
       border: none;
+      background-color: rgba(255,255,255, 0.76);
       cursor: pointer;
 
       svg {
