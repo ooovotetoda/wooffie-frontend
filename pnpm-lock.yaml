@@ -14,6 +14,9 @@ dependencies:
   '@pinia/nuxt':
     specifier: ^0.5.1
     version: 0.5.1(vue@3.4.21)
+  '@vueuse/nuxt':
+    specifier: ^10.6.1
+    version: 10.9.0(nuxt@3.11.1)(vue@3.4.21)
   ipx:
     specifier: ^3.0.1
     version: 3.0.1
@@ -43,9 +46,6 @@ devDependencies:
   '@vueuse/core':
     specifier: ^10.6.1
     version: 10.9.0(vue@3.4.21)
-  '@vueuse/nuxt':
-    specifier: ^10.6.1
-    version: 10.9.0(nuxt@3.11.1)(vue@3.4.21)
   sass:
     specifier: ^1.69.5
     version: 1.72.0
@@ -2486,7 +2486,7 @@ packages:
       - rollup
       - supports-color
       - vue
-    dev: true
+    dev: false
 
   /@vueuse/shared@10.9.0(vue@3.4.21):
     resolution: {integrity: sha512-Uud2IWncmAfJvRaFYzv5OHDli+FbOzxiVEQdLCKQKLyhz94PIyFC3CHcH7EDMwIn8NPtD06+PNbC/PiO0LGLtw==}
