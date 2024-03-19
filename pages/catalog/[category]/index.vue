@@ -131,7 +131,8 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
 <template>
   <UContainer>
     <div class="wrapper">
-      <CatalogFilters />
+      <CatalogFilters class="mobile__hide"/>
+
       <main class="main catalog">
         <CatalogNav />
         <CatalogList
@@ -171,6 +172,12 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
 @media (max-width: 1440px) {
   .wrapper {
     gap: 24px;
+  }
+}
+
+@media (max-width: 414px) {
+  .mobile__hide {
+    display: none;
   }
 }
 </style>

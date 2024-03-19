@@ -5,9 +5,13 @@ const props = defineProps<{
   breadcrumbs: Breadcrumb[],
 }>();
 
+const emit = defineEmits(['close'])
+
 const route = useRoute()
 
 const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catalog/groomer"]
+
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -23,9 +27,30 @@ const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catal
       </li>
     </ol>
 
-    <NuxtLink v-if="withFilter.includes(route.path)" to="/catalog/filters" class="breadcrumbs-filters__btn">
+
+    <div v-if="withFilter.includes(route.path)" class="breadcrumbs-filters__btn" @click="isOpen = true">
       <IconsFilters/>
-    </NuxtLink>
+    </div>
+
+    <USlideover v-model="isOpen">
+      <MenuHeader>
+        <div class="header-left">
+          <button class="header__back">
+            <IconsFilters />
+          </button>
+
+          <span class="header__text">Фильтры</span>
+        </div>
+
+        <div class="header-right">
+          <IconsClose @click="isOpen = false"/>
+        </div>
+      </MenuHeader>
+
+      <div class="px-4">
+        <CatalogFilters @close="() => isOpen = false"/>
+      </div>
+    </USlideover>
 
   </nav>
 </template>
@@ -107,5 +132,53 @@ const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catal
       }
     }
   }
+}
+
+.header {
+  &-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  &__text {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: #F9F9F9;
+    font-size: 14px;
+  }
+}
+
+.filters {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 24px 0 127px 0;
+  box-shadow: none;
 }
 </style>

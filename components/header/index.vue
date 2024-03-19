@@ -4,6 +4,8 @@ import formatPhone from "~/utils/formatPhone";
 const { user } = useUserStore()
 
 const phone = formatPhone(user.phoneNumber)
+
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -23,9 +25,13 @@ const phone = formatPhone(user.phoneNumber)
           </div>
           
           <div class="header__right">
-            <NuxtLink to="/menu" class="header-menu__button">
-              <IconsWidgets />
-            </NuxtLink>
+            <div class="header-menu__button">
+              <IconsWidgets @click="isOpen = true"/>
+            </div>
+
+            <USlideover v-model="isOpen">
+              <Menu @close="() => isOpen = false"/>
+            </USlideover>
             
             <div v-if="user.loggedIn" class="header__user">
               <span>{{ phone }}</span>

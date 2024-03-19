@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {useCatalogFiltersStore} from "~/stores/catalogFiltersStore";
 
-const router = useRouter()
-const {width} = useWindowSize()
+const emit = defineEmits(["close"])
 
 const filtersStore = useCatalogFiltersStore()
 
@@ -18,9 +17,7 @@ const filters: Filters = reactive({
 const sendFilters = async () => {
   filtersStore.updateFilters(filters)
 
-  if (width.value <= 414) {
-    router.back()
-  }
+  emit("close")
 }
 
 const resetFilters = async () => {
@@ -30,9 +27,7 @@ const resetFilters = async () => {
   filters.formats.online = false;
   filters.formats.home = false;
 
-  if (width.value <= 414) {
-    router.back()
-  }
+  emit("close")
 }
 
 </script>
@@ -68,10 +63,7 @@ const resetFilters = async () => {
               </URadio>
             </li>
           </ul>
-
-
         </div>
-
 
         <div class="filters-category">
           <h4 class="filters-category-title">
@@ -239,8 +231,6 @@ const resetFilters = async () => {
 
 @media (max-width: 414px) {
   .filters {
-    display: none;
-
     &-title {
       display: none;
     }
