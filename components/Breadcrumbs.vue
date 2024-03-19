@@ -63,7 +63,7 @@ const withFilter = ["/catalog/vet", "/catalog/clinic", "/catalog/salon", "/catal
       &:not(:first-of-type):before {
         content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik0xMi42IDEyTDggNy40TDkuNCA2bDYgNmwtNiA2TDggMTYuNmw0LjYtNC42WiIvPjwvc3ZnPg==");
         max-width: 16px;
-        max-height: 16px;
+        max-height: 20px;
         transform: scale(1.25);
         margin: 0 12px;
       }

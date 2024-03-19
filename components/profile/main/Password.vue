@@ -38,7 +38,8 @@ const handleSavePassword = () => {
     position: relative;
 
     input {
-      width: 400px;
+      width: 100%;
+      max-width: 400px;
       padding: 10px 56px;
       border-radius: 10px;
       border: 1px solid #D9DAD9;
