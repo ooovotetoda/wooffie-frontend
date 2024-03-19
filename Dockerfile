@@ -9,10 +9,10 @@ WORKDIR /src
 
 FROM base as build
 COPY --link package.json package-lock.json ./
-RUN pnpm install --production=false
+RUN npm install --production=false
 COPY --link . .
-RUN pnpm run build
-RUN pnpm prune --production
+RUN npm run build
+RUN npm prune --production
 
 FROM base
 ENV PORT=$PORT
