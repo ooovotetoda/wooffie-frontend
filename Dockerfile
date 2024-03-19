@@ -7,8 +7,10 @@ ARG PORT=3000
 ENV NODE_ENV=production
 WORKDIR /src
 
-# Исправленная установка pnpm
-RUN apt-get update && apt-get install -y curl && curl -fsSL https://get.pnpm.io/install.sh | sh -
+# Явно устанавливаем переменную SHELL и запускаем установку pnpm
+RUN apt-get update && \
+    apt-get install -y curl && \
+    SHELL=/bin/bash curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 FROM base as build
 COPY --link package.json pnpm-lock.yaml ./
