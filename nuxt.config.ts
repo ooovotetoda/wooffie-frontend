@@ -26,30 +26,9 @@ export default defineNuxtConfig({
       scrollBehaviorType: 'smooth'
     }
   },
-  css: ['~/assets/main.scss'],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData:
-              '@use "@/assets/fonts.scss" as *; ' +
-              '@use "@/assets/colors.scss"  as *; ' +
-              '@import "@/assets/mixins.scss"; ',
-        }
-      }
-    }
+  colorMode: {
+    preference: 'light'
   },
-  imports: {
-    dirs: ['types/*.ts'],
-  },
-  modules: [
-    '@pinia/nuxt',
-    '@vueuse/nuxt',
-    '@nuxt/image',
-    'yandex-metrika-module-nuxt3',
-    'vue3-carousel-nuxt',
-    '@nuxt/ui',
-  ],
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
@@ -72,9 +51,33 @@ export default defineNuxtConfig({
     accurateTrackBounce:true,
     webvisor:true
   },
+  imports: {
+    dirs: ['types/*.ts'],
+  },
+  modules: [
+    '@pinia/nuxt',
+    '@vueuse/nuxt',
+    '@nuxt/image',
+    'yandex-metrika-module-nuxt3',
+    'vue3-carousel-nuxt',
+    '@nuxt/ui',
+  ],
   plugins: [
     '~/plugins/ofetch.ts',
     '~/plugins/access.ts',
   ],
+  css: ['~/assets/main.scss'],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData:
+              '@use "@/assets/fonts.scss" as *; ' +
+              '@use "@/assets/colors.scss"  as *; ' +
+              '@import "@/assets/mixins.scss"; ',
+        }
+      }
+    }
+  },
   devtools: { enabled: true },
 })
