@@ -29,13 +29,25 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     }
 )
 
-const { width, height } = useWindowSize()
+const settings =  {
+  itemsToShow: 1,
+  snapAlign: 'center',
+  transition: 500,
+  wrapAround: true,
+  pauseAutoplayOnHover: true,
+  autoplay: 2500
+}
 
-const itemsToShow = ref(1)
-
-watch(width, () => {
-  itemsToShow.value = width.value > 1536 ? 2.3 : width.value > 390 ? 1.8 : 1
-}, { immediate: true })
+const breakpoints = {
+  640: {
+    itemsToShow: 1.8,
+        snapAlign: 'center',
+  },
+  1536: {
+    itemsToShow: 2.3,
+        snapAlign: 'center',
+  },
+}
 </script>
 
 <template>
@@ -45,7 +57,7 @@ watch(width, () => {
     <Empty v-if="gallery?.length === 0" :margin="78"/>
 
     <div v-if="gallery && gallery.length !== 0" class="gallery-carousel__wrapper">
-      <Carousel :items-to-show="itemsToShow" :transition="500" :wrapAround="true" :pauseAutoplayOnHover="true"  :autoplay="2500">
+      <Carousel v-bind="settings" :breakpoints="breakpoints">
         <Slide v-for="photo in gallery" :key="photo">
           <div class="gallery-carousel__item">
             <NuxtImg format="webp" :src="photo.photo_url" alt="photo"/>
@@ -57,16 +69,6 @@ watch(width, () => {
         </template>
       </Carousel>
     </div>
-
-    <Slider :width="width">
-      <Slide v-for="photo in gallery" :key="photo">
-        <div class="carousel__item">
-          <NuxtImg format="webp" :src="photo.photo_url" alt="photo"/>
-        </div>
-      </Slide>
-    </Slider>
-
-
   </section>
 
 

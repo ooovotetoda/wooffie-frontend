@@ -227,7 +227,7 @@ const handleOld = () => {
     &__header {
       flex-direction: column;
       gap: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 32px;
     }
 
     &__title {
