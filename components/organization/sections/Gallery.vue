@@ -113,14 +113,4 @@ const breakpoints = {
     }
   }
 }
-
-@media (max-width: 640px) {
-  .gallery {
-    &-carousel {
-      &__wrapper {
-        display: none;
-      }
-    }
-  }
-}
 </style>
