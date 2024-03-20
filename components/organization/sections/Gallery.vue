@@ -34,7 +34,7 @@ const { width, height } = useWindowSize()
 const itemsToShow = ref(1)
 
 watch(width, () => {
-  itemsToShow.value = width.value > 1440 ? 2.3 : width.value > 390 ? 1.8 : 1
+  itemsToShow.value = width.value > 1536 ? 2.3 : width.value > 390 ? 1.8 : 1
 }, { immediate: true })
 </script>
 

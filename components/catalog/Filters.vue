@@ -368,7 +368,7 @@ const resetFilters = async () => {
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1536px) {
   .filters {
     width: 277px;
     min-width: 277px;

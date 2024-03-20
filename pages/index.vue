@@ -235,7 +235,7 @@ const { width } = useWindowSize()
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1536px) {
   .about {
     .wrapper {
      flex-direction: column; 

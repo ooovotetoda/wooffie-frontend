@@ -339,7 +339,7 @@ const handleReview = async () => {
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1536px) {
   .organization {
     &-header {
       grid-template-columns: auto 416px auto;

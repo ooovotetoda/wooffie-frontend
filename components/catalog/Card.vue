@@ -383,7 +383,7 @@ const toggleIsActive = async () => {
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1536px) {
   .card {
     padding: 24px;
     gap: 16px;
