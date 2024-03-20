@@ -193,7 +193,9 @@ onMounted(() => {
 
 @media (max-width: 640px) {
   .schedule {
-    display: none;
+    grid-area: auto;
+    width: 100%;
+    box-shadow: none;
   }
 }
 </style>

@@ -68,27 +68,45 @@ const handleContact = async () => {
   }
 }
 
-const isOpen = ref(false)
+const isCommentOpen = ref(false)
+const isScheduleOpen = ref(false)
 
 const handleReview = async () => {
   if (user.loggedIn) {
-    isOpen.value = true
+    isCommentOpen.value = true
   } else {
     await navigateTo("/auth/signin")
   }
-
 }
 </script>
 
 <template>
   <section class="organization-header">
-    <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
+    <OrganizationSchedule  class="mobile__hide" :addresses="organization.addresses" :schedule="organization.schedule"/>
 
     <div class="organization-header__media">
       <NuxtImg format="webp" :src="organization.photo" alt="avatar"/>
       <button @click="toggleIsActive" class="organization-header__favorite" :class="{ 'organization-header__favorite__active': isActive }">
         <IconsFavorite />
       </button>
+
+      <button @click="isScheduleOpen = true" class="block sm:hidden flex justify-center items-center absolute top-0 right-8 p-1 rounded-full bg-[#FFFFFFC1] text-orange-500 text-sm">
+        <UIcon name="i-heroicons-calendar-solid"/>
+      </button>
+
+      <USlideover v-model="isScheduleOpen">
+        <MenuHeader>
+          <div class="flex items-center gap-4">
+            <button class="header__back" @click="isScheduleOpen = false">
+              <IconsBack />
+            </button>
+
+            <span class="header__text">Меню</span>
+          </div>
+        </MenuHeader>
+
+        <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
+      </USlideover>
     </div>
 
     <div class="organization-header__info">
@@ -110,8 +128,8 @@ const handleReview = async () => {
     <div class="organization-header__buttons">
       <button @click="handleReview" class="feedback">Оставить отзыв</button>
 
-      <UModal v-model="isOpen">
-        <OrganizationModalsFeedback @close="() => isOpen = false"/>
+      <UModal v-model="isCommentOpen">
+        <OrganizationModalsFeedback @close="() => isCommentOpen = false"/>
       </UModal>
       
       <button class="contact"
@@ -377,13 +395,19 @@ const handleReview = async () => {
           height: 76px;
           border-radius: 50%;
         }
+
+        &:active {
+          svg {
+            transform: none;
+          }
+        }
       }
 
       &__favorite {
         position: absolute;
         top: 0;
         right: 0;
-        padding: 5px;
+        padding: 4px;
 
         svg {
           font-size: 14px;
@@ -423,6 +447,10 @@ const handleReview = async () => {
         }
       }
     }
+  }
+
+  .mobile__hide {
+    display: none;
   }
 }
 </style>
