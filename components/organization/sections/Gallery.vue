@@ -1,8 +1,5 @@
 <script setup lang="ts">
-// import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import type {GalleryData, Photo} from "~/types/gallery";
-import Slider from "~/components/Slider.vue";
 
 const { $ofetch } = useNuxtApp()
 
@@ -28,26 +25,6 @@ const { data: gallery } = await useAsyncData<Photo[]>(
       }
     }
 )
-
-const settings =  {
-  itemsToShow: 1,
-  snapAlign: 'center',
-  transition: 500,
-  wrapAround: true,
-  pauseAutoplayOnHover: true,
-  autoplay: 2500
-}
-
-const breakpoints = {
-  640: {
-    itemsToShow: 1.8,
-        snapAlign: 'center',
-  },
-  1536: {
-    itemsToShow: 2.3,
-        snapAlign: 'center',
-  },
-}
 </script>
 
 <template>
@@ -56,19 +33,18 @@ const breakpoints = {
 
     <Empty v-if="gallery?.length === 0" :margin="78"/>
 
-    <div v-if="gallery && gallery.length !== 0" class="gallery-carousel__wrapper">
-      <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide v-for="photo in gallery" :key="photo">
-          <div class="gallery-carousel__item">
-            <NuxtImg format="webp" :src="photo.photo_url" alt="photo"/>
-          </div>
-        </Slide>
-
-        <template #addons>
-          <pagination />
-        </template>
-      </Carousel>
-    </div>
+    <UCarousel
+        v-if="gallery && gallery.length !== 0"
+        v-slot="{ item }"
+        :items="gallery"
+        :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
+        class="overflow-hidden"
+        indicators
+    >
+      <div class="w-full px-4">
+        <NuxtImg format="webp" :src="item.photo_url" class="w-full h-full rounded-lg" />
+      </div>
+    </UCarousel>
   </section>
 
 
@@ -88,29 +64,6 @@ const breakpoints = {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
-
-  &-carousel {
-    &__item {
-      img {
-        width: 632px;
-        height: 512px;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-    }
-
-    &__wrapper {
-      margin: auto;
-
-      .carousel {
-        &__slide {
-          &--sliding {
-            transition: 0.5s;
-          }
-        }
-      }
-    }
   }
 }
 </style>
