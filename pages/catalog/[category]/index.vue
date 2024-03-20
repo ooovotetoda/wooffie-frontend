@@ -175,7 +175,7 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .mobile__hide {
     display: none;
   }

@@ -182,7 +182,7 @@ const info = {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .card {
     flex-direction: column;
     width: 280px;

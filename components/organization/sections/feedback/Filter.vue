@@ -94,7 +94,7 @@ watch(checked, (newChecked) => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .filter {
     display: none;
   }

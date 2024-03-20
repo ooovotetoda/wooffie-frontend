@@ -63,7 +63,7 @@ const handleSelectCategory = (category: string) => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .catalog {
     &-nav {
       margin: 0 -20px 24px -20px;

@@ -134,7 +134,7 @@ const { width } = useWindowSize()
   display: none;
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .mobile-visible {
     display: block;
   }

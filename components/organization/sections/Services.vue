@@ -116,7 +116,7 @@ const props = defineProps<{
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .services {
     &__list {
       margin-bottom: 32px;

@@ -247,7 +247,7 @@ const { width } = useWindowSize()
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .poster {
     position: relative;
     gap: 0;

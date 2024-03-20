@@ -145,7 +145,7 @@ const isOpen = ref(false)
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .breadcrumbs {
     justify-content: space-between;
     margin: 32px 0 16px 0;

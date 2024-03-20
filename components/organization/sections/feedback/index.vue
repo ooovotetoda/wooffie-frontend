@@ -222,7 +222,7 @@ const handleOld = () => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .feedback {
     &__title {
       margin-bottom: 16px;

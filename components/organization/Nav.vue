@@ -114,7 +114,7 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .nav {
     width: 100vw;
     margin: 24px 0 24px -20px;

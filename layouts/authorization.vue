@@ -71,12 +71,10 @@ const router = useRouter()
     font-size: 24px;
     cursor: pointer;
   }
-
-
 }
 
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .main {
     background: none;
 
@@ -88,10 +86,12 @@ const router = useRouter()
   .wrapper {
     height: auto;
     padding: 0;
+    justify-content: center;
     align-items: flex-end;
   }
 
   .block {
+    width: 100%;
     padding: 28px 32px;
     border-radius: 0;
     box-shadow: none;
@@ -110,6 +110,7 @@ const router = useRouter()
       display: block;
       background: url("public/authorization-bg.webp") no-repeat -70px 0;
       background-size: cover;
+      background-position: center;
       border-radius: 0 0 80px 80px;
 
       &:before {

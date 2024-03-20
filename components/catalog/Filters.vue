@@ -376,7 +376,7 @@ const resetFilters = async () => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .filters {
     width: 100%;
     padding: 0;

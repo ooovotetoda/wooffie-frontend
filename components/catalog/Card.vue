@@ -416,12 +416,13 @@ const toggleIsActive = async () => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .card {
     grid-template-areas:
     "media header"
     "copy copy"
     "info info";
+    grid-template-columns: 88px auto;
     position: relative;
     margin-bottom: 16px;
     gap: 0;
@@ -430,6 +431,7 @@ const toggleIsActive = async () => {
       position: static;
       width: 80px;
       height: 80px;
+
 
       img {
         min-width: 80px;

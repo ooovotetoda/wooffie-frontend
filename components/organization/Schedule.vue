@@ -191,7 +191,7 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .schedule {
     display: none;
   }

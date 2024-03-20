@@ -265,7 +265,7 @@ const handleDislike = async () => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .comment {
     margin-bottom: 32px;
 

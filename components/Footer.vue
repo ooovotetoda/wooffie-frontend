@@ -107,7 +107,7 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .footer {
     &-logo {
       margin-bottom: 24px;

@@ -108,13 +108,11 @@ const handleReview = async () => {
     </div>
 
     <div class="organization-header__buttons">
-      <div>
-        <button @click="handleReview" class="feedback">Оставить отзыв</button>
+      <button @click="handleReview" class="feedback">Оставить отзыв</button>
 
-        <UModal v-model="isOpen">
-          <OrganizationModalsFeedback @close="() => isOpen = false"/>
-        </UModal>
-      </div>
+      <UModal v-model="isOpen">
+        <OrganizationModalsFeedback @close="() => isOpen = false"/>
+      </UModal>
       
       <button class="contact"
               :class="{contacted: isContacted}"
@@ -301,10 +299,6 @@ const handleReview = async () => {
       }
 
       .contact {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
         color: #FFF;
         border: none;
         background: $main-color;
@@ -363,14 +357,14 @@ const handleReview = async () => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .organization {
     &-header {
       position: relative;
       grid-template-areas: "image info"
                            "about about"
                            "buttons buttons";
-      grid-auto-columns: auto 1fr;
+      grid-template-columns: 84px auto;
 
       &__media {
         position: static;

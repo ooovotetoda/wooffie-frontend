@@ -28,7 +28,7 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .authorization {
     &-title {
       margin-bottom: 24px;

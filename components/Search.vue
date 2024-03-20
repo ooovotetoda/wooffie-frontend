@@ -53,7 +53,7 @@ const handleSearch = async () => {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .search {
     display: none;
   }

@@ -25,7 +25,7 @@ const props = defineProps({
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 640px) {
   .empty {
     img {
       width: 320px;
