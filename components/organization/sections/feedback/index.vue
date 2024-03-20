@@ -224,6 +224,12 @@ const handleOld = () => {
 
 @media (max-width: 640px) {
   .feedback {
+    &__header {
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
     &__title {
       margin-bottom: 16px;
       font-size: 16px;

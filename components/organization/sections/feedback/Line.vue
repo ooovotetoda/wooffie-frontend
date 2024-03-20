@@ -78,17 +78,18 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
         transition: all 0.1s ease-in-out;
 
         &:after {
+          position: absolute;
           display: block;
           content: "";
-          left: 0;
-          top: 0;
+          left: 50%;
+          top: 43%;
           width: 5px;
-          height: 9px;
+          height: 11px;
           border: solid white;
           border-width: 0 2px 2px 0;
-          -webkit-transform: translateX(50%) rotate(45deg);
-          -ms-transform: translateX(50%) rotate(45deg);
-          transform: translateX(50%) rotate(45deg);
+          -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          -ms-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
           z-index: 4;
         }
 
@@ -156,5 +157,34 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
       }
     }
   }
+}
+
+@media (max-width: 640px) {
+  .filter {
+    &__item {
+      width: auto;
+      gap: 8px;
+      margin-bottom: 4px;
+
+      label {
+        font-size: 14px;
+      }
+    }
+
+    &__line {
+      width: 100%;
+      max-width: 60%;
+
+      .line__basic {
+        width: 100%;
+      }
+
+      span {
+        display: none;
+      }
+    }
+  }
+
+
 }
 </style>
