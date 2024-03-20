@@ -29,7 +29,7 @@ const { data: gallery } = await useAsyncData<Photo[]>(
 
 <template>
   <section class="gallery">
-    <h2 class="gallery-title">Фотогалерея</h2>
+    <h2 class="gallery__title">Фотогалерея</h2>
 
     <Empty v-if="gallery?.length === 0" :margin="78"/>
 
@@ -54,16 +54,25 @@ const { data: gallery } = await useAsyncData<Photo[]>(
 .gallery {
   padding-bottom: 60px;
 
-  &-title {
+  &__title {
     margin-bottom: 52px;
     color: $text-dark;
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
+    font-family: Roboto, sans-serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery {
+    &__title {
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
   }
 }
 </style>
