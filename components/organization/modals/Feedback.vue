@@ -6,6 +6,7 @@ const emit = defineEmits<{
 }>()
 
 const { $ofetch } = useNuxtApp()
+const toast = useToast()
 
 const route = useRoute()
 const router = useRouter()
@@ -49,8 +50,13 @@ const submitReview = async () => {
 
     if (response.status === "OK") {
       emit('close')
-      //TODO: подумать, нужна ли  перезагрузка страницы, после отправки комментария
-      router.go(0)
+
+      toast.add({
+        id: 'comment_send',
+        title: 'Отзыв успешно создан',
+        icon: 'i-heroicons-check-circle',
+        color: "green"
+      })
     }
   } catch (e) {
     console.error(e)
@@ -156,7 +162,7 @@ const submitReview = async () => {
     padding-left: 28px;
     color: var(--Color-Text-Erorr, rgba(228, 0, 0, 0.87));
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
