@@ -10,8 +10,8 @@ const { width } = useWindowSize()
   <section v-once id="main" class="main-header">
     <UContainer>
       <div class="poster">
-        <h1 class="poster-title">Wooffie</h1>
-        <p class="poster-description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять</p>
+        <h1 class="poster__title">Wooffie</h1>
+        <p class="poster__description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять</p>
       </div>
       <Search/>
     </UContainer>
@@ -66,10 +66,10 @@ const { width } = useWindowSize()
     <UContainer>
       <div class="wrapper">
         <div class="about-text">
-          <h2 class="about-text-title">
+          <h2 class="about-text__title">
             О нас
           </h2>
-          <div class="about-text-description">
+          <div class="about-text__description">
             <p>
               Добро пожаловать на Вуффи — вашего надежного помощника в мире услуг для животных. Наша миссия — сделать заботу о ваших питомцах простой, удобной и доступной. В мире, где каждый питомец заслуживает только лучшего, мы предлагаем мостик доверия между владельцами животных и специалистами.
             </p>
@@ -79,9 +79,9 @@ const { width } = useWindowSize()
             </p>
           </div>
         </div>
-        <div class="about-image">
+        <div class="about__image">
           <NuxtImg
-              class="m-auto w-auto lg:w-[956px]"
+              class="m-auto w-auto sm:w-full lg:w-[956px]"
               format="webp"
               provider="myProvider"
               src="/about-animals.webp"
@@ -95,7 +95,7 @@ const { width } = useWindowSize()
   <section class="specialists">
     <UContainer class="px-0">
       <div class="wrapper">
-        <h2 class="specialists-title">Специалисты</h2>
+        <h2 class="specialists__title">Специалисты</h2>
         <MainSpecialistCarousel/>
       </div>
     </UContainer>
@@ -119,7 +119,7 @@ const { width } = useWindowSize()
   background: url("/main-header-bg.webp") no-repeat center;
   background-size: cover;
 
-  &-title {
+  &__title {
     color: $grey;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto, serif;
@@ -129,7 +129,7 @@ const { width } = useWindowSize()
     user-select: none;
   }
 
-  &-description {
+  &__description {
     max-width: 800px;
     color: $grey;
     font-feature-settings: 'clig' off, 'liga' off;
@@ -177,7 +177,7 @@ const { width } = useWindowSize()
   &-text {
     max-width: 664px;
 
-    &-title {
+    &__title {
       margin-bottom: 32px;
       color: $text-dark;
       font-feature-settings: 'clig' off, 'liga' off;
@@ -189,7 +189,7 @@ const { width } = useWindowSize()
       font-variant: all-small-caps;
     }
 
-    &-description {
+    &__description {
       color: $dark-grey;
       font-feature-settings: 'clig' off, 'liga' off;
       font-family: Roboto, serif;
@@ -200,7 +200,7 @@ const { width } = useWindowSize()
     }
   }
 
-  &-image {
+  &__image {
     width: 100%;
     text-align: center;
   }
@@ -211,7 +211,7 @@ const { width } = useWindowSize()
   background: $light-grey;
   text-align: center;
 
-  &-title {
+  &__title {
     margin-bottom: 40px;
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
@@ -252,13 +252,13 @@ const { width } = useWindowSize()
       z-index: 0;
     }
 
-    &-title {
+    &__title {
       font-size: 48px;
       line-height: 56px;
       z-index: 1;
     }
 
-    &-description {
+    &__description {
       max-width: 281px;
       font-size: 14px;
       font-weight: 500;
@@ -297,7 +297,7 @@ const { width } = useWindowSize()
     }
 
     &-text {
-      &-title {
+      &__title {
         margin-bottom: 16px;
         font-size: 24px;
         font-weight: 500;
@@ -306,12 +306,12 @@ const { width } = useWindowSize()
 
       }
 
-      &-description {
+      &__description {
         font-size: 14px;
       }
     }
 
-    &-image {
+    &__image {
       img {
         width: 100%;
       }
@@ -325,7 +325,7 @@ const { width } = useWindowSize()
       margin: 0;
     }
 
-    &-title {
+    &__title {
       font-size: 24px;
       margin-bottom: 0;
     }
