@@ -14,7 +14,9 @@ const emit = defineEmits(['close'])
         <span class="header__text">Меню</span>
       </div>
 
-      <div class="header-right">
+      <div class="header-right flex items-center gap-4">
+        <HeaderCity/>
+
         <button class="header__search">
           <IconsSearch />
         </button>

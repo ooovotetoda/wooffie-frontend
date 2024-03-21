@@ -21,7 +21,7 @@ const isOpen = ref(false)
               <span class="header-logo__text">wooffie</span>
             </NuxtLink>
 
-            <HeaderCity />
+            <HeaderCity class="hidden sm:block"/>
           </div>
           
           <div class="header__right">
@@ -32,7 +32,7 @@ const isOpen = ref(false)
             <USlideover v-model="isOpen">
               <Menu @close="() => isOpen = false"/>
             </USlideover>
-            
+
             <div v-if="user.loggedIn" class="header__user">
               <span>{{ phone }}</span>
               <NuxtLink to="/profile">

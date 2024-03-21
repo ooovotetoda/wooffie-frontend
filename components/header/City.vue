@@ -120,7 +120,22 @@ onClickOutside(dropdownRef, (event) => {
 
 @media (max-width: 640px) {
   .city {
-    display: none;
+    &__current {
+      span {
+        font-size: 16px;
+      }
+    }
+
+    &__dropdown {
+      width: 250px;
+      left: auto;
+      right: 0;
+      font-size: 16px;
+    }
+
+    &__item {
+      padding: 16px 24px;
+    }
   }
 }
 </style>
