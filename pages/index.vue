@@ -20,14 +20,14 @@ const { width } = useWindowSize()
   <section v-once id="services" class="services">
     <UContainer class="px-0">
       <div class="wrapper">
-        <h2 class="services-title">Услуги</h2>
+        <h2 class="services__title">Услуги</h2>
 
-        <div class="services-table">
-          <div class="services-row">
+        <div class="services__table hidden sm:flex flex-col gap-16">
+          <div class="services__row flex flex-col xl:flex-row gap-16">
             <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
             <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
           </div>
-          <div class="services-row">
+          <div class="services__row flex flex-col xl:flex-row gap-16">
             <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp"/>
             <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp"/>
           </div>
@@ -154,24 +154,13 @@ const { width } = useWindowSize()
     gap: 60px;
   }
 
-  &-title {
+  &__title {
     color: $text-dark;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto, serif;
     font-size: 56px;
     font-weight: 500;
     font-variant: all-small-caps;
-  }
-
-  &-table {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-  }
-
-  &-row {
-    display: flex;
-    gap: 60px;
   }
 }
 
@@ -295,12 +284,8 @@ const { width } = useWindowSize()
       display: block;
     }
 
-    &-title {
+    &__title {
       font-size: 24px;
-    }
-
-    &-table {
-      display: none;
     }
   }
 
