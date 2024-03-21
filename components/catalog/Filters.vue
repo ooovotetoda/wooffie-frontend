@@ -376,7 +376,7 @@ const resetFilters = async () => {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1280px) {
   .filters {
     width: 100%;
     padding: 0;
@@ -388,7 +388,7 @@ const resetFilters = async () => {
     }
 
     &-buttons {
-      position: fixed;
+      position: absolute;
       left: 20px;
       right: 20px;
       bottom: 32px;
@@ -407,6 +407,17 @@ const resetFilters = async () => {
       &__reset {
         background-color: #F9F9F9;
       }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .filters {
+    &-buttons {
+      position: fixed;
+      left: 20px;
+      right: 20px;
+      bottom: 32px;
     }
   }
 }

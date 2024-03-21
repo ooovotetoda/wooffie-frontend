@@ -15,7 +15,7 @@ const isOpen = ref(false)
 </script>
 
 <template>
-  <nav class="breadcrumbs">
+  <nav class="breadcrumbs items-center justify-between xl:justify-left">
     <ol class="breadcrumbs-list">
       <li
         v-for="(breadcrumb, index) in breadcrumbs"
@@ -28,7 +28,7 @@ const isOpen = ref(false)
     </ol>
 
 
-    <div v-if="withFilter.includes(route.path)" class="breadcrumbs-filters__btn" @click="isOpen = true">
+    <div v-if="withFilter.includes(route.path)" class="block p-2 xl:hidden sm:p-3 rounded-lg bg-[#F9F9F9]" @click="isOpen = true">
       <IconsFilters/>
     </div>
 
@@ -56,7 +56,6 @@ const isOpen = ref(false)
 <style scoped lang="scss">
 .breadcrumbs {
   display: flex;
-  justify-content: left;
   align-items: center;
   margin: 39px 0;
 
@@ -90,16 +89,6 @@ const isOpen = ref(false)
         transform: scale(1.25);
         margin: 0 12px;
       }
-    }
-  }
-
-  &-filters {
-    &__btn {
-      display: none;
-      padding: 9px;
-      border-radius: 8px;
-      background: #F9F9F9;
-      font-size: 14px;
     }
   }
 }
@@ -147,7 +136,6 @@ const isOpen = ref(false)
 
 @media (max-width: 640px) {
   .breadcrumbs {
-    justify-content: space-between;
     margin: 32px 0 16px 0;
 
     &-list {
@@ -162,12 +150,6 @@ const isOpen = ref(false)
           transform: scale(1);
           margin: 0 12px;
         }
-      }
-    }
-
-    &-filters {
-      &__btn {
-        display: block;
       }
     }
   }

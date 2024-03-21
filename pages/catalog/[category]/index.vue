@@ -131,7 +131,7 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
 <template>
   <UContainer>
     <div class="wrapper">
-      <CatalogFilters class="mobile__hide"/>
+      <CatalogFilters class="hidden xl:block"/>
 
       <main class="main catalog">
         <CatalogNav />

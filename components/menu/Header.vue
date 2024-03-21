@@ -4,11 +4,11 @@
 
 <template>
   <header class="header relative flex items-center py-4 min-h-20">
-    <UContainer class="w-full">
+    <div class="w-full px-4">
       <div class="header-wrapper flex items-center justify-between">
         <slot/>
       </div>
-    </UContainer>
+    </div>
   </header>
 </template>
 
