@@ -130,10 +130,10 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
 
 <template>
   <UContainer>
-    <div class="wrapper">
+    <div class="flex gap-6 2xl:gap-16">
       <CatalogFilters class="hidden xl:block"/>
 
-      <main class="main catalog">
+      <main class="main w-full">
         <CatalogNav />
         <CatalogList
             :list="filteredOrganizations"
@@ -152,32 +152,13 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
 
 
 <style scoped lang="scss">
-.wrapper {
-  display: flex;
-  gap: 60px;
-}
-
 .catalog {
-  width: 100%;
-  
   &__loader {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 300px;
-  }
-}
-
-@media (max-width: 1536px) {
-  .wrapper {
-    gap: 24px;
-  }
-}
-
-@media (max-width: 640px) {
-  .mobile__hide {
-    display: none;
   }
 }
 </style>

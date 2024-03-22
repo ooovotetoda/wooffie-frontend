@@ -26,7 +26,7 @@ const isOpen = ref(false)
     </ol>
 
 
-    <div v-if="route.path.startsWith('/catalog') && route.path.split('/').length === 3" class="block p-2 xl:hidden sm:p-3 rounded-lg bg-[#F9F9F9]" @click="isOpen = true">
+    <div v-if="route.path.startsWith('/catalog') && route.path.split('/').length === 3" class="block p-2 xl:hidden sm:p-3 rounded-lg bg-[#F9F9F9] cursor-pointer" @click="isOpen = true">
       <IconsFilters/>
     </div>
 
