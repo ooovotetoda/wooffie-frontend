@@ -108,7 +108,7 @@ const toggleIsActive = async () => {
           </ul>
         </div>
       </div>
-      <button class="card__info-enroll">Записаться</button>
+      <button class="card__info-enroll">Перейти</button>
     </div>
   </div>
 </template>

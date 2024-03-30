@@ -27,7 +27,7 @@ const props = defineProps<{
       </div>
     </div>
     <NuxtLink :to="`/catalog/${specialist.type}/${specialist.id}`">
-      <button class="card-btn">Записаться</button>
+      <button class="card-btn">Перейти</button>
     </NuxtLink>
   </div>
 </template>
