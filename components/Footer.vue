@@ -19,8 +19,8 @@
         </div>
 
         <div class="footer-contacts">
-          <p class="footer-contacts-item">+7 (555) 888-98-66</p>
-          <p class="footer-contacts-item">name@gmail.com</p>
+          <p class="footer-contacts-item">+7 (918) 038-43-08</p>
+          <p class="footer-contacts-item">wooffie@mail.ru</p>
         </div>
         <div class="footer-social">
           <a href="https://vk.com" target="_blank"><IconsVK/></a>
