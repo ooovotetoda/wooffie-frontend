@@ -108,16 +108,33 @@ const { width } = useWindowSize()
 }
 
 .poster {
+  position: relative;
+
   width: 100%;
   height: 400px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 32px;
+
   text-align: center;
   background: url("/main-header-bg.webp") no-repeat center;
   background-size: cover;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
 
   &__title {
     color: $grey;
@@ -127,6 +144,7 @@ const { width } = useWindowSize()
     font-weight: 500;
     font-variant: all-small-caps;
     user-select: none;
+    z-index: 1;
   }
 
   &__description {
@@ -138,6 +156,7 @@ const { width } = useWindowSize()
     font-style: normal;
     font-weight: 500;
     user-select: none;
+    z-index: 1;
   }
 }
 
