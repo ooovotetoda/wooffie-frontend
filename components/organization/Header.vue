@@ -53,7 +53,6 @@ const toggleIsActive = async () => {
   } else {
     await navigateTo("/auth/signin")
   }
-
 }
 
 const handleContact = async () => {
