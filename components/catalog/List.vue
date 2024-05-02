@@ -28,8 +28,6 @@ onMounted(() => {
   }
 });
 
-
-
 </script>
 
 <template>

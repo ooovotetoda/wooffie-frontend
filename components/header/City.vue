@@ -21,7 +21,7 @@ onClickOutside(dropdownRef, (event) => {
 <template>
   <div class="city">
     <div class="city__current" @click="showDropdown = !showDropdown">
-      <IconsCity/>
+      <IconsLocation/>
       <span>{{ cityStore.currentCityName }}</span>
     </div>
 

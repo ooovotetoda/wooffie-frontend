@@ -97,7 +97,7 @@ const toggleIsActive = async () => {
         </div>
         <div class="card__address">
           <span class="card__address-main">
-            <IconsLocation/>
+            <IconsLocationUnderline/>
             {{ organization.addresses[0].address }}
           </span>
           <ul class="card__address-list">
