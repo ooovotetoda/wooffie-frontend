@@ -10,7 +10,8 @@ export default defineNuxtConfig({
         { property: 'og:image', content: 'https://s3.timeweb.cloud/00708af1-woofie-s3/images/ogImage.webp' },
         { property: 'og:url', content: 'https://wooffie.ru' },
         { property: 'og:description', content: 'Забота о питомце стала проще с Wooffie! Откройте для себя лучших специалистов, читайте отзывы и записывайтесь на прием онлайн. Ваш питомец заслуживает лучшего – выберите качество с Вуффи.' },
-        { name: 'twitter:card', content: 'summary_large_image' }
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'keywords', content: 'Ветеринар, ветеринарная клиника, грумер, зоосалон, уход за питомцем, стрижка собаки, уход за животными, стрижка питомца, обследование питомца' },
       ],
     },
   },
