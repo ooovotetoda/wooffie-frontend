@@ -28,6 +28,10 @@ const handleSubmit = async () => {
     return
   }
 
+  if (body.value.phone?.startsWith('8')) {
+    body.value.phone = body.value.phone?.replace('8', '+7')
+  }
+
   const statusCode = await signIn(body.value)
 
   if (statusCode === 401 || statusCode === 404) {

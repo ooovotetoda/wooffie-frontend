@@ -21,6 +21,11 @@ const handleSubmit = async () => {
     return
   }
 
+  if (phone.value.startsWith('8')) {
+    phone.value = phone.value.replace('8', '+7')
+  }
+
+  authStorage.value.phone = phone.value
   authStorage.value.password = password.value
 
   const status = await sendOTP(phone.value)

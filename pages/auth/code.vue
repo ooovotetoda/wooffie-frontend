@@ -19,7 +19,6 @@ const isCodeValid = ref<boolean>(true);
 const timer = ref<number>(59);
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 
-
 const handleSubmit = async () => {
   if (!code.value || code.value.length < 4) {
     isCodeValid.value = false;
@@ -37,7 +36,6 @@ const handleSubmit = async () => {
 
       await signUp(password)
       await navigateTo("/")
-
     } else if (route.query.type === "reset") {
       await navigateTo("/auth/newpass");
     }
@@ -52,7 +50,6 @@ const resendCode = async () => {
   const now = Date.now();
   const timerDuration = 59000; // 59 секунд
   authStorage.value.timer = (now + timerDuration).toString()
-
 
   startTimer(timerDuration);
 
