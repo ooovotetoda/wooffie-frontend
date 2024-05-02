@@ -33,7 +33,7 @@ watch(() => route.query.section, (newVal) => {
 
 onMounted(() => {
   navItems.value = Array.from(document.querySelectorAll('.nav__item'));
-  // Определите начальный активный раздел здесь
+
   const initialSection = route.query.section || 'services';
   updateUnderlinePosition(initialSection);
 });
