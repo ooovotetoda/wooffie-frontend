@@ -132,9 +132,10 @@ const handleReview = async () => {
         <OrganizationModalsFeedback @close="() => isCommentOpen = false"/>
       </UModal>
       
-      <button class="contact"
-              :class="{contacted: isContacted}"
-              @click="handleContact"
+      <button
+        class="contact"
+        :class="{contacted: isContacted}"
+        @click="handleContact"
       >
         {{isContacted ? organization.phone : "Связаться"}}
         <IconsCopy v-if="isContacted"/>
@@ -317,6 +318,11 @@ const handleReview = async () => {
       }
 
       .contact {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
         color: #FFF;
         border: none;
         background: $main-color;
