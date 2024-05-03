@@ -77,6 +77,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'vue3-carousel-nuxt',
     '@nuxt/ui',
+    '@nuxtjs/robots'
   ],
   plugins: [
     '~/plugins/ofetch.ts',

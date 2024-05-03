@@ -11,6 +11,9 @@ dependencies:
   '@nuxt/ui':
     specifier: ^2.15.0
     version: 2.15.0(nuxt@3.11.1)(vite@5.2.7)(vue@3.4.21)
+  '@nuxtjs/robots':
+    specifier: ^3.0.0
+    version: 3.0.0
   '@pinia/nuxt':
     specifier: ^0.5.1
     version: 0.5.1(vue@3.4.21)
@@ -1510,6 +1513,17 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: false
+
+  /@nuxtjs/robots@3.0.0:
+    resolution: {integrity: sha512-qsHGW1KXBvV5Kq7u3huPnFCUTbHS4Fk8Za2mNPgmUXcwLgp3exvhPtdZfIdjrCF/aZk3A8OZONNmGghs6CecBA==}
+    dependencies:
+      '@nuxt/kit': 3.11.1
+      h3: 1.11.1
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - uWebSockets.js
     dev: false
 
   /@nuxtjs/style-resources@2.0.0:
