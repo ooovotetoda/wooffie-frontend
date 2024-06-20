@@ -7,33 +7,31 @@ ARG PORT=3000
 ENV NODE_ENV=production
 WORKDIR /src
 
-# Установка pnpm через npm
-RUN apt-get update && \
-    apt-get install -y curl && \
-    npm install -g pnpm
+# Установка зависимостей через npm
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 FROM base AS dependencies
-COPY --link package.json pnpm-lock.yaml ./
+COPY --link package.json package-lock.json ./
 # Устанавливаем все зависимости, включая devDependencies
-RUN pnpm install --frozen-lockfile
+RUN npm ci
 
-FROM base AS build
+FROM dependencies AS build
 COPY --link . .
 
-# Копируем только node_modules и файлы проекта
-COPY --from=dependencies /src/node_modules ./node_modules
-
-# Запустите сценарии сборки с pnpm
-RUN pnpm run build
+# Запустите сценарии сборки с npm
+RUN npm run build
 
 # Удалите разработческие зависимости, оставив только зависимости для продакшена
-RUN pnpm prune --prod
+RUN npm prune --production
 
-FROM base
+FROM node:${NODE_VERSION}-slim AS runtime
+WORKDIR /src
+ENV NODE_ENV=production
 ENV PORT=$PORT
 
-# Копирование результатов сборки в итоговый образ
+# Копирование результатов сборки и продакшен зависимостей в итоговый образ
 COPY --from=build /src/.output /src/.output
 COPY --from=build /src/node_modules ./node_modules
+COPY --from=build /src/package.json ./package.json
 
 CMD ["node", ".output/server/index.mjs"]
