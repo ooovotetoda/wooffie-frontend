@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    "/faq/**": { prerender: true }
+    "/auth/**": { prerender: true },
+    "/faq/**": { prerender: true },
   },
   router: {
     options: {
