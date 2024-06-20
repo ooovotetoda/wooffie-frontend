@@ -12,13 +12,16 @@ RUN apt-get update && \
     apt-get install -y curl && \
     npm install -g pnpm
 
-FROM base as build
+FROM base as dependencies
 COPY --link package.json pnpm-lock.yaml ./
+# Устанавливаем все зависимости, включая devDependencies
+RUN pnpm install --frozen-lockfile
 
-# Используйте pnpm для установки зависимостей
-RUN pnpm install --frozen-lockfile --production=false
-
+FROM base as build
 COPY --link . .
+
+# Копируем только node_modules и файлы проекта
+COPY --from=dependencies /src/node_modules ./node_modules
 
 # Запустите сценарии сборки с pnpm
 RUN pnpm run build
@@ -31,5 +34,6 @@ ENV PORT=$PORT
 
 # Копирование результатов сборки в итоговый образ
 COPY --from=build /src/.output /src/.output
+COPY --from=build /src/node_modules ./node_modules
 
 CMD ["node", ".output/server/index.mjs"]
