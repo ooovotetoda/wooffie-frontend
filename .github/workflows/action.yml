@@ -10,16 +10,6 @@ env:
   IMAGE_NAME: ${{ github.actor }}/wooffie-frontend:latest
 
 jobs:
-  login:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.PAT }}
-
   publish:
     name: publish image
     runs-on: ubuntu-latest
