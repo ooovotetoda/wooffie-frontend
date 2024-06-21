@@ -15,19 +15,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Display environment variables
+        run: |
+          echo "REGISTRY: ${{ env.REGISTRY }}"
+          echo "IMAGE_NAME: ${{ env.IMAGE_NAME }}"
+          echo "GITHUB_ACTOR: ${{ github.actor }}"
+          echo "REPOSITORY: ${{ github.repository }}"
       - name: Login
         run: |
           echo "Logging into GitHub Container Registry"
           echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.PAT }}
       - name: Build and Publish
         run: |
           echo "Building the Docker image"
           docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           echo "Pushing the Docker image"
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        env:
-          DEBUG: true
 
   deploy:
     needs: publish
