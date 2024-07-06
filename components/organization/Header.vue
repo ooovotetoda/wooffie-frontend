@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {OrganizationModalsFeedback} from "#components";
 import type {Organization} from "~/types/organization";
+import {useType} from "~/composables/useType";
 
 const props = defineProps<{
   organization: Organization;
@@ -12,10 +13,7 @@ const route = useRoute()
 const { user } = useUserStore()
 const { cities } = useCityStore()
 
-const institutionsCategories = ["clinic", "salon"]
-
-const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const isActive = ref(props.organization.isFavorite)
 const isContacted = ref(false)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {Organization} from "~/types/organization";
-import type {FavoritesList} from "~/types/favorites";
+import {sections} from "~/utils/constants";
+import {useType} from "~/composables/useType";
 
 definePageMeta({
   breadcrumb: "Организация"
@@ -10,14 +10,10 @@ const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 const router = useRouter()
+
 const { user } = useUserStore()
 
-const sections: string[] = ['services', 'clinic', 'specialist', 'gallery', 'feedback']
-
-const institutionsCategories = ["clinic", "salon"]
-
-const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const { data: organization } = await useAsyncData(
     `organization:${route.params.id}`,

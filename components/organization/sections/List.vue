@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import type {Organization, OrganizationList} from "~/types/organization";
 import type {FavoritesList} from "~/types/favorites";
+import {useType} from "~/composables/useType";
 
 const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
-const institutionsCategories = ["clinic", "salon"]
-
-const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const { data: organizations } = await useAsyncData<Organization[]>(
     `organizations:${type.value}:${route.params.id}`,

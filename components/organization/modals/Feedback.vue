@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type {SendReviewBody} from "~/types/reviews";
+import {useType} from "~/composables/useType";
 
 const emit = defineEmits<{
   (e: 'close'): void
@@ -12,11 +13,7 @@ const route = useRoute()
 const router = useRouter()
 const { user } = useUserStore()
 
-const institutionsCategories = ["clinic", "salon"]
-
-const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institution_id" : "specialist_id")
-
+const type = useType()
 
 const rating = ref(0)
 const comment = ref<string | null>(null)

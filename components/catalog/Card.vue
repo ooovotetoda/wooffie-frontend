@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {formatPhone, useUserStore} from "../../.nuxt/imports";
+import {formatPhone, useType, useUserStore} from "../../.nuxt/imports";
 import getDay from "~/utils/getDay";
 import type {Organization, Schedule} from '~/types/organization';
 
@@ -19,10 +19,7 @@ const types = {
   "groomer": props.organization.profession,
 }
 
-const institutionsCategories = ["clinic", "salon"]
-
-const category = ref(props.organization.type)
-const type = ref(institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const schedule: Schedule | undefined = props.organization.schedule.find((schedule: Schedule) => schedule.day_of_week === getDay())
 const startTime = schedule?.start_time ? schedule?.start_time.slice(0, -3) : null;

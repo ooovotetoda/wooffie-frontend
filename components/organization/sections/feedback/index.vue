@@ -2,6 +2,7 @@
 import type {Ref} from "vue";
 import type {Organization} from "~/types/organization";
 import type {Checks, Review, ReviewsData} from "~/types/reviews";
+import {useType} from "~/composables/useType";
 
 const props = defineProps<{
   organization: Organization;
@@ -12,10 +13,7 @@ const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
-const institutionsCategories = ["clinic", "salon"]
-
-const category = computed(() => route.params.category as string)
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const { data: reviews, refresh } = await useAsyncData<Review[]>(
     `reviews:${type.value}:${route.params.id}`,

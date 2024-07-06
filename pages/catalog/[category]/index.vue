@@ -2,6 +2,7 @@
 import getDay from "~/utils/getDay";
 import type {Organization, OrganizationList, Schedule} from "~/types/organization";
 import type {Favorite, FavoritesList} from "~/types/favorites";
+import {useType} from "~/composables/useType";
 
 definePageMeta({
   breadcrumb: "Каталог"
@@ -13,15 +14,12 @@ useSeoMeta({
 
 const { $ofetch } = useNuxtApp()
 
-const route = useRoute()
 const cityStore = useCityStore()
 const catalogFilters = useCatalogFiltersStore()
 const { user } = useUserStore()
 
-const institutionsCategories = ["clinic", "salon"]
-const category = computed(() => route.params.category as string)
+const type = useType()
 
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
 const page = ref(0)
 const pending = ref(false);
 

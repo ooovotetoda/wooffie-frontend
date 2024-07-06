@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useUserStore} from "~/stores/userStore";
 import type {Organization} from '~/types/organization';
+import {useType} from "~/composables/useType";
 
 const props = defineProps<{
   organization: Organization,
@@ -18,10 +19,7 @@ const types = {
   "groomer": props.organization.profession,
 }
 
-const institutionsCategories = ["clinic", "salon"]
-
-const category = ref(props.organization.type)
-const type = ref(institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const isActive = ref(props.organization.isFavorite)
 

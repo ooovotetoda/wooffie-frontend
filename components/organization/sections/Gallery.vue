@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type {GalleryData, Photo} from "~/types/gallery";
+import {useType} from "~/composables/useType";
 
 const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 
-const category = computed(() => route.params.category as string)
-
-const institutionsCategories = ["clinic", "salon"]
-const type = computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+const type = useType()
 
 const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,
