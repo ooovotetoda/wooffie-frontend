@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     preference: 'light'
   },
   pinia: {
-    storesDirs: ['./stores/**', './custom-folder/stores/**'],
+    storesDirs: ['./stores/**'],
   },
   image: {
     providers: {
