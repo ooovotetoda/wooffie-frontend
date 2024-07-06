@@ -4,8 +4,8 @@ export default defineAppConfig({
     gray: 'cool',
 
     container: {
-      padding: 'px-4 sm:px-6 lg:px-28',
-      constrained: 'max-w-none',
+      margin: 'mx-auto',
+      constrained: 'max-w-none sm:max-w-[1160px] 2xl:max-w-[1680px]',
     }
   }
 })

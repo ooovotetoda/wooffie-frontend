@@ -18,14 +18,15 @@ html, body {
 }
 
 .container {
-  margin: 0 120px;
+  max-width: 1680px;
+  margin: 0 auto;
 }
 
 a { text-decoration: none; }
 
 @media (max-width: 1536px) {
   .container {
-   margin: 0 60px;
+    max-width: 1160px;
   }
 }
 
@@ -42,6 +43,6 @@ a { text-decoration: none; }
   }
 
   .container {
-    margin: 0 20px;
+    max-width: 320px;
   }
 }
