@@ -1,24 +1,15 @@
 {
   "name": "nuxt-app",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^2.22.2",
-    "@nuxt/devtools": "latest",
-    "@nuxtjs/style-resources": "^2.0.0",
-    "@vueuse/core": "^10.9.0",
-    "eslint": "^9.7.0",
-    "sass": "^1.72.0",
-    "sass-loader": "^13.3.3",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@nuxt/image": "^1.4.0",
@@ -31,5 +22,16 @@
     "pinia": "^2.1.7",
     "swiper": "^11.1.4",
     "vue3-carousel-nuxt": "^1.1.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.22.2",
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/style-resources": "^2.0.0",
+    "@vueuse/core": "^10.9.0",
+    "eslint": "^9.7.0",
+    "sass": "^1.72.0",
+    "sass-loader": "^13.3.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   }
 }
