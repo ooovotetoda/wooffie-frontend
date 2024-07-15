@@ -1,4 +1,4 @@
-import type { FetchContext } from "ofetch";
+import type { FetchContext } from 'ofetch'
 
 export default async function (phone: string) {
   const { $ofetch } = useNuxtApp()

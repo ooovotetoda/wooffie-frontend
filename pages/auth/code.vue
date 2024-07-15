@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import {useUserStore} from "~/stores/userStore";
-import {formatPhone} from "../../.nuxt/imports";
-import { useCodeTimer } from "~/composables/useCodeTimer"
+import { formatPhone } from '../../.nuxt/imports'
+import { useUserStore } from '~/stores/userStore'
+import { useCodeTimer } from '~/composables/useCodeTimer'
 
 definePageMeta({
-  layout: "authorization",
+  layout: 'authorization',
 })
 
 const route = useRoute()
-const authStorage = useSessionStorage("auth-store", { phone: "+79999999999", password: "" })
+const authStorage = useSessionStorage('auth-store', { phone: '+79999999999', password: '' })
 const { signUp } = useUserStore()
 
 const phone = authStorage.value.phone
 
-const code = ref<string | null>(null)
-const isCodeSent = ref<boolean>(false);
-const isCodeValid = ref<boolean>(true);
+const code = ref < string | null > (null)
+const isCodeSent = ref < boolean > (false)
+const isCodeValid = ref < boolean > (true)
 
-const { timer, startTimer, resetTimer } =  useCodeTimer(isCodeSent)
+const { timer, startTimer, resetTimer } = useCodeTimer(isCodeSent)
 
-const handleSubmit = async () => {
+async function handleSubmit() {
   if (!code.value || code.value.length < 4) {
-    isCodeValid.value = false;
-    return;
+    isCodeValid.value = false
+    return
   }
 
   const password = authStorage.value.password
@@ -30,56 +30,71 @@ const handleSubmit = async () => {
   const isValid = await validateOTP(code.value)
 
   if (isValid) {
-    if (route.query.type === "register") {
+    if (route.query.type === 'register') {
       if (!password) {
         return
       }
 
       await signUp(password)
-      await navigateTo("/")
-    } else if (route.query.type === "reset") {
-      await navigateTo("/auth/newpass");
+      await navigateTo('/')
     }
-  } else {
-    console.warn("code not valid")
+    else if (route.query.type === 'reset') {
+      await navigateTo('/auth/newpass')
+    }
+  }
+  else {
+    console.warn('code not valid')
   }
 }
 
-const resendCode = async () => {
-  if (isCodeSent.value) return;
+async function resendCode() {
+  if (isCodeSent.value)
+    return
 
   resetTimer()
-  startTimer(5900);
+  startTimer(5900)
 
   if (phone) {
     await sendOTP(phone)
-  } else {
-    console.error("invalid phone number")
+  }
+  else {
+    console.error('invalid phone number')
   }
 }
 </script>
 
 <template>
   <AuthBlock>
-    <template v-slot:title>Одноразовый код</template>
+    <template #title>
+      Одноразовый код
+    </template>
 
     <div class="authorization-hint">
-      <IconsQuestion/>
-      <span>На номер {{formatPhone(phone)}} отправлен одноразовый код </span>
+      <IconsQuestion />
+      <span>На номер {{ formatPhone(phone) }} отправлен одноразовый код </span>
     </div>
 
-    <form @submit.prevent="handleSubmit" class="authorization-form">
+    <form
+      class="authorization-form"
+      @submit.prevent="handleSubmit"
+    >
       <AuthCode
-          @updateCode="(c) => code = c"
-          v-model:isCodeValid="isCodeValid"
+        v-model:isCodeValid="isCodeValid"
+        @update-code="(c) => code = c"
       />
 
-      <button class="authorization-login">Подтвердить</button>
+      <button class="authorization-login">
+        Подтвердить
+      </button>
     </form>
 
-    <button @click="resendCode" :disabled="isCodeSent" class="authorization-registration">
+    <button
+      :disabled="isCodeSent"
+      class="authorization-registration"
+      @click="resendCode"
+    >
       <span v-if="!isCodeSent">Отправить код</span>
-      <span v-else>Повторно отправить {{`0:${timer}`}}</span>
+      <span v-else>Повторно отправить {{ `0:${timer}` }}</span>
     </button>
   </AuthBlock>
 </template>

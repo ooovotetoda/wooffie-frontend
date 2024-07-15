@@ -1,8 +1,17 @@
 <script setup lang="ts">
 const props = defineProps({
-  label: String,
-  all: Number,
-  count: Number,
+  label: {
+    type: String,
+    default: ''
+  },
+  all: {
+    type: Number,
+    default: 0
+  },
+  count: {
+    type: Number,
+    default: 0
+  },
 })
 
 const checked = defineModel < boolean > ({ default: true })

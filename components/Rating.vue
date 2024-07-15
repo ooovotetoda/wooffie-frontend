@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   rating: {
-    default: false,
+    default: 0,
     type: Number,
   },
   active: {

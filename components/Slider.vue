@@ -2,7 +2,7 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel } from 'vue3-carousel'
 
-const props = defineProps({
+defineProps({
   width: {
     default: 314,
     type: Number,

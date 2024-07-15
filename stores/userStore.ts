@@ -1,4 +1,4 @@
-import type { FetchContext } from "ofetch";
+import type { FetchContext } from 'ofetch'
 
 export const useUserStore = defineStore('user', () => {
   const { $ofetch } = useNuxtApp()
@@ -65,7 +65,10 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  async function signIn(body: Object): Promise<number> {
+  async function signIn(body: {
+    phone: string,
+    password: string,
+  }): Promise<number> {
     const accessTokenCookie = useCookie('access_token')
     const refreshTokenCookie = useCookie('refresh_token')
 

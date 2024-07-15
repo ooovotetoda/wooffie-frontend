@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {formatPhone, useType, useUserStore} from "../../.nuxt/imports";
+import { formatPhone, useType, useUserStore } from "../../.nuxt/imports";
 import getDay from "~/utils/getDay";
-import type {Organization, Schedule} from '~/types/organization';
+import type { Organization, Schedule } from '~/types/organization';
 
 const props = defineProps<{
   organization: Organization,
@@ -135,7 +135,7 @@ const toggleIsActive = async () => {
     width: 250px;
     height: 250px;
     grid-area: media;
-  
+
 
     img {
       width: 100%;
@@ -166,7 +166,7 @@ const toggleIsActive = async () => {
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.9);
-        
+
         svg {
           color: rgba(228, 0, 0, 0.56);
         }
@@ -477,7 +477,7 @@ const toggleIsActive = async () => {
         }
       }
     }
-    
+
     &__criteria {
       margin-top: 16px;
       gap: 4px;

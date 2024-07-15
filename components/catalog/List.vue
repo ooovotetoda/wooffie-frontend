@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {Organization} from "~/types/organization";
 
-const props = defineProps<{
+defineProps<{
   list: Organization[]
 }>()
 
