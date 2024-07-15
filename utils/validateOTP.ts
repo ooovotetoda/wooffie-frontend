@@ -1,3 +1,5 @@
+import type { FetchContext } from "ofetch";
+
 export default async function (code: string) {
   const { $ofetch } = useNuxtApp()
 
@@ -11,7 +13,7 @@ export default async function (code: string) {
         code,
       },
       onResponse(context: FetchContext) {
-        statusCode = context.response.status
+        statusCode = context.response?.status || 0
       },
     })
 

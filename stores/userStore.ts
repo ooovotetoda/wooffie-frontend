@@ -1,3 +1,5 @@
+import type { FetchContext } from "ofetch";
+
 export const useUserStore = defineStore('user', () => {
   const { $ofetch } = useNuxtApp()
 
@@ -20,7 +22,7 @@ export const useUserStore = defineStore('user', () => {
             access_token: accessTokenCookie.value,
           },
           onResponse(context: FetchContext) {
-            statusCode = context.response.status
+            statusCode = context.response?.status || 0
           },
         })
 
@@ -39,7 +41,7 @@ export const useUserStore = defineStore('user', () => {
                 refresh_token: refreshTokenCookie.value,
               },
               onResponse(context: FetchContext) {
-                statusCode = context.response.status
+                statusCode = context.response?.status || 0
               },
             })
 
@@ -74,7 +76,7 @@ export const useUserStore = defineStore('user', () => {
         method: 'POST',
         body,
         onResponse(context: FetchContext) {
-          statusCode = context.response.status
+          statusCode = context.response?.status || 500
         },
       })
       if (data.status === 'OK') {
