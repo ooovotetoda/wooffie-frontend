@@ -20,7 +20,10 @@ function handleBlur() {
 <template>
   <fieldset class="phone">
     <Transition name="fade">
-      <legend v-if="isPhoneFocused" class="phone__legend">
+      <legend
+        v-if="isPhoneFocused"
+        class="phone__legend"
+      >
         Телефон
       </legend>
     </Transition>
@@ -36,7 +39,10 @@ function handleBlur() {
       @blur="handleBlur"
     >
   </fieldset>
-  <p v-if="!isPhoneValid" class="error">
+  <p
+    v-if="!isPhoneValid"
+    class="error"
+  >
     Неверный формат
   </p>
 </template>

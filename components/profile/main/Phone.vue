@@ -11,7 +11,10 @@ function handleEdit() {
 </script>
 
 <template>
-  <label for="tel" class="profile__label">Телефон</label>
+  <label
+    for="tel"
+    class="profile__label"
+  >Телефон</label>
   <div class="profile__input">
     <input
       v-model="phone"
@@ -21,7 +24,10 @@ function handleEdit() {
       readonly
     >
   </div>
-  <button class="profile__btn" @click.prevent="handleEdit">
+  <button
+    class="profile__btn"
+    @click.prevent="handleEdit"
+  >
     Изменить
   </button>
 </template>

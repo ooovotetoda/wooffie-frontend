@@ -46,7 +46,10 @@ async function handleSubmit() {
       Авторизация
     </template>
 
-    <form class="authorization-form" @submit.prevent="handleSubmit">
+    <form
+      class="authorization-form"
+      @submit.prevent="handleSubmit"
+    >
       <AuthPhone
         v-model:isPhoneValid="isPhoneValid"
         @update-phone="(p) => phone = p"
@@ -56,7 +59,10 @@ async function handleSubmit() {
         @update-password="(p) => password = p"
       />
 
-      <p v-if="isPasswordWrong" class="error">
+      <p
+        v-if="isPasswordWrong"
+        class="error"
+      >
         Неверный логин или пароль
       </p>
 

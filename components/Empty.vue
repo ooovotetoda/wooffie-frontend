@@ -8,8 +8,16 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :style="`margin: ${margin}px 0;`" class="empty">
-    <NuxtImg format="webp" provider="myProvider" src="/empty.svg" alt="empty" />
+  <div
+    :style="`margin: ${margin}px 0;`"
+    class="empty"
+  >
+    <NuxtImg
+      format="webp"
+      provider="myProvider"
+      src="/empty.svg"
+      alt="empty"
+    />
   </div>
 </template>
 

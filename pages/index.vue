@@ -6,7 +6,11 @@ const { width } = useWindowSize()
 </script>
 
 <template>
-  <section v-once id="main" class="main-header">
+  <section
+    v-once
+    id="main"
+    class="main-header"
+  >
     <UContainer>
       <div class="poster">
         <h1 class="poster__title">
@@ -20,7 +24,11 @@ const { width } = useWindowSize()
     </UContainer>
   </section>
 
-  <section v-once id="services" class="services">
+  <section
+    v-once
+    id="services"
+    class="services"
+  >
     <UContainer class="px-0">
       <div class="wrapper">
         <h2 class="services__title">
@@ -29,37 +37,69 @@ const { width } = useWindowSize()
 
         <div class="services__table hidden sm:flex flex-col gap-16">
           <div class="services__row flex flex-col xl:flex-row gap-16">
-            <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp" />
-            <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp" />
+            <MainServiceCard
+              title="Клиники"
+              service="clinic"
+              image="card-clinic.webp"
+            />
+            <MainServiceCard
+              title="Ветеринары"
+              service="vet"
+              image="card-vet.webp"
+            />
           </div>
           <div class="services__row flex flex-col xl:flex-row gap-16">
-            <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp" />
-            <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp" />
+            <MainServiceCard
+              title="Грумеры"
+              service="groomer"
+              image="card-groomer.webp"
+            />
+            <MainServiceCard
+              title="Зоосалоны"
+              service="salon"
+              image="card-salon.webp"
+            />
           </div>
         </div>
 
         <Slider :width="width">
           <Slide key="clinic">
             <div class="carousel__item">
-              <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp" />
+              <MainServiceCard
+                title="Клиники"
+                service="clinic"
+                image="card-clinic.webp"
+              />
             </div>
           </Slide>
 
           <Slide key="vet">
             <div class="carousel__item">
-              <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp" />
+              <MainServiceCard
+                title="Ветеринары"
+                service="vet"
+                image="card-vet.webp"
+              />
             </div>
           </Slide>
 
           <Slide key="groomer">
             <div class="carousel__item">
-              <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp" />
+              <MainServiceCard
+                title="Грумеры"
+                service="groomer"
+                image="card-groomer.webp"
+              />
             </div>
           </Slide>
 
           <Slide key="salon">
             <div class="carousel__item">
-              <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp" />
+              <MainServiceCard
+                title="Зоосалоны"
+                service="salon"
+                image="card-salon.webp"
+              />
             </div>
           </Slide>
         </Slider>
@@ -67,7 +107,11 @@ const { width } = useWindowSize()
     </UContainer>
   </section>
 
-  <section v-once id="about" class="about">
+  <section
+    v-once
+    id="about"
+    class="about"
+  >
     <UContainer>
       <div class="wrapper">
         <div class="about-text">

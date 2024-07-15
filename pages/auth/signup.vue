@@ -50,7 +50,10 @@ async function handleSubmit() {
       Регистрация
     </template>
 
-    <form class="authorization-form" @submit.prevent="handleSubmit">
+    <form
+      class="authorization-form"
+      @submit.prevent="handleSubmit"
+    >
       <AuthPhone
         v-model:isPhoneValid="isPhoneValid"
         @update-phone="(p) => phone = p"

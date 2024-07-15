@@ -1,3 +1,3 @@
 interface FetchContext {
-    response: Response;
+  response: Response
 }

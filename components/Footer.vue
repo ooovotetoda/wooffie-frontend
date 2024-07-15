@@ -3,11 +3,19 @@
 </script>
 
 <template>
-  <footer v-once class="footer">
+  <footer
+    v-once
+    class="footer"
+  >
     <UContainer>
       <div class="wrapper">
         <div class="footer-logo">
-          <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__white.svg" alt="logo" />
+          <NuxtImg
+            format="webp"
+            provider="myProvider"
+            src="/wooffie-logo__white.svg"
+            alt="logo"
+          />
           <span class="footer-logo__text">wooffie</span>
         </div>
 
@@ -43,8 +51,14 @@
           </p>
         </div>
         <div class="footer-social">
-          <a href="https://vk.com" target="_blank"><IconsVK /></a>
-          <a href="https://instagram.com" target="_blank"><IconsInstagram /></a>
+          <a
+            href="https://vk.com"
+            target="_blank"
+          ><IconsVK /></a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+          ><IconsInstagram /></a>
         </div>
       </div>
     </UContainer>

@@ -22,7 +22,10 @@ function handleInput() {
 <template>
   <fieldset class="code">
     <Transition name="fade">
-      <legend v-if="isCodeFocused" class="code__legend">
+      <legend
+        v-if="isCodeFocused"
+        class="code__legend"
+      >
         Одноразовый код
       </legend>
     </Transition>
@@ -38,7 +41,10 @@ function handleInput() {
       @input="handleInput"
     >
   </fieldset>
-  <p v-if="!isCodeValid" class="error">
+  <p
+    v-if="!isCodeValid"
+    class="error"
+  >
     Неверный код
   </p>
 </template>

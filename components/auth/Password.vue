@@ -20,7 +20,10 @@ function handlePasswordChange() {
 <template>
   <fieldset class="password">
     <Transition name="fade">
-      <legend v-if="isPasswordFocused" class="password__legend">
+      <legend
+        v-if="isPasswordFocused"
+        class="password__legend"
+      >
         Пароль
       </legend>
     </Transition>
@@ -34,10 +37,19 @@ function handlePasswordChange() {
       @blur="isPasswordFocused = false"
       @input="handlePasswordChange"
     >
-    <IconsPasswordHide v-if="showPassword" @click.prevent="showPassword = !showPassword" />
-    <IconsPasswordShow v-else @click.prevent="showPassword = !showPassword" />
+    <IconsPasswordHide
+      v-if="showPassword"
+      @click.prevent="showPassword = !showPassword"
+    />
+    <IconsPasswordShow
+      v-else
+      @click.prevent="showPassword = !showPassword"
+    />
   </fieldset>
-  <p v-if="!isPasswordValid" class="error">
+  <p
+    v-if="!isPasswordValid"
+    class="error"
+  >
     Заполните поле (минимум 8 символов)
   </p>
 </template>

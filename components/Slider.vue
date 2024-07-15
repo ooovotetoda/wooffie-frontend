@@ -12,7 +12,10 @@ const props = defineProps({
 
 <template>
   <div class="carousel__mobile">
-    <Carousel :items-to-show="(width - 32) / 280" :wrap-around="true">
+    <Carousel
+      :items-to-show="(width - 32) / 280"
+      :wrap-around="true"
+    >
       <slot />
     </Carousel>
   </div>

@@ -7,7 +7,10 @@ function handleSavePassword() {
 </script>
 
 <template>
-  <label for="tel" class="profile__label">Пароль</label>
+  <label
+    for="tel"
+    class="profile__label"
+  >Пароль</label>
   <div class="profile__input">
     <input
       v-model="password"
@@ -16,7 +19,10 @@ function handleSavePassword() {
       readonly
     >
   </div>
-  <button class="profile__btn" @click="handleSavePassword">
+  <button
+    class="profile__btn"
+    @click="handleSavePassword"
+  >
     Изменить
   </button>
 </template>

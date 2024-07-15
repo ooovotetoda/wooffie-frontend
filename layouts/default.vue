@@ -17,7 +17,10 @@ const withSearch = computed(() => {
     <main class="main">
       <UContainer>
         <Search v-if="withSearch" />
-        <Breadcrumbs v-if="route.path !== '/'" :breadcrumbs="breadcrumbs" />
+        <Breadcrumbs
+          v-if="route.path !== '/'"
+          :breadcrumbs="breadcrumbs"
+        />
       </UContainer>
 
       <slot />

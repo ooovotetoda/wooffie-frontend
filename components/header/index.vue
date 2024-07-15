@@ -16,7 +16,12 @@ const isOpen = ref(false)
           <div class="header__left">
             <NuxtLink to="/">
               <div class="header-logo">
-                <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__main-color.svg" alt="logo" />
+                <NuxtImg
+                  format="webp"
+                  provider="myProvider"
+                  src="/wooffie-logo__main-color.svg"
+                  alt="logo"
+                />
               </div>
               <span class="header-logo__text">wooffie</span>
             </NuxtLink>
@@ -33,16 +38,27 @@ const isOpen = ref(false)
               <Menu @close="() => isOpen = false" />
             </USlideover>
 
-            <div v-if="user.loggedIn" class="header__user">
+            <div
+              v-if="user.loggedIn"
+              class="header__user"
+            >
               <span>{{ phone }}</span>
               <NuxtLink to="/profile">
                 <div class="header__profile">
-                  <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="profile" />
+                  <NuxtImg
+                    format="webp"
+                    provider="myProvider"
+                    src="/user-icon.svg"
+                    alt="profile"
+                  />
                 </div>
               </NuxtLink>
             </div>
 
-            <NuxtLink v-else to="/auth/signin">
+            <NuxtLink
+              v-else
+              to="/auth/signin"
+            >
               <button class="header__login">
                 Вход
               </button>

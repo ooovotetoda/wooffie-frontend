@@ -22,7 +22,10 @@ const { user } = useUserStore()
       </div>
     </div>
 
-    <div v-if="!user.loggedIn" class="user-buttons">
+    <div
+      v-if="!user.loggedIn"
+      class="user-buttons"
+    >
       <NuxtLink to="/auth/signup">
         <button class="user__button signup">
           Регистрация

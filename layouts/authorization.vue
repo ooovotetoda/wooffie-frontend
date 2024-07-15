@@ -5,7 +5,10 @@ const router = useRouter()
 <template>
   <main class="main">
     <div class="auth__header">
-      <button class="auth-back__button" @click="router.back()">
+      <button
+        class="auth-back__button"
+        @click="router.back()"
+      >
         <span class="auth-back__text">Назад</span>
       </button>
     </div>

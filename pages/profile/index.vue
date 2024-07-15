@@ -8,7 +8,12 @@ definePageMeta({
 <template>
   <section class="profile w-full">
     <div class="profile__media">
-      <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="user" />
+      <NuxtImg
+        format="webp"
+        provider="myProvider"
+        src="/user-icon.svg"
+        alt="user"
+      />
     </div>
     <ul class="profile__list">
       <li class="profile__item">

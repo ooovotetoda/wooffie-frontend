@@ -1,42 +1,44 @@
-const isMathPatternPath = (pathA: string, pathB: string) => {
-  const partsA = pathA.split('/');
-  const partsB = pathB.split('/');
+function isMathPatternPath(pathA: string, pathB: string) {
+  const partsA = pathA.split('/')
+  const partsB = pathB.split('/')
 
-  if (partsA.length !== partsB.length) return false;
+  if (partsA.length !== partsB.length)
+    return false
 
   const isMatch = partsA.every((part: string, i: number) => {
-    return part === partsB[i] || part.startsWith(':');
+    return part === partsB[i] || part.startsWith(':')
   })
 
-  return isMatch;
+  return isMatch
 }
 
-export const useBreadcrumbs = () => {
-  const router = useRouter();
+export function useBreadcrumbs() {
+  const router = useRouter()
   const route = useRoute()
-  const routes = router.getRoutes();
+  const routes = router.getRoutes()
 
-  const HOMEPAGE = { name: 'Home', path: '/' };
-  const breadcrumbs:Ref<Array<{ name: string; path: string; }>> = ref([ HOMEPAGE ])
+  const HOMEPAGE = { name: 'Home', path: '/' }
+  const breadcrumbs: Ref<Array<{ name: string, path: string }>> = ref([HOMEPAGE])
 
   function getBreadcrumbs(currRoute: string): any[] {
-    if (currRoute === '') return [ HOMEPAGE ];
+    if (currRoute === '')
+      return [HOMEPAGE]
 
-    const paths = getBreadcrumbs(currRoute.slice(0, currRoute.lastIndexOf('/')));
+    const paths = getBreadcrumbs(currRoute.slice(0, currRoute.lastIndexOf('/')))
 
-    const founds = routes.filter(r => isMathPatternPath(r.path, currRoute));
+    const founds = routes.filter(r => isMathPatternPath(r.path, currRoute))
 
-    const matchRoute = founds.length > 1 ? founds.find(r => r.path === currRoute) : founds[0];
+    const matchRoute = founds.length > 1 ? founds.find(r => r.path === currRoute) : founds[0]
 
-    const excludedPaths = ['/catalog', '/profile/feedback', '/profile/favorite'];
+    const excludedPaths = ['/catalog', '/profile/feedback', '/profile/favorite']
 
     return [
       ...paths,
       {
         path: currRoute,
         name: matchRoute?.meta?.breadcrumb || matchRoute?.name || matchRoute?.path || currRoute,
-      }
-    ].filter(breadcrumb => !excludedPaths.includes(breadcrumb.path));
+      },
+    ].filter(breadcrumb => !excludedPaths.includes(breadcrumb.path))
   }
 
   watch(() => ({
@@ -45,14 +47,15 @@ export const useBreadcrumbs = () => {
     meta: route.meta,
     matched: route.matched,
   }), (route) => {
-    if (route.path === '/') return;
+    if (route.path === '/')
+      return
 
-    breadcrumbs.value = getBreadcrumbs(route.path);
+    breadcrumbs.value = getBreadcrumbs(route.path)
   }, {
     immediate: true,
   })
 
   return {
-    breadcrumbs
+    breadcrumbs,
   }
 }

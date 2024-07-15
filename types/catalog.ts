@@ -1,10 +1,10 @@
 interface Formats {
-    local: boolean;
-    online: boolean;
-    home: boolean;
+  local: boolean
+  online: boolean
+  home: boolean
 }
 
 interface Filters {
-    schedule: null | string;
-    formats: Formats;
+  schedule: null | string
+  formats: Formats
 }

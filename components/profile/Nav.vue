@@ -16,7 +16,10 @@ watch(() => route.path, (newPath) => {
   <nav class="navigation">
     <ul class="navigation__list">
       <NuxtLink to="/profile">
-        <li class="navigation__item" :class="{ active: page === 'profile' }">
+        <li
+          class="navigation__item"
+          :class="{ active: page === 'profile' }"
+        >
           <div class="navigation__icon">
             <IconsProfile />
           </div>
@@ -25,7 +28,10 @@ watch(() => route.path, (newPath) => {
       </NuxtLink>
 
       <NuxtLink to="/profile/feedback">
-        <li class="navigation__item" :class="{ active: page === 'feedback' }">
+        <li
+          class="navigation__item"
+          :class="{ active: page === 'feedback' }"
+        >
           <div class="navigation__icon">
             <IconsReview />
           </div>
@@ -34,7 +40,10 @@ watch(() => route.path, (newPath) => {
       </NuxtLink>
 
       <NuxtLink to="/profile/favorite">
-        <li class="navigation__item" :class="{ active: page === 'favorite' }">
+        <li
+          class="navigation__item"
+          :class="{ active: page === 'favorite' }"
+        >
           <div class="navigation__icon">
             <IconsFavorite />
           </div>
@@ -52,7 +61,10 @@ watch(() => route.path, (newPath) => {
       <!--      </NuxtLink> -->
 
       <NuxtLink to="/">
-        <li class="navigation__item" @click="signOut">
+        <li
+          class="navigation__item"
+          @click="signOut"
+        >
           <div class="navigation__icon">
             <IconsLogout />
           </div>

@@ -14,7 +14,10 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
   <li class="filter__item">
     <label>
       {{ label }}
-      <input v-model="checked" type="checkbox">
+      <input
+        v-model="checked"
+        type="checkbox"
+      >
       <span class="checkmark" />
       <span class="checkmark__bg" />
     </label>

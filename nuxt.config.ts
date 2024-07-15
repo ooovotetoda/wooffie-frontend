@@ -7,18 +7,18 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    "/": { prerender: true },
-    "/auth/**": { prerender: true },
-    "/faq/**": { prerender: true },
+    '/': { prerender: true },
+    '/auth/**': { prerender: true },
+    '/faq/**': { prerender: true },
   },
   router: {
     options: {
-      scrollBehaviorType: 'smooth'
-    }
+      scrollBehaviorType: 'smooth',
+    },
   },
-  //@ts-ignore
+  // @ts-ignore
   colorMode: {
-    preference: 'light'
+    preference: 'light',
   },
   pinia: {
     storesDirs: ['./stores/**'],
@@ -29,10 +29,10 @@ export default defineNuxtConfig({
         name: 'myProvider',
         provider: '~/providers/my-provider.ts',
         options: {
-          baseURL: "https://wooffie.ru"
-        }
-      }
-    }
+          baseURL: 'https://wooffie.ru',
+        },
+      },
+    },
   },
   imports: {
     dirs: ['types/*.ts'],
@@ -43,7 +43,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'vue3-carousel-nuxt',
     '@nuxt/ui',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxt/eslint',
+    'nuxt-module-eslint-config',
   ],
   plugins: [
     '~/plugins/ofetch.ts',
@@ -55,12 +57,12 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData:
-              '@use "@/assets/fonts.scss" as *; ' +
-              '@use "@/assets/colors.scss"  as *; ' +
-              '@import "@/assets/mixins.scss"; ',
-        }
-      }
-    }
+              '@use "@/assets/fonts.scss" as *; '
+              + '@use "@/assets/colors.scss"  as *; '
+              + '@import "@/assets/mixins.scss"; ',
+        },
+      },
+    },
   },
   app: {
     head: {
@@ -80,17 +82,17 @@ export default defineNuxtConfig({
                 webvisor:true
             });
           `,
-          type: 'text/javascript'
-        }
+          type: 'text/javascript',
+        },
       ],
       noscript: [
         {
-          innerHTML: '<div><img src="https://mc.yandex.ru/watch/96702656" style="position:absolute; left:-9999px;" alt="" /></div>'
-        }
+          innerHTML: '<div><img src="https://mc.yandex.ru/watch/96702656" style="position:absolute; left:-9999px;" alt="" /></div>',
+        },
       ],
       title: 'Wooffie: Все Услуги для Животных на Одном Сайте',
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
       meta: [
         { name: 'description', content: 'Вуффи – ваш надёжный онлайн-сервис для записи к ветеринарам, грумерам и специалистам по уходу за животными. Найдите идеального специалиста для вашего питомца, сравните цены и читайте отзывы в одном месте.' },
