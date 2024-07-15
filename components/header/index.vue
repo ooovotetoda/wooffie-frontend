@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import formatPhone from "~/utils/formatPhone";
+import formatPhone from '~/utils/formatPhone'
 
 const { user } = useUserStore()
 
@@ -16,34 +16,36 @@ const isOpen = ref(false)
           <div class="header__left">
             <NuxtLink to="/">
               <div class="header-logo">
-                <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__main-color.svg" alt="logo"/>
+                <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__main-color.svg" alt="logo" />
               </div>
               <span class="header-logo__text">wooffie</span>
             </NuxtLink>
 
-            <HeaderCity class="hidden sm:block"/>
+            <HeaderCity class="hidden sm:block" />
           </div>
-          
+
           <div class="header__right">
             <div class="header-menu__button">
-              <IconsWidgets @click="isOpen = true"/>
+              <IconsWidgets @click="isOpen = true" />
             </div>
 
             <USlideover v-model="isOpen">
-              <Menu @close="() => isOpen = false"/>
+              <Menu @close="() => isOpen = false" />
             </USlideover>
 
             <div v-if="user.loggedIn" class="header__user">
               <span>{{ phone }}</span>
               <NuxtLink to="/profile">
                 <div class="header__profile">
-                  <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="profile"/>
+                  <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="profile" />
                 </div>
               </NuxtLink>
             </div>
 
             <NuxtLink v-else to="/auth/signin">
-              <button class="header__login">Вход</button>
+              <button class="header__login">
+                Вход
+              </button>
             </NuxtLink>
           </div>
         </div>
@@ -68,7 +70,6 @@ const isOpen = ref(false)
     background: #FFF;
     z-index: 20;
   }
-
 
   &__left {
     display: flex;
@@ -206,7 +207,7 @@ const isOpen = ref(false)
     &__right {
       display: block;
     }
-    
+
     &__user {
       display: none;
     }
@@ -214,7 +215,7 @@ const isOpen = ref(false)
     &__login {
       display: none;
     }
-    
+
     &-menu {
       &__button {
         display: flex;

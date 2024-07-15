@@ -1,42 +1,46 @@
 <script setup lang="ts">
-const emit = defineEmits(["updateCode", "update:isCodeValid"])
-
 const props = defineProps({
-  isCodeValid: Boolean
+  isCodeValid: Boolean,
 })
 
-const codeRef = ref<string | null>(null)
-const code = ref<string | null>(null)
-const isCodeFocused = ref<boolean>(false);
+const emit = defineEmits(['updateCode', 'update:isCodeValid'])
 
-const handleInput = () => {
-  let maxLength = 6;
+const codeRef = ref < string | null > (null)
+const code = ref < string | null > (null)
+const isCodeFocused = ref < boolean > (false)
+
+function handleInput() {
+  const maxLength = 6
   if (code.value && code.value.length > maxLength) {
-    code.value = code.value.slice(0, maxLength);
+    code.value = code.value.slice(0, maxLength)
   }
-  emit("updateCode", code.value)
-  emit("update:isCodeValid", true)
+  emit('updateCode', code.value)
+  emit('update:isCodeValid', true)
 }
 </script>
 
 <template>
   <fieldset class="code">
     <Transition name="fade">
-      <legend v-if="isCodeFocused" class="code__legend">Одноразовый код</legend>
+      <legend v-if="isCodeFocused" class="code__legend">
+        Одноразовый код
+      </legend>
     </Transition>
     <input
-        type="text"
-        maxlength=4
-        placeholder="Одноразовый код"
-        class="code__input"
-        ref="codeRef"
-        v-model="code"
-        @focus="isCodeFocused = true"
-        @blur="isCodeFocused = false"
-        @input="handleInput"
+      ref="codeRef"
+      v-model="code"
+      type="text"
+      maxlength="4"
+      placeholder="Одноразовый код"
+      class="code__input"
+      @focus="isCodeFocused = true"
+      @blur="isCodeFocused = false"
+      @input="handleInput"
     >
   </fieldset>
-  <p v-if="!isCodeValid" class="error">Неверный код</p>
+  <p v-if="!isCodeValid" class="error">
+    Неверный код
+  </p>
 </template>
 
 <style scoped lang="scss">

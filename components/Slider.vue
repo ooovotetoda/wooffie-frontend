@@ -6,15 +6,14 @@ const props = defineProps({
   width: {
     default: 314,
     type: Number,
-  }
+  },
 })
-
 </script>
 
 <template>
   <div class="carousel__mobile">
-    <Carousel :items-to-show="(width - 32)/280" :wrapAround="true">
-      <slot/>
+    <Carousel :items-to-show="(width - 32) / 280" :wrap-around="true">
+      <slot />
     </Carousel>
   </div>
 </template>

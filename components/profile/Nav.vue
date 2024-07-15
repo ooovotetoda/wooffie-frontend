@@ -3,11 +3,11 @@ const { signOut } = useUserStore()
 
 const route = useRoute()
 
-const path = ref(route.path.split("/"))
+const path = ref(route.path.split('/'))
 const page = ref(path.value[path.value.length - 1])
 
 watch(() => route.path, (newPath) => {
-  path.value = newPath.split("/")
+  path.value = newPath.split('/')
   page.value = path.value[path.value.length - 1]
 }, { immediate: true })
 </script>
@@ -16,7 +16,7 @@ watch(() => route.path, (newPath) => {
   <nav class="navigation">
     <ul class="navigation__list">
       <NuxtLink to="/profile">
-        <li class="navigation__item" :class="{active: page === 'profile'}">
+        <li class="navigation__item" :class="{ active: page === 'profile' }">
           <div class="navigation__icon">
             <IconsProfile />
           </div>
@@ -25,7 +25,7 @@ watch(() => route.path, (newPath) => {
       </NuxtLink>
 
       <NuxtLink to="/profile/feedback">
-        <li class="navigation__item" :class="{active: page === 'feedback'}">
+        <li class="navigation__item" :class="{ active: page === 'feedback' }">
           <div class="navigation__icon">
             <IconsReview />
           </div>
@@ -34,7 +34,7 @@ watch(() => route.path, (newPath) => {
       </NuxtLink>
 
       <NuxtLink to="/profile/favorite">
-        <li class="navigation__item" :class="{active: page === 'favorite'}">
+        <li class="navigation__item" :class="{ active: page === 'favorite' }">
           <div class="navigation__icon">
             <IconsFavorite />
           </div>
@@ -42,17 +42,17 @@ watch(() => route.path, (newPath) => {
         </li>
       </NuxtLink>
 
-<!--      <NuxtLink to="/profile/settings">-->
-<!--        <li class="navigation__item" :class="{active: page === 'settings'}">-->
-<!--          <div class="navigation__icon">-->
-<!--            <IconsSettings />-->
-<!--          </div>-->
-<!--          <span>Настройки</span>-->
-<!--        </li>-->
-<!--      </NuxtLink>-->
+      <!--      <NuxtLink to="/profile/settings"> -->
+      <!--        <li class="navigation__item" :class="{active: page === 'settings'}"> -->
+      <!--          <div class="navigation__icon"> -->
+      <!--            <IconsSettings /> -->
+      <!--          </div> -->
+      <!--          <span>Настройки</span> -->
+      <!--        </li> -->
+      <!--      </NuxtLink> -->
 
-      <NuxtLink  to="/">
-        <li @click="signOut" class="navigation__item">
+      <NuxtLink to="/">
+        <li class="navigation__item" @click="signOut">
           <div class="navigation__icon">
             <IconsLogout />
           </div>

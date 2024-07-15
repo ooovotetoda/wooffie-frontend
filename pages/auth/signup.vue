@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import sendOTP from "~/utils/sendOTP";
+import sendOTP from '~/utils/sendOTP'
 
 definePageMeta({
-  layout: "authorization",
+  layout: 'authorization',
 })
 
-const authStorage = useSessionStorage("auth-store", { phone: "+79999999999", password: "", timer: "00" })
+const authStorage = useSessionStorage('auth-store', { phone: '+79999999999', password: '', timer: '00' })
 
-const phone = ref<string | null>(null);
-const isPhoneValid = ref<boolean>(true);
-const password = ref<string | null>(null);
-const isPasswordValid = ref<boolean>(true);
+const phone = ref < string | null > (null)
+const isPhoneValid = ref < boolean > (true)
+const password = ref < string | null > (null)
+const isPasswordValid = ref < boolean > (true)
 
-const handleSubmit = async () => {
+async function handleSubmit() {
   if (phone.value === null
-      || password.value === null
-      || password.value.length < 8
-      || !isPhoneValid.value
-      || !isPasswordValid.value) {
+    || password.value === null
+    || password.value.length < 8
+    || !isPhoneValid.value
+    || !isPasswordValid.value) {
     return
   }
 
@@ -30,38 +30,45 @@ const handleSubmit = async () => {
 
   const status = await sendOTP(phone.value)
 
-  if (status === "OK") {
+  if (status === 'OK') {
     await navigateTo({
-      path: "/auth/code",
+      path: '/auth/code',
       query: {
-        type: "register"
-      }
+        type: 'register',
+      },
     })
-  } else {
-    console.log("failed to send OTP code")
+  }
+  else {
+    console.log('failed to send OTP code')
   }
 }
 </script>
 
 <template>
   <AuthBlock>
-    <template v-slot:title>Регистрация</template>
+    <template #title>
+      Регистрация
+    </template>
 
-    <form @submit.prevent="handleSubmit" class="authorization-form">
+    <form class="authorization-form" @submit.prevent="handleSubmit">
       <AuthPhone
-          @updatePhone="(p) => phone = p"
-          v-model:isPhoneValid = isPhoneValid
+        v-model:isPhoneValid="isPhoneValid"
+        @update-phone="(p) => phone = p"
       />
       <AuthPassword
-          @updatePassword="(p) => password = p"
-          v-model:isPasswordValid="isPasswordValid"
+        v-model:isPasswordValid="isPasswordValid"
+        @update-password="(p) => password = p"
       />
 
-      <button class="authorization-login">Зарегистрироваться</button>
+      <button class="authorization-login">
+        Зарегистрироваться
+      </button>
     </form>
 
     <NuxtLink to="/auth/signin">
-      <button class="authorization-registration">Вход</button>
+      <button class="authorization-registration">
+        Вход
+      </button>
     </NuxtLink>
   </AuthBlock>
 </template>

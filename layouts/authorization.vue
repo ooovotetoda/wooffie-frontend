@@ -5,17 +5,17 @@ const router = useRouter()
 <template>
   <main class="main">
     <div class="auth__header">
-      <button @click="router.back()" class="auth-back__button">
+      <button class="auth-back__button" @click="router.back()">
         <span class="auth-back__text">Назад</span>
       </button>
     </div>
     <div class="wrapper">
       <div class="block">
         <NuxtLink to="/">
-          <IconsClose class="block__close"/>
+          <IconsClose class="block__close" />
         </NuxtLink>
 
-        <slot/>
+        <slot />
       </div>
     </div>
   </main>
@@ -72,7 +72,6 @@ const router = useRouter()
     cursor: pointer;
   }
 }
-
 
 @media (max-width: 640px) {
   .main {
@@ -135,7 +134,6 @@ const router = useRouter()
         color: white;
         font-family: Roboto, sans-serif;
         z-index: 10;
-
 
       }
 

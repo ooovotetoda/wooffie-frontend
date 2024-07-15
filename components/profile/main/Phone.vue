@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {formatPhone, useUserStore} from "#imports";
+import { formatPhone, useUserStore } from '#imports'
 
 const { user } = useUserStore()
 
 const phone = formatPhone(user.phoneNumber)
 
-const handleEdit = () => {
+function handleEdit() {
 
 }
 </script>
@@ -14,14 +14,16 @@ const handleEdit = () => {
   <label for="tel" class="profile__label">Телефон</label>
   <div class="profile__input">
     <input
-        type="tel"
-        placeholder="Телефон"
-        pattern = "\+?\d{1,3}?\d{1,12}"
-        v-model="phone"
-        readonly
+      v-model="phone"
+      type="tel"
+      placeholder="Телефон"
+      pattern="\+?\d{1,3}?\d{1,12}"
+      readonly
     >
   </div>
-  <button @click.prevent="handleEdit" class="profile__btn">Изменить</button>
+  <button class="profile__btn" @click.prevent="handleEdit">
+    Изменить
+  </button>
 </template>
 
 <style scoped lang="scss">

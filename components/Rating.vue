@@ -2,23 +2,23 @@
 const props = defineProps({
   rating: {
     default: false,
-    type: Number
+    type: Number,
   },
   active: {
     default: false,
-    type: Boolean
-  }
+    type: Boolean,
+  },
 })
 
 const emit = defineEmits(['rated'])
-
 </script>
 
 <template>
   <div class="rating">
-    <IconsStar v-for="index in 5"
-               :isYellow="index <= rating"
-               @click="emit('rated', index)"
+    <IconsStar
+      v-for="index in 5"
+      :is-yellow="index <= rating"
+      @click="emit('rated', index)"
     />
   </div>
 </template>

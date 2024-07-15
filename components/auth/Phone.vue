@@ -1,41 +1,44 @@
 <script setup lang="ts">
-const emit = defineEmits(['updatePhone', 'update:isPhoneValid'])
-
 const props = defineProps({
-  isPhoneValid: Boolean
+  isPhoneValid: Boolean,
 })
 
+const emit = defineEmits(['updatePhone', 'update:isPhoneValid'])
+
 const phoneRef = ref(null)
-const phone = ref<string | null>(null);
-const isPhoneFocused = ref<boolean>(false);
+const phone = ref < string | null > (null)
+const isPhoneFocused = ref < boolean > (false)
 
-const handleBlur = () => {
-  const regExp = /^(?:\+7|8)?[789]\d{9}$/;
-  const newIsPhoneValid = phone.value ? regExp.test(phone.value) : true;
-  emit("update:isPhoneValid", newIsPhoneValid)
-  isPhoneFocused.value = false;
+function handleBlur() {
+  const regExp = /^(?:\+7|8)?[789]\d{9}$/
+  const newIsPhoneValid = phone.value ? regExp.test(phone.value) : true
+  emit('update:isPhoneValid', newIsPhoneValid)
+  isPhoneFocused.value = false
 }
-
 </script>
 
 <template>
   <fieldset class="phone">
     <Transition name="fade">
-      <legend v-if="isPhoneFocused" class="phone__legend">Телефон</legend>
+      <legend v-if="isPhoneFocused" class="phone__legend">
+        Телефон
+      </legend>
     </Transition>
     <input
-        ref="phoneRef"
-        type="tel"
-        placeholder="Телефон"
-        pattern = "\+?\d{1,3}?\d{1,12}"
-        class="phone__input"
-        v-model="phone"
-        @input="emit('updatePhone', phone)"
-        @focus="isPhoneFocused = true"
-        @blur="handleBlur"
+      ref="phoneRef"
+      v-model="phone"
+      type="tel"
+      placeholder="Телефон"
+      pattern="\+?\d{1,3}?\d{1,12}"
+      class="phone__input"
+      @input="emit('updatePhone', phone)"
+      @focus="isPhoneFocused = true"
+      @blur="handleBlur"
     >
   </fieldset>
-  <p v-if="!isPhoneValid" class="error">Неверный формат</p>
+  <p v-if="!isPhoneValid" class="error">
+    Неверный формат
+  </p>
 </template>
 
 <style scoped lang="scss">

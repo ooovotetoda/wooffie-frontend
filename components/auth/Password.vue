@@ -1,42 +1,45 @@
 <script setup lang="ts">
-const emit = defineEmits(['updatePassword', 'update:isPasswordValid'])
-
 const props = defineProps({
-  isPasswordValid: Boolean
+  isPasswordValid: Boolean,
 })
 
+const emit = defineEmits(['updatePassword', 'update:isPasswordValid'])
+
 const passwordRef = ref(null)
-const password = ref<string | null>(null);
-const showPassword = ref<boolean>(false)
-const isPasswordFocused = ref<boolean>(false);
+const password = ref < string | null > (null)
+const showPassword = ref < boolean > (false)
+const isPasswordFocused = ref < boolean > (false)
 
-const handlePasswordChange = () => {
-  password.value = password.value ? password.value.replace(/\s+/g, '') : null;
-  emit("updatePassword", password.value)
-  emit("update:isPasswordValid", true)
-};
-
+function handlePasswordChange() {
+  password.value = password.value ? password.value.replace(/\s+/g, '') : null
+  emit('updatePassword', password.value)
+  emit('update:isPasswordValid', true)
+}
 </script>
 
 <template>
   <fieldset class="password">
     <Transition name="fade">
-      <legend v-if="isPasswordFocused" class="password__legend">Пароль</legend>
+      <legend v-if="isPasswordFocused" class="password__legend">
+        Пароль
+      </legend>
     </Transition>
     <input
-        ref="passwordRef"
-        :type="showPassword ? 'text' : 'password'"
-        placeholder="Пароль"
-        class="password__input"
-        v-model="password"
-        @focus="isPasswordFocused = true"
-        @blur="isPasswordFocused = false"
-        @input="handlePasswordChange"
+      ref="passwordRef"
+      v-model="password"
+      :type="showPassword ? 'text' : 'password'"
+      placeholder="Пароль"
+      class="password__input"
+      @focus="isPasswordFocused = true"
+      @blur="isPasswordFocused = false"
+      @input="handlePasswordChange"
     >
-    <IconsPasswordHide v-if="showPassword" @click.prevent="showPassword = !showPassword"/>
-    <IconsPasswordShow v-else @click.prevent="showPassword = !showPassword"/>
+    <IconsPasswordHide v-if="showPassword" @click.prevent="showPassword = !showPassword" />
+    <IconsPasswordShow v-else @click.prevent="showPassword = !showPassword" />
   </fieldset>
-  <p v-if="!isPasswordValid" class="error">Заполните поле (минимум 8 символов)</p>
+  <p v-if="!isPasswordValid" class="error">
+    Заполните поле (минимум 8 символов)
+  </p>
 </template>
 
 <style scoped lang="scss">

@@ -5,22 +5,21 @@ const props = defineProps({
   count: Number,
 })
 
-const checked = defineModel<boolean>({default: true})
+const checked = defineModel < boolean > ({ default: true })
 
-const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.all) * 100}%` : "0px")
+const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.all) * 100}%` : '0px')
 </script>
 
 <template>
   <li class="filter__item">
     <label>
       {{ label }}
-      <input type="checkbox" v-model="checked">
-      <span class="checkmark">
-      </span>
-      <span class="checkmark__bg"></span>
+      <input v-model="checked" type="checkbox">
+      <span class="checkmark" />
+      <span class="checkmark__bg" />
     </label>
     <div class="filter__line">
-      <div class="line__basic"></div>
+      <div class="line__basic" />
       <span>{{ count }}</span>
     </div>
   </li>
@@ -184,7 +183,6 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
       }
     }
   }
-
 
 }
 </style>

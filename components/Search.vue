@@ -1,23 +1,22 @@
 <script setup lang="ts">
 const search = ref(null)
 
-const handleSearch = async () => {
-  await navigateTo("/catalog/vet")
+async function handleSearch() {
+  await navigateTo('/catalog/vet')
 }
 </script>
 
 <template>
   <form @submit.prevent="handleSearch">
     <input
+      id="search"
+      v-model="search"
       type="search"
       name="search"
-      id="search"
       class="search"
       placeholder="Клиники, ветеринары, зоосалоны, грумеры"
-      v-model="search"
     >
   </form>
-
 </template>
 
 <style scoped lang="scss">

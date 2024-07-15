@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const emit = defineEmits(['close'])
-
 </script>
 
 <template>
@@ -15,7 +14,7 @@ const emit = defineEmits(['close'])
       </div>
 
       <div class="header-right flex items-center gap-4">
-        <HeaderCity/>
+        <HeaderCity />
 
         <button class="header__search">
           <IconsSearch />
@@ -25,56 +24,55 @@ const emit = defineEmits(['close'])
 
     <main class="main">
       <UContainer>
-        <MenuUser/>
+        <MenuUser />
 
         <ul class="menu__list">
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/">
               <span class="list__text">Главная</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:home.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:home.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/profile">
               <span class="list__text">Профиль</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:account-circle.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:account-circle.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/catalog/clinic">
               <span class="list__text">Клиники</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:medical-information.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:medical-information.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/catalog/vet">
               <span class="list__text">Ветеринары</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:id-card.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:id-card.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/catalog/groomer">
               <span class="list__text">Грумеры</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:pets.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:pets.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/catalog/salon">
               <span class="list__text">Зоосалоны</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:apartment.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:apartment.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
-          <li @click="emit('close')" class="menu__item">
+          <li class="menu__item" @click="emit('close')">
             <NuxtLink to="/faq">
               <span class="list__text">FAQ</span>
-              <NuxtImg src="https://api.iconify.design/material-symbols:import-contacts.svg?color=%23c57e00"/>
+              <NuxtImg src="https://api.iconify.design/material-symbols:import-contacts.svg?color=%23c57e00" />
             </NuxtLink>
           </li>
         </ul>
       </UContainer>
     </main>
   </div>
-
 </template>
 
 <style scoped lang="scss">

@@ -3,9 +3,8 @@
 </script>
 
 <template>
-  <div class="spinner"></div>
+  <div class="spinner" />
 </template>
-
 
 <style scoped>
 .spinner {

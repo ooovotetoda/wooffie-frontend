@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const password = ref<string | null>("passwordword");
+const password = ref < string | null > ('passwordword')
 
-const handleSavePassword = () => {
+function handleSavePassword() {
 
 }
 </script>
@@ -10,13 +10,15 @@ const handleSavePassword = () => {
   <label for="tel" class="profile__label">Пароль</label>
   <div class="profile__input">
     <input
-        type="password"
-        placeholder="Пароль"
-        v-model="password"
-        readonly
+      v-model="password"
+      type="password"
+      placeholder="Пароль"
+      readonly
     >
   </div>
-  <button @click="handleSavePassword" class="profile__btn">Изменить</button>
+  <button class="profile__btn" @click="handleSavePassword">
+    Изменить
+  </button>
 </template>
 
 <style scoped lang="scss">

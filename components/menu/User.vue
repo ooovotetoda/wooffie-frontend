@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const {user} = useUserStore()
+const { user } = useUserStore()
 </script>
 
 <template>
@@ -7,12 +7,12 @@ const {user} = useUserStore()
     <div class="user-header">
       <div class="user-avatar">
         <NuxtImg
-            format="webp"
-            provider="myProvider"
-            src="/user-icon.svg"
-            alt="profile"
-            width="50"
-            height="50"
+          format="webp"
+          provider="myProvider"
+          src="/user-icon.svg"
+          alt="profile"
+          width="50"
+          height="50"
         />
       </div>
 
@@ -24,11 +24,15 @@ const {user} = useUserStore()
 
     <div v-if="!user.loggedIn" class="user-buttons">
       <NuxtLink to="/auth/signup">
-        <button class="user__button signup">Регистрация</button>
+        <button class="user__button signup">
+          Регистрация
+        </button>
       </NuxtLink>
 
       <NuxtLink to="/auth/signin">
-        <button class="user__button login">Вход</button>
+        <button class="user__button login">
+          Вход
+        </button>
       </NuxtLink>
     </div>
   </div>

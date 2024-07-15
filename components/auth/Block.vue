@@ -5,10 +5,10 @@
 <template>
   <div class="authorization">
     <h3 class="authorization-title">
-      <slot name="title"></slot>
+      <slot name="title" />
     </h3>
 
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

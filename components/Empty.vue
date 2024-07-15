@@ -2,14 +2,14 @@
 const props = defineProps({
   margin: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
 })
 </script>
 
 <template>
   <div :style="`margin: ${margin}px 0;`" class="empty">
-    <NuxtImg format="webp" provider="myProvider" src="/empty.svg" alt="empty"/>
+    <NuxtImg format="webp" provider="myProvider" src="/empty.svg" alt="empty" />
   </div>
 </template>
 

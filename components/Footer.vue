@@ -7,24 +7,44 @@
     <UContainer>
       <div class="wrapper">
         <div class="footer-logo">
-          <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__white.svg" alt="logo"/>
+          <NuxtImg format="webp" provider="myProvider" src="/wooffie-logo__white.svg" alt="logo" />
           <span class="footer-logo__text">wooffie</span>
         </div>
 
         <div class="footer-nav">
-          <NuxtLink :to="{ path: '/', hash: '#main'}"><p class="footer-nav-item">Главная</p></NuxtLink>
-          <NuxtLink :to="{ path: '/', hash: '#about'}"><p class="footer-nav-item">О нас</p></NuxtLink>
-          <NuxtLink :to="{ path: '/', hash: '#services'}"><p class="footer-nav-item">Наши услуги</p></NuxtLink>
-          <NuxtLink to="/faq"><p class="footer-nav-item">FAQ</p></NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#main' }">
+            <p class="footer-nav-item">
+              Главная
+            </p>
+          </NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#about' }">
+            <p class="footer-nav-item">
+              О нас
+            </p>
+          </NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#services' }">
+            <p class="footer-nav-item">
+              Наши услуги
+            </p>
+          </NuxtLink>
+          <NuxtLink to="/faq">
+            <p class="footer-nav-item">
+              FAQ
+            </p>
+          </NuxtLink>
         </div>
 
         <div class="footer-contacts">
-          <p class="footer-contacts-item">+7 (918) 038-43-08</p>
-          <p class="footer-contacts-item">wooffie@mail.ru</p>
+          <p class="footer-contacts-item">
+            +7 (918) 038-43-08
+          </p>
+          <p class="footer-contacts-item">
+            wooffie@mail.ru
+          </p>
         </div>
         <div class="footer-social">
-          <a href="https://vk.com" target="_blank"><IconsVK/></a>
-          <a href="https://instagram.com" target="_blank"><IconsInstagram/></a>
+          <a href="https://vk.com" target="_blank"><IconsVK /></a>
+          <a href="https://instagram.com" target="_blank"><IconsInstagram /></a>
         </div>
       </div>
     </UContainer>

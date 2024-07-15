@@ -3,14 +3,16 @@
 </script>
 
 <template>
-    <div v-once class="card">
-      <NuxtLink to="/faq/1">
-        <div class="card__media">
-          <NuxtImg format="webp" provider="myProvider" src="/faq-card.jpg" alt="faq"/>
-        </div>
-        <div class="card__body">Очень очень длинная формулировка во...</div>
-      </NuxtLink>
-    </div>
+  <div v-once class="card">
+    <NuxtLink to="/faq/1">
+      <div class="card__media">
+        <NuxtImg format="webp" provider="myProvider" src="/faq-card.jpg" alt="faq" />
+      </div>
+      <div class="card__body">
+        Очень очень длинная формулировка во...
+      </div>
+    </NuxtLink>
+  </div>
 </template>
 
 <style scoped lang="scss">

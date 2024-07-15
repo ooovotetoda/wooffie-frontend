@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import sendOTP from "~/utils/sendOTP";
+import sendOTP from '~/utils/sendOTP'
 
 definePageMeta({
-  layout: "authorization",
+  layout: 'authorization',
 })
 
-const phone = ref<string | null>(null);
-const isPhoneValid = ref<boolean>(true);
+const phone = ref < string | null > (null)
+const isPhoneValid = ref < boolean > (true)
 
-const authStorage = useSessionStorage("auth-store", { phone: "+79999999999", password: "", timer: "00" })
+const authStorage = useSessionStorage('auth-store', { phone: '+79999999999', password: '', timer: '00' })
 
-const handleSubmit = async () => {
+async function handleSubmit() {
   if (phone.value === null || !isPhoneValid.value) {
     return
   }
@@ -19,40 +19,46 @@ const handleSubmit = async () => {
 
   const status = await sendOTP(phone.value)
 
-  if (status === "OK") {
+  if (status === 'OK') {
     await navigateTo({
-      path: "/auth/code",
+      path: '/auth/code',
       query: {
-        type: "reset"
-      }
+        type: 'reset',
+      },
     })
-  } else {
-    console.log("failed to send OTP code")
+  }
+  else {
+    console.log('failed to send OTP code')
   }
 }
-
 </script>
 
 <template>
   <AuthBlock>
-    <template v-slot:title>Восстановление пароля</template>
+    <template #title>
+      Восстановление пароля
+    </template>
 
     <div class="authorization-hint">
-      <IconsQuestion/>
+      <IconsQuestion />
       <span>Введите  номер телефона, на который будет отправлен одноразовый код</span>
     </div>
 
-    <form @submit.prevent="handleSubmit" class="authorization-form">
+    <form class="authorization-form" @submit.prevent="handleSubmit">
       <AuthPhone
-          @updatePhone="(p) => phone = p"
-          v-model:isPhoneValid = isPhoneValid
+        v-model:isPhoneValid="isPhoneValid"
+        @update-phone="(p) => phone = p"
       />
 
-      <button class="authorization-login">Отправить код</button>
+      <button class="authorization-login">
+        Отправить код
+      </button>
     </form>
 
     <NuxtLink to="/auth/signin">
-      <button class="authorization-registration">Назад</button>
+      <button class="authorization-registration">
+        Назад
+      </button>
     </NuxtLink>
   </AuthBlock>
 </template>

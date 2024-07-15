@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import {useUserStore} from "~/stores/userStore";
+import { useUserStore } from '~/stores/userStore'
 
 definePageMeta({
-  layout: "authorization",
+  layout: 'authorization',
 })
 
 const { signIn } = useUserStore()
 
-const phone = ref<string | null>(null);
-const isPhoneValid = ref<boolean>(true);
-const password = ref<string | null>(null);
-const isPasswordValid = ref<boolean>(true);
-const isPasswordWrong = ref<boolean>(false);
+const phone = ref < string | null > (null)
+const isPhoneValid = ref < boolean > (true)
+const password = ref < string | null > (null)
+const isPasswordValid = ref < boolean > (true)
+const isPasswordWrong = ref < boolean > (false)
 const body = computed(() => ({
   phone: phone.value,
-  password: password.value
+  password: password.value,
 }))
 
-const handleSubmit = async () => {
+async function handleSubmit() {
   if (phone.value === null || !isPhoneValid) {
-    isPhoneValid.value = false;
+    isPhoneValid.value = false
     return
   }
 
   if (password.value === null || password.value.length < 8 || !isPasswordValid) {
-    isPasswordValid.value = false;
+    isPasswordValid.value = false
     return
   }
 
@@ -42,32 +42,40 @@ const handleSubmit = async () => {
 
 <template>
   <AuthBlock>
-    <template v-slot:title>Авторизация</template>
+    <template #title>
+      Авторизация
+    </template>
 
-    <form @submit.prevent="handleSubmit" class="authorization-form">
+    <form class="authorization-form" @submit.prevent="handleSubmit">
       <AuthPhone
-          @updatePhone="(p) => phone = p"
-          v-model:isPhoneValid = isPhoneValid
+        v-model:isPhoneValid="isPhoneValid"
+        @update-phone="(p) => phone = p"
       />
       <AuthPassword
-          @updatePassword="(p) => password = p"
-          v-model:isPasswordValid="isPasswordValid"
+        v-model:isPasswordValid="isPasswordValid"
+        @update-password="(p) => password = p"
       />
 
-      <p v-if="isPasswordWrong" class="error">Неверный логин или пароль</p>
+      <p v-if="isPasswordWrong" class="error">
+        Неверный логин или пароль
+      </p>
 
       <NuxtLink to="/auth/tel">
         <div class="authorization-recovery-pass">
-          <IconsQuestion/>
+          <IconsQuestion />
           <span>Не помню пароль</span>
         </div>
       </NuxtLink>
 
-      <button class="authorization-login">Войти</button>
+      <button class="authorization-login">
+        Войти
+      </button>
     </form>
 
     <NuxtLink to="/auth/signup">
-      <button class="authorization-registration">Регистрация</button>
+      <button class="authorization-registration">
+        Регистрация
+      </button>
     </NuxtLink>
   </AuthBlock>
 </template>
