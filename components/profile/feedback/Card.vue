@@ -68,7 +68,7 @@ const types = {
 </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .card {
   position: relative;
   display: flex;
@@ -81,208 +81,208 @@ const types = {
   background: #FFF;
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   transition: all 0.1s ease-in-out;
+}
 
-  &:hover {
-    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
-  }
+.card:hover {
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
+}
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: 32px;
-    bottom: 32px;
-    left: 492px + 48px;
-    width: 1px;
-    background: #D9DAD9;
-  }
+.card:before {
+  content: "";
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  left: calc(492px + 48px);
+  width: 1px;
+  background: #D9DAD9;
+}
 
-  &-specialist {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    width: 492px;
-    min-width: 492px;
-    padding: 36px 0;
-    margin-right: 24px;
+.card-specialist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 492px;
+  min-width: 492px;
+  padding: 36px 0;
+  margin-right: 24px;
+}
 
-    &__block {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
+.card-specialist__block {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
-    &__media {
-      width: 100px;
-      height: 100px;
+.card-specialist__media {
+  width: 100px;
+  height: 100px;
+}
 
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        object-fit: cover;
-      }
-    }
+.card-specialist__media img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
 
-    &__info {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+.card-specialist__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    &__name {
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-    }
+.card-specialist__name {
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-    &__rating {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-top: -4px;
-      font-size: 24px;
+.card-specialist__rating {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: -4px;
+  font-size: 24px;
+}
 
-      span {
-        margin-top: 4px;
-        color: $text-dark;
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-    }
+.card-specialist__rating span {
+  margin-top: 4px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-    &__criteria {
-      display: flex;
-      gap: 12px;
+.card-specialist__criteria {
+  display: flex;
+  gap: 12px;
+}
 
-      span {
-        padding: 4px 16px;
-        border-radius: 30px;
-        color: var(--t-367, rgba(0, 0, 0, 0.67));
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px; /* 171.429% */
-        cursor: pointer;
-        transition: opacity 0.1s ease-in-out;
-      }
-    }
+.card-specialist__criteria span {
+  padding: 4px 16px;
+  border-radius: 30px;
+  color: var(--t-367, rgba(0, 0, 0, 0.67));
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: opacity 0.1s ease-in-out;
+}
 
-    &__type {
-      background: rgba(221, 185, 164, 0.50);
-    }
+.card-specialist__type {
+  background: rgba(221, 185, 164, 0.50);
+}
 
-    &__schedule {
-      background: rgba(254, 230, 185, 0.50);
-    }
+.card-specialist__schedule {
+  background: rgba(254, 230, 185, 0.50);
+}
 
-    &__city {
-      border: 1px solid var(--Line, #D9DAD9);
-    }
+.card-specialist__city {
+  border: 1px solid var(--Line, #D9DAD9);
+}
 
-    &__btn {
-      padding: 12px 64px;
-      border-radius: 10px;
-      border: none;
-      background: $main-color;
-      color: #FFF;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      cursor: pointer;
-      transition: all 0.1s ease-in-out;
+.card-specialist__btn {
+  padding: 12px 64px;
+  border-radius: 10px;
+  border: none;
+  background: var(--main-color);
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
 
-      &:hover {
-        background: $main-color-dark;
-      }
-    }
-  }
+.card-specialist__btn:hover {
+  background: var(--main-color-dark);
+}
 
-  &-comment {
-    padding: 28px 0;
-    margin-left: 24px;
+.card-comment {
+  padding: 28px 0;
+  margin-left: 24px;
+}
 
-    &__header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 8px;
-    }
+.card-comment__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
 
-    &__icon {
-      width: 50px;
-      height: 50px;
+.card-comment__icon {
+  width: 50px;
+  height: 50px;
+}
 
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
+.card-comment__icon img {
+  width: 100%;
+  height: 100%;
+}
 
-    &__tel {
-      margin-bottom: 4px;
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-    }
+.card-comment__tel {
+  margin-bottom: 4px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-    &__status {
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
+.card-comment__status {
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-    &__rating {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      font-size: 24px;
-    }
+.card-comment__rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
 
-    &__date {
-      margin-top: 4px;
-      color: $dark-grey;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 30px; /* 166.667% */
-    }
+.card-comment__date {
+  margin-top: 4px;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
 
-    &__copy {
-      overflow: hidden;
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      text-overflow: ellipsis;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 30px; /* 166.667% */
-    }
-  }
+.card-comment__copy {
+  overflow: hidden;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  text-overflow: ellipsis;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
 }
 </style>

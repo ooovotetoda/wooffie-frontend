@@ -51,19 +51,7 @@ export default defineNuxtConfig({
     '~/plugins/ofetch.ts',
     '~/plugins/access.ts',
   ],
-  css: ['~/assets/main.scss'],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData:
-              '@use "@/assets/fonts.scss" as *; '
-              + '@use "@/assets/colors.scss"  as *; '
-              + '@import "@/assets/mixins.scss"; ',
-        },
-      },
-    },
-  },
+  css: ['~/assets/main.css', '~/assets/colors.css', '~/assets/fonts.css'],
   app: {
     head: {
       script: [

@@ -32,66 +32,83 @@ function handleEdit() {
   </button>
 </template>
 
-<style scoped lang="scss">
-.profile {
-  &__label {
-    display: block;
-    width: 148px;
-    min-width: 148px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+<style scoped>
+.profile__label {
+  display: block;
+  width: 148px;
+  min-width: 148px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__input {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
+.profile__input {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
 
-    input {
-      width: 100%;
-      padding: 10px 56px;
-      border-radius: 10px;
-      border: 1px solid #D9DAD9;
-      outline: none;
-      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik0xOS45NSAyMXEtMy4xMjUgMC02LjE4Ny0xLjM1VDguMiAxNS44cS0yLjUtMi41LTMuODUtNS41NVQzIDQuMDVWM2g1LjlsLjkyNSA1LjAyNWwtMi44NSAyLjg3NXEuNTUuOTc1IDEuMjI1IDEuODV0MS40NSAxLjYyNXEuNzI1LjcyNSAxLjU4OCAxLjM4OFQxMy4xIDE3bDIuOS0yLjlsNSAxLjAyNVYyMWgtMS4wNVoiLz48L3N2Zz4=") no-repeat 20px center;
-      color: $dark-grey;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      transition: all 0.15s linear;
-    }
-  }
+.profile__input input {
+  width: 100%;
+  padding: 10px 56px;
+  border-radius: 10px;
+  border: 1px solid #D9DAD9;
+  outline: none;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik06IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc=") no-repeat 20px center;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  transition: all 0.15s linear;
+}
 
-  &__btn {
-    padding: 12px 32px;
-    border-radius: 10px;
-    border: none;
-    background: #FFFFFF;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
+.profile__input svg {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  color: #BABABA;
+  transition: all 0.15s linear;
+}
 
-    &:hover {
-      background: $hover-grey;
-    }
+.profile__input svg:hover {
+  color: #888888;
+}
 
-    &:active {
-      background: #efeeee;
-    }
-  }
+.profile__input svg:active {
+  color: #343434;
+}
+
+.profile__btn {
+  padding: 12px 32px;
+  border-radius: 10px;
+  border: none;
+  background: #FFFFFF;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.profile__btn:hover {
+  background: var(--hover-grey);
+}
+
+.profile__btn:active {
+  background: #efeeee;
 }
 
 .error {
@@ -104,6 +121,7 @@ function handleEdit() {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 171.429% */
+  line-height: 24px;
 }
 </style>
+

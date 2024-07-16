@@ -75,54 +75,55 @@ watch(() => route.path, (newPath) => {
   </nav>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .navigation {
   height: fit-content;
   width: 219px;
   min-width: 219px;
+}
 
-  &__list {
-    list-style-type: none;
-  }
+.navigation__list {
+  list-style-type: none;
+}
 
-  &__icon {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    color: rgba(0, 0, 0, 0.48);
-    transition: all 0.1s ease-in-out;
-  }
+.navigation__icon {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.48);
+  transition: all 0.1s ease-in-out;
+}
 
-  &__item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
+.navigation__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
 
-    &:hover {
-      background: #fbfbfb;
+.navigation__item:hover {
+  background: #fbfbfb;
+}
 
-      .navigation__icon {
-        color: rgba(225, 175, 87, 0.9);
-      }
-    }
+.navigation__item:hover .navigation__icon {
+  color: rgba(225, 175, 87, 0.9);
+}
 
-    &.active {
-      background: $hover-grey;
+.navigation__item.active {
+  background: var(--hover-grey);
+}
 
-      .navigation__icon {
-        color: $main-color;
-      }
-    }
-  }
+.navigation__item.active .navigation__icon {
+  color: var(--main-color);
 }
 </style>
+

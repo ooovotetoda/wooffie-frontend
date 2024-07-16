@@ -21,24 +21,23 @@ defineProps({
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .empty {
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  img {
-    width: 556px;
-    height: 500px;
-  }
+.empty img {
+  width: 556px;
+  height: 500px;
 }
 
 @media (max-width: 640px) {
-  .empty {
-    img {
-      width: 320px;
-      height: 288px;
-    }
+  .empty img {
+    width: 320px;
+    height: 288px;
   }
 }
 </style>
+

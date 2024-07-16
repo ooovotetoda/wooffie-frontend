@@ -99,40 +99,38 @@ const emit = defineEmits(['close'])
   </div>
 </template>
 
-<style scoped lang="scss">
-.header {
-  &-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+<style scoped>
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
-  &__back {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.54);
-  }
+.header__back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.54);
+}
 
-  &__text {
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-  }
+.header__text {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
 
-  &__search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    background: #F9F9F9;
-    font-size: 14px;
-  }
+.header__search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: #F9F9F9;
+  font-size: 14px;
 }
 
 .main {
@@ -142,38 +140,38 @@ const emit = defineEmits(['close'])
 .menu {
   background: white;
   z-index: 100;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+.menu::-webkit-scrollbar {
+  display: none;
+}
 
-  &__list {
-    margin-top: 20px;
-    list-style: none;
-  }
+.menu__list {
+  margin-top: 20px;
+  list-style: none;
+}
 
-  &__item {
-    margin-bottom: 12px;
+.menu__item {
+  margin-bottom: 12px;
+}
 
-    a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 17px 24px;
-      border-radius: 10px;
-      box-shadow: 2px 2px 20px 0 #0000000F;
-      font-family: Roboto, sans-serif;
-      font-size: 14px;
-      line-height: 16px;
-      color: #000000DE;
-    }
+.menu__item a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 24px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px 0 #0000000F;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000DE;
+}
 
-    img {
-      width: 16px;
-    }
-  }
+.menu__item img {
+  width: 16px;
 }
 </style>
+

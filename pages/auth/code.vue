@@ -99,80 +99,170 @@ async function resendCode() {
   </AuthBlock>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .authorization {
   text-align: center;
+}
 
-  &-hint {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 24px;
-    text-align: left;
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    transition: all 0.15s ease-in-out;
+.authorization-form fieldset {
+  position: relative;
+  border: none;
+  text-align: left;
+  margin-bottom: 16px;
+}
 
-    span {
-      text-decoration: none;
-    }
-  }
+.authorization-form fieldset legend {
+  position: absolute;
+  padding: 0 14px;
+  top: -12px;
+  left: 20px;
+  background-color: #fff;
+  color: var(--main-color);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  transition: all 0.3s ease;
+}
 
-  &-login {
-    width: 100%;
-    padding: 12px 0;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border: none;
-    background: $main-color;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.authorization-form fieldset svg {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  fill: #BABABA;
+  transition: all 0.15s linear;
+}
 
-    &:hover {
-      background: $main-color-dark;
-    }
+.authorization-form fieldset svg:hover {
+  fill: #888888;
+}
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
+.authorization-form fieldset svg:active {
+  fill: #343434;
+}
 
-  &-registration {
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 10px;
-    border: none;
-    background: #FFF;
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.authorization-form input {
+  width: 100%;
+  padding: 10px 0 10px 46px;
+  border-radius: 10px;
+  border: 1px solid #D9DAD9;
+  outline: none;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s linear;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4OTg5ODkiIGQ9Ik06IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc=") no-repeat 20px center;
+}
 
-    &:hover {
-      background: $hover-grey;
-    }
+.authorization-form input:hover {
+  border: 1px solid #000000;
+}
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
+.authorization-form input:focus {
+  border: 1px solid var(--main-color);
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjZjg4MDIiIGQ9Ik06IDIycS0uODI1IDAtMS40MTMtLjU4OFQ0IDIwVjEwcTAtLjgyNS41ODgtMS40MTNUNiA4aDFWNnEwLTIuMDc1IDEuNDYzLTMuNTM4VDEyIDFxMi4wNzUgMCAzLjUzOCAxLjQ2M1QxNyA2djJoMXEuODI1IDAgMS40MTMuNTg4VDIwIDEwdjEwcTAgLjgyNS0uNTg4IDEuNDEzVDE4IDIySDZabTYtNXEuODI1IDAgMS40MTMtLjU4OFQxNCAxNXEwLS44MjUtLjU4OC0xLjQxM1QxMiAxM3EtLjgyNSAwLTEuNDEzLjU4OFQxMCAxNXEwIC44MjUuNTg4IDEuNDEzVDEyIDE3Wk05IDhoNlY2cTAtMS4yNS0uODc1LTIuMTI1VDEyIDNxLTEuMjUgMC0yLjEyNS44NzVUOSA2djJaIi8+PC9zdmc=") no-repeat 20px center;
+}
+
+.authorization-hint {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: all 0.15s ease-in-out;
+}
+
+.authorization-hint span {
+  text-decoration: none;
+}
+
+.authorization-login {
+  width: 100%;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--main-color);
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.authorization-login:hover {
+  background: var(--main-color-dark);
+}
+
+.authorization-login:active {
+  transform: scale(0.95);
+}
+
+.authorization-registration {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 10px;
+  border: none;
+  background: #FFF;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.authorization-registration:hover {
+  background: var(--hover-grey);
+}
+
+.authorization-registration:active {
+  transform: scale(0.95);
+}
+
+.authorization-error {
+  text-align: left;
+  margin: -12px 0 6px 16px;
+  color: rgba(228, 0, 0, 0.87);
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.1s ease-in-out;
+  margin: 0;
+  padding: 0 14px;
+}
+
+.fade-enter-from, .fade-leave-to {
+  margin: 0 14px;
+  padding: 0;
+  opacity: 0;
 }
 </style>
+

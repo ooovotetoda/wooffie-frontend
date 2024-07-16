@@ -48,29 +48,27 @@ const { data: gallery } = await useAsyncData<Photo[]>(
 
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .gallery {
   padding-bottom: 60px;
+}
 
-  &__title {
-    margin-bottom: 52px;
-    color: $text-dark;
-    text-align: center;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.gallery__title {
+  margin-bottom: 52px;
+  color: var(--text-dark);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 @media (max-width: 640px) {
-  .gallery {
-    &__title {
-      margin-bottom: 16px;
-      font-size: 18px;
-    }
+  .gallery__title {
+    margin-bottom: 16px;
+    font-size: 18px;
   }
 }
 </style>

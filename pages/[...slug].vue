@@ -30,7 +30,7 @@ definePageMeta({
   </main>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .wrapper {
   width: 100%;
   padding: 32px 0;
@@ -42,7 +42,7 @@ definePageMeta({
 }
 
 .title {
-  color: $text-dark;
+  color: var(--text-dark);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Roboto, serif;
   font-size: 48px;
@@ -54,7 +54,7 @@ definePageMeta({
 .home__btn {
   padding: 12px 64px;
   border-radius: 10px;
-  background: $main-color;
+  background: var(--main-color);
   color: #FFF;
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Roboto, serif;
@@ -63,13 +63,14 @@ definePageMeta({
   font-weight: 400;
   line-height: normal;
   transition: all 0.1s ease-in-out;
+}
 
-  &:hover {
-    background-color: $main-color-dark;
-  }
+.home__btn:hover {
+  background-color: var(--main-color-dark);
+}
 
-  &:active {
-    scale: 0.95;
-  }
+.home__btn:active {
+  transform: scale(0.95);
 }
 </style>
+

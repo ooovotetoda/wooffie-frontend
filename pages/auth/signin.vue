@@ -86,95 +86,95 @@ async function handleSubmit() {
   </AuthBlock>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .authorization {
   text-align: center;
+}
 
-  &-recovery-pass {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 24px;
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    transition: all 0.15s ease-in-out;
+.authorization-recovery-pass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: all 0.15s ease-in-out;
+}
 
-    span {
-      text-decoration: none;
-    }
+.authorization-recovery-pass span {
+  text-decoration: none;
+}
 
-    &:hover {
-      color: $main-color;
-    }
-  }
+.authorization-recovery-pass:hover {
+  color: var(--main-color);
+}
 
-  &-login {
-    width: 100%;
-    padding: 12px 0;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border: none;
-    background: $main-color;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.authorization-login {
+  width: 100%;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--main-color);
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
 
-    &:hover {
-      background: $main-color-dark;
-    }
+.authorization-login:hover {
+  background: var(--main-color-dark);
+}
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
+.authorization-login:active {
+  transform: scale(0.95);
+}
 
-  &-registration {
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 10px;
-    border: none;
-    background: #FFF;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.authorization-registration {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 10px;
+  border: none;
+  background: #FFF;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
 
-    &:hover {
-      background: $hover-grey;
-    }
+.authorization-registration:hover {
+  background: var(--hover-grey);
+}
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
+.authorization-registration:active {
+  transform: scale(0.95);
+}
 
-  &-error {
-    text-align: left;
-    margin: -12px 0 6px 16px;
-    color: rgba(228, 0, 0, 0.87);
-    font-family: Roboto, serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 171.429% */
-  }
+.authorization-error {
+  text-align: left;
+  margin: -12px 0 6px 16px;
+  color: rgba(228, 0, 0, 0.87);
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .error {
@@ -185,7 +185,7 @@ async function handleSubmit() {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 171.429% */
+  line-height: 24px;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -193,9 +193,11 @@ async function handleSubmit() {
   margin: 0;
   padding: 0 14px;
 }
+
 .fade-enter-from, .fade-leave-to {
   margin: 0 14px;
   padding: 0;
   opacity: 0;
 }
 </style>
+

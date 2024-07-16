@@ -2,6 +2,7 @@
 import {useUserStore} from "~/stores/userStore";
 import type {Organization} from '~/types/organization';
 import {useType} from "~/composables/useType";
+import type { FetchContext } from "ofetch";
 
 const props = defineProps<{
   organization: Organization,
@@ -35,7 +36,7 @@ const toggleIsActive = async () => {
         type: type.value,
       },
       onResponse(context: FetchContext) {
-        statusCode = context.response.status
+        statusCode = context.response?.status || 0
       },
     })
 
@@ -82,7 +83,7 @@ const toggleIsActive = async () => {
     </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .card {
   display: flex;
   gap: 24px;
@@ -93,185 +94,183 @@ const toggleIsActive = async () => {
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   transition: all 0.1s ease-in-out;
   cursor: pointer;
+}
 
-  &:hover {
-    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
-  }
+.card:hover {
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
+}
 
-  &__media {
-    position: relative;
-    width: 250px;
-    height: 250px;
+.card__media {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      min-width: 250px;
-      min-height: 250px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
+.card__media img {
+  width: 100%;
+  height: 100%;
+  min-width: 250px;
+  min-height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 
-    &-favorite {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      transition: all 0.1s ease-in-out;
-      padding: 7px;
-      border-radius: 50%;
-      border: none;
-      background-color: rgba(255,255,255, 0.76);
-      cursor: pointer;
+.card__media-favorite {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  transition: all 0.1s ease-in-out;
+  padding: 7px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.76);
+  cursor: pointer;
+}
 
-      svg {
-        color: rgba(0, 0, 0, 0.2);
-        transition: all 0.1s ease-in-out;
-        z-index: 2;
-        font-size: 20px;
-      }
+.card__media-favorite svg {
+  color: rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease-in-out;
+  z-index: 2;
+  font-size: 20px;
+}
 
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.9);
+.card__media-favorite:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
 
-        svg {
-          color: rgba(228, 0, 0, 0.56);
-        }
-      }
+.card__media-favorite:hover svg {
+  color: rgba(228, 0, 0, 0.56);
+}
 
-      &__active {
-        background-color: #fff;
+.card__media-favorite__active {
+  background-color: #fff;
+}
 
-        svg {
-          color: rgba(228, 0, 0, 0.87) !important;
-        }
-      }
-    }
+.card__media-favorite__active svg {
+  color: rgba(228, 0, 0, 0.87) !important;
+}
 
-    &:active {
-      svg {
-        transform: scale(0.85);
-      }
-    }
-  }
+.card__media:active svg {
+  transform: scale(0.85);
+}
 
-  &__title {
-    margin-bottom: 8px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.card__title {
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-  &__subtitle {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 8px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.card__subtitle {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-    span {
-      margin-top: 4px;
-    }
+.card__subtitle span {
+  margin-top: 4px;
+}
 
-    .rating {
-      font-size: 24px;
-    }
-  }
+.card__subtitle .rating {
+  font-size: 24px;
+}
 
-  &__criteria {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
+.card__criteria {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
 
-    span {
-      padding: 4px 16px;
-      border-radius: 30px;
-      color: var(--t-367, rgba(0, 0, 0, 0.67));
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px; /* 171.429% */
-      cursor: pointer;
-      transition: opacity 0.1s ease-in-out;
-    }
+.card__criteria span {
+  padding: 4px 16px;
+  border-radius: 30px;
+  color: var(--t-367, rgba(0, 0, 0, 0.67));
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: opacity 0.1s ease-in-out;
+}
 
-    &-type {
-      background: rgba(221, 185, 164, 0.50);
-    }
+.card__criteria-type {
+  background: rgba(221, 185, 164, 0.50);
+}
 
-    &-schedule {
-      background: rgba(254, 230, 185, 0.50);
-    }
+.card__criteria-schedule {
+  background: rgba(254, 230, 185, 0.50);
+}
 
-    &-city {
-      border: 1px solid var(--Line, #D9DAD9);
-    }
-  }
+.card__criteria-city {
+  border: 1px solid var(--Line, #D9DAD9);
+}
 
-  &__body {
-    position: relative;
-    padding-right: 24px;
-  }
+.card__body {
+  position: relative;
+  padding-right: 24px;
+}
 
-  &__copy {
-    display: -webkit-box;
-    max-width: 100%;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px; /* 166.667% */
-  }
+.card__copy {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--primary-text-87, rgba(0, 0, 0, 0.87));
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
 
-  &__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-    &-enroll {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: fit-content;
-      padding: 12px 50px;
-      border-radius: 10px;
-      border: none;
-      background: $main-color;
-      color: #FFF;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      transition: all 0.15s ease-in-out;
-      transform: translateX(-50%);
-      cursor: pointer;
+.card__info-enroll {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: fit-content;
+  padding: 12px 50px;
+  border-radius: 10px;
+  border: none;
+  background: var(--main-color);
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: all 0.15s ease-in-out;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
 
-      &:hover {
-        background-color: $main-color-dark;
-      }
+.card__info-enroll:hover {
+  background-color: var(--main-color-dark);
+}
 
-      &:active {
-        scale: 0.95;
-      }
-    }
-  }
+.card__info-enroll:active {
+  transform: scale(0.95);
 }
 </style>

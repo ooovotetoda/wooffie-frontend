@@ -21,17 +21,13 @@ defineProps({
   </div>
 </template>
 
-<style lang="scss">
-.carousel {
-  &__mobile {
-    display: none;
+<style>
+.carousel__mobile {
+  display: none;
+}
 
-    .carousel {
-      &__viewport {
-        padding: 24px 0;
-      }
-    }
-  }
+.carousel__mobile .carousel__viewport {
+  padding: 24px 0;
 }
 
 @media (max-width: 640px) {

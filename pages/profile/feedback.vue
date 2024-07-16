@@ -65,7 +65,7 @@ const { data: reviews, pending } = await useAsyncData<ProfileReview[]>(
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .feedback {
   width: 100%;
 }

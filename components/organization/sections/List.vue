@@ -65,7 +65,7 @@ const { data: organizations } = await useAsyncData<Organization[]>(
   </ul>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 ul {
   list-style-type: none;
 }

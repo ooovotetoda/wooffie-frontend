@@ -43,7 +43,7 @@ onMounted(() => {
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 ul {
   list-style-type: none;
 }
@@ -58,9 +58,10 @@ ul {
   height: 1px;
   opacity: 0;
   z-index: -1;
+}
 
-  &-wrapper {
-    position: relative;
-  }
+.marker-wrapper {
+  position: relative;
 }
 </style>
+

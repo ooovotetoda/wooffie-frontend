@@ -24,20 +24,20 @@ definePageMeta({
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .faq {
   padding-bottom: 60px;
+}
 
-  &__title {
-    margin-bottom: 60px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.faq__title {
+  margin-bottom: 60px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .wrapper {
@@ -46,3 +46,4 @@ definePageMeta({
   gap: 46px;
 }
 </style>
+

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {Service} from "~/types/organization";
 
-const props = defineProps<{
+defineProps<{
   services: Service[]
 }>()
 
@@ -25,126 +25,119 @@ const props = defineProps<{
   </ul>
 </template>
 
-<style scoped lang="scss">
-.services {
-  &__list {
-    margin-bottom: 60px;
-    list-style-type: none;
-  }
+<style scoped>
+.services__list {
+  margin-bottom: 60px;
+  list-style-type: none;
+}
 
-  &__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 32px;
-    margin-bottom: 32px;
-    border-radius: 20px;
-    background: #FFF;
-    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
-    transition: all 0.1s ease-in-out;
+.services__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  margin-bottom: 32px;
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+  transition: all 0.1s ease-in-out;
+}
 
-    &:last-of-type {
-      margin-bottom: 0;
-    }
+.services__item:last-of-type {
+  margin-bottom: 0;
+}
 
-    &:hover {
-      box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
-    }
-  }
+.services__item:hover {
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.20);
+}
 
-  &__left {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
+.services__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
-  &__right {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-  }
+.services__right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
 
-  &__icon {
-    img {
-      width: 36px;
-      height: 36px;
-    }
-  }
+.services__icon img {
+  width: 36px;
+  height: 36px;
+}
 
-  &__name {
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 133.333% */
-  }
+.services__name {
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
 
-  &__price {
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.services__price {
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__btn {
-    padding: 12px 50px;
-    border-radius: 10px;
-    background: $main-color;
-    border: none;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
+.services__btn {
+  padding: 12px 50px;
+  border-radius: 10px;
+  background: var(--main-color);
+  border: none;
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
 
-    &:hover {
-      background: $main-color-dark;
-    }
+.services__btn:hover {
+  background: var(--main-color-dark);
+}
 
-    &:active {
-      scale: 0.98;
-    }
-  }
+.services__btn:active {
+  transform: scale(0.98);
 }
 
 @media (max-width: 640px) {
-  .services {
-    &__list {
-      margin-bottom: 32px;
-    }
+  .services__list {
+    margin-bottom: 32px;
+  }
 
-    &__item {
-      padding: 20px 24px;
-      margin-bottom: 8px;
-    }
+  .services__item {
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
 
-    &__left {
-      gap: 8px;
-    }
+  .services__left {
+    gap: 8px;
+  }
 
-    &__icon {
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
+  .services__icon img {
+    width: 24px;
+    height: 24px;
+  }
 
-    &__name {
-      font-size: 14px;
-    }
+  .services__name {
+    font-size: 14px;
+  }
 
-    &__price {
-      font-size: 16px;
-    }
+  .services__price {
+    font-size: 16px;
   }
 }
 </style>
+

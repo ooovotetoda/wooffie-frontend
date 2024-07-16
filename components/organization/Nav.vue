@@ -75,43 +75,43 @@ onMounted(() => {
   </nav>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .nav {
   width: 100%;
   margin: 60px 0;
   border-bottom: 1px solid #D9DAD9;
+}
 
-  &__list {
-    position: relative;
-    display: flex;
-    align-items: center;
-    list-style-type: none;
+.nav__list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
 
-    &:before {
-      content: "";
-      position: absolute;
-      left: v-bind(underlinePosition);
-      bottom: 0;
-      width: v-bind(underlineWidth);
-      height: 3px;
-      background-color: rgba(221, 185, 164, 0.50);
-      transition: all 0.15s ease-in-out;
-    }
-  }
+.nav__list:before {
+  content: "";
+  position: absolute;
+  left: var(--underlinePosition);
+  bottom: 0;
+  width: var(--underlineWidth);
+  height: 3px;
+  background-color: rgba(221, 185, 164, 0.50);
+  transition: all 0.15s ease-in-out;
+}
 
-  &__item {
-    width: 200px;
-    padding: 12px;
-    border-bottom: 3px solid #FFFFFF;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-  }
+.nav__item {
+  width: 200px;
+  padding: 12px;
+  border-bottom: 3px solid #FFFFFF;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
 }
 
 @media (max-width: 640px) {
@@ -121,27 +121,27 @@ onMounted(() => {
     overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
 
-    &__list {
-      padding: 0 20px;
+  .nav__list {
+    padding: 0 20px;
+  }
 
-      &:after {
-        content: "a";
-        width: 20px;
-        min-width: 20px;
-        opacity: 0;
-      }
-    }
+  .nav__list:after {
+    content: "a";
+    width: 20px;
+    min-width: 20px;
+    opacity: 0;
+  }
 
-    &__item {
-      padding: 16px 24px;
-      font-size: 14px;
-      line-height: 16px;
-    }
+  .nav__item {
+    padding: 16px 24px;
+    font-size: 14px;
+    line-height: 16px;
   }
 }
 </style>

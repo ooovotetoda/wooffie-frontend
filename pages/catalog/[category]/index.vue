@@ -148,15 +148,12 @@ const appendOrganizations = ( newOrganizations: Organization[] ) => {
   </UContainer>
 </template>
 
-
-<style scoped lang="scss">
-.catalog {
-  &__loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 300px;
-  }
+<style scoped>
+.catalog__loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
 }
 </style>

@@ -70,135 +70,133 @@ const isOpen = ref(false)
   </header>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .header {
   position: relative;
   height: 92px;
   max-width: 100vw;
+}
 
-  &-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 20px 0;
-    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
-    background: #FFF;
-    z-index: 20;
-  }
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 0;
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+  background: #FFF;
+  z-index: 20;
+}
 
-  &__left {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 80px;
+.header__left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+}
 
-    a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  }
+.header__left a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  &__right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-  }
+.header__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
 
-  &-logo {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
+.header-logo {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-    }
+.header-logo img {
+  width: 100%;
+  height: 100%;
+}
 
-    &__text {
-      font-family: Roboto, sans-serif;
-      font-size: 24px;
-      font-weight: 500;
-      text-transform: uppercase;
-      color: $main-color;
-    }
-  }
+.header-logo__text {
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--main-color);
+}
 
-  &-menu {
-    &__button {
-      display: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: $main-color;
-      font-size: 16px;
-      color: white;
-      border: none;
-    }
-  }
+.header-menu__button {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--main-color);
+  font-size: 16px;
+  color: white;
+  border: none;
+}
 
-  &__login {
-    padding: 12px 32px;
-    border: 2px solid $main-color;
-    border-radius: 10px;
-    background: $main-color;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    font-variant: all-small-caps;
-    cursor: pointer;
-    transition: all 0.1s linear;
+.header__login {
+  padding: 12px 32px;
+  border: 2px solid var(--main-color);
+  border-radius: 10px;
+  background: var(--main-color);
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-variant: all-small-caps;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
 
-    &:hover {
-      background-color: $main-color-dark;
-      border: 2px solid $main-color-dark;
-    }
+.header__login:hover {
+  background-color: var(--main-color-dark);
+  border: 2px solid var(--main-color-dark);
+}
 
-    &:active {
-      transform: scale(0.96);
-    }
-  }
+.header__login:active {
+  transform: scale(0.96);
+}
 
-  &__user {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
-    span {
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
-  }
+.header__user span {
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    transition: all 0.15s linear;
+.header__profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.15s linear;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
+.header__profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 
-    &:active {
-      transform: scale(0.96);
-    }
-  }
+.header__profile:active {
+  transform: scale(0.96);
 }
 
 .wrapper {
@@ -210,35 +208,35 @@ const isOpen = ref(false)
 @media (max-width: 640px) {
   .header {
     height: 72px;
+  }
 
-    &-wrapper {
-      position: static;
-      padding: 16px 0;
-    }
+  .header-wrapper {
+    position: static;
+    padding: 16px 0;
+  }
 
-    &-logo {
-      width: 40px;
-      height: 40px;
-    }
-    &__right {
-      display: block;
-    }
+  .header-logo {
+    width: 40px;
+    height: 40px;
+  }
 
-    &__user {
-      display: none;
-    }
+  .header__right {
+    display: block;
+  }
 
-    &__login {
-      display: none;
-    }
+  .header__user {
+    display: none;
+  }
 
-    &-menu {
-      &__button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
+  .header__login {
+    display: none;
+  }
+
+  .header-menu__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
+

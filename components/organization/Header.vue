@@ -2,6 +2,7 @@
 import {OrganizationModalsFeedback} from "#components";
 import type {Organization} from "~/types/organization";
 import {useType} from "~/composables/useType";
+import type { FetchContext } from "ofetch";
 
 const props = defineProps<{
   organization: Organization;
@@ -9,7 +10,6 @@ const props = defineProps<{
 
 const { $ofetch } = useNuxtApp()
 
-const route = useRoute()
 const { user } = useUserStore()
 const { cities } = useCityStore()
 
@@ -38,7 +38,7 @@ const toggleIsActive = async () => {
           type: type.value,
         },
         onResponse(context: FetchContext) {
-          statusCode = context.response.status
+          statusCode = context.response?.status || 0
         },
       })
 
@@ -79,22 +79,40 @@ const handleReview = async () => {
 
 <template>
   <section class="organization-header">
-    <OrganizationSchedule  class="mobile__hide" :addresses="organization.addresses" :schedule="organization.schedule"/>
+    <OrganizationSchedule
+      class="mobile__hide"
+      :addresses="organization.addresses"
+      :schedule="organization.schedule"
+    />
 
     <div class="organization-header__media">
-      <NuxtImg format="webp" :src="organization.photo" alt="avatar"/>
-      <button @click="toggleIsActive" class="organization-header__favorite" :class="{ 'organization-header__favorite__active': isActive }">
+      <NuxtImg
+        format="webp"
+        :src="organization.photo"
+        alt="avatar"
+      />
+      <button
+        @click="toggleIsActive"
+        class="organization-header__favorite"
+        :class="{ 'organization-header__favorite__active': isActive }"
+      >
         <IconsFavorite />
       </button>
 
-      <button @click="isScheduleOpen = true" class="block sm:hidden flex justify-center items-center absolute top-0 right-8 p-1 rounded-full bg-[#FFFFFFC1] text-orange-500 text-sm">
+      <button
+        @click="isScheduleOpen = true"
+        class="block sm:hidden flex justify-center items-center absolute top-0 right-8 p-1 rounded-full bg-[#FFFFFFC1] text-orange-500 text-sm"
+      >
         <UIcon name="i-heroicons-calendar-solid"/>
       </button>
 
       <USlideover v-model="isScheduleOpen">
         <MenuHeader>
           <div class="flex items-center gap-4">
-            <button class="header__back" @click="isScheduleOpen = false">
+            <button
+              class="header__back"
+              @click="isScheduleOpen = false"
+            >
               <IconsBack />
             </button>
 
@@ -102,7 +120,10 @@ const handleReview = async () => {
           </div>
         </MenuHeader>
 
-        <OrganizationSchedule :addresses="organization.addresses" :schedule="organization.schedule"/>
+        <OrganizationSchedule
+          :addresses="organization.addresses"
+          :schedule="organization.schedule"
+        />
       </USlideover>
     </div>
 
@@ -128,7 +149,7 @@ const handleReview = async () => {
       <UModal v-model="isCommentOpen">
         <OrganizationModalsFeedback @close="() => isCommentOpen = false"/>
       </UModal>
-      
+
       <button
         class="contact"
         :class="{contacted: isContacted}"
@@ -141,315 +162,296 @@ const handleReview = async () => {
   </section>
 </template>
 
-<style scoped lang="scss">
-.organization {
-  &-header {
-    display: grid;
-    grid-template-areas: "schedule image info"
-                         "schedule image about"
-                         "schedule image buttons";
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: auto 450px auto;
+<style scoped>
+.organization-header {
+  display: grid;
+  grid-template-areas: "schedule image info"
+                       "schedule image about"
+                       "schedule image buttons";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 450px auto;
+}
 
-    &__calendar {
-      width: 388px;
-      min-width: 388px;
-      height: 556px;
-      background: #888888;
-    }
+.organization-header__calendar {
+  width: 388px;
+  min-width: 388px;
+  height: 556px;
+  background: #888888;
+}
 
-    &__media {
-      position: relative;
-      grid-area: image;
-      margin-right: 32px;
+.organization-header__media {
+  position: relative;
+  grid-area: image;
+  margin-right: 32px;
+}
 
-      img {
-        width: 632px;
-        height: 512px;
-        border-radius: 10px;
-        object-fit: cover;
-      }
+.organization-header__media img {
+  width: 632px;
+  height: 512px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 
-      &:active {
-        svg {
-          transform: scale(0.85);
-        }
-      }
-    }
+.organization-header__media:active svg {
+  transform: scale(0.85);
+}
 
-    &__favorite {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      transition: all 0.1s ease-in-out;
-      padding: 7px;
-      border-radius: 50%;
-      border: none;
-      background-color: rgba(255,255,255, 0.76);
-      cursor: pointer;
+.organization-header__favorite {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  transition: all 0.1s ease-in-out;
+  padding: 7px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.76);
+  cursor: pointer;
+}
 
-      svg {
-        color: rgba(0, 0, 0, 0.2);
-        transition: all 0.1s ease-in-out;
-        z-index: 2;
-        font-size: 20px;
-      }
+.organization-header__favorite svg {
+  color: rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease-in-out;
+  z-index: 2;
+  font-size: 20px;
+}
 
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.9);
+.organization-header__favorite:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
 
-        svg {
-          color: rgba(228, 0, 0, 0.56);
-        }
-      }
+.organization-header__favorite:hover svg {
+  color: rgba(228, 0, 0, 0.56);
+}
 
-      &__active {
-        background-color: #fff;
+.organization-header__favorite__active {
+  background-color: #fff;
+}
 
-        svg {
-          color: rgba(228, 0, 0, 0.87) !important;
-        }
-      }
-    }
+.organization-header__favorite__active svg {
+  color: rgba(228, 0, 0, 0.87) !important;
+}
 
-    &__info {
-      display: flex;
-      flex-direction: column;
-      grid-area: info;
-    }
+.organization-header__info {
+  display: flex;
+  flex-direction: column;
+  grid-area: info;
+}
 
-    &__title {
-      margin-bottom: 16px;
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 48px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      font-variant: all-small-caps;
-    }
+.organization-header__title {
+  margin-bottom: 16px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-variant: all-small-caps;
+}
 
-    &__criteria {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
+.organization-header__criteria {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
 
-      span {
-        padding: 4px 16px;
-        border-radius: 30px;
-        color: var(--t-367, rgba(0, 0, 0, 0.67));
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px; /* 171.429% */
-        cursor: pointer;
-        transition: opacity 0.1s ease-in-out;
-      }
+.organization-header__criteria span {
+  padding: 4px 16px;
+  border-radius: 30px;
+  color: var(--t-367, rgba(0, 0, 0, 0.67));
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: opacity 0.1s ease-in-out;
+}
 
-      &-type {
-        background: rgba(221, 185, 164, 0.50);
-      }
+.organization-header__criteria-type {
+  background: rgba(221, 185, 164, 0.50);
+}
 
-      &-schedule {
-        background: rgba(254, 230, 185, 0.50);
-      }
+.organization-header__criteria-schedule {
+  background: rgba(254, 230, 185, 0.50);
+}
 
-      &-city {
-        border: 1px solid var(--Line, #D9DAD9);
-      }
-    }
+.organization-header__criteria-city {
+  border: 1px solid var(--Line, #D9DAD9);
+}
 
-    &__rating {
-      margin-bottom: 32px;
-      font-size: 24px;
-    }
+.organization-header__rating {
+  margin-bottom: 32px;
+  font-size: 24px;
+}
 
-    &__copy {
-      grid-area: about;
-      overflow: hidden;
-      color: $dark-grey;
-      font-feature-settings: 'clig' off, 'liga' off;
-      text-overflow: ellipsis;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 30px; /* 166.667% */
-    }
+.organization-header__copy {
+  grid-area: about;
+  overflow: hidden;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  text-overflow: ellipsis;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
 
-    &__buttons {
-      display: flex;
-      gap: 16px;
-      margin-top: auto;
-      grid-area: buttons;
+.organization-header__buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: auto;
+  grid-area: buttons;
+}
 
-      button {
-        width: 200px;
-        padding: 12px;
-        border-radius: 10px;
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        cursor: pointer;
-        transition: all 0.15s ease-in-out;
+.organization-header__buttons button {
+  width: 200px;
+  padding: 12px;
+  border-radius: 10px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
 
-        &:active {
-          scale: 0.98;
-        }
-      }
+.organization-header__buttons button:active {
+  transform: scale(0.98);
+}
 
-      .feedback {
-        border: 1px solid $main-color;
-        background-color: #fff;
-        color: $main-color;
+.organization-header__buttons .feedback {
+  border: 1px solid var(--main-color);
+  background-color: #fff;
+  color: var(--main-color);
+}
 
-        &:hover {
-          background: $hover-grey;
-        }
-      }
+.organization-header__buttons .feedback:hover {
+  background: var(--hover-grey);
+}
 
-      .contact {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
+.organization-header__buttons .contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #FFF;
+  border: none;
+  background: var(--main-color);
+}
 
-        color: #FFF;
-        border: none;
-        background: $main-color;
+.organization-header__buttons .contact:hover {
+  background: var(--main-color-dark);
+}
 
-        &:hover {
-          background: $main-color-dark;
-        }
+.organization-header__buttons .contact.contacted {
+  background: #FFF;
+  color: var(--text-dark);
+  border: 1px solid var(--text-dark);
+}
 
-        &.contacted {
-          background: #FFF;
-          color: $text-dark;
-          border: 1px solid $text-dark;
-
-          &:hover {
-            background: $hover-grey;
-          }
-        }
-      }
-    }
-  }
+.organization-header__buttons .contact.contacted:hover {
+  background: var(--hover-grey);
 }
 
 @media (max-width: 1536px) {
-  .organization {
-    &-header {
-      grid-template-columns: auto 416px auto;
+  .organization-header {
+    grid-template-columns: auto 416px auto;
+  }
 
-      &__media {
-        img {
-          width: 378px;
-          height: 468px;
-        }
-      }
+  .organization-header__media img {
+    width: 378px;
+    height: 468px;
+  }
 
-      &__title {
-        margin-bottom: 8px;
-      }
+  .organization-header__title {
+    margin-bottom: 8px;
+  }
 
-      &__rating {
-        margin-bottom: 16px;
-      }
+  .organization-header__rating {
+    margin-bottom: 16px;
+  }
 
-      &__criteria {
-        span {
-          padding: 6px 8px;
-          font-size: 12px;
-          line-height: 14px;
-        }
-      }
+  .organization-header__criteria span {
+    padding: 6px 8px;
+    font-size: 12px;
+    line-height: 14px;
+  }
 
-      &__copy {
-        font-size: 16px;
-        line-height: 24px;
-      }
-    }
+  .organization-header__copy {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
 @media (max-width: 640px) {
-  .organization {
-    &-header {
-      position: relative;
-      grid-template-areas: "image info"
-                           "about about"
-                           "buttons buttons";
-      grid-template-columns: 84px auto;
+  .organization-header {
+    position: relative;
+    grid-template-areas: "image info" "about about" "buttons buttons";
+    grid-template-columns: 84px auto;
+  }
 
-      &__media {
-        position: static;
-        max-width: 76px;
-        max-height: 76px;
-        margin-right: 8px;
+  .organization-header__media {
+    position: static;
+    max-width: 76px;
+    max-height: 76px;
+    margin-right: 8px;
+  }
 
-        img {
-          width: 76px;
-          height: 76px;
-          border-radius: 50%;
-        }
+  .organization-header__media img {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+  }
 
-        &:active {
-          svg {
-            transform: none;
-          }
-        }
-      }
+  .organization-header__media:active svg {
+    transform: none;
+  }
 
-      &__favorite {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 4px;
+  .organization-header__favorite {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px;
+  }
 
-        svg {
-          font-size: 14px;
-        }
-      }
+  .organization-header__favorite svg {
+    font-size: 14px;
+  }
 
-      &__title {
-        font-size: 16px;
-        line-height: 19px;
-      }
+  .organization-header__title {
+    font-size: 16px;
+    line-height: 19px;
+  }
 
-      &__rating {
-        margin-bottom: 8px;
-        font-size: 14px;
-      }
+  .organization-header__rating {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
 
-      &__copy {
-        font-size: 14px;
-        line-height: 20px;
-        text-align: justify;
-        margin-bottom: 24px;
-      }
+  .organization-header__copy {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: justify;
+    margin-bottom: 24px;
+  }
 
-      &__buttons {
-        button {
-          width: auto;
-          flex: 1;
-          padding: 12px 0;
-          font-size: 14px;
-          line-height: 16px;
-        }
+  .organization-header__buttons button {
+    width: auto;
+    flex: 1;
+    padding: 12px 0;
+    font-size: 14px;
+    line-height: 16px;
+  }
 
-        .feedback {
-          border: 1px solid #F9F9F9;
-          background-color: #F9F9F9;
-          color: rgba(0,0,0, 0.87);
-        }
-      }
-    }
+  .organization-header__buttons .feedback {
+    border: 1px solid #F9F9F9;
+    background-color: #F9F9F9;
+    color: rgba(0, 0, 0, 0.87);
   }
 
   .mobile__hide {

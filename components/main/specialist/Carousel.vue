@@ -57,17 +57,17 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   </Swiper>
 </template>
 
-<style lang="scss">
+<style>
 .swiper-slide {
-  display:flex;
+  display: flex;
   align-items: center;
-  justify-content:center;
-  transition:all 200ms linear;
+  justify-content: center;
+  transition: all 200ms linear;
   transform: scale(0.8);
+}
 
-  &.swiper-slide-active{
-    transform: scale(1);
-  }
+.swiper-slide.swiper-slide-active {
+  transform: scale(1);
 }
 
 .mobile-visible {
@@ -79,5 +79,4 @@ const {data: specialists} = await useAsyncData<Organization[]>(
     display: block;
   }
 }
-
 </style>

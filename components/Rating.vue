@@ -23,7 +23,7 @@ const emit = defineEmits(['rated'])
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .rating {
   display: flex;
   gap: 4px;

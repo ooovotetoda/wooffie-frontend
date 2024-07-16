@@ -48,7 +48,7 @@ const { data: favorites, pending } = await useAsyncData<Favorite[]>(
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .favorite {
   width: 100%;
 }

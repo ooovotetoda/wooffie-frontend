@@ -66,13 +66,13 @@ watch(() => route, () => {
 <template>
   <main class="main">
     <UContainer>
-      <OrganizationHeader :organization/>
+      <OrganizationHeader :organization="organization"/>
       <OrganizationNav />
-      <OrganizationSections :organization/>
+      <OrganizationSections :organization="organization"/>
     </UContainer>
   </main>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 
 </style>

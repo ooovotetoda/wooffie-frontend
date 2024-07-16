@@ -1,10 +1,10 @@
-interface Formats {
+export interface Formats {
   local: boolean
   online: boolean
   home: boolean
 }
 
-interface Filters {
+export interface Filters {
   schedule: null | string
   formats: Formats
 }

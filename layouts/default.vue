@@ -30,7 +30,7 @@ const withSearch = computed(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .main {
   flex: 1;
 }

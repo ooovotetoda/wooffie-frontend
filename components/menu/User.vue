@@ -41,63 +41,64 @@ const { user } = useUserStore()
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .user {
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(0,0,0, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
 
-  &-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  &-text {
-    display: flex;
-    flex-direction: column;
-    font-family: Roboto, sans-serif;
-  }
+.user-text {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto, sans-serif;
+}
 
-  &__role {
-    color: #000000DE;
-    font-size: 16px;
-    line-height: 22px;
-  }
+.user__role {
+  color: #000000DE;
+  font-size: 16px;
+  line-height: 22px;
+}
 
-  &__number {
-    color: #0000008A;
-    font-size: 14px;
-    line-height: 19px;
-  }
+.user__number {
+  color: #0000008A;
+  font-size: 14px;
+  line-height: 19px;
+}
 
-  &-buttons {
-    display: flex;
-    gap: 16px;
-    margin-top: 16px;
+.user-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
 
-    a {
-      flex: 1;
-    }
-  }
+.user-buttons a {
+  flex: 1;
+}
 
-  &__button {
-    width: 100%;
-    padding: 14px 0;
-    border-radius: 10px;
-    font-family: Roboto, sans-serif;
-    font-size: 14px;
-  }
+.user__button {
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+}
 
-  .signup {
-    border: 1px $main-color solid;
-    background: white;
-    color: $main-color;
-  }
+.signup {
+  border: 1px var(--main-color) solid;
+  background: white;
+  color: var(--main-color);
+}
 
-  .login {
-    border: 1px $main-color solid;
-    background: $main-color;
-    color: white;
-  }
+.login {
+  border: 1px var(--main-color) solid;
+  background: var(--main-color);
+  color: white;
 }
 </style>
+
