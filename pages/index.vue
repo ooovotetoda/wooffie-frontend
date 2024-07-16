@@ -142,13 +142,13 @@ const { width } = useWindowSize()
   </section>
 
   <section class="specialists">
-      <div class="wrapper">
-        <h2 class="specialists__title">
-          Специалисты
-        </h2>
+    <div class="wrapper">
+      <h2 class="specialists__title">
+        Специалисты
+      </h2>
 
-        <MainSpecialistCarousel />
-      </div>
+      <MainSpecialistCarousel />
+    </div>
   </section>
 </template>
 

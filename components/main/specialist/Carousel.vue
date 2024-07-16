@@ -63,11 +63,11 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   align-items: center;
   justify-content: center;
   transition: all 200ms linear;
-  transform: scale(0.8);
+  transform: scale(0.8) !important;
 }
 
 .swiper-slide.swiper-slide-active {
-  transform: scale(1);
+  transform: scale(1) !important;
 }
 
 .mobile-visible {
@@ -75,6 +75,10 @@ const {data: specialists} = await useAsyncData<Organization[]>(
 }
 
 @media (max-width: 640px) {
+  .swiper-slide {
+    transform: scale(1) !important;
+  }
+
   .mobile-visible {
     display: block;
   }
