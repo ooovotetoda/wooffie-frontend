@@ -29,15 +29,15 @@ importers:
       nuxt:
         specifier: ^3.12.2
         version: 3.12.2(@opentelemetry/api@1.9.0)(@parcel/watcher@2.4.1)(@types/node@20.14.7)(@unocss/reset@0.61.0)(encoding@0.1.13)(eslint@9.7.0)(floating-vue@5.2.2(@nuxt/kit@3.12.2(magicast@0.3.4)(rollup@4.18.0))(vue@3.4.29(typescript@5.5.3)))(fuse.js@6.6.2)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1)(typescript@5.5.3)(unocss@0.61.0(postcss@8.4.38)(rollup@4.18.0)(vite@5.3.1(@types/node@20.14.7)(sass@1.77.6)(terser@5.31.1)))(vite@5.3.1(@types/node@20.14.7)(sass@1.77.6)(terser@5.31.1))
+      nuxt-swiper:
+        specifier: ^1.2.2
+        version: 1.2.2(magicast@0.3.4)(rollup@4.18.0)
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.5.3)(vue@3.4.29(typescript@5.5.3))
-      swiper:
-        specifier: ^11.1.4
-        version: 11.1.4
       vue3-carousel-nuxt:
-        specifier: ^1.1.0
-        version: 1.1.1(magicast@0.3.4)(rollup@4.18.0)(vue@3.4.29(typescript@5.5.3))
+        specifier: ^1.1.2
+        version: 1.1.2(magicast@0.3.4)(rollup@4.18.0)(vue@3.4.29(typescript@5.5.3))
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.22.2
@@ -4192,6 +4192,9 @@ packages:
     peerDependencies:
       eslint: ^8.55.0
 
+  nuxt-swiper@1.2.2:
+    resolution: {integrity: sha512-y4s/srISP4OuhXbYg9/W1/6EWnbcoHRGEKBKAvGP0I2h0b3enhqZNEk7854M3F89ys8waacBXektPzamgl5xwQ==}
+
   nuxt@3.12.2:
     resolution: {integrity: sha512-DkQvGbILEUwvXJ9TG2iTMvyO6D9ABLyA5bJ+ns8ZgWatfSXC7hXnL//PTYF7neYUzyYn0e5fLHcXgRLa/9YoLA==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -5156,8 +5159,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  swiper@11.1.4:
-    resolution: {integrity: sha512-1n7kbYJB2dFEpUHRFszq7gys/ofIBrMNibwTiMvPHwneKND/t9kImnHt6CfGPScMHgI+dWMbGTycCKGMoOO1KA==}
+  swiper@10.3.1:
+    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
     engines: {node: '>= 4.7.0'}
 
   synckit@0.6.2:
@@ -5644,8 +5647,8 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  vue3-carousel-nuxt@1.1.1:
-    resolution: {integrity: sha512-vhsHeB1bjTPSrKUmci0saXA2ueT4g7WArCG2cv6NzXiVnyaPZUCUjZcPcwTqQ86amRUjg92NgGhOlgDsz4pNHg==}
+  vue3-carousel-nuxt@1.1.2:
+    resolution: {integrity: sha512-Q8X0J1XMK9yITAVLfZ2OAjAdeHpXAyng3qlsDSMiBi44pKH4zapSJpy9Id9LCC/9pfiQu+WYVPeieAsUGwZt7g==}
 
   vue3-carousel@0.3.3:
     resolution: {integrity: sha512-VsuOBE4LG9lxAiYGR9U7ps4RyJ4oFQGzk79/49ybvoxzNpahPAVWIDHKK3a1lOv0CSplFq6u4FvaFLZ8x3FgWg==}
@@ -10893,6 +10896,15 @@ snapshots:
       - utf-8-validate
       - vite
 
+  nuxt-swiper@1.2.2(magicast@0.3.4)(rollup@4.18.0):
+    dependencies:
+      '@nuxt/kit': 3.12.2(magicast@0.3.4)(rollup@4.18.0)
+      swiper: 10.3.1
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+
   nuxt@3.12.2(@opentelemetry/api@1.9.0)(@parcel/watcher@2.4.1)(@types/node@20.14.7)(@unocss/reset@0.61.0)(encoding@0.1.13)(eslint@9.7.0)(floating-vue@5.2.2(@nuxt/kit@3.12.2(magicast@0.3.4)(rollup@4.18.0))(vue@3.4.29(typescript@5.5.3)))(fuse.js@6.6.2)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1)(typescript@5.5.3)(unocss@0.61.0(postcss@8.4.38)(rollup@4.18.0)(vite@5.3.1(@types/node@20.14.7)(sass@1.77.6)(terser@5.31.1)))(vite@5.3.1(@types/node@20.14.7)(sass@1.77.6)(terser@5.31.1)):
     dependencies:
       '@nuxt/devalue': 2.0.2
@@ -12024,7 +12036,7 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.0.1
 
-  swiper@11.1.4: {}
+  swiper@10.3.1: {}
 
   synckit@0.6.2:
     dependencies:
@@ -12579,7 +12591,7 @@ snapshots:
       vue-observe-visibility: 2.0.0-alpha.1(vue@3.4.29(typescript@5.5.3))
       vue-resize: 2.0.0-alpha.1(vue@3.4.29(typescript@5.5.3))
 
-  vue3-carousel-nuxt@1.1.1(magicast@0.3.4)(rollup@4.18.0)(vue@3.4.29(typescript@5.5.3)):
+  vue3-carousel-nuxt@1.1.2(magicast@0.3.4)(rollup@4.18.0)(vue@3.4.29(typescript@5.5.3)):
     dependencies:
       '@nuxt/kit': 3.12.2(magicast@0.3.4)(rollup@4.18.0)
       vue3-carousel: 0.3.3(vue@3.4.29(typescript@5.5.3))

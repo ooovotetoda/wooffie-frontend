@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
-    'vue3-carousel-nuxt',
+    'nuxt-swiper',
     '@nuxt/ui',
     '@nuxtjs/robots',
     '@nuxt/eslint',

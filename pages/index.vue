@@ -142,14 +142,13 @@ const { width } = useWindowSize()
   </section>
 
   <section class="specialists">
-    <UContainer class="px-0">
       <div class="wrapper">
         <h2 class="specialists__title">
           Специалисты
         </h2>
+
         <MainSpecialistCarousel />
       </div>
-    </UContainer>
   </section>
 </template>
 
@@ -281,6 +280,11 @@ const { width } = useWindowSize()
   background: $light-grey;
   text-align: center;
 
+  .wrapper {
+    margin: 0 auto;
+    max-width: 1104px;
+  }
+
   &__title {
     margin-bottom: 40px;
     color: $text-dark;
@@ -302,6 +306,15 @@ const { width } = useWindowSize()
 
     &-text {
       max-width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .specialists {
+    .container {
+      margin: 0;
+      padding: 0;
     }
   }
 }
