@@ -32,20 +32,18 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     <Empty v-if="gallery?.length === 0" :margin="78"/>
 
     <UCarousel
-        v-if="gallery && gallery.length !== 0"
-        v-slot="{ item }"
-        :items="gallery"
-        :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
-        class="overflow-hidden"
-        indicators
+      v-if="gallery && gallery.length !== 0"
+      v-slot="{ item }"
+      :items="gallery"
+      :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
+      class="overflow-hidden"
+      indicators
     >
       <div class="w-full px-4">
         <NuxtImg format="webp" :src="item.photo_url" class="w-full h-full rounded-lg" />
       </div>
     </UCarousel>
   </section>
-
-
 </template>
 
 <style scoped>

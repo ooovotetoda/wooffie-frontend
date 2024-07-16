@@ -51,7 +51,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
       },
     }"
   >
-    <SwiperSlide v-for="specialist in [...specialists, ...specialists]" :key="specialist.id">
+    <SwiperSlide v-for="specialist in specialists" :key="specialist.id">
       <MainSpecialistCard :specialist="specialist"/>
     </SwiperSlide>
   </Swiper>
