@@ -7,7 +7,6 @@ ARG PORT=3000
 ENV NODE_ENV=production
 WORKDIR /src
 
-# Установка pnpm через npm
 RUN apt-get update && \
     apt-get install -y curl && \
     npm install -g pnpm
@@ -15,21 +14,17 @@ RUN apt-get update && \
 FROM base as build
 COPY --link package.json pnpm-lock.yaml ./
 
-# Используйте pnpm для установки зависимостей
-RUN pnpm install --frozen-lockfile --production=false
+RUN pnpm install --frozen-lockfile
 
 COPY --link . .
 
-# Запустите сценарии сборки с pnpm
 RUN pnpm run build
 
-# Удалите разработческие зависимости, оставив только зависимости для продакшена
 RUN pnpm prune --prod
 
 FROM base
 ENV PORT=$PORT
 
-# Копирование результатов сборки в итоговый образ
 COPY --from=build /src/.output /src/.output
 
 CMD ["node", ".output/server/index.mjs"]
