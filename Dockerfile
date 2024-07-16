@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ARG NODE_VERSION=20.3.0
-FROM node:${NODE_VERSION}-slim as base
+FROM node:${NODE_VERSION}-slim AS base
 
 ARG PORT=3000
 ENV NODE_ENV=production
@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get install -y curl && \
     npm install -g pnpm
 
-FROM base as build
+FROM base AS build
 COPY --link package.json pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
