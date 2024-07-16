@@ -23,18 +23,18 @@ a {
   text-decoration: none;
 }
 
-.swiper-slide {
+swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 200ms linear;
 }
 
-.specialists .swiper-slide {
+.specialists swiper-slide {
   transform: scale(0.8) !important;
 }
 
-.specialists .swiper-slide.swiper-slide-active {
+.specialists swiper-slide.swiper-slide-active {
   transform: scale(1) !important;
 }
 
@@ -61,7 +61,7 @@ a {
     max-width: 320px;
   }
 
-  .specialists .swiper-slide {
+  .specialists swiper-slide {
     transform: scale(1) !important;
   }
 }

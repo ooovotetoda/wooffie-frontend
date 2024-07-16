@@ -18,7 +18,7 @@ const cityStore = useCityStore()
 const catalogFilters = useCatalogFiltersStore()
 const { user } = useUserStore()
 
-const { category, type} = useType()
+const { category, type } = useType()
 
 const page = ref(0)
 const pending = ref(false);

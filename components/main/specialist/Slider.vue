@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { register } from 'swiper/element/bundle';
 import type {Organization} from "~/types/organization";
 
 const {$ofetch} = useNuxtApp()
+const { count } = useSlidesCount(280, 16)
 
 const {data: specialists} = await useAsyncData<Organization[]>(
     "main:specialists",
@@ -21,42 +23,38 @@ const {data: specialists} = await useAsyncData<Organization[]>(
       }
     }
 )
+
+onMounted(() => {
+  register();
+})
 </script>
 
 <template>
-  <Swiper
-    :modules="[SwiperAutoplay]"
-    :centeredSlides="true"
+  <swiper-container
+    :slides-per-view="count"
+    centered-slides="true"
+    :speed="250"
     :loop="true"
-    :autoplay="{
-      delay: 4000,
-      disableOnInteraction: true,
-    }"
-    :breakpoints="{
-      320: {
-        slidesPerView: 1.4,
-        spaceBetween: 36
-      },
-      480: {
-        slidesPerView: 1.8,
-        spaceBetween: 36
-      },
-      640: {
-      slidesPerView: 1.8,
-      spaceBetween: 18
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 36
-      },
-    }"
   >
-    <SwiperSlide v-for="specialist in specialists" :key="specialist.id">
-      <MainSpecialistCard :specialist="specialist"/>
-    </SwiperSlide>
-  </Swiper>
+    <!--  TODO  -->
+    <swiper-slide>
+      <MainSpecialistCard :specialist="specialists[0]"/>
+    </swiper-slide>
+
+    <swiper-slide>
+      <MainSpecialistCard :specialist="specialists[0]"/>
+    </swiper-slide>
+
+    <swiper-slide>
+      <MainSpecialistCard :specialist="specialists[0]"/>
+    </swiper-slide>
+
+    <swiper-slide>
+      <MainSpecialistCard :specialist="specialists[0]"/>
+    </swiper-slide>
+  </swiper-container>
 </template>
 
-<style>
+<style scoped>
 
 </style>

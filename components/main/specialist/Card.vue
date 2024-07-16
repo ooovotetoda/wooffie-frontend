@@ -103,7 +103,7 @@ const props = defineProps<{
 }
 
 .card-btn {
-  width: 256px;
+  width: 100%;
   padding: 12px 0;
   border-radius: 10px;
   background: var(--main-color);
@@ -130,6 +130,7 @@ const props = defineProps<{
 
 @media (max-width: 640px) {
   .card {
+    width: 280px;
     padding: 32px 40px;
   }
 
@@ -158,7 +159,6 @@ const props = defineProps<{
   }
 
   .card-btn {
-    width: 200px;
     font-size: 14px;
   }
 }

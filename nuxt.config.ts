@@ -23,6 +23,14 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**'],
   },
+  build: {
+    transpile: ['swiper'],
+  },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith('swiper-')
+    }
+  },
   image: {
     providers: {
       myProvider: {
@@ -41,7 +49,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
-    'nuxt-swiper',
     '@nuxt/ui',
     '@nuxtjs/robots',
     '@nuxt/eslint',
@@ -51,7 +58,11 @@ export default defineNuxtConfig({
     '~/plugins/ofetch.ts',
     '~/plugins/access.ts',
   ],
-  css: ['~/assets/main.css', '~/assets/colors.css', '~/assets/fonts.css'],
+  css: [
+    '~/assets/main.css',
+    '~/assets/colors.css',
+    '~/assets/fonts.css',
+  ],
   app: {
     head: {
       script: [

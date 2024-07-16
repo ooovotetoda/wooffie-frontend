@@ -1,67 +1,52 @@
 <script setup lang="ts">
+import { register } from 'swiper/element/bundle';
 
+const { count } = useSlidesCount(280, 16)
+
+onMounted(() => {
+  register();
+})
 </script>
 
 <template>
-  <Swiper
-    :modules="[SwiperAutoplay]"
-    :centeredSlides="true"
+  <swiper-container
+    :slides-per-view="count"
+    centered-slides="true"
+    :speed="250"
     :loop="true"
-    :autoplay="{
-      delay: 4000,
-      disableOnInteraction: true,
-    }"
-    :breakpoints="{
-      320: {
-        slidesPerView: 1.4,
-        spaceBetween: 36
-      },
-      480: {
-        slidesPerView: 1.8,
-        spaceBetween: 36
-      },
-      640: {
-        slidesPerView: 1.8,
-        spaceBetween: 18
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 36
-      },
-    }"
   >
-    <SwiperSlide>
+    <swiper-slide>
       <MainServiceCard
         title="Клиники"
         service="clinic"
         image="card-clinic.webp"
       />
-    </SwiperSlide>
+    </swiper-slide>
 
-    <SwiperSlide>
+    <swiper-slide>
       <MainServiceCard
         title="Ветеринары"
         service="vet"
         image="card-vet.webp"
       />
-    </SwiperSlide>
+    </swiper-slide>
 
-    <SwiperSlide>
+    <swiper-slide>
       <MainServiceCard
         title="Грумеры"
         service="groomer"
         image="card-groomer.webp"
       />
-    </SwiperSlide>
+    </swiper-slide>
 
-    <SwiperSlide>
+    <swiper-slide>
       <MainServiceCard
         title="Зоосалоны"
         service="salon"
         image="card-salon.webp"
       />
-    </SwiperSlide>
-  </Swiper>
+    </swiper-slide>
+  </swiper-container>
 </template>
 
 <style scoped>
