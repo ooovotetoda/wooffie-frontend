@@ -1,30 +1,21 @@
-# syntax=docker/dockerfile:1
+FROM node:20-bookworm
 
-ARG NODE_VERSION=20.3.0
-FROM node:${NODE_VERSION}-slim AS base
+WORKDIR /frontend
 
-ARG PORT=3000
-ENV NODE_ENV=production
-WORKDIR /src
+COPY . .
 
-RUN apt-get update && \
-    apt-get install -y curl && \
-    npm install -g pnpm
-
-FROM base AS build
-COPY --link package.json pnpm-lock.yaml ./
-
+RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile
 
-COPY --link . .
+ENV NODE_ENV=production
+
+ENV NUXT_PORT=3000
+ENV NITRO_PORT=3000
+ENV NITRO_HOST=0.0.0.0
+ENV NUXT_HOST=0.0.0.0
+# ENV HOST=0.0.0.0
+
+EXPOSE 3000
 
 RUN pnpm run build
-
-RUN pnpm prune --prod
-
-FROM base
-ENV PORT=$PORT
-
-COPY --from=build /src/.output /src/.output
-
-CMD ["node", ".output/server/index.mjs"]
+CMD ["node", "/frontend/.output/server/index.mjs"]
