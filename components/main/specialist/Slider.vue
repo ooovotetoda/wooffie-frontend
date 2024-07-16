@@ -58,29 +58,5 @@ const {data: specialists} = await useAsyncData<Organization[]>(
 </template>
 
 <style>
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 200ms linear;
-  transform: scale(0.8) !important;
-}
 
-.swiper-slide.swiper-slide-active {
-  transform: scale(1) !important;
-}
-
-.mobile-visible {
-  display: none;
-}
-
-@media (max-width: 640px) {
-  .swiper-slide {
-    transform: scale(1) !important;
-  }
-
-  .mobile-visible {
-    display: block;
-  }
-}
 </style>

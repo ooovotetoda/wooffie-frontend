@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { Slide } from 'vue3-carousel'
-import Slider from '~/components/Slider.vue'
 
-const { width } = useWindowSize()
 </script>
 
 <template>
@@ -35,74 +32,7 @@ const { width } = useWindowSize()
           Услуги
         </h2>
 
-        <div class="services__table hidden sm:flex flex-col gap-16">
-          <div class="services__row flex flex-col xl:flex-row gap-16">
-            <MainServiceCard
-              title="Клиники"
-              service="clinic"
-              image="card-clinic.webp"
-            />
-            <MainServiceCard
-              title="Ветеринары"
-              service="vet"
-              image="card-vet.webp"
-            />
-          </div>
-          <div class="services__row flex flex-col xl:flex-row gap-16">
-            <MainServiceCard
-              title="Грумеры"
-              service="groomer"
-              image="card-groomer.webp"
-            />
-            <MainServiceCard
-              title="Зоосалоны"
-              service="salon"
-              image="card-salon.webp"
-            />
-          </div>
-        </div>
-
-        <Slider :width="width">
-          <Slide key="clinic">
-            <div class="carousel__item">
-              <MainServiceCard
-                title="Клиники"
-                service="clinic"
-                image="card-clinic.webp"
-              />
-            </div>
-          </Slide>
-
-          <Slide key="vet">
-            <div class="carousel__item">
-              <MainServiceCard
-                title="Ветеринары"
-                service="vet"
-                image="card-vet.webp"
-              />
-            </div>
-          </Slide>
-
-          <Slide key="groomer">
-            <div class="carousel__item">
-              <MainServiceCard
-                title="Грумеры"
-                service="groomer"
-                image="card-groomer.webp"
-              />
-            </div>
-          </Slide>
-
-          <Slide key="salon">
-            <div class="carousel__item">
-              <MainServiceCard
-                title="Зоосалоны"
-                service="salon"
-                image="card-salon.webp"
-              />
-            </div>
-          </Slide>
-        </Slider>
+        <MainServicePlaceholder />
       </div>
     </UContainer>
   </section>
@@ -147,7 +77,7 @@ const { width } = useWindowSize()
         Специалисты
       </h2>
 
-      <MainSpecialistCarousel />
+      <MainSpecialistSlider />
     </div>
   </section>
 </template>
@@ -303,13 +233,6 @@ const { width } = useWindowSize()
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .specialists .container {
-    margin: 0;
-    padding: 0;
-  }
-}
-
 @media (max-width: 640px) {
   .poster {
     position: relative;
@@ -346,11 +269,7 @@ const { width } = useWindowSize()
   }
 
   .services {
-    padding: 32px 0;
-  }
-
-  .services .container {
-    margin: 0;
+    padding: 32px 0 16px 0;
   }
 
   .services .wrapper {

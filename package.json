@@ -20,8 +20,7 @@
     "ipx": "^3.0.1",
     "nuxt": "^3.12.3",
     "nuxt-swiper": "^1.2.2",
-    "pinia": "^2.1.7",
-    "vue3-carousel-nuxt": "^1.1.2"
+    "pinia": "^2.1.7"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.22.4",

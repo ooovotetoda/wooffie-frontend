@@ -188,6 +188,7 @@ const info = {
     flex-direction: column;
     width: 280px;
     height: auto;
+    margin: 24px 0;
   }
 
   .card-image {
