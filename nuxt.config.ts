@@ -2,8 +2,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: 'https://wooffie.ru',
-      // baseURL: 'https://ooovotetoda-wooffie-backend-dda1.twc1.net',
-      baseURL: 'http://localhost:8080',
+      baseURL: 'https://ooovotetoda-wooffie-backend-dda1.twc1.net',
+      // baseURL: 'http://localhost:8080',
     },
   },
   routeRules: {
