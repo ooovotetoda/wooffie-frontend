@@ -13,7 +13,7 @@ const router = useRouter()
 
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const { data: organization } = await useAsyncData(
     `organization:${route.params.id}`,
