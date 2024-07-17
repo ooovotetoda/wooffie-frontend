@@ -17,6 +17,7 @@ const isOpen = ref(false)
             <NuxtLink to="/">
               <div class="header-logo">
                 <NuxtImg
+                  :modifiers="{ grayscale: true, tint: '#CF8802' }"
                   format="webp"
                   provider="myProvider"
                   src="/wooffie-logo__main-color.svg"
@@ -46,6 +47,7 @@ const isOpen = ref(false)
               <NuxtLink to="/profile">
                 <div class="header__profile">
                   <NuxtImg
+                    :modifiers="{ grayscale: true, tint: '#CF8802' }"
                     format="webp"
                     provider="myProvider"
                     src="/user-icon.svg"

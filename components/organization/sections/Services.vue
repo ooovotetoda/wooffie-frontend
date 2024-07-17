@@ -12,7 +12,12 @@ defineProps<{
     <li v-for="service in services" class="services__item">
       <div class="services__left">
         <div class="services__icon">
-          <NuxtImg format="webp" :src="service.image_url" alt="icon"/>
+          <NuxtImg
+            :modifiers="{ grayscale: true, tint: '#CF8802' }"
+            format="webp"
+            :src="service.image_url"
+            alt="icon"
+          />
         </div>
         <span class="services__name">{{ service.service_name }}</span>
       </div>

@@ -40,7 +40,12 @@ const { data: gallery } = await useAsyncData<Photo[]>(
       indicators
     >
       <div class="w-full px-4">
-        <NuxtImg format="webp" :src="item.photo_url" class="w-full h-full rounded-lg" />
+        <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
+          format="webp"
+          :src="item.photo_url"
+          class="w-full h-full rounded-lg"
+        />
       </div>
     </UCarousel>
   </section>

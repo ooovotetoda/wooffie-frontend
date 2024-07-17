@@ -10,6 +10,7 @@
     <NuxtLink to="/faq/1">
       <div class="card__media">
         <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
           format="webp"
           provider="myProvider"
           src="/faq-card.jpg"

@@ -52,8 +52,16 @@ const toggleIsActive = async () => {
 <template>
     <div @click="navigateTo(`/catalog/${organization.type}/${organization.id}?section=services`)" class="card">
       <div class="card__media">
-        <NuxtImg format="webp" :src="organization.photo" alt="clinic"/>
-        <button @click.stop="toggleIsActive" class="card__media-favorite" :class="{ 'card__media-favorite__active': isActive }">
+        <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
+          format="webp"
+          :src="organization.photo"
+          alt="clinic"
+        />
+        <button
+          :class="{ 'card__media-favorite__active': isActive }">
+          class="card__media-favorite"
+          @click.stop="toggleIsActive"
           <IconsFavorite />
         </button>
       </div>

@@ -9,6 +9,7 @@ definePageMeta({
   <section class="profile w-full">
     <div class="profile__media">
       <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
         format="webp"
         provider="myProvider"
         src="/user-icon.svg"

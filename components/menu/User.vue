@@ -7,6 +7,7 @@ const { user } = useUserStore()
     <div class="user-header">
       <div class="user-avatar">
         <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
           format="webp"
           provider="myProvider"
           src="/user-icon.svg"

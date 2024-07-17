@@ -81,6 +81,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
         </div>
         <div class="about__image">
           <NuxtImg
+            :modifiers="{ grayscale: true, tint: '#CF8802' }"
             class="m-auto w-auto sm:w-full lg:w-[956px]"
             format="webp"
             provider="myProvider"

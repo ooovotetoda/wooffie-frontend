@@ -22,7 +22,12 @@ const types = {
   <div class="card-specialist">
     <div class="card-specialist__block">
       <div class="card-specialist__media">
-        <NuxtImg format="webp" :src="review.organization.photo" alt="specialist"/>
+        <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
+          format="webp"
+          :src="review.organization.photo"
+          alt="specialist"
+        />
       </div>
 
       <div class="card-specialist__info">
@@ -33,8 +38,14 @@ const types = {
         </div>
         <div class="card-specialist__criteria">
           <span class="card-specialist__type">{{ types[review.organization.type] }}</span>
-          <span v-if="review.organization.round_clock" class="card-specialist__schedule">Круглосуточно</span>
-          <span v-else-if="review.organization.experience" class="card-specialist__schedule">Стаж {{ review.organization.experience }} {{getYearWord(review.organization.experience)}}</span>
+          <span
+            v-if="review.organization.round_clock"
+            class="card-specialist__schedule"
+          >Круглосуточно</span>
+          <span
+            v-else-if="review.organization.experience"
+            class="card-specialist__schedule"
+          >Стаж {{ review.organization.experience }} {{getYearWord(review.organization.experience)}}</span>
           <span class="card-specialist__city">{{ cities[review.organization.city] }}</span>
         </div>
       </div>
@@ -50,7 +61,13 @@ const types = {
   <div class="card-comment">
     <div class="card-comment__header">
       <div class="card-comment__icon">
-        <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="user"/>
+        <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
+          format="webp"
+          provider="myProvider"
+          src="/user-icon.svg"
+          alt="user"
+        />
       </div>
 
       <div class="card-comment__info">

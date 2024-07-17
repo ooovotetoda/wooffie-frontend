@@ -101,7 +101,13 @@ const handleDislike = async () => {
 <div class="comment">
   <div class="comment__header">
     <div class="comment__icon">
-      <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="avatar"/>
+      <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
+        format="webp"
+        provider="myProvider"
+        src="/user-icon.svg"
+        alt="avatar"
+      />
     </div>
     <div class="comment__info">
       <div class="comment__tel">{{ formatReviewPhone(review.phone) }}</div>

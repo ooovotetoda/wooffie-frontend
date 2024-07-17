@@ -13,6 +13,7 @@ definePageMeta({
         </h1>
         <div class="media">
           <NuxtImg
+            :modifiers="{ grayscale: true, tint: '#CF8802' }"
             format="webp"
             provider="myProvider"
             src="/slug.webp"

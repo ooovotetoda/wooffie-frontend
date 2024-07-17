@@ -13,6 +13,7 @@ defineProps({
     class="empty"
   >
     <NuxtImg
+      :modifiers="{ grayscale: true, tint: '#CF8802' }"
       format="webp"
       provider="myProvider"
       src="/empty.svg"

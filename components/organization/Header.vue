@@ -87,6 +87,7 @@ const handleReview = async () => {
 
     <div class="organization-header__media">
       <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
         format="webp"
         :src="organization.photo"
         alt="avatar"

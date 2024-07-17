@@ -11,7 +11,12 @@ const props = defineProps<{
 <template>
   <div class="card">
     <div class="card-avatar">
-      <NuxtImg format="webp" :src="specialist.photo" alt="avatar"/>
+      <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
+        format="webp"
+        :src="specialist.photo"
+        alt="avatar"
+      />
     </div>
     <p class="card-experience">
       стаж {{ specialist.experience }} {{ getYearWord(specialist.experience) }}

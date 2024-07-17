@@ -54,7 +54,14 @@ const info = {
 <template>
   <div class="card">
     <div class="card-image">
-      <NuxtImg format="webp" provider="myProvider" :src="image" alt="services" srcset=""/>
+      <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
+        format="webp"
+        provider="myProvider"
+        :src="image"
+        alt="services"
+        srcset=""
+      />
     </div>
     <div class="card-content">
       <div class="card-content__title">
