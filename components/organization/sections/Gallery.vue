@@ -6,7 +6,7 @@ const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 
-const type = useType()
+const { type } = useType()
 
 const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,

@@ -13,7 +13,7 @@ const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const { data: reviews, refresh } = await useAsyncData<Review[]>(
     `reviews:${type.value}:${route.params.id}`,

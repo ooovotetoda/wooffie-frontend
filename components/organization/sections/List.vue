@@ -7,7 +7,7 @@ const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const { data: organizations } = await useAsyncData<Organization[]>(
     `organizations:${type.value}:${route.params.id}`,

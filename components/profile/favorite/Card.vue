@@ -20,7 +20,7 @@ const types = {
   "groomer": props.organization.profession,
 }
 
-const type = useType()
+const { type } = useType()
 
 const isActive = ref(props.organization.isFavorite)
 

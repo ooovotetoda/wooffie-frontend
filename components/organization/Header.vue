@@ -13,7 +13,7 @@ const { $ofetch } = useNuxtApp()
 const { user } = useUserStore()
 const { cities } = useCityStore()
 
-const type = useType()
+const { type } = useType()
 
 const isActive = ref(props.organization.isFavorite)
 const isContacted = ref(false)

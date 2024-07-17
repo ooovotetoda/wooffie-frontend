@@ -13,7 +13,7 @@ const route = useRoute()
 const router = useRouter()
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const rating = ref(0)
 const comment = ref<string | null>(null)

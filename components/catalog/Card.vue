@@ -20,7 +20,7 @@ const types = {
   "groomer": props.organization.profession,
 }
 
-const type = useType()
+const { type } = useType()
 
 const schedule: Schedule | undefined = props.organization.schedule.find((schedule: Schedule) => schedule.day_of_week === getDay())
 const startTime = schedule?.start_time ? schedule?.start_time.slice(0, -3) : null;
