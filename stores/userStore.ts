@@ -65,9 +65,10 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  // TODO: add interface
   async function signIn(body: {
-    phone: string
-    password: string
+    phone: string | null
+    password: string | null
   }): Promise<number> {
     const accessTokenCookie = useCookie('access_token')
     const refreshTokenCookie = useCookie('refresh_token')
