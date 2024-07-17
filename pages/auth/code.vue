@@ -2,65 +2,17 @@
 import { formatPhone } from '../../.nuxt/imports'
 import { useUserStore } from '~/stores/userStore'
 import { useCodeTimer } from '~/composables/useCodeTimer'
+import {useAuthCode} from "~/composables/useAuthCode";
 
 definePageMeta({
   layout: 'authorization',
 })
 
-const route = useRoute()
 const authStorage = useSessionStorage('auth-store', { phone: '+79999999999', password: '' })
+
 const { signUp } = useUserStore()
-
-const phone = authStorage.value.phone
-
-const code = ref < string | null > (null)
-const isCodeSent = ref < boolean > (false)
-const isCodeValid = ref < boolean > (true)
-
+const { phone, code, isCodeSent, isCodeValid, handleSubmit, resendCode } = useAuthCode(authStorage, signUp)
 const { timer, startTimer, resetTimer } = useCodeTimer(isCodeSent)
-
-async function handleSubmit() {
-  if (!code.value || code.value.length < 4) {
-    isCodeValid.value = false
-    return
-  }
-
-  const password = authStorage.value.password
-
-  const isValid = await validateOTP(code.value)
-
-  if (isValid) {
-    if (route.query.type === 'register') {
-      if (!password) {
-        return
-      }
-
-      await signUp(password)
-      await navigateTo('/')
-    }
-    else if (route.query.type === 'reset') {
-      await navigateTo('/auth/newpass')
-    }
-  }
-  else {
-    console.warn('code not valid')
-  }
-}
-
-async function resendCode() {
-  if (isCodeSent.value)
-    return
-
-  resetTimer()
-  startTimer(5900)
-
-  if (phone) {
-    await sendOTP(phone)
-  }
-  else {
-    console.error('invalid phone number')
-  }
-}
 </script>
 
 <template>
@@ -91,7 +43,7 @@ async function resendCode() {
     <button
       :disabled="isCodeSent"
       class="authorization-registration"
-      @click="resendCode"
+      @click="resendCode(resetTimer, startTimer)"
     >
       <span v-if="!isCodeSent">Отправить код</span>
       <span v-else>Повторно отправить {{ `0:${timer}` }}</span>
