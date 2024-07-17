@@ -1,18 +1,18 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   isPhoneValid: Boolean,
 })
 
 const emit = defineEmits(['updatePhone', 'update:isPhoneValid'])
 
 const phoneRef = ref(null)
-const phone = ref < string | null > (null)
-const isPhoneFocused = ref < boolean > (false)
 
-function handleBlur() {
-  const regExp = /^(?:\+7|8)?[789]\d{9}$/
-  const newIsPhoneValid = phone.value ? regExp.test(phone.value) : true
+const { phone, isPhoneFocused, getPhoneValid } = useAuthPhone(phoneRef)
+
+function onBlur() {
+  const newIsPhoneValid = getPhoneValid()
   emit('update:isPhoneValid', newIsPhoneValid)
+
   isPhoneFocused.value = false
 }
 </script>
@@ -36,7 +36,7 @@ function handleBlur() {
       class="phone__input"
       @input="emit('updatePhone', phone)"
       @focus="isPhoneFocused = true"
-      @blur="handleBlur"
+      @blur="onBlur"
     >
   </fieldset>
   <p
