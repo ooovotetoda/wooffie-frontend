@@ -1,11 +1,10 @@
 export function useSlidesCount(width: number, margin: number) {
-  const { width: windowWidth } = useWindowSize()
+  const { width: windowWidth } = useWindowSize();
 
   const count = computed(() => {
-    const res = (windowWidth.value - 2*margin)/width
+    const res = (windowWidth.value - 2 * margin) / width;
+    return res > 3 ? 3 : res;
+  });
 
-    return res > 3 ? 3 : res
-  })
-
-  return { count }
+  return { count };
 }

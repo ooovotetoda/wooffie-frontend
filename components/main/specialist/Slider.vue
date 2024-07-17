@@ -1,60 +1,44 @@
 <script setup lang="ts">
 import { register } from 'swiper/element/bundle';
-import type {Organization} from "~/types/organization";
+import type { Organization } from '~/types/organization';
 
-const {$ofetch} = useNuxtApp()
-const { count } = useSlidesCount(280, 16)
+defineProps<{
+  specialists: Organization[] | null,
+}>();
 
-const {data: specialists} = await useAsyncData<Organization[]>(
-    "main:specialists",
-    async () => {
-      try {
-        const response: { specialists: Organization[] } = await $ofetch("api/specialists/top", {
-          method: "GET",
-          query: {
-            limit: 5
-          }
-        })
-
-        return response.specialists
-      } catch (e) {
-        console.error(e)
-        return []
-      }
-    }
-)
+const isMounted = ref(false);
+const { count } = useSlidesCount(280, 16);
 
 onMounted(() => {
   register();
-})
+  isMounted.value = true;
+});
 </script>
 
 <template>
   <swiper-container
-    :slides-per-view="count"
-    centered-slides="true"
-    :speed="250"
-    :loop="true"
+      v-if="isMounted && specialists && specialists.length"
+      :slides-per-view="count"
+      centered-slides="true"
+      :speed="250"
+      :loop="true"
   >
-    <!--  TODO  -->
-    <swiper-slide>
-      <MainSpecialistCard :specialist="specialists[0]"/>
-    </swiper-slide>
-
-    <swiper-slide>
-      <MainSpecialistCard :specialist="specialists[0]"/>
-    </swiper-slide>
-
-    <swiper-slide>
-      <MainSpecialistCard :specialist="specialists[0]"/>
-    </swiper-slide>
-
-    <swiper-slide>
-      <MainSpecialistCard :specialist="specialists[0]"/>
+    <swiper-slide v-for="(specialist, index) in [...specialists, ...specialists]" :key="index">
+      <MainSpecialistCard :specialist="specialist"/>
     </swiper-slide>
   </swiper-container>
 </template>
 
 <style scoped>
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
 
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+}
 </style>

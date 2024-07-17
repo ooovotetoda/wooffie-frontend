@@ -1,5 +1,26 @@
 <script setup lang="ts">
+import type {Organization} from "~/types/organization";
 
+const {$ofetch} = useNuxtApp()
+
+const {data: specialists} = await useAsyncData<Organization[]>(
+    "main:specialists",
+    async () => {
+      try {
+        const response: { specialists: Organization[] } = await $ofetch("api/specialists/top", {
+          method: "GET",
+          query: {
+            limit: 5
+          }
+        })
+
+        return response.specialists
+      } catch (e) {
+        console.error(e)
+        return []
+      }
+    }
+)
 </script>
 
 <template>
@@ -77,7 +98,7 @@
         Специалисты
       </h2>
 
-      <MainSpecialistSlider />
+      <MainSpecialistSlider :specialists="specialists"/>
     </div>
   </section>
 </template>
