@@ -259,6 +259,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   .poster {
     position: relative;
     gap: 0;
+    background-image: url("/main-header-bg.webp");
   }
 
   .poster::before {

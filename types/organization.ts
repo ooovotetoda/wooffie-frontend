@@ -1,3 +1,8 @@
+export type OrganizationType = 'clinic' | 'salon' | 'vet' | 'groomer'
+export type City = 'krd' | 'msk' | 'spb' | 'rnd'
+export type OrganizationSection = 'services' | 'clinic' | 'specialists' | 'gallery' | 'feedback'
+
+
 export interface Address {
   id: number
   address: string
@@ -43,7 +48,3 @@ export interface OrganizationList {
   status: string
   list: Organization[]
 }
-
-export type OrganizationType = 'clinic' | 'salon' | 'vet' | 'groomer'
-export type City = 'krd' | 'msk' | 'spb' | 'rnd'
-export type OrganizationSection = 'services' | 'clinic' | 'specialists' | 'gallery' | 'feedback'

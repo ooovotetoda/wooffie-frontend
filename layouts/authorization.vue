@@ -152,4 +152,3 @@ const router = useRouter()
   }
 }
 </style>
-

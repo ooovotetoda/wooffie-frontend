@@ -39,7 +39,7 @@ async function handleSubmit() {
     })
   }
   else {
-    console.log('failed to send OTP code')
+    console.warn('failed to send OTP code')
   }
 }
 </script>
@@ -155,4 +155,3 @@ async function handleSubmit() {
   opacity: 0;
 }
 </style>
-

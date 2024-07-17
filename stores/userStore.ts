@@ -66,8 +66,8 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function signIn(body: {
-    phone: string,
-    password: string,
+    phone: string
+    password: string
   }): Promise<number> {
     const accessTokenCookie = useCookie('access_token')
     const refreshTokenCookie = useCookie('refresh_token')

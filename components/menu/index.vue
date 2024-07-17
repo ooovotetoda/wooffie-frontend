@@ -174,4 +174,3 @@ const emit = defineEmits(['close'])
   width: 16px;
 }
 </style>
-

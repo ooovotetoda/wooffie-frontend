@@ -162,4 +162,3 @@ function handlePasswordChange() {
   background: rgba(255, 255, 255, 0);
 }
 </style>
-

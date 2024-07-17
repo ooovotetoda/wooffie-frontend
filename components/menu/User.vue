@@ -102,4 +102,3 @@ const { user } = useUserStore()
   color: white;
 }
 </style>
-

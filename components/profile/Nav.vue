@@ -126,4 +126,3 @@ watch(() => route.path, (newPath) => {
   color: var(--main-color);
 }
 </style>
-

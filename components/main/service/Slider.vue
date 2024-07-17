@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element/bundle'
 
 const { count } = useSlidesCount(280, 16)
 
 onMounted(() => {
-  register();
+  register()
 })
 </script>
 

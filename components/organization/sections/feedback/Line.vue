@@ -2,15 +2,15 @@
 const props = defineProps({
   label: {
     type: String,
-    default: ''
+    default: '',
   },
   all: {
     type: Number,
-    default: 0
+    default: 0,
   },
   count: {
     type: Number,
-    default: 0
+    default: 0,
   },
 })
 
@@ -184,4 +184,3 @@ const lineFilledWidth = ref(props.all && props.count ? `${(props.count / props.a
   }
 }
 </style>
-

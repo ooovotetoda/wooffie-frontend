@@ -54,4 +54,3 @@ async function handleSearch() {
   }
 }
 </style>
-

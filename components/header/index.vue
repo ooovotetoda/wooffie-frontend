@@ -241,4 +241,3 @@ const isOpen = ref(false)
   }
 }
 </style>
-

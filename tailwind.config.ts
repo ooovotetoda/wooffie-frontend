@@ -1,6 +1,5 @@
 // @ts-ignore
 import type { Config } from 'tailwindcss'
-// @ts-ignore
 
 export default <Partial<Config>>{
   theme: {

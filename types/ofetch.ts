@@ -1,3 +1,3 @@
-interface FetchContext {
+export interface FetchContext {
   response: Response
 }

@@ -265,4 +265,3 @@ async function resendCode() {
   opacity: 0;
 }
 </style>
-
