@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {useCode} from "~/composables/useCode";
+
 defineProps({
   isCodeValid: Boolean,
 })
@@ -6,14 +8,11 @@ defineProps({
 const emit = defineEmits(['updateCode', 'update:isCodeValid'])
 
 const codeRef = ref < string | null > (null)
-const code = ref < string | null > (null)
-const isCodeFocused = ref < boolean > (false)
+
+const { code, isCodeFocused, validateCode } = useCode(codeRef)
 
 function handleInput() {
-  const maxLength = 6
-  if (code.value && code.value.length > maxLength) {
-    code.value = code.value.slice(0, maxLength)
-  }
+  validateCode()
   emit('updateCode', code.value)
   emit('update:isCodeValid', true)
 }
