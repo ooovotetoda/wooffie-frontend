@@ -3,7 +3,13 @@ definePageMeta({
   layout: 'authorization',
 })
 
-const { phone, isPhoneValid, password, isPasswordValid, handleSubmit } = useSignUp()
+const {
+  phone,
+  isPhoneValid,
+  password,
+  isPasswordValid,
+  handleSubmit
+} = useSignUp()
 </script>
 
 <template>
