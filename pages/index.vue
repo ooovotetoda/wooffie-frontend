@@ -26,15 +26,15 @@ const {data: specialists} = await useAsyncData<Organization[]>(
 <template>
   <section
     v-once
-    id="main"
+    id="hero"
     class="main-header"
   >
     <UContainer>
-      <div class="poster">
-        <h1 class="poster__title">
+      <div class="hero">
+        <h1 class="hero__title">
           Wooffie
         </h1>
-        <p class="poster__description">
+        <p class="hero__description">
           Заботимся о поиске лучших — для ваших меньших братьев. <br>Специалисты, которым можно доверять
         </p>
       </div>
@@ -109,7 +109,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   padding: 60px 0;
 }
 
-.poster {
+.hero {
   position: relative;
   width: 100%;
   height: 400px;
@@ -123,7 +123,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   background-size: cover;
 }
 
-.poster::before {
+.hero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -134,7 +134,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   z-index: 0;
 }
 
-.poster__title {
+.hero__title {
   color: var(--grey);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Roboto, serif;
@@ -145,7 +145,7 @@ const {data: specialists} = await useAsyncData<Organization[]>(
   z-index: 1;
 }
 
-.poster__description {
+.hero__description {
   max-width: 800px;
   color: var(--grey);
   font-feature-settings: 'clig' off, 'liga' off;
@@ -256,13 +256,13 @@ const {data: specialists} = await useAsyncData<Organization[]>(
 }
 
 @media (max-width: 640px) {
-  .poster {
+  .hero {
     position: relative;
     gap: 0;
     background-image: url("/mobile-main-header-bg.webp");
   }
 
-  .poster::before {
+  .hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -273,13 +273,13 @@ const {data: specialists} = await useAsyncData<Organization[]>(
     z-index: 0;
   }
 
-  .poster__title {
+  .hero__title {
     font-size: 48px;
     line-height: 56px;
     z-index: 1;
   }
 
-  .poster__description {
+  .hero__description {
     max-width: 281px;
     font-size: 14px;
     font-weight: 500;
