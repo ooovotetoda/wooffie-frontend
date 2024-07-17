@@ -9,7 +9,7 @@ definePageMeta({
 const { $ofetch } = useNuxtApp()
 const { user } = useUserStore()
 
-const { data: reviews, pending } = await useAsyncData<ProfileReview[]>(
+const { data: reviews, status } = await useAsyncData<ProfileReview[]>(
     `profile:feedback`,
     async () => {
       const response: ProfileReviews = await $ofetch(`/api/reviews/${user.id}`, {
@@ -51,7 +51,7 @@ const { data: reviews, pending } = await useAsyncData<ProfileReview[]>(
 
 <template>
   <section class="feedback">
-    <div v-if="pending" class="loader">
+    <div v-if="status === 'pending'" class="loader">
       <Loader />
     </div>
     <div v-else-if="reviews?.length === 0" class="empty">
