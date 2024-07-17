@@ -62,7 +62,7 @@ function handleInput() {
   top: -12px;
   left: 20px;
   background-color: rgba(255, 255, 255, 1);
-  color: var(--main-color); /* предполагается, что $main-color определен где-то в вашем CSS */
+  color: var(--main-color);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Roboto, serif;
   font-size: 14px;
