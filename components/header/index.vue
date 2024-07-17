@@ -3,7 +3,9 @@ import formatPhone from '~/utils/formatPhone'
 
 const { user } = useUserStore()
 
-const phone = formatPhone(user.phoneNumber)
+const phone = computed(() => {
+  return formatPhone(user.phoneNumber)
+})
 
 const isOpen = ref(false)
 </script>
