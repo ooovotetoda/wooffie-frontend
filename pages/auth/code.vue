@@ -2,7 +2,7 @@
 import { formatPhone } from '../../.nuxt/imports'
 import { useUserStore } from '~/stores/userStore'
 import { useCodeTimer } from '~/composables/useCodeTimer'
-import {useAuthCode} from "~/composables/useAuthCode";
+import { useAuthCode } from '~/composables/useAuthCode'
 
 definePageMeta({
   layout: 'authorization',

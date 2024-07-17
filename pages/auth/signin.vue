@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useSignIn} from "~/composables/useSignIn";
+import { useSignIn } from '~/composables/useSignIn'
 
 definePageMeta({
   layout: 'authorization',
@@ -11,9 +11,8 @@ const {
   password,
   isPasswordValid,
   isPasswordWrong,
-  handleSubmit
+  handleSubmit,
 } = useSignIn()
-
 </script>
 
 <template>

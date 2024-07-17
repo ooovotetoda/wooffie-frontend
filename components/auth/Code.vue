@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useCode} from "~/composables/useCode";
+import { useCode } from '~/composables/useCode'
 
 defineProps({
   isCodeValid: Boolean,

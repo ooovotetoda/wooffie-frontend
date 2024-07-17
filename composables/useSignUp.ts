@@ -1,4 +1,4 @@
-import sendOTP from "~/utils/sendOTP";
+import sendOTP from '~/utils/sendOTP'
 
 export function useSignUp() {
   const authStorage = useSessionStorage('auth-store', { phone: '+79999999999', password: '', timer: '00' })

@@ -8,7 +8,7 @@ const {
   isPhoneValid,
   password,
   isPasswordValid,
-  handleSubmit
+  handleSubmit,
 } = useSignUp()
 </script>
 

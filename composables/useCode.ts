@@ -1,4 +1,4 @@
-import type {Ref} from "vue";
+import type { Ref } from 'vue'
 
 export function useCode(element: Ref) {
   const code = ref < string | null > (null)

@@ -1,4 +1,4 @@
-import {useUserStore} from "~/stores/userStore";
+import { useUserStore } from '~/stores/userStore'
 
 export function useSignIn() {
   const { signIn } = useUserStore()

@@ -1,4 +1,4 @@
-import type {Ref} from "vue";
+import type { Ref } from 'vue'
 
 export function useAuthPhone(el: Ref) {
   const phone = ref < string | null > (null)

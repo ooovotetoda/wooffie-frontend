@@ -1,8 +1,8 @@
-import type {RemovableRef} from "@vueuse/core";
+import type { RemovableRef } from '@vueuse/core'
 
 export function useAuthCode(
   authStorage: RemovableRef<{ phone: string, password: string }>,
-  signUp: (password: string | null) => Promise<void>
+  signUp: (password: string | null) => Promise<void>,
 ) {
   const route = useRoute()
 
