@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {OrganizationModalsFeedback} from "#components";
-import type {Organization, OrganizationWithFavorites} from "~/types/organization";
+import type {OrganizationWithFavorites} from "~/types/organization";
 import {useType} from "~/composables/useType";
 import type { FetchContext } from "ofetch";
 
@@ -361,11 +361,19 @@ const handleReview = async () => {
 
 @media (max-width: 1536px) {
   .organization-header {
-    grid-template-columns: auto 416px auto;
+    grid-template-areas:
+        "schedule image"
+        "schedule image"
+        "info info"
+        "about about"
+        "buttons buttons";
+    grid-template-rows: auto auto;
+    grid-template-columns: 334px auto;
+    gap: 16px;
   }
 
   .organization-header__media img {
-    width: 378px;
+    width: 100%;
     height: 468px;
   }
 
