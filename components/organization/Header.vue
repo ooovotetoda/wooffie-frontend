@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {OrganizationModalsFeedback} from "#components";
-import type {Organization} from "~/types/organization";
+import type {Organization, OrganizationWithFavorites} from "~/types/organization";
 import {useType} from "~/composables/useType";
 import type { FetchContext } from "ofetch";
 
 const props = defineProps<{
-  organization: Organization;
+  organization: OrganizationWithFavorites;
 }>()
 
 const { $ofetch } = useNuxtApp()
