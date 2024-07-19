@@ -3,6 +3,7 @@ import { formatPhone, useType, useUserStore } from "../../.nuxt/imports";
 import getDay from "~/utils/getDay";
 import type { Organization, Schedule } from '~/types/organization';
 import type { FetchContext } from "ofetch";
+import {useIsOpen} from "~/composables/useIsOpen";
 
 const props = defineProps<{
   organization: Organization,
@@ -21,11 +22,7 @@ const types = {
 }
 
 const { type } = useType()
-
-const schedule: Schedule | undefined = props.organization.schedule.find((schedule: Schedule) => schedule.day_of_week === getDay())
-const startTime = schedule?.start_time ? schedule?.start_time.slice(0, -3) : null;
-const endTime =  schedule?.end_time ? schedule?.end_time.slice(0, -3) : null;
-const time = (startTime && endTime) ? `${startTime} - ${endTime}` : "не работает"
+const { time } = useIsOpen(props.organization)
 
 const addressList = props.organization.addresses.length > 4 ? props.organization.addresses.slice(1, 5) : props.organization.addresses.slice(1)
 
