@@ -7,7 +7,10 @@ defineProps<{
 }>();
 
 const isMounted = ref(false);
-const { count } = useSlidesCount(280, 16);
+const { count, width } = useSlidesCount({
+  mobile: 280,
+  desktop: 344
+}, 16);
 
 onMounted(() => {
   register();

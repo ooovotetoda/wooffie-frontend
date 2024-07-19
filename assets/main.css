@@ -45,6 +45,12 @@ swiper-slide {
   }
 }
 
+@media (max-width: 1024px) {
+  .specialists swiper-slide {
+    transform: scale(1) !important;
+  }
+}
+
 @media (max-width: 640px) {
   html, body {
     overflow-x: hidden;
@@ -59,9 +65,5 @@ swiper-slide {
 
   .container {
     max-width: 320px;
-  }
-
-  .specialists swiper-slide {
-    transform: scale(1) !important;
   }
 }
