@@ -415,6 +415,43 @@ const toggleIsActive = async () => {
   }
 }
 
+@media (max-width: 1280px) {
+  .card {
+    grid-template-columns: 180px auto 340px;
+  }
+
+  .card__info {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card {
+    grid-template-areas:
+    "media header"
+    "media copy"
+    "info info";
+    grid-template-columns: 180px auto;
+  }
+
+  .card__info {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .card__info-list {
+    margin-bottom: 16px;
+  }
+
+  .card__address {
+    margin-top: 0;
+  }
+
+  .card__info-enroll {
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 640px) {
   .card {
     grid-template-areas:
