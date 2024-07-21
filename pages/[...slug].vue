@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ErrorBlock from "~/components/profile/ErrorBlock.vue";
+import ErrorBlock from '~/components/profile/ErrorBlock.vue'
 
 definePageMeta({
   breadcrumb: 'Несуществующая страница',

@@ -2,8 +2,8 @@
 defineProps({
   title: {
     default: 'Что-то пошло не так',
-    title: String
-  }
+    title: String,
+  },
 })
 </script>
 

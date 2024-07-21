@@ -1,6 +1,6 @@
 interface IWidths {
-  mobile: number;
-  desktop: number;
+  mobile: number
+  desktop: number
 }
 
 export function useSlidesCount(widths: IWidths | number, margin: number) {

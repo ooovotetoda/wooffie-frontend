@@ -43,8 +43,8 @@ export interface Organization {
   isFavorite?: boolean
 }
 
-export interface OrganizationWithFavorites extends Organization{
-  isFavorite: boolean;
+export interface OrganizationWithFavorites extends Organization {
+  isFavorite: boolean
 }
 
 export interface OrganizationList {
