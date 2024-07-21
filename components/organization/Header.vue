@@ -385,6 +385,10 @@ const handleReview = async () => {
     margin-bottom: 16px;
   }
 
+  .organization-header__criteria {
+    margin-bottom: 0;
+  }
+
   .organization-header__criteria span {
     padding: 6px 8px;
     font-size: 12px;
