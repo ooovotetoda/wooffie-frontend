@@ -6,31 +6,38 @@ export default defineNuxtConfig({
       // baseURL: 'http://localhost:8080',
     },
   },
+
   routeRules: {
     '/': { prerender: true },
     '/auth/**': { prerender: true },
     '/faq/**': { prerender: true },
   },
+
   router: {
     options: {
       scrollBehaviorType: 'smooth',
     },
   },
+
   // @ts-ignore
   colorMode: {
     preference: 'light',
   },
+
   pinia: {
     storesDirs: ['./stores/**'],
   },
+
   build: {
     transpile: ['swiper'],
   },
+
   vue: {
     compilerOptions: {
       isCustomElement: tag => tag.startsWith('swiper-'),
     },
   },
+
   image: {
     providers: {
       myProvider: {
@@ -42,9 +49,11 @@ export default defineNuxtConfig({
       },
     },
   },
+
   imports: {
     dirs: ['types/*.ts'],
   },
+
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
@@ -54,15 +63,18 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'nuxt-module-eslint-config',
   ],
+
   plugins: [
     '~/plugins/ofetch.ts',
     '~/plugins/access.ts',
   ],
+
   css: [
     '~/assets/main.css',
     '~/assets/colors.css',
     '~/assets/fonts.css',
   ],
+
   app: {
     head: {
       title: 'Wooffie: Все Услуги для Животных на Одном Сайте',
@@ -79,5 +91,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   devtools: { enabled: true },
+  compatibilityDate: '2024-07-22',
 })
