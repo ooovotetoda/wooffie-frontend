@@ -11,7 +11,12 @@ const props = defineProps<{
 <template>
   <div class="card">
     <div class="card-avatar">
-      <NuxtImg format="webp" :src="specialist.photo" alt="avatar"/>
+      <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
+        format="webp"
+        :src="specialist.photo"
+        alt="avatar"
+      />
     </div>
     <p class="card-experience">
       стаж {{ specialist.experience }} {{ getYearWord(specialist.experience) }}
@@ -32,7 +37,7 @@ const props = defineProps<{
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .card {
   display: flex;
   flex-direction: column;
@@ -40,124 +45,126 @@ const props = defineProps<{
   align-items: center;
   max-width: 420px;
   padding: 32px 72px;
+  margin: 32px 0;
   border-radius: 20px;
   background: #FFF;
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+}
 
-  &-avatar {
-    width: 200px;
-    height: 200px;
+.card-avatar {
+  width: 200px;
+  height: 200px;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  }
+.card-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-  &-experience {
-    margin: 10px 0;
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.card-experience {
+  margin: 10px 0;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-  &-text {
-    margin-bottom: 24px;
-  }
+.card-text {
+  margin-bottom: 24px;
+}
 
-  &-row {
-    margin-bottom: 14px;
-    margin-right: auto;
-    text-align: left;
-    color: #080606;
-    font-family: "Futura New Book",serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
+.card-row {
+  margin-bottom: 14px;
+  margin-right: auto;
+  text-align: left;
+  color: #080606;
+  font-family: "Futura New Book", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+}
 
-    span {
-      display: block;
-      margin-bottom: 4px;
-      color: $dark-grey;
-      font-family: "Futura New Book",serif;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-    }
-    &:nth-last-of-type(1) {
-      margin-bottom: 0;
-    }
-  }
+.card-row span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--dark-grey);
+  font-family: "Futura New Book", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
 
-  a {
-    width: 100%;
-  }
+.card-row:nth-last-of-type(1) {
+  margin-bottom: 0;
+}
 
-  &-btn {
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 10px;
-    background: $main-color;
-    border: none;
-    outline: none;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.15s linear;
+.card a {
+  width: 100%;
+}
 
-    &:hover {
-      background-color: $main-color-dark;
-    }
+.card-btn {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 10px;
+  background: var(--main-color);
+  border: none;
+  outline: none;
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.15s linear;
+}
 
-    &:active {
-      transform: scale(0.93);
-    }
-  }
+.card-btn:hover {
+  background-color: var(--main-color-dark);
+}
+
+.card-btn:active {
+  transform: scale(0.93);
 }
 
 @media (max-width: 640px) {
   .card {
+    width: 280px;
     padding: 32px 40px;
+  }
 
-    &-avatar {
-      width: 150px;
-      height: 150px;
-    }
+  .card-avatar {
+    width: 150px;
+    height: 150px;
+  }
 
-    &-experience {
-      margin: 8px 0;
-      font-size: 14px;
-    }
+  .card-experience {
+    margin: 8px 0;
+    font-size: 14px;
+  }
 
-    &-text {
-      align-items: center;
-    }
+  .card-text {
+    align-items: center;
+  }
 
-    &-row {
-      margin-bottom: 8px;
-      font-size: 16px;
+  .card-row {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
 
-      span {
-        margin-bottom: 0;
-        font-size: 14px;
-      }
-    }
+  .card-row span {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
 
-    &-btn {
-      width: 200px;
-      font-size: 14px;
-    }
+  .card-btn {
+    font-size: 14px;
   }
 }
 </style>

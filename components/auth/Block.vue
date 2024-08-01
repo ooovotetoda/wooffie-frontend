@@ -5,34 +5,32 @@
 <template>
   <div class="authorization">
     <h3 class="authorization-title">
-      <slot name="title"></slot>
+      <slot name="title" />
     </h3>
 
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .authorization {
   text-align: center;
+}
 
-  &-title {
-    margin-bottom: 32px;
-    color: $main-color;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.authorization-title {
+  margin-bottom: 32px;
+  color: var(--main-color);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 @media (max-width: 640px) {
-  .authorization {
-    &-title {
-      margin-bottom: 24px;
-    }
+  .authorization-title {
+    margin-bottom: 24px;
   }
 }
 </style>

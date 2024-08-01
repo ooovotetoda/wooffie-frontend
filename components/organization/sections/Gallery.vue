@@ -6,7 +6,7 @@ const { $ofetch } = useNuxtApp()
 
 const route = useRoute()
 
-const type = useType()
+const { type } = useType()
 
 const { data: gallery } = await useAsyncData<Photo[]>(
     `gallery:${route.params.id}`,
@@ -32,45 +32,46 @@ const { data: gallery } = await useAsyncData<Photo[]>(
     <Empty v-if="gallery?.length === 0" :margin="78"/>
 
     <UCarousel
-        v-if="gallery && gallery.length !== 0"
-        v-slot="{ item }"
-        :items="gallery"
-        :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
-        class="overflow-hidden"
-        indicators
+      v-if="gallery && gallery.length !== 0"
+      v-slot="{ item }"
+      :items="gallery"
+      :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
+      class="overflow-hidden"
+      indicators
     >
       <div class="w-full px-4">
-        <NuxtImg format="webp" :src="item.photo_url" class="w-full h-full rounded-lg" />
+        <NuxtImg
+          :modifiers="{ grayscale: true, tint: '#CF8802' }"
+          format="webp"
+          :src="item.photo_url"
+          class="w-full h-full rounded-lg"
+        />
       </div>
     </UCarousel>
   </section>
-
-
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .gallery {
   padding-bottom: 60px;
+}
 
-  &__title {
-    margin-bottom: 52px;
-    color: $text-dark;
-    text-align: center;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.gallery__title {
+  margin-bottom: 52px;
+  color: var(--text-dark);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 @media (max-width: 640px) {
-  .gallery {
-    &__title {
-      margin-bottom: 16px;
-      font-size: 18px;
-    }
+  .gallery__title {
+    margin-bottom: 16px;
+    font-size: 18px;
   }
 }
 </style>

@@ -7,7 +7,7 @@ const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const { data: organizations } = await useAsyncData<Organization[]>(
     `organizations:${type.value}:${route.params.id}`,
@@ -65,7 +65,7 @@ const { data: organizations } = await useAsyncData<Organization[]>(
   </ul>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 ul {
   list-style-type: none;
 }

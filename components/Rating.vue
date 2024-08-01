@@ -1,29 +1,29 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   rating: {
-    default: false,
-    type: Number
+    default: 0,
+    type: Number,
   },
   active: {
     default: false,
-    type: Boolean
-  }
+    type: Boolean,
+  },
 })
 
 const emit = defineEmits(['rated'])
-
 </script>
 
 <template>
   <div class="rating">
-    <IconsStar v-for="index in 5"
-               :isYellow="index <= rating"
-               @click="emit('rated', index)"
+    <IconsStar
+      v-for="index in 5"
+      :is-yellow="index <= rating"
+      @click="emit('rated', index)"
     />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .rating {
   display: flex;
   gap: 4px;

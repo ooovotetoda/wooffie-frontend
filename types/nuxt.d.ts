@@ -1,7 +1,7 @@
-import { OfetchInstance } from 'ofetch';
+import { OfetchInstance } from 'ofetch'
 
 declare module '#app' {
-    interface NuxtApp {
-        $ofetch: OfetchInstance;
-    }
+  interface NuxtApp {
+    $ofetch: OfetchInstance
+  }
 }

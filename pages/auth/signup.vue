@@ -1,136 +1,114 @@
 <script setup lang="ts">
-import sendOTP from "~/utils/sendOTP";
-
 definePageMeta({
-  layout: "authorization",
+  layout: 'authorization',
 })
 
-const authStorage = useSessionStorage("auth-store", { phone: "+79999999999", password: "", timer: "00" })
-
-const phone = ref<string | null>(null);
-const isPhoneValid = ref<boolean>(true);
-const password = ref<string | null>(null);
-const isPasswordValid = ref<boolean>(true);
-
-const handleSubmit = async () => {
-  if (phone.value === null
-      || password.value === null
-      || password.value.length < 8
-      || !isPhoneValid.value
-      || !isPasswordValid.value) {
-    return
-  }
-
-  if (phone.value.startsWith('8')) {
-    phone.value = phone.value.replace('8', '+7')
-  }
-
-  authStorage.value.phone = phone.value
-  authStorage.value.password = password.value
-
-  const status = await sendOTP(phone.value)
-
-  if (status === "OK") {
-    await navigateTo({
-      path: "/auth/code",
-      query: {
-        type: "register"
-      }
-    })
-  } else {
-    console.log("failed to send OTP code")
-  }
-}
+const {
+  phone,
+  isPhoneValid,
+  password,
+  isPasswordValid,
+  handleSubmit,
+} = useSignUp()
 </script>
 
 <template>
   <AuthBlock>
-    <template v-slot:title>Регистрация</template>
+    <template #title>
+      Регистрация
+    </template>
 
-    <form @submit.prevent="handleSubmit" class="authorization-form">
+    <form
+      class="authorization-form"
+      @submit.prevent="handleSubmit"
+    >
       <AuthPhone
-          @updatePhone="(p) => phone = p"
-          v-model:isPhoneValid = isPhoneValid
+        v-model:isPhoneValid="isPhoneValid"
+        @update-phone="(p) => phone = p"
       />
       <AuthPassword
-          @updatePassword="(p) => password = p"
-          v-model:isPasswordValid="isPasswordValid"
+        v-model:isPasswordValid="isPasswordValid"
+        @update-password="(p) => password = p"
       />
 
-      <button class="authorization-login">Зарегистрироваться</button>
+      <button class="authorization-login">
+        Зарегистрироваться
+      </button>
     </form>
 
     <NuxtLink to="/auth/signin">
-      <button class="authorization-registration">Вход</button>
+      <button class="authorization-registration">
+        Вход
+      </button>
     </NuxtLink>
   </AuthBlock>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .authorization {
   text-align: center;
+}
 
-  &-login {
-    width: 100%;
-    padding: 12px 0;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border: none;
-    background: $main-color;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.authorization-login {
+  width: 100%;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--main-color);
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
 
-    &:hover {
-      background: $main-color-dark;
-    }
+.authorization-login:hover {
+  background: var(--main-color-dark);
+}
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
+.authorization-login:active {
+  transform: scale(0.95);
+}
 
-  &-registration {
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 10px;
-    border: none;
-    background: #FFF;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.authorization-registration {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 10px;
+  border: none;
+  background: #FFF;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
 
-    &:hover {
-      background: $hover-grey;
-    }
+.authorization-registration:hover {
+  background: var(--hover-grey);
+}
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
+.authorization-registration:active {
+  transform: scale(0.95);
+}
 
-  &-error {
-    text-align: left;
-    margin: -12px 0 6px 16px;
-    color: rgba(228, 0, 0, 0.87);
-    font-family: Roboto, serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 171.429% */
-  }
+.authorization-error {
+  text-align: left;
+  margin: -12px 0 6px 16px;
+  color: rgba(228, 0, 0, 0.87);
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -138,6 +116,7 @@ const handleSubmit = async () => {
   margin: 0;
   padding: 0 14px;
 }
+
 .fade-enter-from, .fade-leave-to {
   margin: 0 14px;
   padding: 0;

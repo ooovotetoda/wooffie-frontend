@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import {sections} from "~/utils/constants";
 import {useType} from "~/composables/useType";
+import type {Organization, OrganizationWithFavorites} from "~/types/organization";
+import type {FavoritesList} from "~/types/favorites";
+import ErrorBlock from "~/components/profile/ErrorBlock.vue";
 
 definePageMeta({
   breadcrumb: "Организация"
@@ -13,9 +16,9 @@ const router = useRouter()
 
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
-const { data: organization } = await useAsyncData(
+const { data: organization } = await useAsyncData<OrganizationWithFavorites | null | undefined>(
     `organization:${route.params.id}`,
     async () => {
       try {
@@ -44,11 +47,10 @@ const { data: organization } = await useAsyncData(
               isFavorite: false,
             }
           }
-
         }
       } catch (e) {
         console.error(e)
-        return {}
+        return null
       }
     }
 )
@@ -66,13 +68,20 @@ watch(() => route, () => {
 <template>
   <main class="main">
     <UContainer>
-      <OrganizationHeader :organization/>
-      <OrganizationNav />
-      <OrganizationSections :organization/>
+      <ErrorBlock
+        v-if="!organization"
+        title="Что-то пошло не так"
+      />
+
+      <template v-else>
+        <OrganizationHeader :organization="organization"/>
+        <OrganizationNav />
+        <OrganizationSections :organization="organization"/>
+      </template>
     </UContainer>
   </main>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 
 </style>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useBreadcrumbs } from '~/composables/useBreadcrumbs';
+import { useBreadcrumbs } from '~/composables/useBreadcrumbs'
 
-const { breadcrumbs } = useBreadcrumbs();
+const { breadcrumbs } = useBreadcrumbs()
 
 const route = useRoute()
 
 const withSearch = computed(() => {
-  return route.path.startsWith("/catalog");
-});
+  return route.path.startsWith('/catalog')
+})
 </script>
 
 <template>
@@ -16,18 +16,21 @@ const withSearch = computed(() => {
 
     <main class="main">
       <UContainer>
-        <Search v-if="withSearch"/>
-        <Breadcrumbs v-if="route.path !== '/'" :breadcrumbs="breadcrumbs"/>
+        <Search v-if="withSearch" />
+        <Breadcrumbs
+          v-if="route.path !== '/'"
+          :breadcrumbs="breadcrumbs"
+        />
       </UContainer>
 
-      <slot/>
+      <slot />
     </main>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .main {
   flex: 1;
 }

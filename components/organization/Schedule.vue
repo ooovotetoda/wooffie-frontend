@@ -82,7 +82,7 @@ onMounted(() => {
 </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .schedule {
   grid-area: schedule;
   width: 334px;
@@ -93,102 +93,102 @@ onMounted(() => {
   background: #FFF;
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   text-align: center;
+}
 
-  &__title {
-    margin-bottom: 18px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.schedule__title {
+  margin-bottom: 18px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-  &__row {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
+.schedule__row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
 
-  &__item {
-    flex: 1;
-  }
+.schedule__item {
+  flex: 1;
+}
 
-  &__weekday {
-    padding: 4px 32px;
-    background: rgba(221, 185, 164, 0.50);
-    color: #824C27;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.schedule__weekday {
+  padding: 4px 32px;
+  background: rgba(221, 185, 164, 0.50);
+  color: #824C27;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__subitem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.schedule__subitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__street {
-    position: relative;
-    margin-top: 8px;
-    width: 100%;
-    
-    &:before {
-      content: "";
-      position: absolute;
-      top: -8px;
-      right: 0;
-      left: 0;
-      height: 1px;
-      background: #D9DAD9;
-    }
+.schedule__street {
+  position: relative;
+  margin-top: 8px;
+  width: 100%;
+}
 
-    &:after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      width: 8px;
-      height: 4px;
-      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0ibTEyIDE1bC01LTVoMTBsLTUgNVoiLz48L3N2Zz4=") no-repeat center;
-      transform: translateY(-50%);
-    }
-  }
+.schedule__street:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: #D9DAD9;
+}
 
-  &__input {
-    width: 100%;
-    padding: 15px 14px;
-    border: none;
-    outline: none;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    appearance: none;
+.schedule__street:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 8px;
+  height: 4px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0ibTEyIDE1bC01LTVoMTBsLTUgNVoiLz48L3N2Zz4=") no-repeat center;
+  transform: translateY(-50%);
+}
 
-    &:hover {
-      background-color: $hover-grey;
-    }
-  }
+.schedule__input {
+  width: 100%;
+  padding: 15px 14px;
+  border: none;
+  outline: none;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+}
+
+.schedule__input:hover {
+  background-color: var(--hover-grey);
 }
 
 @media (max-width: 640px) {

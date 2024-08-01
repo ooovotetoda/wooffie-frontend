@@ -13,7 +13,7 @@ const { $ofetch } = useNuxtApp()
 const route = useRoute()
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const { data: reviews, refresh } = await useAsyncData<Review[]>(
     `reviews:${type.value}:${route.params.id}`,
@@ -91,17 +91,17 @@ const handleOld = () => {
 
       <p class="feedback__sort">
         <span class="sort__text">Сортировать:</span>
-        <button 
-            @click="handleNew" 
-            class="sort__item" 
+        <button
+            @click="handleNew"
+            class="sort__item"
             :class="{active: sort === 'new'}"
         >
           новые
         </button>
-        
-        <button 
-            @click="handleOld" 
-            class="sort__item" 
+
+        <button
+            @click="handleOld"
+            class="sort__item"
             :class="{active: sort === 'old'}"
         >
           старые
@@ -110,143 +110,139 @@ const handleOld = () => {
     </div>
 
     <OrganizationSectionsFeedbackFilter
-        :reviews
-        @checks="(newChecks) => checks = newChecks"
+      :reviews="reviews"
+      @checks="(newChecks) => checks = newChecks"
     />
   </div>
 
   <ul class="feedback-comments">
     <li v-for="review in reviewsFiltered">
       <OrganizationSectionsFeedbackComment
-          :review
-          @react="refresh"
+        :review
+        @react="refresh"
       />
     </li>
   </ul>
 
-  <Empty 
-      v-show="reviewsFiltered ? reviewsFiltered.length == 0 : false" 
-      :margin="78"
+  <Empty
+    v-show="reviewsFiltered ? reviewsFiltered.length == 0 : false"
+    :margin="78"
   />
 </template>
 
-<style scoped lang="scss">
-.feedback {
-  &__header {
-    display: flex;
-    gap: 164px;
-    margin-bottom: 24px;
-  }
+<style scoped>
+.feedback__header {
+  display: flex;
+  gap: 164px;
+  margin-bottom: 24px;
+}
 
-  &__info {
-    display: flex;
-    flex-direction: column;
-  }
+.feedback__info {
+  display: flex;
+  flex-direction: column;
+}
 
-  &__title {
-    margin-bottom: 32px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+.feedback__title {
+  margin-bottom: 32px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-    span {
-      color: rgba(0, 0, 0, 0.48);
-    }
-  }
+.feedback__title span {
+  color: rgba(0, 0, 0, 0.48);
+}
 
-  &__rating {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    font-size: 24px;
+.feedback__rating {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+}
 
-    span {
-      margin-top: 6px;
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
-  }
+.feedback__rating span {
+  margin-top: 6px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__sort {
-    margin-top: auto;
-    .sort {
-      &__text {
-        margin-right: 16px;
-        color: $text-dark;
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-      }
+.feedback__sort {
+  margin-top: auto;
+}
 
-      &__item {
-        padding: 4px 8px;
-        border: none;
-        background-color: transparent;
-        color: $text-dark;
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        cursor: pointer;
-        transition: all 0.1s ease-in-out;
+.sort__text {
+  margin-right: 16px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-        &:first-of-type {
-          border-right: 1px solid #D9DAD9;
-        }
+.sort__item {
+  padding: 4px 8px;
+  border: none;
+  background-color: transparent;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
 
-        &.active {
-          color: $main-color;
-        }
-      }
-    }
-  }
+.sort__item:first-of-type {
+  border-right: 1px solid #D9DAD9;
+}
 
-  &-comments {
-    list-style-type: none;
-  }
+.sort__item.active {
+  color: var(--main-color);
+}
+
+.feedback-comments {
+  list-style-type: none;
 }
 
 @media (max-width: 640px) {
-  .feedback {
-    &__header {
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
+  .feedback__header {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
 
-    &__title {
-      margin-bottom: 16px;
-      font-size: 16px;
-      line-height: 19px;
-    }
+  .feedback__title {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 19px;
+  }
 
-    &__rating {
-      gap: 8px;
-      font-size: 14px;
+  .feedback__rating {
+    gap: 8px;
+    font-size: 14px;
+  }
 
-      span {
-        margin-top: 2px;
-        font-size: 12px;
-      }
-    }
+  .feedback__rating span {
+    margin-top: 2px;
+    font-size: 12px;
+  }
 
-    &__sort {
-      display: none;
-    }
+  .feedback__sort {
+    display: none;
   }
 }
 </style>
+

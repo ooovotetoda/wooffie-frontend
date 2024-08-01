@@ -54,7 +54,14 @@ const info = {
 <template>
   <div class="card">
     <div class="card-image">
-      <NuxtImg format="webp" provider="myProvider" :src="image" alt="services" srcset=""/>
+      <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
+        format="webp"
+        provider="myProvider"
+        :src="image"
+        alt="services"
+        srcset=""
+      />
     </div>
     <div class="card-content">
       <div class="card-content__title">
@@ -74,7 +81,7 @@ const info = {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .card {
   display: flex;
   width: 480px;
@@ -83,103 +90,104 @@ const info = {
   border-radius: 20px;
   background: var(--t-1100, #FFF);
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+}
 
-  &-image {
-    position: relative;
-    width: 50%;
-    height: 100%;
-    &:before {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.2);
-      border-bottom-left-radius: 20px;
-      border-top-left-radius: 20px;
-    }
+.card-image {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-bottom-left-radius: 20px;
-      border-top-left-radius: 20px;
-    }
-  }
+.card-image:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
 
-  &-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 240px;
-    padding: 32px;
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
 
-    &__title {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      padding-bottom: 10px;
-      margin-bottom: 18px;
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      border-bottom: 1px solid var(--Line, #D9DAD9);
-    }
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 240px;
+  padding: 32px;
+}
 
-    &__option {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-bottom: 8px;
-      color: $dark-grey;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      cursor: pointer;
+.card-content__title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-bottom: 1px solid var(--Line, #D9DAD9);
+}
 
-      &:nth-last-child(2) {
-        margin-bottom: 32px;
-      }
-    }
+.card-content__option {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
 
-    a {
-      width: 100%;
-    }
+.card-content__option:nth-last-child(2) {
+  margin-bottom: 32px;
+}
 
-    &__btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      background: $main-color;
-      color: #FFF;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      cursor: pointer;
-      transition: all 0.15s linear;
+.card-content a {
+  width: 100%;
+}
 
-      &:hover {
-        background-color: $main-color-dark;
-      }
+.card-content__btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--main-color);
+  color: #FFF;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.15s linear;
+}
 
-      &:active {
-        transform: scale(0.93);
-      }
-    }
-  }
+.card-content__btn:hover {
+  background-color: var(--main-color-dark);
+}
+
+.card-content__btn:active {
+  transform: scale(0.93);
 }
 
 @media (max-width: 640px) {
@@ -187,40 +195,41 @@ const info = {
     flex-direction: column;
     width: 280px;
     height: auto;
+    margin: 24px 0;
+  }
 
-    &-image {
-      width: 100%;
-      height: 192px;
+  .card-image {
+    width: 100%;
+    height: 192px;
+  }
 
-      img {
-        border-radius: 20px 20px 0 0;
-      }
+  .card-image img {
+    border-radius: 20px 20px 0 0;
+  }
 
-      &:before {
-        border-radius: 20px 20px 0 0;
-      }
-    }
+  .card-image:before {
+    border-radius: 20px 20px 0 0;
+  }
 
-    &-content {
-      min-width: 100%;
+  .card-content {
+    min-width: 100%;
+  }
 
-      &__title {
-        font-size: 16px;
-      }
+  .card-content__title {
+    font-size: 16px;
+  }
 
-      &__option {
-        font-size: 14px;
+  .card-content__option {
+    font-size: 14px;
+  }
 
-        &:nth-last-child(-n+4) {
-          display: none;
-        }
-      }
+  .card-content__option:nth-last-child(-n+4) {
+    display: none;
+  }
 
-      &__btn {
-        margin-top: 20px;
-        font-size: 14px;
-      }
-    }
+  .card-content__btn {
+    margin-top: 20px;
+    font-size: 14px;
   }
 }
 </style>

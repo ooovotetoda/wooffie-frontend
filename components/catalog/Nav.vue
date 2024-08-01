@@ -27,72 +27,67 @@ const handleSelectCategory = (category: string) => {
   </nav>
 </template>
 
-<style scoped lang="scss">
-.catalog {
-  &-nav {
-    margin-bottom: 32px;
+<style scoped>
+.catalog-nav {
+  margin-bottom: 32px;
+}
 
-    ul {
-      display: flex;
-      gap: 24px;
-      list-style-type: none;
+.catalog-nav ul {
+  display: flex;
+  gap: 24px;
+  list-style-type: none;
+}
 
-      li {
-        padding: 12px 32px;
-        cursor: pointer;
-        border-radius: 50px;
-        color: $text-dark;
-        font-feature-settings: 'clig' off, 'liga' off;
-        font-family: Roboto, serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        transition: all 0.15s ease-in-out;
-      }
-    }
-  }
+.catalog-nav ul li {
+  padding: 12px 32px;
+  cursor: pointer;
+  border-radius: 50px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: all 0.15s ease-in-out;
 }
 
 .active {
   color: #FFFFFF !important;
-  background-color: $main-color;
+  background-color: var(--main-color);
+}
 
-  &:hover {
-    background-color: $main-color-dark;
-  }
+.active:hover {
+  background-color: var(--main-color-dark);
 }
 
 @media (max-width: 640px) {
-  .catalog {
-    &-nav {
-      margin: 0 -20px 24px -20px;
-      overflow-x: scroll;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+  .catalog-nav {
+    margin: 0 -20px 24px -20px;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-      &::-webkit-scrollbar {
-        display: none;
-      }
+  .catalog-nav::-webkit-scrollbar {
+    display: none;
+  }
 
-      ul {
-        padding: 0 20px;
-        gap: 0;
+  .catalog-nav ul {
+    padding: 0 20px;
+    gap: 0;
+  }
 
-        li {
-          padding: 8px 16px;
-          font-size: 14px;
-        }
+  .catalog-nav ul li {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 
-        &::after {
-          content: '';
-          position: relative;
-          flex: none;
-          width: 20px;
-        }
-      }
-    }
+  .catalog-nav ul::after {
+    content: '';
+    position: relative;
+    flex: none;
+    width: 20px;
   }
 }
-
 </style>

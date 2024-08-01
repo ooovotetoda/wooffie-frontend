@@ -5,18 +5,17 @@ import { createOperationsGenerator } from '#image'
 const operationsGenerator = createOperationsGenerator()
 
 export const getImage: ProviderGetImage = (
-    src,
-    { modifiers = {}, baseURL } = {}
+  src,
+  { modifiers = {}, baseURL } = {},
 ) => {
+  if (!baseURL) {
+    // also support runtime config
+    baseURL = useRuntimeConfig().public.siteUrl
+  }
 
-    if (!baseURL) {
-        // also support runtime config
-        baseURL = useRuntimeConfig().public.siteUrl
-    }
+  const operations = operationsGenerator(modifiers)
 
-    const operations = operationsGenerator(modifiers)
-
-    return {
-        url: joinURL(baseURL, src + (operations ? '?' + operations : '')),
-    }
+  return {
+    url: joinURL(baseURL, src + (operations ? `?${operations}` : '')),
+  }
 }

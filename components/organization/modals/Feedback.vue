@@ -13,7 +13,7 @@ const route = useRoute()
 const router = useRouter()
 const { user } = useUserStore()
 
-const type = useType()
+const { type } = useType()
 
 const rating = ref(0)
 const comment = ref<string | null>(null)
@@ -72,14 +72,15 @@ const submitReview = async () => {
       <ClientOnly>
         <Rating :rating="rating" @rated="(index) => rating = index"/>
         <form>
-          <textarea name="feedback"
-                    id="feedback"
-                    class="modal__textarea"
-                    :class="{filled: comment}"
-                    cols="30"
-                    rows="10"
-                    placeholder="Напишите отзыв"
-                    v-model="comment"
+          <textarea
+            name="feedback"
+            id="feedback"
+            class="modal__textarea"
+            :class="{filled: comment}"
+            cols="30"
+            rows="10"
+            placeholder="Напишите отзыв"
+            v-model="comment"
           ></textarea>
           <p v-if="invalid" class="modal__invalid">Выберите оценку и напишите отзыв</p>
         </form>
@@ -97,121 +98,118 @@ const submitReview = async () => {
     </div>
 </template>
 
+<style scoped>
+.modal__window {
+  padding: 56px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+}
 
-<style scoped lang="scss">
-.modal {
-  &__window {
-    padding: 56px;
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
+.modal__window .rating {
+  margin-bottom: 18px;
+  font-size: 32px;
+  justify-content: center;
+}
 
-    .rating {
-      margin-bottom: 18px;
-      font-size: 32px;
-      justify-content: center;
-    }
-  }
+.modal__title {
+  color: #000;
+  margin-bottom: 16px;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-  &__title {
-    color: #000;
-    margin-bottom: 16px;
-    text-align: center;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.modal__textarea {
+  width: 100%;
+  height: 200px;
+  padding: 10px 24px;
+  padding-left: 48px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #D9DAD9;
+  background: #FFF;
+  background-image: url("https://api.iconify.design/material-symbols:chat.svg?color=%23898989");
+  background-position: 20px 14px;
+  background-repeat: no-repeat;
+  resize: none;
+  outline: none;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  transition: all 0.1s ease-in-out;
+}
 
-  &__textarea {
-    width: 100%;
-    height: 200px;
-    padding: 10px 24px;
-    padding-left: 48px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border: 1px solid #D9DAD9;
-    background: #FFF;
-    background-image: url("https://api.iconify.design/material-symbols:chat.svg?color=%23898989");
-    background-position: 20px 14px; /* Позиционирование иконки */
-    background-repeat: no-repeat;
-    resize: none;
-    outline: none;
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 150% */
-    transition: all 0.1s ease-in-out;
+.modal__textarea.filled {
+  padding-left: 24px;
+  background-image: none;
+}
 
-    &.filled {
-      padding-left: 24px;
-      background-image: none;
-      @include placeholder;
-    }
-  }
+.modal__invalid {
+  padding-left: 28px;
+  color: var(--Color-Text-Error, rgba(228, 0, 0, 0.87));
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
 
-  &__invalid {
-    padding-left: 28px;
-    color: var(--Color-Text-Erorr, rgba(228, 0, 0, 0.87));
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-  }
+.modal__buttons {
+  width: 100%;
+  display: flex;
+  gap: 28px;
+  margin-top: 30px;
+}
 
-  &__buttons {
-    width: 100%;
-    display: flex;
-    gap: 28px;
-    margin-top: 30px;
+.modal__buttons button {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
 
-    button {
-      flex: 1;
-      padding: 12px 0;
-      border: none;
-      border-radius: 10px;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      transition: all 0.15s ease-in-out;
-      cursor: pointer;
-    }
+.modal__buttons .cancel {
+  color: var(--text-dark);
+  background: #fff;
+}
 
-    .cancel {
-      color: $text-dark;
-      background: #fff;
+.modal__buttons .cancel:hover {
+  background: var(--hover-grey);
+}
 
-      &:hover {
-        background: $hover-grey;
-      }
-    }
+.modal__buttons .send {
+  color: #FFF;
+  background: var(--main-color);
+}
 
-    .send {
-      color: #FFF;
-      background: $main-color;
+.modal__buttons .send:hover {
+  background: var(--main-color-dark);
+}
 
-      &:hover {
-        background: $main-color-dark;
-      }
-    }
-  }
-
-  &__close {
-    position: absolute;
-    top: 44px;
-    right: 44px;
-    cursor: pointer;
-    font-size: 24px;
-  }
+.modal__close {
+  position: absolute;
+  top: 44px;
+  right: 44px;
+  cursor: pointer;
+  font-size: 24px;
 }
 </style>
+

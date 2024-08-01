@@ -68,39 +68,35 @@ watch(checked, (newChecked) => {
   </div>
 </template>
 
-<style scoped lang="scss">
-.filter {
-  &__title {
-    margin-bottom: 24px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-  }
+<style scoped>
+.filter__title {
+  margin-bottom: 24px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
 
-  &__list {
-    list-style-type: none;
+.filter__list {
+  list-style-type: none;
+}
 
-    li {
-      margin-bottom: 16px;
+.filter__list li {
+  margin-bottom: 16px;
+}
 
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-  }
+.filter__list li:last-of-type {
+  margin-bottom: 0;
 }
 
 @media (max-width: 640px) {
-  .filter {
-    &__title {
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 500;
-    }
+  .filter__title {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
   }
 }
 </style>

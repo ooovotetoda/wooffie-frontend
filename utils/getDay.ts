@@ -1,5 +1,5 @@
 export default function (): number {
-    let today = new Date();
-    let day = today.getDay();
-    return (day + 6) % 7
+  const today = new Date()
+  const day = today.getDay()
+  return (day + 6) % 7
 }

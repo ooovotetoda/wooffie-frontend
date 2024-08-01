@@ -101,7 +101,13 @@ const handleDislike = async () => {
 <div class="comment">
   <div class="comment__header">
     <div class="comment__icon">
-      <NuxtImg format="webp" provider="myProvider" src="/user-icon.svg" alt="avatar"/>
+      <NuxtImg
+        :modifiers="{ grayscale: true, tint: '#CF8802' }"
+        format="webp"
+        provider="myProvider"
+        src="/user-icon.svg"
+        alt="avatar"
+      />
     </div>
     <div class="comment__info">
       <div class="comment__tel">{{ formatReviewPhone(review.phone) }}</div>
@@ -132,181 +138,175 @@ const handleDislike = async () => {
 </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .comment {
   margin-bottom: 48px;
+}
 
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
+.comment__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
 
-  &__icon {
-    width: 50px;
-    height: 50px;
+.comment__icon {
+  width: 50px;
+  height: 50px;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-  }
+.comment__icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 
-  &__tel {
-    margin-bottom: 4px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+.comment__tel {
+  margin-bottom: 4px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-  &__status {
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.comment__status {
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  &__subheader {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
+.comment__subheader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
 
-  &__date {
-    margin-top: 4px;
-    color: $dark-grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-  }
+.comment__date {
+  margin-top: 4px;
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
 
-  &__copy {
-    margin-bottom: 8px;
-    overflow: hidden;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    text-overflow: ellipsis;
-    font-family: Roboto, serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px; /* 166.667% */
-  }
+.comment__copy {
+  margin-bottom: 8px;
+  overflow: hidden;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  text-overflow: ellipsis;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
 
-  &__estimations {
-    display: flex;
-    align-items: center;
-    gap: 32px;
+.comment__estimations {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
 
-    &__item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+.comment__estimations__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-      button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        transition: all 0.1s ease-in-out;
+.comment__estimations__item button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
 
-        svg {
-          color: rgba(0, 0, 0, 0.48);
-          transition: all 0.1s ease-in-out;
-        }
+.comment__estimations__item button svg {
+  color: rgba(0, 0, 0, 0.48);
+  transition: all 0.1s ease-in-out;
+}
 
-        &:hover {
-          svg {
-            color: rgba(225, 175, 87, 0.6);
-          }
-        }
+.comment__estimations__item button:hover svg {
+  color: rgba(225, 175, 87, 0.6);
+}
 
-        &:active {
-          scale: 0.75;
-        }
+.comment__estimations__item button:active {
+  transform: scale(0.75);
+}
 
-        &.liked {
-          svg {
-            color: $main-color;
-          }
-        }
+.comment__estimations__item button.liked svg {
+  color: var(--main-color);
+}
 
-        &.disliked {
-          svg {
-            color: $main-color;
-          }
-        }
-      }
-    }
+.comment__estimations__item button.disliked svg {
+  color: var(--main-color);
+}
 
-    &__count {
-      overflow: hidden;
-      color: rgba(0, 0, 0, 0.48);
-      font-feature-settings: 'clig' off, 'liga' off;
-      text-overflow: ellipsis;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 30px; /* 166.667% */
-    }
-  }
+.comment__estimations__count {
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.48);
+  font-feature-settings: 'clig' off, 'liga' off;
+  text-overflow: ellipsis;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
 }
 
 @media (max-width: 640px) {
   .comment {
     margin-bottom: 32px;
+  }
 
-    &__header {
-      gap: 8px;
-      margin-bottom: 0;
-    }
+  .comment__header {
+    gap: 8px;
+    margin-bottom: 0;
+  }
 
-    &__tel {
-      font-size: 16px;
-      line-height: 19px;
-    }
+  .comment__tel {
+    font-size: 16px;
+    line-height: 19px;
+  }
 
-    &__status {
-      font-size: 14px;
-      line-height: 24px;
-    }
+  .comment__status {
+    font-size: 14px;
+    line-height: 24px;
+  }
 
-    &__subheader {
-      margin-bottom: 0;
-      font-size: 14px;
-    }
+  .comment__subheader {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
 
-    &__date {
-      font-size: 12px;
-      line-height: 30px;
-    }
+  .comment__date {
+    font-size: 12px;
+    line-height: 30px;
+  }
 
-    &__copy {
-      margin-bottom: 4px;
-      font-size: 14px;
-      line-height: 20px;
-    }
+  .comment__copy {
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 20px;
+  }
 
-    &__estimations {
-      gap: 24px;
+  .comment__estimations {
+    gap: 24px;
+  }
 
-      &__count {
-        font-size: 14px;
-      }
-    }
+  .comment__estimations__count {
+    font-size: 14px;
   }
 }
 </style>

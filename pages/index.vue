@@ -1,68 +1,68 @@
 <script setup lang="ts">
+import type {Organization} from "~/types/organization";
 
-import {Slide} from "vue3-carousel";
-import Slider from "~/components/Slider.vue";
+const {$ofetch} = useNuxtApp()
 
-const { width } = useWindowSize()
+const {data: specialists} = await useAsyncData<Organization[]>(
+    "main:specialists",
+    async () => {
+      try {
+        const response: { specialists: Organization[] } = await $ofetch("api/specialists/top", {
+          method: "GET",
+          query: {
+            limit: 5
+          }
+        })
+
+        return response.specialists
+      } catch (e) {
+        console.error(e)
+        return []
+      }
+    }
+)
 </script>
 
 <template>
-  <section v-once id="main" class="main-header">
+  <section
+    v-once
+    id="hero"
+    class="main-header"
+  >
     <UContainer>
-      <div class="poster">
-        <h1 class="poster__title">Wooffie</h1>
-        <p class="poster__description">Заботимся о поиске лучших — для ваших меньших братьев. <br/>Специалисты, которым можно доверять</p>
+      <div class="hero">
+        <h1 class="hero__title">
+          Wooffie
+        </h1>
+        <p class="hero__description">
+          Заботимся о поиске лучших — для ваших меньших братьев. <br>Специалисты, которым можно доверять
+        </p>
       </div>
-      <Search/>
+      <Search />
     </UContainer>
   </section>
 
-  <section v-once id="services" class="services">
+  <section
+    v-once
+    id="services"
+    class="services"
+  >
     <UContainer class="px-0">
       <div class="wrapper">
-        <h2 class="services__title">Услуги</h2>
+        <h2 class="services__title">
+          Услуги
+        </h2>
 
-        <div class="services__table hidden sm:flex flex-col gap-16">
-          <div class="services__row flex flex-col xl:flex-row gap-16">
-            <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
-            <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
-          </div>
-          <div class="services__row flex flex-col xl:flex-row gap-16">
-            <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp"/>
-            <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp"/>
-          </div>
-        </div>
-
-        <Slider :width="width">
-          <Slide key="clinic">
-            <div class="carousel__item">
-              <MainServiceCard title="Клиники" service="clinic" image="card-clinic.webp"/>
-            </div>
-          </Slide>
-
-          <Slide key="vet">
-            <div class="carousel__item">
-              <MainServiceCard title="Ветеринары" service="vet" image="card-vet.webp"/>
-            </div>
-          </Slide>
-
-          <Slide key="groomer">
-            <div class="carousel__item">
-              <MainServiceCard title="Грумеры" service="groomer" image="card-groomer.webp"/>
-            </div>
-          </Slide>
-
-          <Slide key="salon">
-            <div class="carousel__item">
-              <MainServiceCard title="Зоосалоны" service="salon" image="card-salon.webp"/>
-            </div>
-          </Slide>
-        </Slider>
+        <MainServicePlaceholder />
       </div>
     </UContainer>
   </section>
 
-  <section v-once id="about" class="about">
+  <section
+    v-once
+    id="about"
+    class="about"
+  >
     <UContainer>
       <div class="wrapper">
         <div class="about-text">
@@ -81,11 +81,12 @@ const { width } = useWindowSize()
         </div>
         <div class="about__image">
           <NuxtImg
-              class="m-auto w-auto sm:w-full lg:w-[956px]"
-              format="webp"
-              provider="myProvider"
-              src="/about-animals.webp"
-              alt="animals"
+            :modifiers="{ grayscale: true, tint: '#CF8802' }"
+            class="m-auto w-auto sm:w-full lg:w-[956px]"
+            format="webp"
+            provider="myProvider"
+            src="/about-animals.webp"
+            alt="animals"
           />
         </div>
       </div>
@@ -93,261 +94,251 @@ const { width } = useWindowSize()
   </section>
 
   <section class="specialists">
-    <UContainer class="px-0">
-      <div class="wrapper">
-        <h2 class="specialists__title">Специалисты</h2>
-        <MainSpecialistCarousel/>
-      </div>
-    </UContainer>
+    <div class="wrapper">
+      <h2 class="specialists__title">
+        Специалисты
+      </h2>
+
+      <MainSpecialistSlider :specialists="specialists"/>
+    </div>
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .main-header {
   padding: 60px 0;
 }
 
-.poster {
+.hero {
   position: relative;
-
   width: 100%;
   height: 400px;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 32px;
-
   text-align: center;
   background: url("/main-header-bg.webp") no-repeat center;
   background-size: cover;
+}
 
-  &::before {
-    content: '';
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+.hero__title {
+  color: var(--grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 88px;
+  font-weight: 500;
+  font-variant: all-small-caps;
+  user-select: none;
+  z-index: 1;
+}
 
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 0;
-  }
-
-  &__title {
-    color: $grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 88px;
-    font-weight: 500;
-    font-variant: all-small-caps;
-    user-select: none;
-    z-index: 1;
-  }
-
-  &__description {
-    max-width: 800px;
-    color: $grey;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 500;
-    user-select: none;
-    z-index: 1;
-  }
+.hero__description {
+  max-width: 800px;
+  color: var(--grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  user-select: none;
+  z-index: 1;
 }
 
 .services {
   padding: 60px 0 120px 0;
-  background: $light-grey;
+  background: var(--light-grey);
   text-align: center;
+}
 
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-  }
+.services .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
 
-  &__title {
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 56px;
-    font-weight: 500;
-    font-variant: all-small-caps;
-  }
+.services__title {
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 56px;
+  font-weight: 500;
+  font-variant: all-small-caps;
 }
 
 .about {
   padding: 60px 0;
-  
-  .wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 60px;
-  }
+}
 
-  &-text {
-    max-width: 664px;
+.about .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
 
-    &__title {
-      margin-bottom: 32px;
-      color: $text-dark;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 56px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      font-variant: all-small-caps;
-    }
+.about-text {
+  max-width: 664px;
+}
 
-    &__description {
-      color: $dark-grey;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Roboto, serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 30px; /* 166.667% */
-    }
-  }
+.about-text__title {
+  margin-bottom: 32px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-variant: all-small-caps;
+}
 
-  &__image {
-    width: 100%;
-    text-align: center;
-  }
+.about-text__description {
+  color: var(--dark-grey);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.about__image {
+  width: 100%;
+  text-align: center;
 }
 
 .specialists {
   padding: 60px 0;
-  background: $light-grey;
+  background: var(--light-grey);
   text-align: center;
+}
 
-  &__title {
-    margin-bottom: 40px;
-    color: $text-dark;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Roboto, serif;
-    font-size: 56px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    font-variant: all-small-caps;
-  }
+.specialists .wrapper {
+  margin: 0 auto;
+  max-width: 1104px;
+}
+
+.specialists__title {
+  margin-bottom: 40px;
+  color: var(--text-dark);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto, serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-variant: all-small-caps;
 }
 
 @media screen and (max-width: 1536px) {
-  .about {
-    .wrapper {
-     flex-direction: column; 
-    }
+  .about .wrapper {
+    flex-direction: column;
+  }
 
-    &-text {
-      max-width: 100%;
-    }
+  .about-text {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .poster {
+  .hero {
     position: relative;
     gap: 0;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,0,0, 0.4);
-      z-index: 0;
-    }
-
-    &__title {
-      font-size: 48px;
-      line-height: 56px;
-      z-index: 1;
-    }
-
-    &__description {
-      max-width: 281px;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-      z-index: 1;
-    }
+    background-image: url("/mobile-main-header-bg.webp");
   }
 
-  .main {
-    &-header {
-      padding: 36px 0;
-    }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0, 0.4);
+    z-index: 0;
+  }
+
+  .hero__title {
+    font-size: 48px;
+    line-height: 56px;
+    z-index: 1;
+  }
+
+  .hero__description {
+    max-width: 281px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    z-index: 1;
+  }
+
+  .main-header {
+    padding: 36px 0;
   }
 
   .services {
-    padding: 32px 0;
+    padding: 32px 0 16px 0;
+  }
 
-    .container {
-      margin: 0;
-    }
+  .services .wrapper {
+    display: block;
+  }
 
-    .wrapper {
-      display: block;
-    }
-
-    &__title {
-      font-size: 24px;
-    }
+  .services__title {
+    font-size: 24px;
   }
 
   .about {
     padding: 32px 0;
-
-    .wrapper {
-      gap: 24px;
-    }
-
-    &-text {
-      &__title {
-        margin-bottom: 16px;
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 28px;
-        text-align: center;
-
-      }
-
-      &__description {
-        font-size: 14px;
-      }
-    }
-
-    &__image {
-      img {
-        width: 100%;
-      }
-    }
   }
-  
+
+  .about .wrapper {
+    gap: 24px;
+  }
+
+  .about-text__title {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+  }
+
+  .about-text__description {
+    font-size: 14px;
+  }
+
+  .about__image img {
+    width: 100%;
+  }
+
   .specialists {
     padding: 32px 0 16px 0;
+  }
 
-    .container {
-      margin: 0;
-    }
+  .specialists .container {
+    margin: 0;
+  }
 
-    &__title {
-      font-size: 24px;
-      margin-bottom: 0;
-    }
+  .specialists__title {
+    font-size: 24px;
+    margin-bottom: 0;
   }
 }
 </style>
+

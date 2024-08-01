@@ -1,8 +1,8 @@
 export interface GalleryData {
-    gallery: Photo[]
+  gallery: Photo[]
 }
 
 export interface Photo {
-    id: number,
-    photo_url: string
+  id: number
+  photo_url: string
 }

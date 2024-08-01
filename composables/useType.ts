@@ -1,8 +1,10 @@
-import {institutionsCategories} from "~/utils/constants";
+import { institutionsCategories } from '~/utils/constants'
 
-export const useType = () => {
+export function useType() {
   const route = useRoute()
 
   const category = computed(() => route.params.category as string)
-  return computed(() => institutionsCategories.includes(category.value) ? "institutions" : "specialists")
+  const type = computed(() => institutionsCategories.includes(category.value) ? 'institutions' : 'specialists')
+
+  return { category, type }
 }

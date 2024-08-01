@@ -1,21 +1,20 @@
 <script setup lang="ts">
+import { useBreadcrumbs } from '~/composables/useBreadcrumbs'
+
 definePageMeta({
-  breadcrumb: "Профиль"
+  breadcrumb: 'Профиль',
 })
 
-import { useBreadcrumbs } from '~/composables/useBreadcrumbs';
-
-const { breadcrumbs } = useBreadcrumbs();
-
+const { breadcrumbs } = useBreadcrumbs()
 </script>
 
 <template>
   <div class="page-content">
-    <Header/>
+    <Header />
 
     <main class="main">
       <UContainer>
-        <Breadcrumbs :breadcrumbs="breadcrumbs"/>
+        <Breadcrumbs :breadcrumbs="breadcrumbs" />
         <div class="wrapper">
           <ProfileNav />
           <slot />
@@ -23,11 +22,11 @@ const { breadcrumbs } = useBreadcrumbs();
       </UContainer>
     </main>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .main {
   flex: 1;
 }

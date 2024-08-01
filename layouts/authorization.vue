@@ -5,39 +5,42 @@ const router = useRouter()
 <template>
   <main class="main">
     <div class="auth__header">
-      <button @click="router.back()" class="auth-back__button">
+      <button
+        class="auth-back__button"
+        @click="router.back()"
+      >
         <span class="auth-back__text">Назад</span>
       </button>
     </div>
     <div class="wrapper">
       <div class="block">
         <NuxtLink to="/">
-          <IconsClose class="block__close"/>
+          <IconsClose class="block__close" />
         </NuxtLink>
 
-        <slot/>
+        <slot />
       </div>
     </div>
   </main>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .main {
   position: relative;
   width: 100vw;
   height: 100vh;
   background: url("public/authorization-bg.webp") no-repeat center;
   background-size: cover;
+}
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.26);
-  }
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.26);
 }
 
 .wrapper {
@@ -49,10 +52,8 @@ const router = useRouter()
   padding: 0 200px;
 }
 
-.auth {
-  &__header {
-    display: none;
-  }
+.auth__header {
+  display: none;
 }
 
 .block {
@@ -63,24 +64,23 @@ const router = useRouter()
   background: var(--t-1100, #FFF);
   box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.10);
   z-index: 1;
-
-  svg {
-    position: absolute;
-    top: 26px;
-    right: 26px;
-    font-size: 24px;
-    cursor: pointer;
-  }
 }
 
+.block svg {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  font-size: 24px;
+  cursor: pointer;
+}
 
 @media (max-width: 640px) {
   .main {
     background: none;
+  }
 
-    &:before {
-      content: none;
-    }
+  .main::before {
+    content: none;
   }
 
   .wrapper {
@@ -95,66 +95,60 @@ const router = useRouter()
     padding: 28px 32px;
     border-radius: 0;
     box-shadow: none;
-
-    svg {
-      display: none;
-    }
   }
 
-  .auth {
-    &__header {
-      position: relative;
-      height: 382px;
-      min-height: 382px;
-      padding: 24px;
-      display: block;
-      background: url("public/authorization-bg.webp") no-repeat -70px 0;
-      background-size: cover;
-      background-position: center;
-      border-radius: 0 0 80px 80px;
+  .block svg {
+    display: none;
+  }
 
-      &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.26);
-        border-radius: 0 0 80px 80px;
-      }
-    }
+  .auth__header {
+    position: relative;
+    height: 382px;
+    min-height: 382px;
+    padding: 24px;
+    display: block;
+    background: url("public/authorization-bg.webp") no-repeat -70px 0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 80px 80px;
+  }
 
-    &-back {
-      &__button {
-        position: relative;
-        padding: 12px 16px 12px 8px;
-        border: 1px white solid;
-        border-radius: 10px;
-        background: transparent;
-        color: white;
-        font-family: Roboto, sans-serif;
-        z-index: 10;
+  .auth__header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.26);
+    border-radius: 0 0 80px 80px;
+  }
 
+  .auth-back__button {
+    position: relative;
+    padding: 12px 16px 12px 8px;
+    border: 1px white solid;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    font-family: Roboto, sans-serif;
+    z-index: 10;
+  }
 
-      }
+  .auth-back__text {
+    position: relative;
+    padding-left: 24px;
+  }
 
-      &__text {
-        position: relative;
-        padding-left: 24px;
-
-        &:before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: -8px;
-          width: 14px;
-          height: 14px;
-          transform: translate(100%, -50%);
-          background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Im03LjgyNSAxM2w1LjYgNS42TDEyIDIwbC04LThsOC04bDEuNDI1IDEuNGwtNS42IDUuNkgyMHYyeiIvPjwvc3ZnPg==") center no-repeat;
-        }
-      }
-    }
+  .auth-back__text::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    width: 14px;
+    height: 14px;
+    transform: translate(100%, -50%);
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Im03LjgyNSAxM2w1LjYgNS42TDEyIDIwbC04LThsOC04bDEuNDI1IDEuNGwtNS42IDUuNkgyMHYyeiIvPjwvc3ZnPg==") center no-repeat;
   }
 }
 </style>

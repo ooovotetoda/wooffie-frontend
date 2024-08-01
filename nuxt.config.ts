@@ -6,91 +6,80 @@ export default defineNuxtConfig({
       // baseURL: 'http://localhost:8080',
     },
   },
+
   routeRules: {
-    "/": { prerender: true },
-    "/auth/**": { prerender: true },
-    "/faq/**": { prerender: true },
+    '/': { prerender: true },
+    '/auth/**': { prerender: true },
+    '/faq/**': { prerender: true },
   },
+
   router: {
     options: {
-      scrollBehaviorType: 'smooth'
-    }
+      scrollBehaviorType: 'smooth',
+    },
   },
-  //@ts-ignore
+
+  // @ts-ignore
   colorMode: {
-    preference: 'light'
+    preference: 'light',
   },
+
   pinia: {
     storesDirs: ['./stores/**'],
   },
+
+  build: {
+    transpile: ['swiper'],
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: tag => tag.startsWith('swiper-'),
+    },
+  },
+
   image: {
     providers: {
       myProvider: {
         name: 'myProvider',
         provider: '~/providers/my-provider.ts',
         options: {
-          baseURL: "https://wooffie.ru"
-        }
-      }
-    }
+          baseURL: 'https://wooffie.ru',
+        },
+      },
+    },
   },
+
   imports: {
     dirs: ['types/*.ts'],
   },
+
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
-    'vue3-carousel-nuxt',
     '@nuxt/ui',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxt/eslint',
+    'nuxt-module-eslint-config',
   ],
+
   plugins: [
     '~/plugins/ofetch.ts',
     '~/plugins/access.ts',
   ],
-  css: ['~/assets/main.scss'],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData:
-              '@use "@/assets/fonts.scss" as *; ' +
-              '@use "@/assets/colors.scss"  as *; ' +
-              '@import "@/assets/mixins.scss"; ',
-        }
-      }
-    }
-  },
+
+  css: [
+    '~/assets/main.css',
+    '~/assets/colors.css',
+    '~/assets/fonts.css',
+  ],
+
   app: {
     head: {
-      script: [
-        {
-          innerHTML: `
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-            ym(96702656, "init", {
-                clickmap:true,
-                trackLinks:true,
-                accurateTrackBounce:true,
-                webvisor:true
-            });
-          `,
-          type: 'text/javascript'
-        }
-      ],
-      noscript: [
-        {
-          innerHTML: '<div><img src="https://mc.yandex.ru/watch/96702656" style="position:absolute; left:-9999px;" alt="" /></div>'
-        }
-      ],
       title: 'Wooffie: Все Услуги для Животных на Одном Сайте',
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
       meta: [
         { name: 'description', content: 'Вуффи – ваш надёжный онлайн-сервис для записи к ветеринарам, грумерам и специалистам по уходу за животными. Найдите идеального специалиста для вашего питомца, сравните цены и читайте отзывы в одном месте.' },
@@ -102,5 +91,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   devtools: { enabled: true },
+  compatibilityDate: '2024-07-22',
 })

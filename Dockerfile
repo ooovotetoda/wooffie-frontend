@@ -1,35 +1,21 @@
-# syntax=docker/dockerfile:1
+FROM node:20-bookworm
 
-ARG NODE_VERSION=20.3.0
-FROM node:${NODE_VERSION}-slim as base
+WORKDIR /frontend
 
-ARG PORT=3000
+COPY . .
+
+RUN npm install -g pnpm
+RUN pnpm install --frozen-lockfile
+
 ENV NODE_ENV=production
-WORKDIR /src
 
-# Установка pnpm через npm
-RUN apt-get update && \
-    apt-get install -y curl && \
-    npm install -g pnpm
+ENV NUXT_PORT=3000
+ENV NITRO_PORT=3000
+ENV NITRO_HOST=0.0.0.0
+ENV NUXT_HOST=0.0.0.0
+# ENV HOST=0.0.0.0
 
-FROM base as build
-COPY --link package.json pnpm-lock.yaml ./
+EXPOSE 3000
 
-# Используйте pnpm для установки зависимостей
-RUN pnpm install --frozen-lockfile --production=false
-
-COPY --link . .
-
-# Запустите сценарии сборки с pnpm
 RUN pnpm run build
-
-# Удалите разработческие зависимости, оставив только зависимости для продакшена
-RUN pnpm prune --prod
-
-FROM base
-ENV PORT=$PORT
-
-# Копирование результатов сборки в итоговый образ
-COPY --from=build /src/.output /src/.output
-
-CMD ["node", ".output/server/index.mjs"]
+CMD ["node", "/frontend/.output/server/index.mjs"]

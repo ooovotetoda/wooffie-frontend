@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 volumes:
   node_modules:
@@ -9,7 +9,7 @@ services:
       dockerfile: ./Dockerfile
     image: ooovotetoda/wooffie-frontend:latest
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/src
       - node_modules:/src/node_modules

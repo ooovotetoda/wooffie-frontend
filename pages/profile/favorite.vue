@@ -10,7 +10,7 @@ const { $ofetch } = useNuxtApp()
 
 const { user } = useUserStore()
 
-const { data: favorites, pending } = await useAsyncData<Favorite[]>(
+const { data: favorites, status } = await useAsyncData<Favorite[]>(
     "profile:favorites",
     async () => {
       try {
@@ -34,7 +34,7 @@ const { data: favorites, pending } = await useAsyncData<Favorite[]>(
 
 <template>
   <section class="favorite">
-    <div v-if="pending" class="loader">
+    <div v-if="status === 'pending'" class="loader">
       <Loader />
     </div>
     <div v-else-if="favorites?.length === 0" class="empty">
@@ -48,7 +48,7 @@ const { data: favorites, pending } = await useAsyncData<Favorite[]>(
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .favorite {
   width: 100%;
 }
