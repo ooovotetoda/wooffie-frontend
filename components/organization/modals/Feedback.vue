@@ -10,10 +10,9 @@ const { $ofetch } = useNuxtApp()
 const toast = useToast()
 
 const route = useRoute()
-const router = useRouter()
 const { user } = useUserStore()
 
-const { type } = useType()
+const { type, keyForID } = useType()
 
 const rating = ref(0)
 const comment = ref<string | null>(null)
@@ -27,8 +26,8 @@ const body = computed((): SendReviewBody => {
   };
 
   const id = parseInt(route.params.id as string);
-  if (!isNaN(id) && (type.value === "institution_id" || type.value === "specialist_id")) {
-    result[type.value] = id;
+  if (!isNaN(id) && (type.value === "institutions" || type.value === "specialists")) {
+    result[keyForID.value] = id;
   }
 
   return result as SendReviewBody;
